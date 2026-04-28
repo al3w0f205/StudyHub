@@ -31,7 +31,7 @@ export default function HomePage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "1.25rem 2rem",
+          padding: "max(1.5rem, env(safe-area-inset-top)) 1.5rem 1rem",
           maxWidth: "1200px",
           margin: "0 auto",
         }}
@@ -75,17 +75,20 @@ export default function HomePage() {
           zIndex: 10,
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "4rem 2rem 2rem",
+          padding: "2rem 1.5rem 2rem",
           textAlign: "center",
         }}
       >
         {/* Badge */}
         <div
-          className="animate-fade-in flex items-center justify-center text-center gap-2 px-4 py-1.5 rounded-full mb-8"
+          className="animate-fade-in flex items-center justify-center text-center gap-2 px-4 py-1.5 rounded-full"
           style={{
             background: "rgba(14, 165, 233, 0.1)",
             border: "1px solid rgba(14, 165, 233, 0.2)",
             color: "var(--primary-400)",
+            marginBottom: "2rem",
+            width: "fit-content",
+            margin: "0 auto 2rem",
           }}
         >
           <span className="text-xs sm:text-sm">🎓</span>
@@ -134,7 +137,10 @@ export default function HomePage() {
         </p>
 
         {/* CTA Buttons */}
-        <div className="animate-fade-in animate-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full max-w-md mx-auto sm:max-w-none">
+        <div 
+          className="animate-fade-in animate-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto sm:max-w-none"
+          style={{ marginBottom: "4rem" }}
+        >
           <Link href="/auth/login" className="btn btn-primary btn-lg animate-pulse-glow w-full sm:w-auto flex justify-center" id="hero-cta-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />

@@ -52,6 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   callbacks: {
+    ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -76,16 +77,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       return token;
-    },
-
-    async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.role = token.role;
-        session.user.subscriptionExpiry = token.subscriptionExpiry;
-        session.user.isSuspended = token.isSuspended;
-      }
-      return session;
     },
 
     async signIn({ user, account }) {

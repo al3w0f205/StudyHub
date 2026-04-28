@@ -649,3 +649,12 @@ a {
 }
 
 .hover-scale:hover { transform: scale(1.02); }
+
+/* Quiz Responsive Layout */
+.quiz-layout { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; align-items: start; }
+.quiz-layout.zen-mode { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .quiz-layout { grid-template-columns: 1fr; gap: 1rem; }
+  .quiz-sidebar { position: static !important; order: 2; }
+  .quiz-main { order: 1; }
+}

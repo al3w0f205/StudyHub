@@ -6,6 +6,8 @@ export const dynamic = "force-dynamic";
 
 import { auth } from "@/auth";
 
+import QuizAgreement from "@/components/quiz/QuizAgreement";
+
 export default async function QuizSelectorPage() {
   const session = await auth();
   const user = await prisma.user.findUnique({
@@ -30,6 +32,7 @@ export default async function QuizSelectorPage() {
 
   return (
     <div>
+      <QuizAgreement />
       <div className="page-header">
         <div>
           <h1 className="page-title">Cuestionarios 📝</h1>

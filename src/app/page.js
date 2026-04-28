@@ -83,9 +83,9 @@ export default function HomePage() {
         <div
           className="animate-fade-in flex items-center justify-center text-center gap-2 px-4 py-1.5 rounded-full"
           style={{
-            background: "rgba(14, 165, 233, 0.1)",
-            border: "1px solid rgba(14, 165, 233, 0.2)",
-            color: "var(--primary-400)",
+            background: "rgba(14, 165, 233, 0.15)",
+            border: "1px solid rgba(14, 165, 233, 0.3)",
+            color: "var(--primary-50)",
             marginBottom: "2rem",
             width: "fit-content",
             margin: "0 auto 2rem",
@@ -147,7 +147,7 @@ export default function HomePage() {
             </svg>
             Empezar Ahora
           </Link>
-          <Link href="#features" className="btn btn-secondary btn-lg w-full sm:w-auto flex justify-center" id="hero-features-btn">
+          <Link href="#features" className="btn btn-secondary btn-lg w-full sm:w-auto flex justify-center" style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)" }} id="hero-features-btn">
             Conocer Más
           </Link>
         </div>
@@ -210,32 +210,32 @@ export default function HomePage() {
           >
             {[
               {
-                icon: "📚",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
                 title: "Cuestionarios por Carrera",
                 desc: "Preguntas organizadas por carrera y materia. Practica exactamente lo que necesitas para tu próximo examen.",
               },
               {
-                icon: "💡",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>,
                 title: "Pistas Inteligentes",
                 desc: "¿Atascado en una pregunta? Usa las pistas para guiar tu razonamiento sin revelar la respuesta directamente.",
               },
               {
-                icon: "📖",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>,
                 title: "Explicaciones Detalladas",
                 desc: "Cada respuesta incluye una justificación completa para que entiendas el porqué, no solo el qué.",
               },
               {
-                icon: "📱",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>,
                 title: "Estudia Donde Sea",
                 desc: "Aplicación web progresiva que funciona en cualquier dispositivo. Instálala como app en tu teléfono.",
               },
               {
-                icon: "🔒",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
                 title: "Acceso Premium",
                 desc: "Suscripción mensual de solo $10 USD. Acceso completo a todo el banco de preguntas y nuevas adiciones.",
               },
               {
-                icon: "✨",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>,
                 title: "Colaboración",
                 desc: "Sugiere preguntas para que otros estudiantes se beneficien. Juntos construimos un mejor recurso de estudio.",
               },
@@ -281,6 +281,17 @@ export default function HomePage() {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ── Social Proof ── */}
+        <section style={{ paddingBottom: "4rem" }}>
+          <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem" }}>
+            Utilizado y confiado por estudiantes de
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "clamp(1.5rem, 4vw, 3rem)", flexWrap: "wrap", opacity: 0.5 }}>
+            <span style={{ fontSize: "1.25rem", fontWeight: "700", letterSpacing: "0.05em" }}>UIDE</span>
+            <span style={{ fontSize: "1.25rem", fontWeight: "700", letterSpacing: "0.05em" }}>UDLA</span>
           </div>
         </section>
 
@@ -381,7 +392,7 @@ export default function HomePage() {
                     gap: "0.75rem",
                   }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-400)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-400)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                   {item}

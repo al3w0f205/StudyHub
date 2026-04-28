@@ -34,8 +34,17 @@ export default async function QuizPage({ params }) {
     select: { id: true, name: true }
   });
 
-  // Shuffle questions
-  const shuffled = [...category.questions].sort(() => Math.random() - 0.5);
+  // Shuffle questions and options
+  const shuffled = [...category.questions].sort(() => Math.random() - 0.5).map(q => {
+    const optsWithOriginals = q.options.map((text, i) => ({ text, isCorrect: i === q.correctIndex }));
+    const shuffledOpts = optsWithOriginals.sort(() => Math.random() - 0.5);
+    const newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect);
+    return {
+      ...q,
+      options: shuffledOpts.map(o => o.text),
+      correctIndex: newCorrectIndex
+    };
+  });
 
   return (
     <div>

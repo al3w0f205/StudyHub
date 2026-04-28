@@ -211,6 +211,9 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
             {isZenMode && (
               <button onClick={() => setIsZenMode(false)} className="btn btn-sm btn-secondary">Salir del Modo Zen</button>
             )}
+            <Link href="/quiz" className="btn btn-sm" style={{ background: "transparent", color: "var(--text-tertiary)", border: "1px solid var(--border-default)" }}>
+              Salir ✕
+            </Link>
           </div>
         </div>
 

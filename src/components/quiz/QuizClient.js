@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import MathText from "@/components/ui/MathText";
 
 export default function QuizClient({ questions, categoryName, careerName, careers, currentCareerId, categoryId }) {
   // State
@@ -294,7 +295,7 @@ export default function QuizClient({ questions, categoryName, careerName, career
 
         {/* Question Card */}
         <div className="solid-card animate-fade-in quiz-question-card">
-          <p className="quiz-question-text">{q.text}</p>
+          <MathText className="quiz-question-text">{q.text}</MathText>
         </div>
 
         {/* Options */}
@@ -343,7 +344,7 @@ export default function QuizClient({ questions, categoryName, careerName, career
                 }}>
                   {icon}
                 </div>
-                <span style={{ lineHeight: 1.5 }}>{opt}</span>
+                <MathText className="quiz-option-text">{opt}</MathText>
               </button>
             );
           })}
@@ -369,7 +370,13 @@ export default function QuizClient({ questions, categoryName, careerName, career
         {/* Hint Box */}
         {showHint && !showExplanation && (
           <div className="solid-card animate-fade-in" style={{ padding: "1rem", borderLeft: "3px solid var(--warning-400)", background: "rgba(245,158,11,0.05)" }}>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>💡 <strong>Pista:</strong> {q.hint}</p>
+            <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+              <span>💡</span>
+              <div>
+                <strong>Pista:</strong>
+                <MathText>{q.hint}</MathText>
+              </div>
+            </div>
           </div>
         )}
 
@@ -377,7 +384,7 @@ export default function QuizClient({ questions, categoryName, careerName, career
         {showExplanation && q.explanation && (
           <div className="solid-card animate-fade-in" style={{ padding: "1.25rem", borderLeft: "3px solid var(--accent-400)", background: "rgba(34,211,238,0.05)", marginTop: "0.75rem" }}>
             <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-400)", marginBottom: "0.375rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Justificación</p>
-            <p style={{ fontSize: "0.9375rem", color: "var(--text-primary)", lineHeight: 1.7 }}>{q.explanation}</p>
+            <MathText className="quiz-explanation-text">{q.explanation}</MathText>
           </div>
         )}
       </div>

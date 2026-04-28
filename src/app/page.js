@@ -326,7 +326,7 @@ export default async function HomePage() {
               { step: "03", title: "Aprende del error", desc: "Lee las justificaciones detalladas de cada respuesta para entender el porqué, no solo memorizar." }
             ].map((item, i) => (
               <div key={i} style={{ position: "relative" }}>
-                <div style={{ fontSize: "4rem", fontWeight: "900", color: "rgba(255,255,255,0.05)", lineHeight: 1, marginBottom: "1rem" }}>
+                <div style={{ fontSize: "4rem", fontWeight: "900", color: "var(--text-tertiary)", opacity: 0.2, lineHeight: 1, marginBottom: "1rem" }}>
                   {item.step}
                 </div>
                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "0.75rem", color: "#fff" }}>{item.title}</h3>

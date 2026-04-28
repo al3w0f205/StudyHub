@@ -420,7 +420,6 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             <MathText className="quiz-explanation-text">{q.explanation}</MathText>
           </div>
         )}
-            </div>
           </>
         )}
       </div>

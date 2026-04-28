@@ -47,6 +47,20 @@ export default function RootLayout({ children }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var storedTheme = localStorage.getItem('studyhub_theme');
+                if (storedTheme) {
+                  document.documentElement.setAttribute('data-theme', storedTheme);
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

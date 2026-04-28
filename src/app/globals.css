@@ -91,6 +91,43 @@ html {
   --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+[data-theme="light"] {
+  /* Surfaces — Light Mode */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-elevated: #ffffff;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+
+  /* Text */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-tertiary: #64748b;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-default: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.2);
+  --border-active: rgba(14, 165, 233, 0.5);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.15);
+  --shadow-glow-lg: 0 0 60px rgba(14, 165, 233, 0.1);
+
+  /* Gradients */
+  --gradient-hero: radial-gradient(circle at top, rgba(14, 165, 233, 0.08) 0%, var(--bg-primary) 60%);
+  --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+}
+
 /* ── Base Styles ── */
 * {
   margin: 0;
@@ -172,6 +209,7 @@ a {
   background: var(--glass-highlight);
   border-color: var(--border-hover);
   box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 /* ── Solid Card ── */
@@ -185,7 +223,7 @@ a {
 .solid-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -219,7 +257,7 @@ a {
 
 .btn-primary:hover {
   box-shadow: var(--shadow-md), 0 0 30px rgba(99, 102, 241, 0.3);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -231,6 +269,7 @@ a {
 .btn-secondary:hover {
   background: var(--glass-highlight);
   border-color: var(--border-hover);
+  transform: translateY(-2px);
 }
 
 .btn-danger {
@@ -250,8 +289,9 @@ a {
 }
 
 .btn-ghost:hover {
-  color: var(--text-primary);
   background: var(--glass-bg);
+  color: var(--text-primary);
+  transform: translateY(-2px);
 }
 
 .btn-sm {

@@ -1,11 +1,36 @@
 import Link from "next/link";
 import { auth, signOut } from "@/auth";
+import prisma from "@/lib/prisma";
 
 export default async function HomePage() {
   const session = await auth();
   const isLoggedIn = !!session?.user;
   const isAdmin = session?.user?.role === "ADMIN";
   const dashboardUrl = isAdmin ? "/admin" : "/dashboard";
+
+  const [totalQuestions, careersData] = await Promise.all([
+    prisma.question.count(),
+    prisma.career.findMany({
+      select: {
+        name: true,
+        categories: {
+          select: {
+            _count: {
+              select: { questions: true }
+            }
+          }
+        }
+      }
+    })
+  ]);
+
+  const statsByCareer = careersData.map(c => {
+    const qCount = c.categories.reduce((acc, cat) => acc + cat._count.questions, 0);
+    return { name: c.name, questionCount: qCount };
+  }).filter(c => c.questionCount > 0);
+  
+  // Format total with commas
+  const totalFormatted = new Intl.NumberFormat("en-US").format(totalQuestions);
 
   return (
     <div className="landing-page" style={{ 
@@ -15,7 +40,16 @@ export default async function HomePage() {
       fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       overflowX: "hidden" 
     }}>
-      {/* ── Subtle Background Glow ── */}
+      {/* ── Subtle Background Glow & Grid ── */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M59 60H0V0h60v60zM1 1v58h58V1H1z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+        maskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
+        WebkitMaskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
+        pointerEvents: "none",
+        zIndex: 0
+      }} />
       <div style={{
         position: "absolute",
         top: 0,
@@ -151,9 +185,21 @@ export default async function HomePage() {
             </div>
             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "8px", padding: "2rem" }}>
               <div style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1.5rem" }}>Pregunta de Anatomía #42</div>
-              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem", background: "rgba(45, 212, 191, 0.05)" }}/>
-              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem" }}/>
-              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem" }}/>
+              
+              <div style={{ padding: "0.875rem 1rem", border: "1px solid rgba(45, 212, 191, 0.5)", borderRadius: "6px", marginBottom: "0.75rem", background: "rgba(45, 212, 191, 0.05)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(45, 212, 191, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#2dd4bf", fontSize: "0.75rem", fontWeight: "bold" }}>A</div>
+                <div style={{ color: "#2dd4bf", fontSize: "0.875rem", fontWeight: "500" }}>El nervio mediano inerva los músculos flexores del antebrazo.</div>
+              </div>
+
+              <div style={{ padding: "0.875rem 1rem", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.75rem", opacity: 0.6 }}>
+                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "0.75rem", fontWeight: "bold" }}>B</div>
+                <div style={{ color: "#a1a1aa", fontSize: "0.875rem" }}>El nervio cubital es el principal inervador de la cara anterior.</div>
+              </div>
+
+              <div style={{ padding: "0.875rem 1rem", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.75rem", opacity: 0.6 }}>
+                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "0.75rem", fontWeight: "bold" }}>C</div>
+                <div style={{ color: "#a1a1aa", fontSize: "0.875rem" }}>El nervio radial se origina en el fascículo posterior del plexo.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -171,6 +217,45 @@ export default async function HomePage() {
             <span style={{ fontSize: "2rem", fontWeight: "600", fontFamily: "serif", fontStyle: "italic" }}>udla</span>
             <span style={{ fontSize: "1.75rem", fontWeight: "800", fontFamily: "sans-serif" }}>PUCE</span>
             <span style={{ fontSize: "1.75rem", fontWeight: "700", fontFamily: "system-ui", letterSpacing: "-1px" }}>USFQ</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Realtime Stats ── */}
+      <section style={{ padding: "6rem 2rem", background: "rgba(255,255,255,0.01)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+          <div style={{
+            display: "inline-block", padding: "0.25rem 0.75rem", borderRadius: "9999px",
+            background: "rgba(45, 212, 191, 0.1)", border: "1px solid rgba(45, 212, 191, 0.2)",
+            color: "#2dd4bf", fontSize: "0.75rem", fontWeight: "600", marginBottom: "1.5rem",
+            textTransform: "uppercase", letterSpacing: "0.05em"
+          }}>
+            Actualizado en Tiempo Real
+          </div>
+          
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "1rem" }}>
+            Un banco de <span style={{ color: "#2dd4bf" }}>{totalFormatted}</span> preguntas
+          </h2>
+          <p style={{ color: "#a1a1aa", fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto 4rem" }}>
+            Expandimos continuamente nuestro contenido. Estas son las preguntas disponibles ahora mismo por cada carrera:
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem" }}>
+            {statsByCareer.map((career, i) => (
+              <div key={i} className="solid-card" style={{
+                padding: "1.5rem", borderRadius: "16px", background: "rgba(255,255,255,0.02)", 
+                border: "1px solid rgba(255,255,255,0.05)", textAlign: "left",
+                display: "flex", justifyContent: "space-between", alignItems: "center"
+              }}>
+                <span style={{ fontSize: "1.125rem", fontWeight: "600", color: "#fff" }}>{career.name}</span>
+                <span style={{ 
+                  background: "rgba(255,255,255,0.1)", color: "#fff", padding: "0.25rem 0.75rem", 
+                  borderRadius: "9999px", fontSize: "0.875rem", fontWeight: "600" 
+                }}>
+                  {new Intl.NumberFormat("en-US").format(career.questionCount)}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -222,6 +307,36 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── How it Works ── */}
+      <section style={{ padding: "8rem 2rem", background: "rgba(255,255,255,0.01)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "1rem" }}>
+              Cómo funciona StudyHub
+            </h2>
+            <p style={{ color: "#a1a1aa", fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto" }}>
+              Un proceso simple diseñado para maximizar tu retención y prepararte para el mundo real.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem" }}>
+            {[
+              { step: "01", title: "Elige tu área", desc: "Selecciona tu carrera y la categoría específica que necesitas estudiar para tu próximo parcial." },
+              { step: "02", title: "Practica a tu ritmo", desc: "Responde preguntas con o sin límite de tiempo. Usa pistas si te atascas en conceptos difíciles." },
+              { step: "03", title: "Aprende del error", desc: "Lee las justificaciones detalladas de cada respuesta para entender el porqué, no solo memorizar." }
+            ].map((item, i) => (
+              <div key={i} style={{ position: "relative" }}>
+                <div style={{ fontSize: "4rem", fontWeight: "900", color: "rgba(255,255,255,0.05)", lineHeight: 1, marginBottom: "1rem" }}>
+                  {item.step}
+                </div>
+                <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "0.75rem", color: "#fff" }}>{item.title}</h3>
+                <p style={{ color: "#a1a1aa", lineHeight: "1.6" }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Pricing ── */}
       <section style={{ padding: "4rem 2rem 8rem", textAlign: "center", background: "linear-gradient(to bottom, transparent, rgba(45, 212, 191, 0.03))" }}>
         <h2 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "3rem" }}>
@@ -261,6 +376,45 @@ export default async function HomePage() {
             ))}
           </ul>
         </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section style={{ padding: "8rem 2rem", maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <h2 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: "800", letterSpacing: "-0.03em" }}>
+            Preguntas Frecuentes
+          </h2>
+        </div>
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {[
+            { q: "¿Cómo se actualizan las preguntas?", a: "Nuestro banco de preguntas es revisado y actualizado continuamente por estudiantes destacados y colaboradores. Si encuentras un error, puedes reportarlo fácilmente." },
+            { q: "¿Cómo funciona el proceso de pago?", a: "Actualmente procesamos los pagos de forma manual para mayor seguridad. Envías el comprobante de transferencia y un administrador activará tu cuenta y las carreras que solicites en menos de 24 horas." },
+            { q: "¿Puedo acceder desde mi celular?", a: "¡Sí! StudyHub está optimizado 100% para funcionar perfectamente en dispositivos móviles. Puedes estudiar en el bus, en la cafetería o donde quieras." },
+            { q: "¿Qué pasa si mi carrera no está disponible?", a: "Estamos agregando nuevas carreras cada mes. Si tienes material y quieres colaborar para abrir tu carrera en la plataforma, contáctanos y obtendrás beneficios exclusivos." }
+          ].map((faq, i) => (
+            <div key={i} className="solid-card" style={{ padding: "1.5rem", borderRadius: "12px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#fff", marginBottom: "0.5rem" }}>{faq.q}</h3>
+              <p style={{ color: "#a1a1aa", fontSize: "0.9375rem", lineHeight: "1.6" }}>{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Bottom CTA ── */}
+      <section style={{ padding: "6rem 2rem", textAlign: "center", background: "radial-gradient(ellipse at bottom, rgba(45, 212, 191, 0.1), transparent 60%)" }}>
+        <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: "800", letterSpacing: "-0.04em", marginBottom: "1.5rem", color: "#fff" }}>
+          ¿Listo para <span style={{ color: "#2dd4bf" }}>aprobar</span>?
+        </h2>
+        <p style={{ color: "#a1a1aa", fontSize: "1.125rem", maxWidth: "500px", margin: "0 auto 3rem" }}>
+          Únete a la plataforma que está cambiando la forma de estudiar en la universidad.
+        </p>
+        <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} className="btn btn-primary" style={{
+          padding: "1rem 2.5rem", borderRadius: "8px", background: "#fff", color: "#09090b",
+          fontWeight: "700", fontSize: "1.125rem", textDecoration: "none", display: "inline-block"
+        }}>
+          Empezar a Estudiar
+        </Link>
       </section>
 
       {/* ── Footer ── */}

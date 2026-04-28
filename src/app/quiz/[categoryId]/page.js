@@ -29,6 +29,11 @@ export default async function QuizPage({ params }) {
 
   if (!category || category.questions.length === 0) notFound();
 
+  const allCategories = await prisma.category.findMany({
+    where: { careerId: category.careerId },
+    select: { id: true, name: true }
+  });
+
   // Shuffle questions
   const shuffled = [...category.questions].sort(() => Math.random() - 0.5);
 
@@ -38,6 +43,8 @@ export default async function QuizPage({ params }) {
         questions={shuffled}
         categoryName={category.name}
         careerName={category.career.name}
+        allCategories={allCategories}
+        categoryId={categoryId}
       />
     </div>
   );

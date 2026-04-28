@@ -67,6 +67,15 @@ const authConfig = {
 
       return true;
     },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+        session.user.subscriptionExpiry = token.subscriptionExpiry;
+        session.user.isSuspended = token.isSuspended;
+      }
+      return session;
+    },
   },
 };
 

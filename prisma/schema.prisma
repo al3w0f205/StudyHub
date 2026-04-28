@@ -73,6 +73,7 @@ model User {
   subscriptionExpiry  DateTime?
   isSuspended         Boolean              @default(false)
   suspendedReason     String?
+  allowedCareers      String?              // Comma-separated career slugs, e.g. "medicina,ingenieria". If null, allowed all.
 
   accounts            Account[]
   sessions            Session[]

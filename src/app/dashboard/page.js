@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { isSubscriptionActive, daysRemaining, formatDate } from "@/lib/utils";
+import ClientStats from "./ClientStats";
 
 export const metadata = { title: "Mi Dashboard" };
 export const dynamic = "force-dynamic";
@@ -19,6 +20,10 @@ export default async function DashboardPage() {
     prisma.career.count(),
     prisma.question.count(),
   ]);
+
+  const categories = await prisma.category.findMany({
+    select: { id: true, name: true, career: { select: { name: true } } }
+  });
 
   return (
     <div>
@@ -88,6 +93,8 @@ export default async function DashboardPage() {
           <div className="stat-label">Preguntas Sugeridas</div>
         </div>
       </div>
+
+      <ClientStats categories={categories} />
 
       {/* Quick Actions */}
       <h2 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "1rem" }}>Accesos Rápidos</h2>

@@ -19,17 +19,16 @@ async function toggleSuspend(formData) {
   redirect("/admin/users");
 }
 
-async function grantSubscription(formData) {
+async function toggleSubscription(formData) {
   "use server";
   const id = formData.get("id");
-  const days = parseInt(formData.get("days") || "30", 10);
-  
-  const expiry = new Date();
-  expiry.setDate(expiry.getDate() + days);
+  const isActive = formData.get("isActive") === "true";
   
   await prisma.user.update({
     where: { id },
-    data: { subscriptionExpiry: expiry },
+    data: { 
+      subscriptionExpiry: isActive ? null : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) 
+    },
   });
   redirect("/admin/users");
 }
@@ -159,11 +158,11 @@ export default async function UsersPage() {
                             </button>
                           </form>
                         )}
-                        <form action={grantSubscription}>
+                        <form action={toggleSubscription}>
                           <input type="hidden" name="id" value={u.id} />
-                          <input type="hidden" name="days" value="30" />
-                          <button type="submit" className="btn btn-sm btn-primary" style={{ background: "var(--success-400)", borderColor: "var(--success-400)" }}>
-                            Activar Suscripción
+                          <input type="hidden" name="isActive" value={String(isActive)} />
+                          <button type="submit" className={`btn btn-sm ${isActive ? "btn-secondary" : "btn-primary"}`} style={isActive ? { fontSize: "0.75rem" } : { background: "var(--success-400)", borderColor: "var(--success-400)", fontSize: "0.75rem" }}>
+                            {isActive ? "Desactivar" : "Activar"} Suscripción
                           </button>
                         </form>
                         <form action={toggleRole}>

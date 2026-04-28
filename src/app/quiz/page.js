@@ -59,17 +59,17 @@ export default async function QuizSelectorPage() {
   // ----------------------------
 
   return (
-    <div>
+    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "1.5rem 1.25rem" }}>
       <QuizAgreement />
-      <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
+      <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem" }}>
         <div>
-          <h1 className="page-title">
+          <h1 className="page-title" style={{ fontSize: "clamp(1.5rem, 5vw, 1.875rem)" }}>
             Hola, {user.name?.split(" ")[0] || "Estudiante"} 👋
           </h1>
-          <p className="page-subtitle">Bienvenido a tu centro de estudio. Aquí tienes tu rendimiento reciente.</p>
+          <p className="page-subtitle" style={{ fontSize: "0.875rem" }}>Panel de estudio interactivo</p>
         </div>
-        <Link href="/settings" className="btn btn-secondary">
-          ⚙️ Configuración
+        <Link href="/settings" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+          ⚙️ Ajustes
         </Link>
       </div>
 

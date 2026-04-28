@@ -1045,3 +1045,34 @@ a {
     font-size: 0.75rem;
   }
 }
+
+/* Math & Markdown Support */
+.math-text-wrapper p {
+  margin: 0;
+  line-height: inherit;
+}
+
+.math-text-wrapper .katex-display {
+  margin: 1rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.quiz-option-text {
+  flex: 1;
+  text-align: left;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.quiz-question-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.quiz-explanation-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}

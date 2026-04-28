@@ -140,6 +140,7 @@ model QuestionSuggestion {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   text        String   @db.Text
   options     Json
+  correctIndex Int?    // The index of the correct option
   hint        String?  @db.Text
   explanation String?  @db.Text
   categoryId  String?

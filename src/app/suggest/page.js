@@ -16,18 +16,21 @@ async function submitSuggestion(formData) {
   const explanation = formData.get("explanation");
 
   const options = [];
+  let correctIndex = parseInt(formData.get("correctIndex"), 10);
+
   for (let i = 0; i < 4; i++) {
     const opt = formData.get(`option-${i}`);
     if (opt && opt.trim()) options.push(opt.trim());
   }
 
-  if (!text || options.length < 2) return;
+  if (!text || options.length < 2 || isNaN(correctIndex)) return;
 
   await prisma.questionSuggestion.create({
     data: {
       userId: session.user.id,
       text,
       options,
+      correctIndex,
       categoryId: categoryId || null,
       hint: hint || null,
       explanation: explanation || null,
@@ -80,10 +83,13 @@ export default async function SuggestPage({ searchParams }) {
             </div>
 
             <div>
-              <label className="label">Opciones de Respuesta (mín. 2)</label>
+              <label className="label">Opciones de Respuesta (selecciona la correcta ✔️)</label>
               <div style={{ display: "grid", gap: "0.5rem" }}>
                 {[0, 1, 2, 3].map((i) => (
-                  <input key={i} name={`option-${i}`} className="input" placeholder={`Opción ${i + 1}${i < 2 ? " *" : " (opcional)"}`} required={i < 2} />
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                    <input type="radio" name="correctIndex" value={i} required style={{ width: "20px", height: "20px", accentColor: "var(--success-400)", cursor: "pointer" }} />
+                    <input name={`option-${i}`} className="input" placeholder={`Opción ${i + 1}${i < 2 ? " *" : " (opcional)"}`} required={i < 2} style={{ flex: 1 }} />
+                  </div>
                 ))}
               </div>
             </div>

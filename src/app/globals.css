@@ -9,6 +9,10 @@
    ═══════════════════════════════════════════════════ */
 
 /* ── CSS Custom Properties ── */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Primary Palette — Cyber Blue (2026 Modern) */
   --primary-50: #e0f2fe;

@@ -9,7 +9,10 @@ import { auth } from "@/auth";
 import QuizAgreement from "@/components/quiz/QuizAgreement";
 import ClientStats from "@/app/dashboard/ClientStats";
 
-export default async function QuizSelectorPage() {
+export default async function QuizSelectorPage({ searchParams }) {
+  const params = await searchParams;
+  const selectedCareerSlug = params.career;
+  
   const session = await auth();
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
@@ -81,6 +84,42 @@ export default async function QuizSelectorPage() {
         Módulos Disponibles
       </h2>
 
+      {!noAccess && (
+        <div style={{ marginBottom: "2rem" }}>
+          <div style={{ 
+            display: "flex", 
+            gap: "0.5rem", 
+            overflowX: "auto", 
+            paddingBottom: "1rem",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none"
+          }}>
+            {careers.map((career) => (
+              <Link
+                key={career.id}
+                href={`/quiz?career=${career.slug}`}
+                className="btn"
+                style={{
+                  borderRadius: "var(--radius-full)",
+                  background: (selectedCareerSlug === career.slug || (!selectedCareerSlug && careers[0]?.slug === career.slug)) 
+                    ? "var(--gradient-primary)" 
+                    : "var(--bg-card)",
+                  color: (selectedCareerSlug === career.slug || (!selectedCareerSlug && careers[0]?.slug === career.slug))
+                    ? "white"
+                    : "var(--text-secondary)",
+                  border: "1px solid var(--border-default)",
+                  padding: "0.5rem 1.25rem",
+                  fontSize: "0.875rem",
+                  whiteSpace: "nowrap"
+                }}
+              >
+                {career.icon} {career.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {noAccess ? (
         <div className="solid-card" style={{ padding: "2.5rem 2rem", textAlign: "center" }}>
           <div style={{ fontSize: "3rem", marginBottom: "1rem", opacity: 0.6 }}>🔒</div>
@@ -99,24 +138,45 @@ export default async function QuizSelectorPage() {
         </div>
       ) : (
         <div style={{ display: "grid", gap: "1.5rem" }}>
-          {careers.map((career) => (
-            <div key={career.id} className="solid-card" style={{ overflow: "hidden" }}>
-              <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid var(--border-default)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          {careers
+            .filter(c => !selectedCareerSlug ? c.id === careers[0]?.id : c.slug === selectedCareerSlug)
+            .map((career) => (
+            <div key={career.id} style={{ animation: "fadeIn 0.3s ease-out" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
                 <span style={{ fontSize: "1.5rem" }}>{career.icon || "📚"}</span>
                 <div>
-                  <h2 style={{ fontSize: "1.125rem", fontWeight: "700" }}>{career.name}</h2>
-                  {career.description && <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>{career.description}</p>}
+                  <h2 style={{ fontSize: "1.25rem", fontWeight: "800", color: "var(--text-primary)" }}>{career.name}</h2>
+                  {career.description && <p style={{ fontSize: "0.875rem", color: "var(--text-tertiary)" }}>{career.description}</p>}
                 </div>
               </div>
+              
               {career.categories.length === 0 ? (
-                <div style={{ padding: "1.5rem", textAlign: "center", color: "var(--text-tertiary)", fontSize: "0.875rem" }}>No hay categorías disponibles</div>
+                <div className="solid-card" style={{ padding: "2rem", textAlign: "center", color: "var(--text-tertiary)" }}>No hay categorías disponibles</div>
               ) : (
-                <div style={{ padding: "0.75rem", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "0.5rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
                   {career.categories.map((cat) => (
-                    <Link key={cat.id} href={`/quiz/${cat.id}`} className="solid-card" style={{ padding: "0.875rem", textDecoration: "none", border: "1px solid var(--border-default)" }}>
-                      <div style={{ fontWeight: "600", fontSize: "0.8125rem", marginBottom: "0.25rem" }}>{cat.name}</div>
-                      <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>
-                        {cat._count.questions} pregunta{cat._count.questions !== 1 ? "s" : ""}
+                    <Link 
+                      key={cat.id} 
+                      href={`/quiz/${cat.id}`} 
+                      className="solid-card" 
+                      style={{ 
+                        padding: "1.25rem", 
+                        textDecoration: "none", 
+                        display: "flex", 
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        minHeight: "100px",
+                        transition: "all 0.2s ease"
+                      }}
+                    >
+                      <div>
+                        <div style={{ fontWeight: "700", fontSize: "1rem", color: "var(--text-primary)", marginBottom: "0.25rem" }}>{cat.name}</div>
+                        <div style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>
+                          {cat._count.questions} preguntas disponibles
+                        </div>
+                      </div>
+                      <div style={{ alignSelf: "flex-end", fontSize: "0.75rem", fontWeight: "600", color: "var(--accent-400)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                        Empezar →
                       </div>
                     </Link>
                   ))}

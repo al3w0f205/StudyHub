@@ -106,7 +106,7 @@ export async function runSeed() {
             
             const existing = await prisma.question.findFirst({ where: { text: p.q, categoryId: category.id } });
             if (!existing) {
-              const correctIndex = p.ans !== undefined ? (p.ans > 0 ? p.ans - 1 : 0) : 0; // fallback logic
+              const correctIndex = p.ans !== undefined ? parseInt(p.ans, 10) : 0;
               await prisma.question.create({
                 data: {
                   text: p.q,

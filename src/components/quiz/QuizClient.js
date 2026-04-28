@@ -122,11 +122,11 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
   }
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: isZenMode ? "1fr" : "320px 1fr", gap: "2rem", alignItems: "start" }}>
+    <div className={`quiz-layout ${isZenMode ? 'zen-mode' : ''}`}>
       
       {/* Sidebar - Hidden in Zen Mode */}
       {!isZenMode && (
-        <div className="solid-card" style={{ padding: "1.5rem", position: "sticky", top: "2rem" }}>
+        <div className="solid-card quiz-sidebar" style={{ padding: "1.5rem", position: "sticky", top: "2rem" }}>
           
           <div style={{ marginBottom: "2rem" }}>
             <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", color: "var(--text-tertiary)", textTransform: "uppercase", marginBottom: "1rem" }}>Dominio por Área</h3>
@@ -153,8 +153,8 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
               <Link href={`/quiz`} className="btn btn-sm btn-ghost" style={{ fontSize: "0.75rem", justifyContent: "center" }}>Todas</Link>
               {allCategories?.slice(0, 7).map(c => (
-                <Link key={c.id} href={`/quiz/${c.id}`} className={`btn btn-sm ${c.id === categoryId ? "btn-primary" : "btn-secondary"}`} style={{ fontSize: "0.75rem", justifyContent: "center", padding: "0.5rem" }}>
-                  {c.name.substring(0, 12)}
+                <Link key={c.id} href={`/quiz/${c.id}`} className={`btn btn-sm ${c.id === categoryId ? "btn-primary" : "btn-secondary"}`} style={{ fontSize: "0.75rem", justifyContent: "center", padding: "0.5rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {c.name}
                 </Link>
               ))}
             </div>
@@ -184,10 +184,10 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
       )}
 
       {/* Main Quiz Area */}
-      <div style={{ maxWidth: 800, margin: isZenMode ? "0 auto" : "0" }}>
+      <div className="quiz-main" style={{ maxWidth: 800, margin: isZenMode ? "0 auto" : "0", width: "100%" }}>
         
         {/* Header */}
-        <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+        <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <div style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
               {careerName} <span style={{ margin: "0 0.5rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
@@ -195,9 +195,9 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800 }}>Pregunta {current + 1} <span style={{ color: "var(--text-tertiary)", fontSize: "1.25rem", fontWeight: 500 }}>/ {total}</span></h1>
           </div>
           
-          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
             {isTimePressure && selected === null && (
-              <div style={{ fontSize: "1.25rem", fontWeight: 700, color: timeLeft <= 5 ? "var(--danger-400)" : "var(--warning-400)" }}>
+              <div style={{ fontSize: "1.25rem", fontWeight: 700, color: timeLeft <= 5 ? "var(--danger-400)" : "var(--warning-400)", marginRight: "0.5rem" }}>
                 00:{timeLeft.toString().padStart(2, "0")}
               </div>
             )}
@@ -209,7 +209,7 @@ export default function QuizClient({ questions, categoryName, careerName, allCat
               </div>
             )}
             {isZenMode && (
-              <button onClick={() => setIsZenMode(false)} className="btn btn-sm btn-secondary">Salir del Modo Zen</button>
+              <button onClick={() => setIsZenMode(false)} className="btn btn-sm btn-secondary">Salir Zen</button>
             )}
             <Link href="/quiz" className="btn btn-sm" style={{ background: "transparent", color: "var(--text-tertiary)", border: "1px solid var(--border-default)" }}>
               Salir ✕

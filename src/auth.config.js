@@ -56,13 +56,13 @@ const authConfig = {
         return Response.redirect(new URL("/admin", nextUrl));
       }
 
-      // Subscription check for quiz routes
+      // Subscription check for quiz routes (TEMPORALMENTE DESACTIVADO PARA PRUEBAS)
       if (pathname.startsWith("/quiz") && auth?.user?.role !== "ADMIN") {
-        const expiry = auth?.user?.subscriptionExpiry;
-        const isActive = expiry && new Date(expiry) > new Date();
-        if (!isActive) {
-          return Response.redirect(new URL("/payment?reason=expired", nextUrl));
-        }
+        // const expiry = auth?.user?.subscriptionExpiry;
+        // const isActive = expiry && new Date(expiry) > new Date();
+        // if (!isActive) {
+        //   return Response.redirect(new URL("/payment?reason=expired", nextUrl));
+        // }
       }
 
       return true;

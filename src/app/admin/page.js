@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import SeedButton from "./SeedButton";
 
 export const metadata = {
   title: "Dashboard Admin",
@@ -44,6 +45,7 @@ export default async function AdminDashboard() {
           <h1 className="page-title">Dashboard</h1>
           <p className="page-subtitle">Resumen general de la plataforma</p>
         </div>
+        <SeedButton />
       </div>
 
       {/* Stats Grid */}

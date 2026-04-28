@@ -19,6 +19,33 @@ async function toggleSuspend(formData) {
   redirect("/admin/users");
 }
 
+async function grantSubscription(formData) {
+  "use server";
+  const id = formData.get("id");
+  const days = parseInt(formData.get("days") || "30", 10);
+  
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + days);
+  
+  await prisma.user.update({
+    where: { id },
+    data: { subscriptionExpiry: expiry },
+  });
+  redirect("/admin/users");
+}
+
+async function toggleRole(formData) {
+  "use server";
+  const id = formData.get("id");
+  const currentRole = formData.get("role");
+  
+  await prisma.user.update({
+    where: { id },
+    data: { role: currentRole === "ADMIN" ? "USER" : "ADMIN" },
+  });
+  redirect("/admin/users");
+}
+
 export default async function UsersPage() {
   const users = await prisma.user.findMany({
     orderBy: { createdAt: "desc" },
@@ -75,15 +102,31 @@ export default async function UsersPage() {
                     <td>{u.isSuspended ? <span className="badge badge-danger">Suspendido</span> : <span className="badge badge-success">Activo</span>}</td>
                     <td>{u._count.paymentRequests}</td>
                     <td>
-                      {u.role !== "ADMIN" && (
-                        <form action={toggleSuspend}>
+                      <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                        {u.role !== "ADMIN" && (
+                          <form action={toggleSuspend}>
+                            <input type="hidden" name="id" value={u.id} />
+                            <input type="hidden" name="isSuspended" value={String(u.isSuspended)} />
+                            <button type="submit" className={`btn btn-sm ${u.isSuspended ? "btn-primary" : "btn-danger"}`}>
+                              {u.isSuspended ? "Reactivar" : "Suspender"}
+                            </button>
+                          </form>
+                        )}
+                        <form action={grantSubscription}>
                           <input type="hidden" name="id" value={u.id} />
-                          <input type="hidden" name="isSuspended" value={String(u.isSuspended)} />
-                          <button type="submit" className={`btn btn-sm ${u.isSuspended ? "btn-primary" : "btn-danger"}`}>
-                            {u.isSuspended ? "Reactivar" : "Suspender"}
+                          <input type="hidden" name="days" value="30" />
+                          <button type="submit" className="btn btn-sm btn-ghost" style={{ color: "var(--accent-400)" }}>
+                            +30 días
                           </button>
                         </form>
-                      )}
+                        <form action={toggleRole}>
+                          <input type="hidden" name="id" value={u.id} />
+                          <input type="hidden" name="role" value={u.role} />
+                          <button type="submit" className="btn btn-sm btn-ghost" style={{ color: "var(--warning-400)" }}>
+                            {u.role === "ADMIN" ? "Quitar Admin" : "Hacer Admin"}
+                          </button>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 );

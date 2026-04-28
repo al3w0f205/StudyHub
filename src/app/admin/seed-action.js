@@ -58,7 +58,8 @@ export async function runSeed() {
                 explanation: p.just || "",
                 hint: p.hint || null,
                 categoryId: category.id,
-                options: { create: p.opts.map((text, i) => ({ text, isCorrect: i === correctIndex })) },
+                options: p.opts,
+                correctIndex: correctIndex,
               },
             });
             added++;
@@ -113,7 +114,8 @@ export async function runSeed() {
                   explanation: p.just || "",
                   hint: p.hint || null,
                   categoryId: category.id,
-                  options: { create: p.opts.map((text, i) => ({ text, isCorrect: i === correctIndex })) },
+                  options: p.opts,
+                  correctIndex: correctIndex,
                 },
               });
               added++;

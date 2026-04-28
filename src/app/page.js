@@ -2,38 +2,24 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-dvh overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-      {/* ── Decorative Glow Orbs ── */}
+    <div className="relative min-h-dvh overflow-hidden" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
+      {/* ── Background Grid & Ambient Glow ── */}
       <div
-        className="glow-orb"
         style={{
-          width: "600px",
-          height: "600px",
-          top: "-200px",
-          right: "-100px",
-          background: "var(--primary-600)",
+          position: "absolute",
+          inset: 0,
+          background: "var(--gradient-hero)",
+          zIndex: 0,
         }}
       />
       <div
-        className="glow-orb"
         style={{
-          width: "400px",
-          height: "400px",
-          bottom: "-100px",
-          left: "-100px",
-          background: "var(--accent-500)",
-          opacity: "0.1",
-        }}
-      />
-      <div
-        className="glow-orb"
-        style={{
-          width: "300px",
-          height: "300px",
-          top: "50%",
-          left: "50%",
-          background: "var(--primary-500)",
-          opacity: "0.08",
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          maskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
+          WebkitMaskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
+          zIndex: 1,
         }}
       />
 
@@ -72,8 +58,8 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <Link href="/auth/login" className="btn btn-ghost" id="nav-login-btn">
+        <div className="flex items-center gap-3">
+          <Link href="/auth/login" className="btn btn-ghost hidden sm:inline-flex" id="nav-login-btn">
             Iniciar Sesión
           </Link>
           <Link href="/auth/login" className="btn btn-primary btn-sm" id="nav-signup-btn">
@@ -95,23 +81,15 @@ export default function HomePage() {
       >
         {/* Badge */}
         <div
-          className="animate-fade-in"
+          className="animate-fade-in flex items-center justify-center text-center gap-2 px-4 py-1.5 rounded-full mb-8"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            padding: "0.375rem 1rem",
-            borderRadius: "var(--radius-full)",
-            background: "rgba(99, 102, 241, 0.1)",
-            border: "1px solid rgba(99, 102, 241, 0.2)",
-            fontSize: "0.8125rem",
-            fontWeight: "600",
+            background: "rgba(14, 165, 233, 0.1)",
+            border: "1px solid rgba(14, 165, 233, 0.2)",
             color: "var(--primary-400)",
-            marginBottom: "2rem",
           }}
         >
-          <span style={{ fontSize: "0.75rem" }}>🎓</span>
-          Plataforma de Estudio #1 para Universitarios
+          <span className="text-xs sm:text-sm">🎓</span>
+          <span className="text-xs sm:text-sm font-semibold">Plataforma de Estudio #1 para Universitarios</span>
         </div>
 
         {/* Title */}
@@ -156,24 +134,14 @@ export default function HomePage() {
         </p>
 
         {/* CTA Buttons */}
-        <div
-          className="animate-fade-in animate-fade-in-delay-3"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "1rem",
-            flexWrap: "wrap",
-            marginBottom: "4rem",
-          }}
-        >
-          <Link href="/auth/login" className="btn btn-primary btn-lg animate-pulse-glow" id="hero-cta-btn">
+        <div className="animate-fade-in animate-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full max-w-md mx-auto sm:max-w-none">
+          <Link href="/auth/login" className="btn btn-primary btn-lg animate-pulse-glow w-full sm:w-auto flex justify-center" id="hero-cta-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
             Empezar Ahora
           </Link>
-          <Link href="#features" className="btn btn-secondary btn-lg" id="hero-features-btn">
+          <Link href="#features" className="btn btn-secondary btn-lg w-full sm:w-auto flex justify-center" id="hero-features-btn">
             Conocer Más
           </Link>
         </div>

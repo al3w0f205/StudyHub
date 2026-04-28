@@ -59,11 +59,14 @@ export default async function PaymentPage({ searchParams }) {
 
   return (
     <div style={{ maxWidth: 700, margin: "0 auto" }}>
-      <div className="page-header">
+      <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
           <h1 className="page-title">Suscripción 💳</h1>
           <p className="page-subtitle">Gestiona tu acceso a StudyHub</p>
         </div>
+        <a href="/dashboard" className="btn" style={{ background: "var(--glass-bg)", border: "1px solid var(--border-default)", fontSize: "0.875rem" }}>
+          ← Volver al inicio
+        </a>
       </div>
 
       {reason === "expired" && (

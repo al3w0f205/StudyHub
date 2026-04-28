@@ -46,15 +46,37 @@ async function toggleRole(formData) {
   redirect("/admin/users");
 }
 
-export default async function UsersPage() {
-  const users = await prisma.user.findMany({
-    orderBy: { createdAt: "desc" },
-    select: {
-      id: true, name: true, email: true, role: true, image: true,
-      subscriptionExpiry: true, isSuspended: true, createdAt: true,
-      _count: { select: { paymentRequests: true } },
-    },
+async function updateAllowedCareers(formData) {
+  "use server";
+  const id = formData.get("id");
+  const careerSlug = formData.get("careerSlug");
+  const action = formData.get("action"); // 'add' or 'remove'
+  
+  const user = await prisma.user.findUnique({ where: { id }, select: { allowedCareers: true } });
+  let allowed = user.allowedCareers ? user.allowedCareers.split(",").filter(c => c.trim()) : [];
+  
+  if (action === "add" && !allowed.includes(careerSlug)) allowed.push(careerSlug);
+  if (action === "remove") allowed = allowed.filter(c => c !== careerSlug);
+  
+  await prisma.user.update({
+    where: { id },
+    data: { allowedCareers: allowed.length > 0 ? allowed.join(",") : null },
   });
+  redirect("/admin/users");
+}
+
+export default async function UsersPage() {
+  const [users, careers] = await Promise.all([
+    prisma.user.findMany({
+      orderBy: { createdAt: "desc" },
+      select: {
+        id: true, name: true, email: true, role: true, image: true,
+        subscriptionExpiry: true, isSuspended: true, createdAt: true, allowedCareers: true,
+        _count: { select: { paymentRequests: true } },
+      },
+    }),
+    prisma.career.findMany({ orderBy: { name: "asc" } })
+  ]);
 
   return (
     <div>
@@ -71,11 +93,13 @@ export default async function UsersPage() {
         <div className="table-container">
           <table className="table">
             <thead>
-              <tr><th>Usuario</th><th>Rol</th><th>Suscripción</th><th>Estado</th><th>Pagos</th><th>Acciones</th></tr>
+              <tr><th>Usuario</th><th>Rol</th><th>Accesos (Carreras)</th><th>Suscripción</th><th>Estado</th><th>Pagos</th><th>Acciones</th></tr>
             </thead>
             <tbody>
               {users.map((u) => {
                 const isActive = u.subscriptionExpiry && new Date(u.subscriptionExpiry) > new Date();
+                const allowedList = u.allowedCareers ? u.allowedCareers.split(",") : [];
+                
                 return (
                   <tr key={u.id}>
                     <td>
@@ -94,6 +118,29 @@ export default async function UsersPage() {
                       </div>
                     </td>
                     <td><span className={`badge ${u.role === "ADMIN" ? "badge-primary" : "badge-success"}`}>{u.role}</span></td>
+                    <td>
+                      {u.role === "ADMIN" ? "Todas" : (
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                          {careers.map((c) => {
+                            const hasAccess = allowedList.includes(c.slug) || !u.allowedCareers;
+                            return (
+                              <form action={updateAllowedCareers} key={c.id} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                <input type="hidden" name="id" value={u.id} />
+                                <input type="hidden" name="careerSlug" value={c.slug} />
+                                <input type="hidden" name="action" value={hasAccess && u.allowedCareers ? "remove" : "add"} />
+                                <button type="submit" style={{ 
+                                  background: "none", border: "none", cursor: "pointer", 
+                                  color: hasAccess ? "var(--success-400)" : "var(--text-tertiary)",
+                                  fontSize: "0.8rem", textAlign: "left", padding: 0
+                                }}>
+                                  {hasAccess ? "✅" : "❌"} {c.name}
+                                </button>
+                              </form>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </td>
                     <td>
                       {u.role === "ADMIN" ? "—" : isActive ? (
                         <div><span className="badge badge-success">Activa</span><div style={{ fontSize: "0.7rem", color: "var(--text-tertiary)", marginTop: "0.125rem" }}>hasta {formatDate(u.subscriptionExpiry)}</div></div>

@@ -4,8 +4,16 @@ import Link from "next/link";
 export const metadata = { title: "Cuestionarios" };
 export const dynamic = "force-dynamic";
 
+import { auth } from "@/auth";
+
 export default async function QuizSelectorPage() {
-  const careers = await prisma.career.findMany({
+  const session = await auth();
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { allowedCareers: true, role: true }
+  });
+
+  let careers = await prisma.career.findMany({
     orderBy: { name: "asc" },
     include: {
       categories: {
@@ -14,6 +22,11 @@ export default async function QuizSelectorPage() {
       },
     },
   });
+
+  if (user.role !== "ADMIN" && user.allowedCareers) {
+    const allowed = user.allowedCareers.split(",");
+    careers = careers.filter(c => allowed.includes(c.slug));
+  }
 
   return (
     <div>

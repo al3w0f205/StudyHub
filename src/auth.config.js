@@ -51,6 +51,11 @@ const authConfig = {
         return Response.redirect(new URL("/dashboard", nextUrl));
       }
 
+      // Redirect admins away from student routes
+      if (pathname.startsWith("/dashboard") && auth.user?.role === "ADMIN") {
+        return Response.redirect(new URL("/admin", nextUrl));
+      }
+
       // Subscription check for quiz routes
       if (pathname.startsWith("/quiz") && auth?.user?.role !== "ADMIN") {
         const expiry = auth?.user?.subscriptionExpiry;

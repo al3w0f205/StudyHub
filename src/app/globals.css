@@ -10,22 +10,22 @@
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Primary Palette — Electric Indigo → Violet */
-  --primary-50: #eef2ff;
-  --primary-100: #e0e7ff;
-  --primary-200: #c7d2fe;
-  --primary-300: #a5b4fc;
-  --primary-400: #818cf8;
-  --primary-500: #6366f1;
-  --primary-600: #4f46e5;
-  --primary-700: #4338ca;
-  --primary-800: #3730a3;
-  --primary-900: #312e81;
+  /* Primary Palette — Cyber Blue (2026 Modern) */
+  --primary-50: #e0f2fe;
+  --primary-100: #bae6fd;
+  --primary-200: #7dd3fc;
+  --primary-300: #38bdf8;
+  --primary-400: #0ea5e9;
+  --primary-500: #0284c7;
+  --primary-600: #0369a1;
+  --primary-700: #075985;
+  --primary-800: #0c4a6e;
+  --primary-900: #082f49;
 
-  /* Accent — Emerald */
-  --accent-400: #34d399;
-  --accent-500: #10b981;
-  --accent-600: #059669;
+  /* Accent — Neon Cyan/Emerald crossover */
+  --accent-400: #2dd4bf;
+  --accent-500: #14b8a6;
+  --accent-600: #0d9488;
 
   /* Warning — Amber */
   --warning-400: #fbbf24;
@@ -36,24 +36,24 @@
   --danger-500: #f43f5e;
   --danger-600: #e11d48;
 
-  /* Surfaces — Dark Mode */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-tertiary: #1a1a24;
-  --bg-card: #16161f;
-  --bg-card-hover: #1e1e2a;
-  --bg-elevated: #222233;
+  /* Surfaces — OLED Dark Mode (2026 Black) */
+  --bg-primary: #000000;
+  --bg-secondary: #09090b;
+  --bg-tertiary: #121214;
+  --bg-card: #0a0a0c;
+  --bg-card-hover: #141418;
+  --bg-elevated: #1a1a20;
 
   /* Glass */
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
 
   /* Text */
-  --text-primary: #f1f5f9;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-tertiary: #64748b;
-  --text-inverse: #0f172a;
+  --text-inverse: #020617;
 
   /* Borders */
   --border-default: rgba(255, 255, 255, 0.08);
@@ -68,9 +68,9 @@
   --shadow-glow-lg: 0 0 60px rgba(99, 102, 241, 0.1);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
-  --gradient-accent: linear-gradient(135deg, #10b981, #34d399);
-  --gradient-hero: linear-gradient(160deg, #0a0a0f 0%, #1a1030 50%, #0a0a0f 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary-400), var(--accent-400));
+  --gradient-hero: radial-gradient(circle at top, rgba(14, 165, 233, 0.15) 0%, var(--bg-primary) 60%);
+  --gradient-glow: conic-gradient(from 180deg at 50% 50%, var(--primary-600) 0deg, var(--accent-500) 180deg, var(--primary-600) 360deg);
   --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
 
   /* Radius */

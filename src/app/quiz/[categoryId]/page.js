@@ -23,6 +23,7 @@ export default async function QuizPage({ params }) {
     where: { id: categoryId },
     include: {
       career: { select: { id: true, name: true, slug: true } },
+      theory: true,
       questions: {
         select: { id: true, text: true, options: true, correctIndex: true, hint: true, explanation: true },
       },
@@ -88,6 +89,7 @@ export default async function QuizPage({ params }) {
     <div>
       <QuizClient
         questions={shuffled}
+        theory={category.theory}
         categoryName={category.name}
         careerName={category.career.name}
         careers={filteredCareers}

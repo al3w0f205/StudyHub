@@ -101,6 +101,7 @@ model Category {
   name         String
   slug         String
   description  String?
+  theory       String?        @db.Text
   careerId     String
   career       Career         @relation(fields: [careerId], references: [id], onDelete: Cascade)
   questions    Question[]

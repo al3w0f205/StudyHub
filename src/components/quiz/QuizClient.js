@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import MathText from "@/components/ui/MathText";
 
-export default function QuizClient({ questions, categoryName, careerName, careers, currentCareerId, categoryId }) {
+export default function QuizClient({ questions, theory, categoryName, careerName, careers, currentCareerId, categoryId }) {
   // State
+  const [view, setView] = useState("quiz"); // "quiz" or "theory"
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showHint, setShowHint] = useState(false);
@@ -230,6 +231,20 @@ export default function QuizClient({ questions, categoryName, careerName, career
             </div>
           </div>
 
+          {/* Theory Access */}
+          {theory && (
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h3 className="quiz-sidebar-title">Material</h3>
+              <button 
+                onClick={() => setView(view === "quiz" ? "theory" : "quiz")}
+                className={`btn btn-sm ${view === "theory" ? "btn-primary" : "btn-secondary"}`}
+                style={{ width: "100%", justifyContent: "center", display: "flex", gap: "0.5rem" }}
+              >
+                {view === "quiz" ? "📚 Estudiar Teoría" : "✍️ Volver al Quiz"}
+              </button>
+            </div>
+          )}
+
           {/* Tools */}
           <div>
             <h3 className="quiz-sidebar-title">Herramientas</h3>
@@ -255,9 +270,27 @@ export default function QuizClient({ questions, categoryName, careerName, career
       )}
 
       {/* Main Quiz Area */}
-      <div className="quiz-main" style={{ maxWidth: isZenMode ? 800 : "none", margin: isZenMode ? "0 auto" : "0", width: "100%" }}>
+      <div className="quiz-main" style={{ maxWidth: isZenMode || view === "theory" ? 850 : "none", margin: isZenMode || view === "theory" ? "0 auto" : "0", width: "100%" }}>
         
-        {/* Header */}
+        {view === "theory" ? (
+          <div className="animate-fade-in">
+             <div className="quiz-header" style={{ marginBottom: "1.5rem" }}>
+              <div style={{ minWidth: 0 }}>
+                <div className="quiz-breadcrumb">
+                  {careerName} <span style={{ margin: "0 0.375rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
+                </div>
+                <h1 className="quiz-question-number">Material de Estudio</h1>
+              </div>
+              <button onClick={() => setView("quiz")} className="btn btn-primary btn-sm">Empezar Quiz →</button>
+            </div>
+            
+            <div className="solid-card" style={{ padding: "2rem", lineHeight: 1.8 }}>
+              <MathText className="theory-content">{theory}</MathText>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Header */}
         <div className="quiz-header">
           <div style={{ minWidth: 0 }}>
             <div className="quiz-breadcrumb">
@@ -386,6 +419,9 @@ export default function QuizClient({ questions, categoryName, careerName, career
             <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-400)", marginBottom: "0.375rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Justificación</p>
             <MathText className="quiz-explanation-text">{q.explanation}</MathText>
           </div>
+        )}
+            </div>
+          </>
         )}
       </div>
     </div>

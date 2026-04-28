@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 
 export default async function HomePage() {
   const session = await auth();
@@ -66,14 +66,33 @@ export default async function HomePage() {
 
         <div className="flex items-center gap-3">
           {isLoggedIn ? (
-            <Link href={dashboardUrl} className="btn btn-primary btn-sm">
-              Ir al Dashboard
-            </Link>
+            <>
+              <div className="hidden sm:block">
+                <Link href="/quiz" className="btn btn-ghost">
+                  Cuestionarios
+                </Link>
+              </div>
+              <Link href={dashboardUrl} className="btn btn-primary btn-sm">
+                Dashboard
+              </Link>
+              <form action={async () => {
+                "use server";
+                await signOut({ redirectTo: "/" });
+              }}>
+                <div className="hidden sm:block">
+                  <button type="submit" className="btn btn-ghost btn-sm" style={{ color: "var(--danger-400)" }}>
+                    Salir
+                  </button>
+                </div>
+              </form>
+            </>
           ) : (
             <>
-              <Link href="/auth/login" className="btn btn-ghost hidden sm:inline-flex" id="nav-login-btn">
-                Iniciar Sesión
-              </Link>
+              <div className="hidden sm:block">
+                <Link href="/auth/login" className="btn btn-ghost" id="nav-login-btn">
+                  Iniciar Sesión
+                </Link>
+              </div>
               <Link href="/auth/login" className="btn btn-primary btn-sm" id="nav-signup-btn">
                 Comenzar Gratis
               </Link>
@@ -303,9 +322,15 @@ export default async function HomePage() {
           <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem" }}>
             Utilizado y confiado por estudiantes de
           </p>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(2rem, 6vw, 4rem)", flexWrap: "wrap", opacity: 0.5 }}>
-            <span style={{ fontSize: "2rem", fontWeight: "900", letterSpacing: "0.1em", fontFamily: "system-ui, sans-serif", color: "var(--text-primary)" }}>UIDE</span>
-            <span style={{ fontSize: "2.5rem", fontWeight: "600", fontFamily: "cursive", fontStyle: "italic", textTransform: "lowercase", color: "var(--text-primary)" }}>udla</span>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(2rem, 6vw, 4rem)", flexWrap: "wrap", opacity: 0.9 }}>
+            {/* UIDE Logo text styling */}
+            <span style={{ fontSize: "2rem", fontWeight: "900", letterSpacing: "0.05em", fontFamily: "system-ui, sans-serif" }}>
+              <span style={{ color: "#9c0e44" }}>UI</span><span style={{ color: "#f0b323" }}>DE</span>
+            </span>
+            {/* UDLA Logo text styling */}
+            <span style={{ fontSize: "2.5rem", fontWeight: "600", fontFamily: "cursive", fontStyle: "italic", textTransform: "lowercase", color: "#7f1734" }}>
+              udla
+            </span>
           </div>
         </section>
 

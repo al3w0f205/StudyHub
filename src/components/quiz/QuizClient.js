@@ -2,8 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function QuizClient({ questions, categoryName, careerName }) {
+export default function QuizClient({ questions, categoryName, careerName, allCategories, categoryId }) {
+  const router = useRouter();
+  
+  // State
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showHint, setShowHint] = useState(false);
@@ -11,28 +15,75 @@ export default function QuizClient({ questions, categoryName, careerName }) {
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(0);
   const [finished, setFinished] = useState(false);
+  
+  // Tools
+  const [isZenMode, setIsZenMode] = useState(false);
+  const [isTimePressure, setIsTimePressure] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30);
+
+  // Stats
+  const [categoryProgress, setCategoryProgress] = useState({});
+
+  useEffect(() => {
+    // Load progress from local storage
+    const saved = localStorage.getItem("studyhub_progress");
+    if (saved) {
+      setCategoryProgress(JSON.parse(saved));
+    }
+  }, []);
+
+  const saveProgress = (newScore, newTotal) => {
+    const pct = Math.round((newScore / newTotal) * 100);
+    const updated = { ...categoryProgress, [categoryId]: pct };
+    setCategoryProgress(updated);
+    localStorage.setItem("studyhub_progress", JSON.stringify(updated));
+  };
 
   const q = questions[current];
   const total = questions.length;
   const progress = ((current + 1) / total) * 100;
 
+  // Timer logic
+  useEffect(() => {
+    if (isTimePressure && !selected && !finished) {
+      const timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            handleAnswer(-1); // Timeout = wrong answer
+            return 30;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [isTimePressure, selected, finished, current]);
+
   function handleAnswer(index) {
     if (selected !== null) return;
     setSelected(index);
     setAnswered((a) => a + 1);
-    if (index === q.correctIndex) setScore((s) => s + 1);
+    
+    let newScore = score;
+    if (index === q.correctIndex) {
+      newScore = score + 1;
+      setScore(newScore);
+    }
+    
     setShowExplanation(true);
   }
 
   function nextQuestion() {
     if (current + 1 >= total) {
       setFinished(true);
+      saveProgress(score, answered);
       return;
     }
     setCurrent((c) => c + 1);
     setSelected(null);
     setShowHint(false);
     setShowExplanation(false);
+    setTimeLeft(30); // reset timer
   }
 
   function restart() {
@@ -43,25 +94,27 @@ export default function QuizClient({ questions, categoryName, careerName }) {
     setScore(0);
     setAnswered(0);
     setFinished(false);
+    setTimeLeft(30);
   }
 
+  // Final Results Screen
   if (finished) {
     const pct = Math.round((score / total) * 100);
     return (
-      <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center", padding: "2rem 0" }}>
-        <div className="solid-card animate-fade-in" style={{ padding: "2.5rem" }}>
-          <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>{pct >= 70 ? "🎉" : pct >= 50 ? "👍" : "📖"}</div>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem" }}>Cuestionario Finalizado</h2>
-          <div className="stat-value" style={{ fontSize: "3rem", margin: "1rem 0" }}>{pct}%</div>
-          <p style={{ color: "var(--text-secondary)", marginBottom: "0.5rem" }}>
-            {score} de {total} respuestas correctas
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh" }}>
+        <div className="solid-card animate-fade-in" style={{ padding: "3rem", textAlign: "center", maxWidth: 500, width: "100%" }}>
+          <div style={{ fontSize: "5rem", marginBottom: "1rem" }}>{pct >= 70 ? "🏆" : pct >= 50 ? "👍" : "📚"}</div>
+          <h2 style={{ fontSize: "1.75rem", fontWeight: 800, marginBottom: "0.5rem" }}>Cuestionario Finalizado</h2>
+          <div className="stat-value" style={{ fontSize: "4rem", margin: "1rem 0", color: pct >= 70 ? "var(--success-400)" : pct >= 50 ? "var(--warning-400)" : "var(--danger-400)" }}>{pct}%</div>
+          <p style={{ color: "var(--text-secondary)", marginBottom: "0.5rem", fontSize: "1.125rem" }}>
+            <strong style={{ color: "var(--text-primary)" }}>{score}</strong> correctas de {total}
           </p>
-          <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", marginBottom: "2rem" }}>
-            {pct >= 70 ? "¡Excelente trabajo! Sigue así." : pct >= 50 ? "Buen intento. Repasa los temas difíciles." : "Necesitas más práctica. ¡No te rindas!"}
+          <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", marginBottom: "2.5rem" }}>
+            {pct >= 70 ? "¡Excelente dominio del tema!" : pct >= 50 ? "Buen intento. Sigue practicando." : "Necesitas repasar estos conceptos."}
           </p>
-          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
             <button onClick={restart} className="btn btn-primary">Repetir</button>
-            <Link href="/quiz" className="btn btn-secondary">Otro Cuestionario</Link>
+            <Link href="/quiz" className="btn btn-secondary">Volver al Menú</Link>
           </div>
         </div>
       </div>
@@ -69,102 +122,199 @@ export default function QuizClient({ questions, categoryName, careerName }) {
   }
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto" }}>
-      {/* Header */}
-      <div style={{ marginBottom: "1.5rem" }}>
-        <div style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", marginBottom: "0.5rem" }}>
-          {careerName} → {categoryName}
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-          <span style={{ fontSize: "0.875rem", fontWeight: 600 }}>Pregunta {current + 1} de {total}</span>
-          <span className="badge badge-primary">{score}/{answered} correctas</span>
-        </div>
-        <div style={{ height: 4, background: "var(--bg-tertiary)", borderRadius: "var(--radius-full)", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${progress}%`, background: "var(--gradient-primary)", borderRadius: "var(--radius-full)", transition: "width 0.3s ease" }} />
-        </div>
-      </div>
+    <div style={{ display: "grid", gridTemplateColumns: isZenMode ? "1fr" : "320px 1fr", gap: "2rem", alignItems: "start" }}>
+      
+      {/* Sidebar - Hidden in Zen Mode */}
+      {!isZenMode && (
+        <div className="solid-card" style={{ padding: "1.5rem", position: "sticky", top: "2rem" }}>
+          
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", color: "var(--text-tertiary)", textTransform: "uppercase", marginBottom: "1rem" }}>Dominio por Área</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {allCategories?.slice(0, 6).map(c => {
+                const p = categoryProgress[c.id] || 0;
+                return (
+                  <div key={c.id}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8125rem", marginBottom: "0.375rem" }}>
+                      <span style={{ color: "var(--text-secondary)" }}>{c.name}</span>
+                      <span style={{ fontWeight: 600, color: "var(--text-primary)" }}>{p}%</span>
+                    </div>
+                    <div style={{ height: 4, background: "var(--bg-tertiary)", borderRadius: 2, overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: `${p}%`, background: "var(--text-secondary)", borderRadius: 2 }} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-      {/* Question */}
-      <div className="solid-card animate-fade-in" style={{ padding: "1.5rem", marginBottom: "1rem" }}>
-        <p style={{ fontSize: "1rem", fontWeight: 600, lineHeight: 1.6 }}>{q.text}</p>
-      </div>
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", color: "var(--text-tertiary)", textTransform: "uppercase", marginBottom: "1rem" }}>Categorías</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+              <Link href={`/quiz`} className="btn btn-sm btn-ghost" style={{ fontSize: "0.75rem", justifyContent: "center" }}>Todas</Link>
+              {allCategories?.slice(0, 7).map(c => (
+                <Link key={c.id} href={`/quiz/${c.id}`} className={`btn btn-sm ${c.id === categoryId ? "btn-primary" : "btn-secondary"}`} style={{ fontSize: "0.75rem", justifyContent: "center", padding: "0.5rem" }}>
+                  {c.name.substring(0, 12)}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-      {/* Options */}
-      <div style={{ display: "grid", gap: "0.5rem", marginBottom: "1rem" }}>
-        {q.options.map((opt, i) => {
-          let bg = "var(--bg-card)";
-          let border = "var(--border-default)";
-          let color = "var(--text-primary)";
+          <div>
+            <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", color: "var(--text-tertiary)", textTransform: "uppercase", marginBottom: "1rem" }}>Herramientas</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              
+              <label className="solid-card" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.75rem 1rem", cursor: "pointer", border: "1px solid var(--border-default)" }}>
+                <span style={{ fontSize: "0.8125rem", fontWeight: 500 }}>⏱️ Presión de Tiempo</span>
+                <input type="checkbox" checked={isTimePressure} onChange={() => setIsTimePressure(!isTimePressure)} style={{ accentColor: "var(--accent-400)" }} />
+              </label>
 
-          if (selected !== null) {
-            if (i === q.correctIndex) {
-              bg = "rgba(16,185,129,0.1)";
-              border = "rgba(16,185,129,0.4)";
-              color = "var(--accent-400)";
-            } else if (i === selected && i !== q.correctIndex) {
-              bg = "rgba(244,63,94,0.1)";
-              border = "rgba(244,63,94,0.4)";
-              color = "var(--danger-400)";
+              <label className="solid-card" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.75rem 1rem", cursor: "pointer", border: "1px solid var(--border-default)" }}>
+                <span style={{ fontSize: "0.8125rem", fontWeight: 500 }}>👁️ Modo Enfoque (Zen)</span>
+                <input type="checkbox" checked={isZenMode} onChange={() => setIsZenMode(!isZenMode)} style={{ accentColor: "var(--accent-400)" }} />
+              </label>
+
+              <button onClick={() => window.location.reload()} className="solid-card" style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1rem", cursor: "pointer", border: "1px solid var(--border-default)", background: "transparent", width: "100%", color: "var(--text-primary)" }}>
+                <span style={{ fontSize: "0.8125rem", fontWeight: 500 }}>🔀 Mezclar Todo</span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Quiz Area */}
+      <div style={{ maxWidth: 800, margin: isZenMode ? "0 auto" : "0" }}>
+        
+        {/* Header */}
+        <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+          <div>
+            <div style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              {careerName} <span style={{ margin: "0 0.5rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
+            </div>
+            <h1 style={{ fontSize: "1.5rem", fontWeight: 800 }}>Pregunta {current + 1} <span style={{ color: "var(--text-tertiary)", fontSize: "1.25rem", fontWeight: 500 }}>/ {total}</span></h1>
+          </div>
+          
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            {isTimePressure && selected === null && (
+              <div style={{ fontSize: "1.25rem", fontWeight: 700, color: timeLeft <= 5 ? "var(--danger-400)" : "var(--warning-400)" }}>
+                00:{timeLeft.toString().padStart(2, "0")}
+              </div>
+            )}
+            {!isZenMode && (
+              <div className="solid-card" style={{ padding: "0.5rem 1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--success-400)" }}>{score} ✓</span>
+                <span style={{ color: "var(--border-default)" }}>|</span>
+                <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--danger-400)" }}>{answered - score} ✗</span>
+              </div>
+            )}
+            {isZenMode && (
+              <button onClick={() => setIsZenMode(false)} className="btn btn-sm btn-secondary">Salir del Modo Zen</button>
+            )}
+          </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div style={{ height: 4, background: "var(--bg-card)", borderRadius: 2, overflow: "hidden", marginBottom: "2rem" }}>
+          <div style={{ height: "100%", width: `${progress}%`, background: "var(--accent-400)", transition: "width 0.4s cubic-bezier(0.4, 0, 0.2, 1)" }} />
+        </div>
+
+        {/* Question Card */}
+        <div className="solid-card animate-fade-in" style={{ padding: "2rem", marginBottom: "1.5rem", border: "1px solid var(--border-default)", boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}>
+          <p style={{ fontSize: "1.125rem", fontWeight: 500, lineHeight: 1.7, color: "var(--text-primary)" }}>{q.text}</p>
+        </div>
+
+        {/* Options */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
+          {q.options.map((opt, i) => {
+            let bg = "var(--bg-card)";
+            let border = "var(--border-default)";
+            let color = "var(--text-primary)";
+            let icon = String.fromCharCode(65 + i);
+
+            if (selected !== null) {
+              if (i === q.correctIndex) {
+                bg = "rgba(16, 185, 129, 0.08)";
+                border = "rgba(16, 185, 129, 0.5)";
+                color = "var(--success-400)";
+                icon = "✓";
+              } else if (i === selected && i !== q.correctIndex) {
+                bg = "rgba(244, 63, 94, 0.08)";
+                border = "rgba(244, 63, 94, 0.5)";
+                color = "var(--danger-400)";
+                icon = "✗";
+              }
+            } else if (selected === -1 && i === q.correctIndex) {
+              // Timeout - reveal correct
+              bg = "rgba(16, 185, 129, 0.08)";
+              border = "rgba(16, 185, 129, 0.5)";
+              color = "var(--success-400)";
+              icon = "✓";
             }
-          }
 
-          return (
-            <button
-              key={i}
-              onClick={() => handleAnswer(i)}
-              disabled={selected !== null}
-              style={{
-                padding: "0.875rem 1rem",
-                background: bg,
-                border: `1px solid ${border}`,
-                borderRadius: "var(--radius-md)",
-                textAlign: "left",
-                cursor: selected !== null ? "default" : "pointer",
-                color,
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                fontFamily: "inherit",
-                transition: "all 0.2s ease",
-                opacity: selected !== null && i !== selected && i !== q.correctIndex ? 0.5 : 1,
-              }}
-            >
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 24, height: 24, borderRadius: "var(--radius-full)", background: "var(--glass-bg)", marginRight: "0.75rem", fontSize: "0.75rem", fontWeight: 700 }}>
-                {String.fromCharCode(65 + i)}
-              </span>
-              {opt}
+            return (
+              <button
+                key={i}
+                onClick={() => handleAnswer(i)}
+                disabled={selected !== null}
+                style={{
+                  padding: "1.25rem 1.5rem",
+                  background: bg,
+                  border: `1px solid ${border}`,
+                  borderRadius: "var(--radius-md)",
+                  textAlign: "left",
+                  cursor: selected !== null ? "default" : "pointer",
+                  color: color,
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                  display: "flex",
+                  alignItems: "center",
+                  opacity: selected !== null && i !== selected && i !== q.correctIndex ? 0.4 : 1,
+                }}
+                className={selected === null ? "hover-scale" : ""}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: "var(--radius-full)", background: selected !== null && (i === q.correctIndex || i === selected) ? "transparent" : "var(--glass-bg)", border: selected !== null && (i === q.correctIndex || i === selected) ? `1px solid ${color}` : "none", marginRight: "1rem", fontSize: "0.875rem", fontWeight: 700, flexShrink: 0 }}>
+                  {icon}
+                </div>
+                <span style={{ lineHeight: 1.5 }}>{opt}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Hint & Actions */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div>
+            {q.hint && selected === null && (
+              <button onClick={() => setShowHint(!showHint)} className="btn btn-ghost" style={{ color: "var(--warning-400)" }}>
+                💡 {showHint ? "Ocultar Pista" : "Ver Pista"}
+              </button>
+            )}
+          </div>
+          
+          {selected !== null && (
+            <button onClick={nextQuestion} className="btn btn-primary animate-fade-in" style={{ padding: "0.75rem 2rem", fontSize: "1rem" }}>
+              {current + 1 >= total ? "Ver Resultados 🏆" : "Siguiente Pregunta →"}
             </button>
-          );
-        })}
+          )}
+        </div>
+
+        {/* Hint Box */}
+        {showHint && !showExplanation && (
+          <div className="solid-card animate-fade-in" style={{ padding: "1.25rem", borderLeft: "4px solid var(--warning-400)", background: "rgba(245,158,11,0.05)" }}>
+            <p style={{ fontSize: "0.9375rem", color: "var(--text-secondary)" }}>💡 <strong>Pista:</strong> {q.hint}</p>
+          </div>
+        )}
+
+        {/* Explanation Box */}
+        {showExplanation && q.explanation && (
+          <div className="solid-card animate-fade-in" style={{ padding: "1.5rem", borderLeft: "4px solid var(--accent-400)", background: "rgba(34,211,238,0.05)", marginTop: "1rem" }}>
+            <p style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--accent-400)", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Justificación</p>
+            <p style={{ fontSize: "1rem", color: "var(--text-primary)", lineHeight: 1.7 }}>{q.explanation}</p>
+          </div>
+        )}
       </div>
-
-      {/* Hint */}
-      {q.hint && selected === null && (
-        <button onClick={() => setShowHint(!showHint)} className="btn btn-ghost btn-sm" style={{ marginBottom: "0.75rem" }}>
-          💡 {showHint ? "Ocultar Pista" : "Ver Pista"}
-        </button>
-      )}
-      {showHint && !showExplanation && (
-        <div className="solid-card animate-fade-in" style={{ padding: "1rem", marginBottom: "1rem", borderColor: "rgba(245,158,11,0.2)", background: "rgba(245,158,11,0.03)" }}>
-          <p style={{ fontSize: "0.875rem", color: "var(--warning-400)" }}>💡 {q.hint}</p>
-        </div>
-      )}
-
-      {/* Explanation */}
-      {showExplanation && q.explanation && (
-        <div className="solid-card animate-fade-in" style={{ padding: "1rem", marginBottom: "1rem", borderColor: "rgba(99,102,241,0.2)", background: "rgba(99,102,241,0.03)" }}>
-          <p style={{ fontSize: "0.8125rem", fontWeight: 600, color: "var(--primary-400)", marginBottom: "0.25rem" }}>📖 Justificación</p>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>{q.explanation}</p>
-        </div>
-      )}
-
-      {/* Next */}
-      {selected !== null && (
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <button onClick={nextQuestion} className="btn btn-primary animate-fade-in">
-            {current + 1 >= total ? "Ver Resultados" : "Siguiente →"}
-          </button>
-        </div>
-      )}
     </div>
   );
 }

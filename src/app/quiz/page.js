@@ -7,12 +7,13 @@ export const dynamic = "force-dynamic";
 import { auth } from "@/auth";
 
 import QuizAgreement from "@/components/quiz/QuizAgreement";
+import ClientStats from "@/app/dashboard/ClientStats";
 
 export default async function QuizSelectorPage() {
   const session = await auth();
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { allowedCareers: true, role: true }
+    select: { id: true, name: true, allowedCareers: true, role: true }
   });
 
   // Admin has access to everything
@@ -41,15 +42,44 @@ export default async function QuizSelectorPage() {
 
   const noAccess = !isAdmin && (!user.allowedCareers || user.allowedCareers.trim() === "");
 
+  // --- Fetch Data for Stats ---
+  const allCategories = await prisma.category.findMany({
+    select: { id: true, name: true, career: { select: { name: true } } }
+  });
+
+  const quizProgress = await prisma.quizProgress.findMany({
+    where: { userId: session.user.id },
+    select: { categoryId: true, score: true },
+  });
+
+  const progressMap = {};
+  for (const p of quizProgress) {
+    progressMap[p.categoryId] = p.score;
+  }
+  // ----------------------------
+
   return (
     <div>
       <QuizAgreement />
-      <div className="page-header">
+      <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
         <div>
-          <h1 className="page-title">Cuestionarios 📝</h1>
-          <p className="page-subtitle">Selecciona una carrera y categoría para comenzar</p>
+          <h1 className="page-title">
+            Hola, {user.name?.split(" ")[0] || "Estudiante"} 👋
+          </h1>
+          <p className="page-subtitle">Bienvenido a tu centro de estudio. Aquí tienes tu rendimiento reciente.</p>
         </div>
+        <Link href="/settings" className="btn btn-secondary">
+          ⚙️ Configuración
+        </Link>
       </div>
+
+      {!noAccess && (
+        <ClientStats categories={allCategories} progress={progressMap} />
+      )}
+
+      <h2 style={{ fontSize: "1.25rem", fontWeight: "700", marginBottom: "1rem", marginTop: noAccess ? "0" : "1rem" }}>
+        Módulos Disponibles
+      </h2>
 
       {noAccess ? (
         <div className="solid-card" style={{ padding: "2.5rem 2rem", textAlign: "center" }}>

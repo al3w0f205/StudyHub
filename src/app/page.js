@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { auth } from "@/auth";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
+  const isAdmin = session?.user?.role === "ADMIN";
+  const dashboardUrl = isAdmin ? "/admin" : "/dashboard";
+
   return (
     <div className="relative min-h-dvh overflow-hidden" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
       {/* ── Background Grid & Ambient Glow ── */}
@@ -59,12 +65,20 @@ export default function HomePage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href="/auth/login" className="btn btn-ghost hidden sm:inline-flex" id="nav-login-btn">
-            Iniciar Sesión
-          </Link>
-          <Link href="/auth/login" className="btn btn-primary btn-sm" id="nav-signup-btn">
-            Comenzar Gratis
-          </Link>
+          {isLoggedIn ? (
+            <Link href={dashboardUrl} className="btn btn-primary btn-sm">
+              Ir al Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link href="/auth/login" className="btn btn-ghost hidden sm:inline-flex" id="nav-login-btn">
+                Iniciar Sesión
+              </Link>
+              <Link href="/auth/login" className="btn btn-primary btn-sm" id="nav-signup-btn">
+                Comenzar Gratis
+              </Link>
+            </>
+          )}
         </div>
       </nav>
 
@@ -141,11 +155,11 @@ export default function HomePage() {
           className="animate-fade-in animate-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto sm:max-w-none"
           style={{ marginBottom: "4rem" }}
         >
-          <Link href="/auth/login" className="btn btn-primary btn-lg animate-pulse-glow w-full sm:w-auto flex justify-center" id="hero-cta-btn">
+          <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} className="btn btn-primary btn-lg animate-pulse-glow w-full sm:w-auto flex justify-center" id="hero-cta-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-            Empezar Ahora
+            {isLoggedIn ? "Ir al Dashboard" : "Empezar Ahora"}
           </Link>
           <Link href="#features" className="btn btn-secondary btn-lg w-full sm:w-auto flex justify-center" style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)" }} id="hero-features-btn">
             Conocer Más
@@ -289,9 +303,9 @@ export default function HomePage() {
           <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem" }}>
             Utilizado y confiado por estudiantes de
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: "clamp(1.5rem, 4vw, 3rem)", flexWrap: "wrap", opacity: 0.5 }}>
-            <span style={{ fontSize: "1.25rem", fontWeight: "700", letterSpacing: "0.05em" }}>UIDE</span>
-            <span style={{ fontSize: "1.25rem", fontWeight: "700", letterSpacing: "0.05em" }}>UDLA</span>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(2rem, 6vw, 4rem)", flexWrap: "wrap", opacity: 0.5 }}>
+            <span style={{ fontSize: "2rem", fontWeight: "900", letterSpacing: "0.1em", fontFamily: "system-ui, sans-serif", color: "var(--text-primary)" }}>UIDE</span>
+            <span style={{ fontSize: "2.5rem", fontWeight: "600", fontFamily: "cursive", fontStyle: "italic", textTransform: "lowercase", color: "var(--text-primary)" }}>udla</span>
           </div>
         </section>
 
@@ -400,8 +414,8 @@ export default function HomePage() {
               ))}
             </ul>
 
-            <Link href="/auth/login" className="btn btn-primary btn-lg" style={{ width: "100%" }} id="pricing-cta-btn">
-              Suscribirse
+            <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} className="btn btn-primary btn-lg" style={{ width: "100%" }} id="pricing-cta-btn">
+              {isLoggedIn ? "Continuar al Dashboard" : "Suscribirse"}
             </Link>
           </div>
         </section>

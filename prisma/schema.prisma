@@ -73,12 +73,13 @@ model User {
   subscriptionExpiry  DateTime?
   isSuspended         Boolean              @default(false)
   suspendedReason     String?
-  allowedCareers      String?              // Comma-separated career slugs, e.g. "medicina,ingenieria". If null, allowed all.
+  allowedCareers      String?              // Comma-separated career slugs. null or "" = NO access. Admin must assign.
 
   accounts            Account[]
   sessions            Session[]
   paymentRequests     PaymentRequest[]
   questionSuggestions QuestionSuggestion[]
+  quizProgress        QuizProgress[]
 
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
@@ -96,15 +97,16 @@ model Career {
 }
 
 model Category {
-  id          String     @id @default(cuid())
-  name        String
-  slug        String
-  description String?
-  careerId    String
-  career      Career     @relation(fields: [careerId], references: [id], onDelete: Cascade)
-  questions   Question[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id           String         @id @default(cuid())
+  name         String
+  slug         String
+  description  String?
+  careerId     String
+  career       Career         @relation(fields: [careerId], references: [id], onDelete: Cascade)
+  questions    Question[]
+  quizProgress QuizProgress[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 
   @@unique([careerId, slug])
 }
@@ -123,15 +125,17 @@ model Question {
 }
 
 model PaymentRequest {
-  id          String               @id @default(cuid())
-  userId      String
-  user        User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  receiptUrl  String               // S3/MinIO URL of the payment receipt photo
-  status      PaymentRequestStatus @default(PENDING)
-  adminNotes  String?
-  reviewedAt  DateTime?
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+  id               String               @id @default(cuid())
+  userId           String
+  user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  receiptUrl       String               // S3/MinIO URL of the payment receipt photo
+  status           PaymentRequestStatus @default(PENDING)
+  adminNotes       String?
+  userComment      String?              @db.Text // User's comment/message with payment
+  requestedCareers String?              // Comma-separated career slugs the user wants access to
+  reviewedAt       DateTime?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
 }
 
 model QuestionSuggestion {
@@ -146,4 +150,17 @@ model QuestionSuggestion {
   categoryId  String?
   isReviewed  Boolean  @default(false)
   createdAt   DateTime @default(now())
+}
+
+model QuizProgress {
+  id         String   @id @default(cuid())
+  userId     String
+  categoryId String
+  score      Int      // Best score percentage
+  attempts   Int      @default(1)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, categoryId])
 }

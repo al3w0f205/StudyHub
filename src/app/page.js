@@ -8,92 +8,80 @@ export default async function HomePage() {
   const dashboardUrl = isAdmin ? "/admin" : "/dashboard";
 
   return (
-    <div className="relative min-h-dvh overflow-hidden" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
-      {/* ── Background Grid & Ambient Glow ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "var(--gradient-hero)",
-          zIndex: 0,
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          maskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
-          WebkitMaskImage: "linear-gradient(to bottom, white 10%, transparent 80%)",
-          zIndex: 1,
-        }}
-      />
+    <div className="landing-page" style={{ 
+      background: "#09090b", 
+      color: "#fafafa", 
+      minHeight: "100vh", 
+      fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      overflowX: "hidden" 
+    }}>
+      {/* ── Subtle Background Glow ── */}
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: "100vw",
+        height: "500px",
+        background: "radial-gradient(ellipse at top, rgba(45, 212, 191, 0.15), transparent 70%)",
+        pointerEvents: "none",
+        zIndex: 0
+      }} />
 
       {/* ── Navigation ── */}
-      <nav
-        style={{
-          position: "relative",
-          zIndex: 10,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "max(1.5rem, env(safe-area-inset-top)) 1.5rem 1rem",
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
+      <nav style={{
+        position: "relative",
+        zIndex: 10,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "1.5rem 2rem",
+        maxWidth: "1200px",
+        margin: "0 auto",
+      }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <div
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "var(--radius-md)",
-              background: "var(--gradient-primary)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.125rem",
-              fontWeight: "800",
-              color: "white",
-            }}
-          >
-            S
-          </div>
-          <span style={{ fontSize: "1.25rem", fontWeight: "800", letterSpacing: "-0.03em" }}>
-            Study<span style={{ color: "var(--primary-400)" }}>Hub</span>
+          <div style={{
+            width: "32px", height: "32px", borderRadius: "8px",
+            background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+            color: "#09090b", fontWeight: "900", fontSize: "1.2rem"
+          }}>S</div>
+          <span style={{ fontSize: "1.125rem", fontWeight: "700", letterSpacing: "-0.02em" }}>
+            StudyHub
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           {isLoggedIn ? (
             <>
-              <div className="hidden sm:block">
-                <Link href="/quiz" className="btn btn-ghost">
-                  Cuestionarios
-                </Link>
-              </div>
-              <Link href={dashboardUrl} className="btn btn-primary btn-sm">
-                Dashboard
+              <Link href={dashboardUrl} style={{
+                padding: "0.5rem 1rem", borderRadius: "6px", background: "#fff", color: "#09090b",
+                fontWeight: "600", fontSize: "0.875rem", textDecoration: "none", transition: "all 0.2s"
+              }}>
+                Ir al Panel
               </Link>
               <form action={async () => {
                 "use server";
                 await signOut({ redirectTo: "/" });
               }}>
-                <div className="hidden sm:block">
-                  <button type="submit" className="btn btn-ghost btn-sm" style={{ color: "var(--danger-400)" }}>
-                    Salir
-                  </button>
-                </div>
+                <button type="submit" style={{
+                  padding: "0.5rem 1rem", background: "transparent", border: "none", color: "#a1a1aa",
+                  fontWeight: "500", fontSize: "0.875rem", cursor: "pointer"
+                }}>
+                  Salir
+                </button>
               </form>
             </>
           ) : (
             <>
-              <div className="hidden sm:block">
-                <Link href="/auth/login" className="btn btn-ghost" id="nav-login-btn">
-                  Iniciar Sesión
-                </Link>
-              </div>
-              <Link href="/auth/login" className="btn btn-primary btn-sm" id="nav-signup-btn">
+              <Link href="/auth/login" style={{
+                color: "#a1a1aa", textDecoration: "none", fontSize: "0.875rem", fontWeight: "500", padding: "0.5rem"
+              }}>
+                Ingresar
+              </Link>
+              <Link href="/auth/login" style={{
+                padding: "0.5rem 1rem", borderRadius: "6px", background: "#fff", color: "#09090b",
+                fontWeight: "600", fontSize: "0.875rem", textDecoration: "none", transition: "all 0.2s"
+              }}>
                 Comenzar Gratis
               </Link>
             </>
@@ -102,361 +90,185 @@ export default async function HomePage() {
       </nav>
 
       {/* ── Hero Section ── */}
-      <main
-        style={{
-          position: "relative",
-          zIndex: 10,
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "2rem 1.5rem 2rem",
-          textAlign: "center",
-        }}
-      >
-        {/* Badge */}
-        <div
-          className="animate-fade-in flex items-center justify-center text-center gap-2 px-4 py-1.5 rounded-full"
-          style={{
-            background: "rgba(14, 165, 233, 0.15)",
-            border: "1px solid rgba(14, 165, 233, 0.3)",
-            color: "var(--primary-50)",
-            marginBottom: "2rem",
-            width: "fit-content",
-            margin: "0 auto 2rem",
-          }}
-        >
-          <span className="text-xs sm:text-sm">🎓</span>
-          <span className="text-xs sm:text-sm font-semibold">Plataforma de Estudio #1 para Universitarios</span>
+      <main style={{ position: "relative", zIndex: 10, maxWidth: "1200px", margin: "0 auto", padding: "4rem 2rem 6rem", textAlign: "center" }}>
+        
+        <div style={{
+          display: "inline-block", padding: "0.25rem 0.75rem", borderRadius: "9999px",
+          background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+          color: "#d4d4d8", fontSize: "0.8125rem", fontWeight: "500", marginBottom: "2rem",
+          letterSpacing: "0.02em"
+        }}>
+          La nueva forma de prepararse para exámenes ✨
         </div>
 
-        {/* Title */}
-        <h1
-          className="animate-fade-in animate-fade-in-delay-1"
-          style={{
-            fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-            fontWeight: "900",
-            lineHeight: "1.05",
-            letterSpacing: "-0.04em",
-            marginBottom: "1.5rem",
-          }}
-        >
-          Domina tus exámenes
-          <br />
-          <span
-            style={{
-              background: "var(--gradient-primary)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            con confianza
-          </span>
+        <h1 style={{
+          fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: "800", lineHeight: "1.05",
+          letterSpacing: "-0.04em", margin: "0 auto 1.5rem", maxWidth: "900px", color: "#fff"
+        }}>
+          Estudia menos. <br/>
+          <span style={{ color: "#2dd4bf" }}>Aprende más rápido.</span>
         </h1>
 
-        {/* Subtitle */}
-        <p
-          className="animate-fade-in animate-fade-in-delay-2"
-          style={{
-            fontSize: "clamp(1rem, 2vw, 1.25rem)",
-            color: "var(--text-secondary)",
-            maxWidth: "640px",
-            margin: "0 auto 2.5rem",
-            lineHeight: "1.6",
-          }}
-        >
-          Miles de preguntas organizadas por carrera con explicaciones detalladas,
-          pistas inteligentes y simulacros realistas. Tu mejor herramienta de
-          preparación universitaria.
+        <p style={{
+          fontSize: "clamp(1.125rem, 2vw, 1.375rem)", color: "#a1a1aa", maxWidth: "600px",
+          margin: "0 auto 3rem", lineHeight: "1.5", fontWeight: "400"
+        }}>
+          Simulacros precisos, explicaciones detalladas y estadísticas de tu progreso para estudiantes universitarios que quieren asegurar su nota.
         </p>
 
-        {/* CTA Buttons */}
-        <div 
-          className="animate-fade-in animate-fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto sm:max-w-none"
-          style={{ marginBottom: "4rem" }}
-        >
-          <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} className="btn btn-primary btn-lg animate-pulse-glow w-full sm:w-auto flex justify-center" id="hero-cta-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            {isLoggedIn ? "Ir al Dashboard" : "Empezar Ahora"}
-          </Link>
-          <Link href="#features" className="btn btn-secondary btn-lg w-full sm:w-auto flex justify-center" style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)" }} id="hero-features-btn">
-            Conocer Más
+        <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+          <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} style={{
+            padding: "0.875rem 2rem", borderRadius: "8px", background: "#2dd4bf", color: "#042f2e",
+            fontWeight: "600", fontSize: "1rem", textDecoration: "none", transition: "transform 0.2s",
+            boxShadow: "0 4px 14px 0 rgba(45, 212, 191, 0.39)"
+          }}>
+            Empezar a estudiar
           </Link>
         </div>
 
-        {/* ── Stats ── */}
-        <div
-          className="animate-fade-in animate-fade-in-delay-3"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-            gap: "1rem",
-            maxWidth: "600px",
-            margin: "0 auto 5rem",
-          }}
-        >
-          {[
-            { value: "2,000+", label: "Preguntas" },
-            { value: "$10", label: "USD / mes" },
-            { value: "24/7", label: "Acceso Total" },
-          ].map((stat, i) => (
-            <div key={i} className="glass-card" style={{ padding: "1.25rem" }}>
-              <div className="stat-value" style={{ fontSize: "1.5rem" }}>
-                {stat.value}
-              </div>
-              <div className="stat-label">{stat.label}</div>
+        {/* Hero Mockup Graphic */}
+        <div style={{
+          marginTop: "5rem", position: "relative",
+          maxWidth: "900px", margin: "5rem auto 0",
+          background: "rgba(24, 24, 27, 0.8)", border: "1px solid rgba(255, 255, 255, 0.1)",
+          borderRadius: "16px", padding: "1rem", boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+          backdropFilter: "blur(10px)"
+        }}>
+          {/* Mock UI Header */}
+          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem", padding: "0.5rem" }}>
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444" }}/>
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#eab308" }}/>
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#22c55e" }}/>
+          </div>
+          {/* Mock Content */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "1rem", textAlign: "left" }}>
+            <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "8px", padding: "1.5rem" }}>
+              <div style={{ width: "40%", height: "12px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", marginBottom: "1.5rem" }}/>
+              <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }}/>
+              <div style={{ width: "80%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }}/>
+              <div style={{ width: "90%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "2rem" }}/>
+              <div style={{ width: "100%", height: "8px", background: "rgba(45, 212, 191, 0.2)", borderRadius: "4px" }}/>
             </div>
-          ))}
+            <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "8px", padding: "2rem" }}>
+              <div style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1.5rem" }}>Pregunta de Anatomía #42</div>
+              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem", background: "rgba(45, 212, 191, 0.05)" }}/>
+              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem" }}/>
+              <div style={{ width: "100%", height: "48px", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", marginBottom: "0.75rem" }}/>
+            </div>
+          </div>
         </div>
 
-        {/* ── Features Section ── */}
-        <section id="features" style={{ paddingTop: "2rem", paddingBottom: "4rem" }}>
-          <h2
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              fontWeight: "800",
-              letterSpacing: "-0.03em",
-              marginBottom: "0.75rem",
-            }}
-          >
-            Todo lo que necesitas para{" "}
-            <span style={{ color: "var(--primary-400)" }}>aprobar</span>
-          </h2>
-          <p
-            style={{
-              color: "var(--text-tertiary)",
-              marginBottom: "3rem",
-              fontSize: "1rem",
-            }}
-          >
-            Herramientas diseñadas específicamente para estudiantes universitarios
-          </p>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1.25rem",
-              textAlign: "left",
-            }}
-          >
-            {[
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
-                title: "Cuestionarios por Carrera",
-                desc: "Preguntas organizadas por carrera y materia. Practica exactamente lo que necesitas para tu próximo examen.",
-              },
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>,
-                title: "Pistas Inteligentes",
-                desc: "¿Atascado en una pregunta? Usa las pistas para guiar tu razonamiento sin revelar la respuesta directamente.",
-              },
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>,
-                title: "Explicaciones Detalladas",
-                desc: "Cada respuesta incluye una justificación completa para que entiendas el porqué, no solo el qué.",
-              },
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>,
-                title: "Estudia Donde Sea",
-                desc: "Aplicación web progresiva que funciona en cualquier dispositivo. Instálala como app en tu teléfono.",
-              },
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
-                title: "Acceso Premium",
-                desc: "Suscripción mensual de solo $10 USD. Acceso completo a todo el banco de preguntas y nuevas adiciones.",
-              },
-              {
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>,
-                title: "Colaboración",
-                desc: "Sugiere preguntas para que otros estudiantes se beneficien. Juntos construimos un mejor recurso de estudio.",
-              },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="solid-card"
-                style={{ padding: "1.5rem" }}
-              >
-                <div
-                  style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "var(--radius-md)",
-                    background: "var(--glass-bg)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.25rem",
-                    marginBottom: "1rem",
-                    border: "1px solid var(--border-default)",
-                  }}
-                >
-                  {feature.icon}
-                </div>
-                <h3
-                  style={{
-                    fontSize: "1rem",
-                    fontWeight: "700",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "var(--text-tertiary)",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {feature.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── Social Proof ── */}
-        <section style={{ paddingBottom: "4rem" }}>
-          <p style={{ color: "var(--text-tertiary)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem" }}>
-            Utilizado y confiado por estudiantes de
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(2rem, 6vw, 4rem)", flexWrap: "wrap", opacity: 0.9 }}>
-            {/* UIDE Logo text styling */}
-            <span style={{ fontSize: "2rem", fontWeight: "900", letterSpacing: "0.05em", fontFamily: "system-ui, sans-serif" }}>
-              <span style={{ color: "#9c0e44" }}>UI</span><span style={{ color: "#f0b323" }}>DE</span>
-            </span>
-            {/* UDLA Logo text styling */}
-            <span style={{ fontSize: "2.5rem", fontWeight: "600", fontFamily: "cursive", fontStyle: "italic", textTransform: "lowercase", color: "#7f1734" }}>
-              udla
-            </span>
-          </div>
-        </section>
-
-        {/* ── Pricing Section ── */}
-        <section style={{ paddingBottom: "4rem" }}>
-          <h2
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              fontWeight: "800",
-              letterSpacing: "-0.03em",
-              marginBottom: "0.75rem",
-            }}
-          >
-            Un solo plan,{" "}
-            <span style={{ color: "var(--accent-400)" }}>acceso completo</span>
-          </h2>
-          <p
-            style={{
-              color: "var(--text-tertiary)",
-              marginBottom: "3rem",
-              fontSize: "1rem",
-            }}
-          >
-            Sin sorpresas, sin planes ocultos
-          </p>
-
-          <div
-            className="glass-card animate-pulse-glow"
-            style={{
-              maxWidth: "400px",
-              margin: "0 auto",
-              padding: "2.5rem 2rem",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "3px",
-                background: "var(--gradient-primary)",
-              }}
-            />
-            <div
-              style={{
-                fontSize: "0.875rem",
-                fontWeight: "600",
-                color: "var(--primary-400)",
-                marginBottom: "1rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-              }}
-            >
-              Premium
-            </div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "0.5rem" }}>
-              <span
-                style={{
-                  fontSize: "3.5rem",
-                  fontWeight: "900",
-                  letterSpacing: "-0.04em",
-                  background: "var(--gradient-primary)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                $10
-              </span>
-              <span style={{ color: "var(--text-tertiary)", fontSize: "0.875rem" }}>
-                USD / mes
-              </span>
-            </div>
-            <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem", marginBottom: "2rem" }}>
-              Acceso ilimitado a todo el contenido
-            </p>
-
-            <ul style={{ listStyle: "none", marginBottom: "2rem", textAlign: "left" }}>
-              {[
-                "Acceso a todas las preguntas",
-                "Explicaciones detalladas",
-                "Pistas inteligentes",
-                "Nuevas preguntas cada semana",
-                "Acceso desde cualquier dispositivo",
-                "Propón preguntas al sistema",
-              ].map((item, i) => (
-                <li
-                  key={i}
-                  style={{
-                    padding: "0.5rem 0",
-                    fontSize: "0.875rem",
-                    color: "var(--text-secondary)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-400)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} className="btn btn-primary btn-lg" style={{ width: "100%" }} id="pricing-cta-btn">
-              {isLoggedIn ? "Continuar al Dashboard" : "Suscribirse"}
-            </Link>
-          </div>
-        </section>
-
-        {/* ── Footer ── */}
-        <footer
-          style={{
-            borderTop: "1px solid var(--border-default)",
-            padding: "2rem 0",
-            color: "var(--text-tertiary)",
-            fontSize: "0.8125rem",
-          }}
-        >
-          <p>© {new Date().getFullYear()} StudyHub. Todos los derechos reservados.</p>
-        </footer>
       </main>
+
+      {/* ── Social Proof ── */}
+      <section style={{ borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)", padding: "3rem 2rem", background: "rgba(255,255,255,0.01)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+          <p style={{ color: "#71717a", fontSize: "0.875rem", fontWeight: "500", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "2rem" }}>
+            Con la confianza de estudiantes en
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "4rem", flexWrap: "wrap", opacity: 0.6, filter: "grayscale(100%)" }}>
+            <span style={{ fontSize: "1.75rem", fontWeight: "900", fontFamily: "system-ui" }}>UIDE</span>
+            <span style={{ fontSize: "2rem", fontWeight: "600", fontFamily: "serif", fontStyle: "italic" }}>udla</span>
+            <span style={{ fontSize: "1.75rem", fontWeight: "800", fontFamily: "sans-serif" }}>PUCE</span>
+            <span style={{ fontSize: "1.75rem", fontWeight: "700", fontFamily: "system-ui", letterSpacing: "-1px" }}>USFQ</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features BENTO GRID ── */}
+      <section style={{ padding: "8rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "1rem" }}>
+            Todo lo que necesitas. <br/> Nada de lo que no.
+          </h2>
+          <p style={{ color: "#a1a1aa", fontSize: "1.125rem", maxWidth: "500px", margin: "0 auto" }}>
+            Diseñado meticulosamente para eliminar distracciones y enfocarse en la retención.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+          {/* Feature 1 */}
+          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
+            <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(45, 212, 191, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Cuestionarios Específicos</h3>
+            <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
+              No estudies a ciegas. Nuestras preguntas están categorizadas exactamente por carrera y semestre.
+            </p>
+          </div>
+
+          {/* Feature 2 */}
+          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
+            <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(250, 204, 21, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Justificaciones Claras</h3>
+            <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
+              Saber la respuesta no es suficiente. Te explicamos paso a paso por qué es correcta.
+            </p>
+          </div>
+
+          {/* Feature 3 */}
+          <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
+            <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(96, 165, 250, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            </div>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Analíticas en Tiempo Real</h3>
+            <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
+              Visualiza en qué temas eres fuerte y cuáles necesitan más repaso antes del examen final.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pricing ── */}
+      <section style={{ padding: "4rem 2rem 8rem", textAlign: "center", background: "linear-gradient(to bottom, transparent, rgba(45, 212, 191, 0.03))" }}>
+        <h2 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "3rem" }}>
+          Simple. Transparente.
+        </h2>
+
+        <div style={{
+          background: "#18181b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "24px",
+          padding: "3rem", maxWidth: "400px", margin: "0 auto", textAlign: "center",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+        }}>
+          <h3 style={{ fontSize: "1.25rem", fontWeight: "500", color: "#a1a1aa", marginBottom: "1rem" }}>Acceso Ilimitado</h3>
+          <div style={{ fontSize: "4rem", fontWeight: "800", color: "#fff", letterSpacing: "-0.05em", marginBottom: "0.5rem" }}>
+            $10
+            <span style={{ fontSize: "1rem", fontWeight: "500", color: "#71717a", letterSpacing: "normal" }}>/mes</span>
+          </div>
+          <p style={{ color: "#71717a", fontSize: "0.9375rem", marginBottom: "2rem" }}>
+            Una inversión mínima para tu éxito académico.
+          </p>
+
+          <Link href={isLoggedIn ? dashboardUrl : "/auth/login"} style={{
+            display: "block", padding: "1rem 2rem", borderRadius: "8px", background: "#fff", color: "#09090b",
+            fontWeight: "600", fontSize: "1rem", textDecoration: "none", transition: "background 0.2s",
+            marginBottom: "2rem"
+          }}>
+            Suscribirse Ahora
+          </Link>
+
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, textAlign: "left", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {["Acceso a todas las preguntas", "Explicaciones de cada respuesta", "Soporte y nuevas actualizaciones"].map((feature, i) => (
+              <li key={i} style={{ display: "flex", alignItems: "center", gap: "0.75rem", color: "#d4d4d8", fontSize: "0.875rem" }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer style={{
+        borderTop: "1px solid rgba(255,255,255,0.05)", padding: "2rem", textAlign: "center", color: "#71717a", fontSize: "0.875rem"
+      }}>
+        <p>© {new Date().getFullYear()} StudyHub. Construido para estudiantes.</p>
+      </footer>
     </div>
   );
 }

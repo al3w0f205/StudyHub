@@ -1,22 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function ClientStats({ categories }) {
-  const [progress, setProgress] = useState(null);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("studyhub_progress");
-    if (saved) {
-      try {
-        setProgress(JSON.parse(saved));
-      } catch (e) {}
-    } else {
-      setProgress({});
-    }
-  }, []);
-
+export default function ClientStats({ categories, progress }) {
   if (!progress) return null; // loading
 
   const statsList = Object.keys(progress).map((id) => {

@@ -9,11 +9,29 @@ async function approvePayment(formData) {
   "use server";
   const id = formData.get("id");
   const userId = formData.get("userId");
+  const requestedCareers = formData.get("requestedCareers");
+
   const expiry = new Date();
   expiry.setDate(expiry.getDate() + 30);
+
+  const userUpdateData = { subscriptionExpiry: expiry };
+  
+  if (requestedCareers) {
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { allowedCareers: true } });
+    let allowed = user.allowedCareers ? user.allowedCareers.split(",").filter(Boolean) : [];
+    
+    // Add requested careers that aren't already there
+    const requested = requestedCareers.split(",");
+    for (const c of requested) {
+      if (!allowed.includes(c)) allowed.push(c);
+    }
+    
+    userUpdateData.allowedCareers = allowed.join(",");
+  }
+
   await prisma.$transaction([
     prisma.paymentRequest.update({ where: { id }, data: { status: "APPROVED", reviewedAt: new Date() } }),
-    prisma.user.update({ where: { id: userId }, data: { subscriptionExpiry: expiry } }),
+    prisma.user.update({ where: { id: userId }, data: userUpdateData }),
   ]);
   redirect("/admin/payments");
 }
@@ -62,19 +80,30 @@ export default async function PaymentsPage() {
                   <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", marginTop: "0.25rem" }}>
                     {new Date(p.createdAt).toLocaleString("es-ES")}
                   </div>
-                  <a href={p.receiptUrl} target="_blank" rel="noopener" className="btn btn-ghost btn-sm" style={{ marginTop: "0.5rem" }}>
+                  {p.requestedCareers && (
+                    <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)", marginTop: "0.375rem" }}>
+                      <strong>Solicita:</strong> {p.requestedCareers.split(",").join(", ")}
+                    </div>
+                  )}
+                  {p.userComment && (
+                    <div style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", marginTop: "0.375rem", fontStyle: "italic", background: "var(--glass-bg)", padding: "0.5rem", borderRadius: "var(--radius-sm)" }}>
+                      "{p.userComment}"
+                    </div>
+                  )}
+                  <a href={p.receiptUrl} target="_blank" rel="noopener" className="btn btn-ghost btn-sm" style={{ marginTop: "0.5rem", paddingLeft: 0 }}>
                     📷 Ver Comprobante
                   </a>
                 </div>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
+                <div style={{ display: "flex", gap: "0.5rem", flexDirection: "column", alignItems: "flex-end" }}>
                   <form action={approvePayment}>
                     <input type="hidden" name="id" value={p.id} />
                     <input type="hidden" name="userId" value={p.userId} />
+                    <input type="hidden" name="requestedCareers" value={p.requestedCareers || ""} />
                     <button type="submit" className="btn btn-primary btn-sm">✓ Aprobar (+30 días)</button>
                   </form>
-                  <form action={rejectPayment}>
+                  <form action={rejectPayment} style={{ display: "flex", gap: "0.5rem" }}>
                     <input type="hidden" name="id" value={p.id} />
-                    <input type="hidden" name="notes" value="Comprobante no válido" />
+                    <input type="text" name="notes" placeholder="Motivo del rechazo..." className="input" style={{ width: "150px", padding: "0.375rem 0.5rem", fontSize: "0.75rem" }} />
                     <button type="submit" className="btn btn-danger btn-sm">✕ Rechazar</button>
                   </form>
                 </div>

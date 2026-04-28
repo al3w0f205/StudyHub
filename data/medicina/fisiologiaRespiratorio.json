@@ -1,0 +1,3176 @@
+{
+    "preguntas": [
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué vía aérea representa la generación cero en la zona de conducción?",
+            "opts": [
+                "Laringe",
+                "Tráquea",
+                "Bronquios principales",
+                "Bronquiolos terminales"
+            ],
+            "ans": 1,
+            "just": "La tráquea es la principal vía aérea conductora inicial, clasificada como generación cero.",
+            "hint": "Es la estructura previa a la bifurcación principal."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cuántas divisiones totales existen en las vías aéreas de conducción hasta llegar a la generación final?",
+            "opts": [
+                "15",
+                "20",
+                "23",
+                "28"
+            ],
+            "ans": 2,
+            "just": "Existen 23 divisiones que dan lugar a vías aéreas cada vez más pequeñas, culminando en las vías de 23.ª generación.",
+            "hint": "Las vías terminan en la generación que corresponde a su número total de divisiones."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Hasta qué generación de las vías respiratorias de conducción está presente el cartílago?",
+            "opts": [
+                "Generaciones 0-5",
+                "Generaciones 0-10",
+                "Generaciones 0-15",
+                "Generaciones 0-20"
+            ],
+            "ans": 1,
+            "just": "El cartílago está presente en las paredes de las generaciones 0-10; su función estructural es mantener abiertas esas vías respiratorias.",
+            "hint": "A partir de la 11.ª generación desaparece."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿De qué dependen las vías respiratorias sin cartílago para permanecer abiertas?",
+            "opts": [
+                "Tono muscular activo",
+                "Presión transmural favorable",
+                "Moco viscoso",
+                "Cilios activos"
+            ],
+            "ans": 1,
+            "just": "A partir de la 11.ª generación, sin cartílago, las vías respiratorias dependen de una presión transmural favorable para permanecer abiertas.",
+            "hint": "Es una presión mecánica, no muscular."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cuál es la función del epitelio ciliado con células secretoras de moco en las vías de conducción?",
+            "opts": [
+                "Intercambio gaseoso",
+                "Humidificación exclusiva",
+                "Eliminación de partículas inhaladas",
+                "Regulación del pH"
+            ],
+            "ans": 2,
+            "just": "Las partículas inhaladas son atrapadas por el moco y conducidas fuera por el batido rítmico de los cilios.",
+            "hint": "Los cilios tienen un movimiento rítmico con un propósito de limpieza."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué receptor bronquial estimula la relajación y dilatación de las vías aéreas?",
+            "opts": [
+                "Receptor α1",
+                "Receptor β1",
+                "Receptor β2",
+                "Receptor muscarínico"
+            ],
+            "ans": 2,
+            "just": "Las neuronas adrenérgicas simpáticas activan los receptores β2 del músculo liso bronquial, causando relajación y dilatación de las vías aéreas.",
+            "hint": "Este receptor es el objetivo de fármacos utilizados en el asma."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué tipo de receptor media la contracción y constricción de las vías aéreas?",
+            "opts": [
+                "Receptor β2",
+                "Receptor α2",
+                "Receptor muscarínico",
+                "Receptor nicotínico"
+            ],
+            "ans": 2,
+            "just": "Las neuronas colinérgicas parasimpáticas activan receptores muscarínicos en el músculo liso bronquial, produciendo contracción y constricción.",
+            "hint": "Es el receptor parasimpático clásico."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué mediadores activan los receptores muscarínicos en las vías aéreas?",
+            "opts": [
+                "Adrenalina y noradrenalina",
+                "Histamina y leucotrienos",
+                "Serotonina y GABA",
+                "Prostaglandinas y tromboxanos"
+            ],
+            "ans": 1,
+            "just": "La histamina y los leucotrienos son los mediadores que activan los receptores muscarínicos, causando broncoconstricción.",
+            "hint": "Estos mediadores son relevantes en reacciones alérgicas."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cuál es la función principal de la zona de conducción además de transportar aire?",
+            "opts": [
+                "Intercambio gaseoso parcial",
+                "Calentar, humidificar y filtrar el aire",
+                "Producir surfactante",
+                "Sintetizar EPO"
+            ],
+            "ans": 1,
+            "just": "La zona de conducción calienta, humidifica y filtra el aire antes de que alcance la región crítica de intercambio gaseoso.",
+            "hint": "El aire debe acondicionarse antes del intercambio gaseoso."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cuál de estas estructuras NO pertenece a la zona de conducción?",
+            "opts": [
+                "Bronquiolos terminales",
+                "Tráquea",
+                "Bronquiolos respiratorios",
+                "Nasofaringe"
+            ],
+            "ans": 2,
+            "just": "Los bronquiolos respiratorios pertenecen a la zona respiratoria, no a la zona de conducción.",
+            "hint": "La palabra 'respiratorio' en su nombre es la clave."
+        },
+        {
+            "cat": "zona_respiratoria",
+            "q": "¿Cuál es la característica de los bronquiolos respiratorios que los define como zona de transición?",
+            "opts": [
+                "Solo tienen cartílago",
+                "Tienen músculo liso y cilios, pero a veces los alvéolos pierden sus paredes",
+                "Solo realizan intercambio gaseoso puro",
+                "Carecen completamente de músculo liso"
+            ],
+            "ans": 1,
+            "just": "Los bronquiolos respiratorios son estructuras de transición con músculo liso y cilios, aunque a veces los alvéolos pierden sus paredes.",
+            "hint": "Su nombre indica que tienen función mixta."
+        },
+        {
+            "cat": "zona_respiratoria",
+            "q": "¿Qué característica distingue a los conductos alveolares?",
+            "opts": [
+                "Tienen cartílago pero no alvéolos",
+                "Están recubiertos de alvéolos, sin músculo liso ni cilios",
+                "Son la primera zona de conducción",
+                "Tienen únicamente músculo liso"
+            ],
+            "ans": 1,
+            "just": "Los conductos alveolares están recubiertos de alvéolos y carecen de músculo liso y cilios.",
+            "hint": "Son la antesala de los sacos alveolares."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Cuántos alvéolos aproximadamente tiene cada pulmón?",
+            "opts": [
+                "100 millones",
+                "200 millones",
+                "300 millones",
+                "600 millones"
+            ],
+            "ans": 2,
+            "just": "Cada pulmón contiene aproximadamente 300 millones de alvéolos.",
+            "hint": "El número es significativo para garantizar un área de intercambio suficiente."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Cuál es el diámetro aproximado de un alvéolo?",
+            "opts": [
+                "20 µm",
+                "100 µm",
+                "200 µm",
+                "500 µm"
+            ],
+            "ans": 2,
+            "just": "El diámetro de cada alvéolo es de aproximadamente 200 µm.",
+            "hint": "Es microscópico pero funcional."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Qué células alveolares producen el surfactante pulmonar?",
+            "opts": [
+                "Neumocitos tipo I",
+                "Neumocitos tipo II",
+                "Macrófagos alveolares",
+                "Células ciliadas"
+            ],
+            "ans": 1,
+            "just": "Los neumocitos tipo II son responsables de la síntesis del surfactante pulmonar.",
+            "hint": "El tipo II produce; el tipo I cubre la mayor parte de la superficie."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Cuál es la función de los macrófagos alveolares?",
+            "opts": [
+                "Producir moco",
+                "Fagocitar desechos y conducirlos a los bronquiolos para ser deglutidos o expectorados",
+                "Sintetizar surfactante",
+                "Regular la presión intrapleural"
+            ],
+            "ans": 1,
+            "just": "Los macrófagos alveolares fagocitan los desechos, los conducen a los bronquiolos y son deglutidos o expectorados.",
+            "hint": "Son los 'limpiadores' del espacio alveolar."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "¿Qué es el flujo sanguíneo pulmonar en términos fisiológicos?",
+            "opts": [
+                "El retorno venoso sistémico",
+                "El gasto cardíaco del corazón derecho",
+                "El gasto cardíaco del corazón izquierdo",
+                "La diferencia entre presión sistólica y diastólica"
+            ],
+            "ans": 1,
+            "just": "El flujo sanguíneo pulmonar equivale al gasto cardíaco del corazón derecho.",
+            "hint": "Todo lo que eyecta el ventrículo derecho pasa por la circulación pulmonar."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "En una persona de pie, ¿dónde es mayor el flujo sanguíneo pulmonar?",
+            "opts": [
+                "En el vértice pulmonar",
+                "En la base pulmonar",
+                "Es uniforme en todo el pulmón",
+                "En la zona media pulmonar"
+            ],
+            "ans": 1,
+            "just": "Debido a los efectos gravitatorios, el flujo sanguíneo es más alto en la base y más bajo en el vértice de los pulmones.",
+            "hint": "La gravedad dirige el flujo hacia abajo."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "¿Cómo se regula el flujo sanguíneo pulmonar?",
+            "opts": [
+                "Alterando la resistencia de las arteriolas pulmonares",
+                "Modificando la frecuencia cardíaca",
+                "Cambiando la presión intrapleural",
+                "A través del nervio frénico"
+            ],
+            "ans": 0,
+            "just": "La regulación del flujo sanguíneo pulmonar se consigue alterando la resistencia de las arteriolas pulmonares.",
+            "hint": "La resistencia vascular es el mecanismo regulador principal."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "¿Cuál es el papel de la circulación bronquial?",
+            "opts": [
+                "Oxigenar la sangre venosa mezclada",
+                "Aportar sangre a las vías aéreas de conducción, sin participar en la hematosis",
+                "Regular la presión alveolar",
+                "Drenar el líquido pleural"
+            ],
+            "ans": 1,
+            "just": "La circulación bronquial aporta sangre a las vías aéreas de conducción pero es una fracción pequeña del flujo pulmonar total y no participa en la hematosis.",
+            "hint": "La hematosis ocurre solo en la zona respiratoria."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Cuál es el volumen corriente normal en un adulto en reposo?",
+            "opts": [
+                "150 mL",
+                "350 mL",
+                "500 mL",
+                "1200 mL"
+            ],
+            "ans": 2,
+            "just": "El volumen corriente corresponde a la respiración normal y es de aproximadamente 500 mL.",
+            "hint": "Es el volumen de cada respiración tranquila."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Cuánto mide el Volumen de Reserva Inspiratorio (VRI)?",
+            "opts": [
+                "500 mL",
+                "1200 mL",
+                "2400 mL",
+                "3000 mL"
+            ],
+            "ans": 3,
+            "just": "El VRI corresponde a la inspiración profunda por encima del volumen corriente y es de 3000 mL.",
+            "hint": "Es el mayor volumen de reserva."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Cuál es el Volumen Residual (VR) y qué lo caracteriza?",
+            "opts": [
+                "500 mL, es el volumen corriente",
+                "1200 mL, es el volumen que queda en los pulmones tras una espiración máxima",
+                "2400 mL, es la capacidad residual funcional",
+                "3000 mL, es el volumen de reserva inspiratorio"
+            ],
+            "ans": 1,
+            "just": "El VR es de 1200 mL y representa el volumen que permanece en los pulmones incluso después de una espiración máxima.",
+            "hint": "No puede medirse directamente por espirometría."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Cuál es el Volumen de Reserva Espiratorio (VRE)?",
+            "opts": [
+                "500 mL",
+                "1200 mL",
+                "2400 mL",
+                "3500 mL"
+            ],
+            "ans": 1,
+            "just": "El VRE es de 1200 mL y corresponde a la espiración profunda por debajo del volumen corriente.",
+            "hint": "Comparte el mismo valor numérico que el VR."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Cómo se calcula la Capacidad Inspiratoria (CI)?",
+            "opts": [
+                "VRE + VR",
+                "VC + VRI",
+                "CI + VRE",
+                "Todos los volúmenes"
+            ],
+            "ans": 1,
+            "just": "La Capacidad Inspiratoria equivale a la suma del VC y el VRI, resultando en 3500 mL.",
+            "hint": "Suma los dos volúmenes relacionados con la inspiración."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Cuál es la Capacidad Residual Funcional (CRF)?",
+            "opts": [
+                "VC + VRI = 3500 mL",
+                "VRE + VR = 2400 mL",
+                "CI + VRE = 4700 mL",
+                "Todos los volúmenes = 5900 mL"
+            ],
+            "ans": 1,
+            "just": "La CRF equivale a VRE + VR = 2400 mL y representa el volumen de equilibrio del sistema respiratorio.",
+            "hint": "También se llama volumen de equilibrio."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Cuál es la Capacidad Vital (CV) y qué la define?",
+            "opts": [
+                "El volumen corriente solo",
+                "El volumen que se puede espirar después de una inspiración máxima, CI + VRE = 4700 mL",
+                "La suma de VR + VRE = 2400 mL",
+                "La capacidad pulmonar total menos el VR"
+            ],
+            "ans": 1,
+            "just": "La CV es el volumen que puede espirarse tras una inspiración máxima, igual a CI + VRE = 4700 mL.",
+            "hint": "Excluye el volumen residual."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Cuál es la Capacidad Pulmonar Total?",
+            "opts": [
+                "3500 mL",
+                "4700 mL",
+                "5200 mL",
+                "5900 mL"
+            ],
+            "ans": 3,
+            "just": "La capacidad pulmonar total incluye todos los volúmenes pulmonares y equivale a 5900 mL.",
+            "hint": "Es la suma de absolutamente todos los volúmenes."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Con qué factores aumenta el valor de la Capacidad Vital?",
+            "opts": [
+                "Mayor edad y sexo femenino",
+                "Mayor tamaño corporal, sexo masculino y preparación física",
+                "Menor actividad física y menor edad",
+                "Menor tamaño corporal y enfermedades restrictivas"
+            ],
+            "ans": 1,
+            "just": "La CV aumenta con el tamaño del cuerpo, el sexo masculino y la preparación física, y disminuye con la edad.",
+            "hint": "Los atletas entrenados suelen tener mayor CV."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Qué método NO sirve para determinar la CRF?",
+            "opts": [
+                "Dilución de Helio",
+                "Pletismografía corporal",
+                "Espirometría convencional",
+                "Ambas A y B son válidas"
+            ],
+            "ans": 2,
+            "just": "La espirometría convencional no puede medir el VR ni la CRF; se requiere dilución de Helio o pletismografía corporal.",
+            "hint": "La espirometría no puede medir lo que queda después de una espiración máxima."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Qué incluye el espacio muerto anatómico?",
+            "opts": [
+                "Solo los alvéolos no perfundidos",
+                "El volumen de las vías aéreas de conducción: nariz, tráquea, bronquios y bronquiolos",
+                "El volumen residual funcional",
+                "Los sacos alveolares no ventilados"
+            ],
+            "ans": 1,
+            "just": "El espacio muerto anatómico corresponde al volumen de las vías aéreas de conducción, incluyendo nariz, tráquea, bronquios y bronquiolos.",
+            "hint": "Son las estructuras que no participan en el intercambio gaseoso."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "De los 500 mL del volumen corriente, ¿cuánto llega efectivamente a los alvéolos?",
+            "opts": [
+                "150 mL",
+                "350 mL",
+                "400 mL",
+                "500 mL"
+            ],
+            "ans": 1,
+            "just": "De los 500 mL del volumen corriente, 350 mL se dirigen a los alvéolos y 150 mL quedan en el espacio muerto anatómico.",
+            "hint": "Un tercio queda en las vías de conducción."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Cuál es la diferencia entre espacio muerto anatómico y fisiológico?",
+            "opts": [
+                "Son idénticos",
+                "El fisiológico incluye el anatómico más el espacio muerto funcional de alvéolos no perfundidos o no ventilados",
+                "El anatómico es mayor que el fisiológico",
+                "El fisiológico solo incluye alvéolos"
+            ],
+            "ans": 1,
+            "just": "El espacio muerto fisiológico incluye el anatómico más el espacio muerto funcional de los alvéolos que están ventilados pero no perfundidos, o viceversa.",
+            "hint": "El fisiológico siempre es mayor o igual al anatómico."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Hasta qué porcentaje del volumen corriente puede representar el espacio muerto fisiológico?",
+            "opts": [
+                "10%",
+                "20%",
+                "30%",
+                "50%"
+            ],
+            "ans": 2,
+            "just": "El espacio muerto fisiológico puede representar hasta el 30% del volumen corriente.",
+            "hint": "Una fracción significativa pero no mayoritaria."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "En el espacio muerto fisiológico, ¿qué sucede teóricamente con el CO2?",
+            "opts": [
+                "Se acumula en altas concentraciones",
+                "Teóricamente no existe CO2",
+                "Se convierte en bicarbonato",
+                "Se elimina por difusión pasiva"
+            ],
+            "ans": 1,
+            "just": "En los alvéolos del espacio muerto fisiológico teóricamente no existe CO2, dado que no hay intercambio gaseoso.",
+            "hint": "Sin perfusión no hay CO2 que intercambiar."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Cómo se calcula la ventilación minuto?",
+            "opts": [
+                "VC × FR (respiraciones/min)",
+                "(VC – VD) × FR",
+                "VRI × FR",
+                "CV × FR"
+            ],
+            "ans": 0,
+            "just": "La ventilación minuto equivale al volumen corriente multiplicado por las respiraciones por minuto.",
+            "hint": "Es el volumen total de aire movido por minuto."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Cómo se calcula la ventilación alveolar (VA)?",
+            "opts": [
+                "VC × FR",
+                "(VC – VD) × FR",
+                "(VC + VRI) × FR",
+                "VRE × FR"
+            ],
+            "ans": 1,
+            "just": "La ventilación alveolar se obtiene de la fórmula VA = (VC – VD) × FR, donde VD es el espacio muerto fisiológico.",
+            "hint": "Se descuenta el espacio muerto del volumen corriente."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Cuál es la relación entre ventilación alveolar y PACO2?",
+            "opts": [
+                "Son directamente proporcionales",
+                "Son inversamente proporcionales",
+                "No tienen relación",
+                "Solo se relacionan en hipoxia"
+            ],
+            "ans": 1,
+            "just": "Existe una relación inversa entre la ventilación alveolar y la PACO2: al aumentar la ventilación, la PACO2 disminuye.",
+            "hint": "Más ventilación equivale a mayor eliminación de CO2."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Cuánto vale la constante K en la ecuación de ventilación alveolar en condiciones TCPS?",
+            "opts": [
+                "760 mmHg",
+                "863 mmHg",
+                "713 mmHg",
+                "47 mmHg"
+            ],
+            "ans": 1,
+            "just": "La constante K es igual a 863 mmHg en condiciones TCPS, cuando VA y VCO2 se expresan en las mismas unidades.",
+            "hint": "TCPS implica temperatura corporal, presión atmosférica y saturación con vapor de agua."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "¿Cuál debe ser el cociente VEMS1/CVF en condiciones normales?",
+            "opts": [
+                "~0,5",
+                "~0,6",
+                "~0,8",
+                "~1,0"
+            ],
+            "ans": 2,
+            "just": "El cociente VEMS1/CVF debe ser de aproximadamente 0,8, lo que significa que el 80% del aire se espira en el primer segundo.",
+            "hint": "En patología obstructiva este cociente disminuye."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "En enfermedades obstructivas como el asma, ¿cómo se afecta el cociente VEMS1/CVF?",
+            "opts": [
+                "Aumenta por encima de 0,8",
+                "Disminuye por debajo de 0,8 porque el VEMS1 se reduce más que la CVF",
+                "Se mantiene en 0,8",
+                "Solo se afecta la CVF, no el VEMS1"
+            ],
+            "ans": 1,
+            "just": "En enfermedades obstructivas, el VEMS1 está más reducido que la CVF, por lo que el cociente es menor de 0,8.",
+            "hint": "La obstrucción limita especialmente el flujo espiratorio rápido."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "En enfermedades restrictivas como la fibrosis pulmonar, ¿cómo es el cociente VEMS1/CVF?",
+            "opts": [
+                "Menor de 0,8",
+                "Mayor de 0,8 porque el VEMS1 está menos reducido que la CVF",
+                "Igual que en la normalidad",
+                "No se puede medir en enfermedades restrictivas"
+            ],
+            "ans": 1,
+            "just": "En enfermedades restrictivas, ambos valores disminuyen, pero el VEMS1 está menos reducido que la CVF, resultando en un cociente mayor de 0,8.",
+            "hint": "La restricción reduce el volumen total más que el flujo."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "¿Qué hallazgo radiológico es característico del asma o EPOC?",
+            "opts": [
+                "Costillas verticalizadas y opacidades",
+                "Costillas horizontales por retención de aire y aspecto radiolúcido",
+                "Derrame pleural bilateral",
+                "Infiltrados en bases pulmonares"
+            ],
+            "ans": 1,
+            "just": "En asma o EPOC, la retención de aire horizontaliza las costillas y produce un aspecto muy radiolúcido en la radiografía.",
+            "hint": "La hiperinflación cambia la arquitectura torácica visible."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Cuál es el único músculo primario de la respiración?",
+            "opts": [
+                "Los intercostales externos",
+                "El diafragma",
+                "Los abdominales",
+                "El esternocleidomastoideo"
+            ],
+            "ans": 1,
+            "just": "El diafragma es el único músculo primario de la respiración.",
+            "hint": "Todos los demás son accesorios."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿En qué niveles vertebrales se inserta el pilar derecho del diafragma?",
+            "opts": [
+                "L1-L2",
+                "L1-L3",
+                "L2-L4",
+                "T12-L2"
+            ],
+            "ans": 1,
+            "just": "El pilar derecho del diafragma se inserta en L1-L3, mientras que el izquierdo lo hace en L1-L2.",
+            "hint": "El pilar derecho tiene una inserción más extensa que el izquierdo."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Qué ocurre cuando el diafragma se contrae durante la inspiración?",
+            "opts": [
+                "El contenido abdominal sube y las costillas se verticalizan",
+                "El contenido abdominal baja y las costillas se horizontalizan hacia arriba y afuera",
+                "El volumen intratorácico disminuye",
+                "La presión intratorácica aumenta"
+            ],
+            "ans": 1,
+            "just": "Al contraerse el diafragma, el contenido abdominal se desplaza hacia abajo y las costillas se horizontalizan, aumentando el volumen intratorácico y disminuyendo la presión.",
+            "hint": "El aumento de volumen provoca la entrada de aire."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Cuáles son los músculos accesorios de la inspiración?",
+            "opts": [
+                "Intercostales internos y abdominales",
+                "Intercostales externos y músculos accesorios del cuello",
+                "Solo el diafragma",
+                "Solo los abdominales"
+            ],
+            "ans": 1,
+            "just": "Los músculos accesorios de la inspiración son los intercostales externos junto con los músculos accesorios del cuello.",
+            "hint": "Los externos son para inspirar; los internos, para espirar."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Por qué la espiración normal se considera un proceso pasivo?",
+            "opts": [
+                "Porque requiere contracción activa de los intercostales",
+                "Porque el gradiente de presión inversa extrae el aire hasta que el sistema alcanza el equilibrio, sin contracción muscular activa",
+                "Porque el diafragma se contrae durante la espiración",
+                "Porque los abdominales siempre están activos"
+            ],
+            "ans": 1,
+            "just": "El aire es extraído por el gradiente de presión inversa entre pulmones y atmósfera hasta alcanzar el punto de equilibrio, sin requerir contracción muscular activa en reposo.",
+            "hint": "El retroceso elástico pulmonar impulsa la espiración."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Cuáles son los músculos accesorios de la espiración?",
+            "opts": [
+                "Intercostales externos y diafragma",
+                "Intercostales internos y abdominales",
+                "Esternocleidomastoideo y escalenos",
+                "Serratos y trapecio"
+            ],
+            "ans": 1,
+            "just": "Los músculos accesorios de la espiración son los intercostales internos, que tiran de las costillas hacia abajo, y los abdominales, que comprimen la cavidad y empujan el diafragma.",
+            "hint": "Se activan en ejercicio intenso o enfermedades respiratorias."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué describe la adaptabilidad o compliance pulmonar?",
+            "opts": [
+                "La elastancia del pulmón",
+                "La distensibilidad del sistema, en relación inversa con la elastancia",
+                "La resistencia al flujo aéreo",
+                "La capacidad de difusión"
+            ],
+            "ans": 1,
+            "just": "La adaptabilidad describe la distensibilidad del sistema y guarda una relación inversa con la elastancia.",
+            "hint": "Mayor compliance implica menor elastancia."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Cómo se relacionan mayor tejido pulmonar y compliance?",
+            "opts": [
+                "Mayor tejido = mayor compliance",
+                "Mayor tejido = mayor elastancia = menor compliance",
+                "Mayor tejido = menor elastancia = mayor compliance",
+                "No hay relación entre tejido y compliance"
+            ],
+            "ans": 1,
+            "just": "Mayor tejido pulmonar implica mayor elastancia, lo que resulta en menor compliance.",
+            "hint": "La fibrosis es un ejemplo de tejido aumentado con compliance reducida."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Cómo se calcula la presión transmural?",
+            "opts": [
+                "Presión alveolar + presión intrapleural",
+                "Presión intraalveolar – presión intrapleural",
+                "Presión atmosférica – presión alveolar",
+                "Presión intrapleural – presión atmosférica"
+            ],
+            "ans": 1,
+            "just": "La presión transmural se calcula como la presión intraalveolar menos la presión intrapleural.",
+            "hint": "Si es positiva, el pulmón se expande."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué significa una presión intrapleural más negativa?",
+            "opts": [
+                "Corresponde a la espiración",
+                "Corresponde a la inspiración",
+                "Indica neumotórax",
+                "Indica que la presión transmural es cero"
+            ],
+            "ans": 1,
+            "just": "Cuando la presión intrapleural es más negativa, se refiere a la fase inspiratoria; cuando es menos negativa, corresponde a la espiración.",
+            "hint": "La inspiración expande el tórax, volviendo más negativa la presión pleural."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué fenómeno describe las diferentes pendientes de las ramas inspiratoria y espiratoria de la curva presión-volumen?",
+            "opts": [
+                "Compliance dinámica",
+                "Histéresis",
+                "Efecto Bohr",
+                "Ley de Laplace"
+            ],
+            "ans": 1,
+            "just": "La histéresis describe el fenómeno donde las pendientes de inspiración y espiración son diferentes en la curva presión-volumen, determinado por la tensión superficial.",
+            "hint": "Se relaciona con el cambio de la tensión superficial en cada fase."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿En qué rama de la curva presión-volumen se mide habitualmente la adaptabilidad?",
+            "opts": [
+                "Rama inspiratoria",
+                "Rama espiratoria",
+                "En ambas por igual",
+                "En el punto de equilibrio únicamente"
+            ],
+            "ans": 1,
+            "just": "La adaptabilidad se mide en la rama espiratoria porque la rama inspiratoria se complica por la disminución de adaptabilidad a las presiones de expansión máximas.",
+            "hint": "Es más confiable medirla en la fase de desinflado."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué ocurre en el neumotórax con la presión intrapleural?",
+            "opts": [
+                "Se vuelve más negativa",
+                "Se iguala a la presión atmosférica, pasando de negativa a 0",
+                "Aumenta por encima de la presión alveolar",
+                "No varía"
+            ],
+            "ans": 1,
+            "just": "En el neumotórax, la presión intrapleural negativa se iguala a la presión atmosférica, lo que elimina la fuerza que se oponía al colapso pulmonar.",
+            "hint": "El pulmón colapsa cuando pierde el gradiente de presión que lo mantiene expandido."
+        },
+        {
+            "cat": "compliance",
+            "q": "En el enfisema, ¿cómo cambia la CRF?",
+            "opts": [
+                "Disminuye por pérdida de elasticidad",
+                "Aumenta por aumento de la adaptabilidad pulmonar",
+                "No se modifica",
+                "Disminuye por fibrosis"
+            ],
+            "ans": 1,
+            "just": "En el enfisema, el aumento de la adaptabilidad pulmonar desplaza el punto de equilibrio hacia volúmenes mayores, resultando en una CRF más alta.",
+            "hint": "Los pulmones enfisematosos son muy distensibles."
+        },
+        {
+            "cat": "compliance",
+            "q": "En la fibrosis pulmonar, ¿cómo cambia la CRF?",
+            "opts": [
+                "Aumenta",
+                "Disminuye por reducción de la adaptabilidad pulmonar",
+                "No se modifica",
+                "Aumenta solo en la fase avanzada"
+            ],
+            "ans": 1,
+            "just": "En la fibrosis, la disminución de la adaptabilidad pulmonar desplaza el equilibrio hacia volúmenes menores, resultando en una CRF más baja.",
+            "hint": "Los pulmones fibróticos son rígidos y se resisten a distenderse."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Qué genera la tensión superficial en los alvéolos?",
+            "opts": [
+                "La diferencia de temperatura entre el aire alveolar y la sangre",
+                "Las fuerzas de atracción entre moléculas de líquido adyacentes, más fuertes que entre líquido y gas",
+                "El peso del surfactante sobre las paredes alveolares",
+                "La presión hidrostática capilar"
+            ],
+            "ans": 1,
+            "just": "Las fuerzas de atracción entre moléculas líquidas adyacentes son más fuertes que entre líquido y gas, creando una tensión superficial que tiende a colapsar el alvéolo.",
+            "hint": "Este fenómeno físico actúa como un mecanismo de colapso."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Qué ley describe la relación entre la presión de colapso alveolar, la tensión superficial y el radio?",
+            "opts": [
+                "Ley de Boyle",
+                "Ley de Dalton",
+                "Ley de Laplace",
+                "Ley de Henry"
+            ],
+            "ans": 2,
+            "just": "La ley de Laplace establece que la presión de colapso es directamente proporcional a la tensión superficial e inversamente proporcional al radio alveolar.",
+            "hint": "P = 2T/r"
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "Según la ley de Laplace, un alvéolo pequeño sin surfactante, ¿qué tiende a hacer?",
+            "opts": [
+                "Expandirse más fácilmente",
+                "Colapsar (atelectasia) debido a su alta presión de colapso",
+                "Mantener su tamaño constante",
+                "Absorber más oxígeno"
+            ],
+            "ans": 1,
+            "just": "Un alvéolo pequeño tiene un radio pequeño, lo que implica una presión de colapso elevada; sin surfactante que la contrarreste, tiende a la atelectasia.",
+            "hint": "Radio pequeño = mayor presión de colapso."
+        },
+        {
+            "cat": "surfactante",
+            "q": "¿Cuál es el constituyente más importante del surfactante pulmonar?",
+            "opts": [
+                "Triglicéridos",
+                "Dipalmitoil fosfatidilcolina (DPPC)",
+                "Colesterol",
+                "Esfingomielina"
+            ],
+            "ans": 1,
+            "just": "Aunque la composición exacta del surfactante no es completamente conocida, el constituyente más importante es la dipalmitoil fosfatidilcolina (DPPC).",
+            "hint": "Es una molécula anfipática."
+        },
+        {
+            "cat": "surfactante",
+            "q": "¿A partir de qué precursores se sintetiza el surfactante?",
+            "opts": [
+                "Proteínas plasmáticas",
+                "Ácidos grasos",
+                "Glucosa",
+                "Aminoácidos"
+            ],
+            "ans": 1,
+            "just": "El surfactante es sintetizado por las células alveolares de tipo II a partir de ácidos grasos.",
+            "hint": "Los neumocitos tipo II son los productores."
+        },
+        {
+            "cat": "surfactante",
+            "q": "¿Cuál es la primera ventaja del surfactante sobre la función pulmonar?",
+            "opts": [
+                "Aumentar la resistencia vascular pulmonar",
+                "Reducir la tensión superficial y la presión de colapso, manteniendo abiertos los alvéolos pequeños",
+                "Aumentar la elastancia del tejido",
+                "Disminuir el área de intercambio gaseoso"
+            ],
+            "ans": 1,
+            "just": "Las fuerzas intermoleculares de la DPPC rompen las fuerzas de atracción entre moléculas líquidas, reduciendo la tensión superficial y la presión de colapso.",
+            "hint": "Sin surfactante, los alvéolos pequeños colapsarían."
+        },
+        {
+            "cat": "surfactante",
+            "q": "¿Cuál es la segunda ventaja del surfactante?",
+            "opts": [
+                "Disminuir la frecuencia respiratoria",
+                "Aumentar la adaptabilidad pulmonar, reduciendo el trabajo de expansión durante la inspiración",
+                "Aumentar la resistencia de las vías aéreas",
+                "Estimular la eritropoyesis"
+            ],
+            "ans": 1,
+            "just": "El surfactante aumenta la adaptabilidad pulmonar, lo que reduce el esfuerzo necesario para expandir los pulmones durante cada inspiración.",
+            "hint": "Mayor compliance implica menor trabajo respiratorio."
+        },
+        {
+            "cat": "surfactante",
+            "q": "¿Cuál es la tercera ventaja del surfactante?",
+            "opts": [
+                "Estimular la producción de EPO",
+                "Mantener el tamaño alveolar relativamente uniforme durante la ventilación",
+                "Aumentar el espacio muerto anatómico",
+                "Producir vasodilatación pulmonar"
+            ],
+            "ans": 1,
+            "just": "El surfactante mantiene el tamaño alveolar relativamente uniforme, ajustando los ritmos de inflación para que sean más homogéneos y no afecten el intercambio gaseoso.",
+            "hint": "Sin este efecto, la ventilación sería irregular."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué establece la ley de Boyle?",
+            "opts": [
+                "A temperatura constante, presión y volumen son directamente proporcionales",
+                "A temperatura constante, presión y volumen son inversamente proporcionales",
+                "A presión constante, volumen y temperatura son inversamente proporcionales",
+                "La presión total es la suma de presiones parciales"
+            ],
+            "ans": 1,
+            "just": "La ley de Boyle establece que a temperatura constante, la presión y el volumen son inversamente proporcionales: P1V1 = P2V2.",
+            "hint": "Es la base física de la mecánica respiratoria."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué establece la ley de Dalton?",
+            "opts": [
+                "La solubilidad de los gases en líquidos",
+                "La presión parcial de un gas es la presión total multiplicada por su fracción de concentración en el gas seco",
+                "La difusión de gases a través de membranas",
+                "La relación volumen-temperatura"
+            ],
+            "ans": 1,
+            "just": "La ley de Dalton afirma que la presión parcial de un gas en una mezcla es la presión total multiplicada por la fracción de concentración del gas seco.",
+            "hint": "La suma de todas las presiones parciales es igual a la presión total."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuánto vale la presión del vapor de agua en las vías aéreas a 37 °C?",
+            "opts": [
+                "0 mmHg",
+                "27 mmHg",
+                "47 mmHg",
+                "100 mmHg"
+            ],
+            "ans": 2,
+            "just": "El aire en las vías aéreas está humidificado y la presión del vapor de agua es obligatoria e igual a 47 mmHg a 37 °C.",
+            "hint": "Este valor debe restarse de la presión barométrica para calcular presiones parciales de gases húmedos."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuál es la PIO2 en el aire traqueal humidificado a nivel del mar?",
+            "opts": [
+                "160 mmHg",
+                "150 mmHg",
+                "100 mmHg",
+                "40 mmHg"
+            ],
+            "ans": 1,
+            "just": "En el aire traqueal humidificado, PIO2 = (760 – 47) × 0,21 = 150 mmHg, dado que se descuenta la presión del vapor de agua.",
+            "hint": "Se descuenta los 47 mmHg del vapor de agua antes de multiplicar por la fracción de O2."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué establece la ley de Henry?",
+            "opts": [
+                "Relación entre presión y volumen a temperatura constante",
+                "La concentración de un gas en solución es proporcional a su presión parcial, y en equilibrio ambas son iguales",
+                "La suma de presiones parciales equals presión total",
+                "La tasa de difusión es inversamente proporcional al espesor de la membrana"
+            ],
+            "ans": 1,
+            "just": "La ley de Henry establece que en equilibrio la presión parcial del gas en fase líquida es igual a la de la fase gaseosa, y la concentración en solución es proporcional a la presión parcial.",
+            "hint": "Se aplica al O2 y CO2 disueltos en sangre."
+        },
+        {
+            "cat": "difusion",
+            "q": "Según la ley de Fick, ¿de qué es directamente proporcional la tasa de difusión de un gas?",
+            "opts": [
+                "Del espesor de la membrana únicamente",
+                "De la fuerza impulsora, el coeficiente de difusión y el área de superficie",
+                "Solo del gradiente de presión parcial",
+                "De la temperatura y la solubilidad"
+            ],
+            "ans": 1,
+            "just": "La tasa de difusión es directamente proporcional a la fuerza impulsora (gradiente de presión), el coeficiente de difusión y el área de superficie, e inversamente proporcional al espesor de la membrana.",
+            "hint": "VX = D × A × ΔP / ΔX"
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Qué combina la Capacidad de Difusión Pulmonar (DL)?",
+            "opts": [
+                "Solo el área de superficie y la solubilidad del gas",
+                "El coeficiente de difusión, el área de superficie de la membrana y su espesor",
+                "Solo el gradiente de presión parcial",
+                "El flujo sanguíneo y la ventilación alveolar"
+            ],
+            "ans": 1,
+            "just": "La DL combina el coeficiente de difusión del gas, el área de superficie (A) y el espesor de la membrana (ΔX).",
+            "hint": "También considera el tiempo de combinación del gas con proteínas sanguíneas."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué se usa el CO para determinar la DLCO?",
+            "opts": [
+                "Porque se une a la hemoglobina con la misma afinidad que el O2",
+                "Porque su transferencia a través de la barrera capilar alveolar está limitada exclusivamente por difusión",
+                "Porque es soluble en plasma en grandes cantidades",
+                "Porque no reacciona con la hemoglobina"
+            ],
+            "ans": 1,
+            "just": "El CO es ideal para medir la DL porque su transferencia a través de la barrera capilar alveolar está limitada exclusivamente por el proceso de difusión, no por la perfusión.",
+            "hint": "Al unirse tan fuertemente a la hemoglobina, mantiene el gradiente durante todo el trayecto capilar."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Cómo afecta el enfisema a la capacidad de difusión pulmonar?",
+            "opts": [
+                "La aumenta por mayor destrucción de tejido",
+                "La disminuye por reducción del área de superficie de intercambio gaseoso",
+                "No la afecta",
+                "La aumenta por mayor volumen pulmonar"
+            ],
+            "ans": 1,
+            "just": "El enfisema disminuye la DL porque destruye las paredes alveolares, reduciendo el área de superficie disponible para el intercambio gaseoso.",
+            "hint": "Menos superficie = menos difusión."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué la fibrosis pulmonar disminuye la DL?",
+            "opts": [
+                "Por pérdida del área de superficie",
+                "Por aumento de la distancia de difusión al aumentar el espesor de la membrana o el volumen intersticial",
+                "Por reducción del flujo sanguíneo capilar",
+                "Por aumento de la ventilación alveolar"
+            ],
+            "ans": 1,
+            "just": "La fibrosis aumenta el espesor de la membrana alveolar o el volumen intersticial, incrementando la distancia que deben recorrer los gases para difundirse.",
+            "hint": "Mayor espesor = mayor distancia = menor difusión."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué el ejercicio aumenta la DL?",
+            "opts": [
+                "Por aumento del metabolismo basal",
+                "Porque se perfunden capilares adicionales, incrementando el área de superficie para el intercambio gaseoso",
+                "Por disminución de la frecuencia respiratoria",
+                "Por relajación de los bronquiolos"
+            ],
+            "ans": 1,
+            "just": "Durante el ejercicio, capilares adicionales se perfunden con sangre, incrementando el área de superficie disponible para el intercambio de gases.",
+            "hint": "Los capilares de reserva se reclutan durante el esfuerzo."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Cómo afecta la anemia a la DL?",
+            "opts": [
+                "La aumenta porque hay más espacio para el O2 disuelto",
+                "La disminuye porque la cantidad de hemoglobina disponible para unirse al gas está reducida",
+                "No la afecta, solo afecta el transporte",
+                "La aumenta por compensación eritropoyética"
+            ],
+            "ans": 1,
+            "just": "La anemia disminuye la DL porque la cantidad de hemoglobina disponible en los glóbulos rojos está reducida, limitando la capacidad de absorción del gas.",
+            "hint": "La hemoglobina actúa como sumidero del gas, facilitando la difusión."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuál es la PAO2 en el aire alveolar a nivel del mar?",
+            "opts": [
+                "40 mmHg",
+                "80 mmHg",
+                "100 mmHg",
+                "150 mmHg"
+            ],
+            "ans": 2,
+            "just": "La PAO2 en el aire alveolar es de 100 mmHg, menor que en el aire inspirado debido al intercambio continuo con la sangre capilar.",
+            "hint": "El O2 abandona el alveolo hacia la sangre capilar."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuál es la PACO2 en el aire alveolar?",
+            "opts": [
+                "0 mmHg",
+                "20 mmHg",
+                "40 mmHg",
+                "46 mmHg"
+            ],
+            "ans": 2,
+            "just": "La PACO2 en el aire alveolar es de 40 mmHg, mayor que en el aire inspirado porque el CO2 del metabolismo se transfiere desde la sangre al alveolo.",
+            "hint": "El CO2 abandona la sangre capilar hacia el alveolo."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Qué es la hematosis?",
+            "opts": [
+                "La producción de eritrocitos en la médula ósea",
+                "La difusión de O2 y CO2 en los pulmones",
+                "El transporte de O2 unido a la hemoglobina",
+                "La ventilación alveolar efectiva"
+            ],
+            "ans": 1,
+            "just": "La hematosis es la difusión de O2 y CO2 en los pulmones, es decir, el intercambio gaseoso que ocurre a nivel capilar alveolar.",
+            "hint": "Es el proceso fundamental del intercambio pulmonar."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuál es la PO2 de la sangre venosa mezclada al entrar en los capilares pulmonares?",
+            "opts": [
+                "100 mmHg",
+                "60 mmHg",
+                "46 mmHg",
+                "40 mmHg"
+            ],
+            "ans": 3,
+            "just": "La sangre venosa mezclada entra en los capilares pulmonares con una PO2 de 40 mmHg y una PCO2 de 46 mmHg.",
+            "hint": "Es la sangre desoxigenada proveniente de los tejidos."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Por qué la PO2 de la sangre arterial sistémica es ligeramente menor que la del aire alveolar?",
+            "opts": [
+                "Por el efecto Bohr",
+                "Por el cortocircuito fisiológico: una fracción de sangre no pasa por los alvéolos",
+                "Por consumo de O2 durante el transporte",
+                "Por la ley de Henry"
+            ],
+            "ans": 1,
+            "just": "El cortocircuito fisiológico hace que una pequeña fracción de sangre pulmonar no se oxigene al no pasar por los alvéolos, reduciendo levemente la PaO2 arterial.",
+            "hint": "La diferencia A-a pequeña es fisiológica."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuáles son las fuentes del cortocircuito fisiológico?",
+            "opts": [
+                "Flujo bronquial y drenaje venoso coronario directo al ventrículo izquierdo",
+                "Flujo capilar y espacio muerto alveolar",
+                "Circulación pulmonar y sistémica mezcladas",
+                "Solo los alvéolos no ventilados"
+            ],
+            "ans": 0,
+            "just": "Las fuentes del cortocircuito fisiológico son el flujo sanguíneo bronquial y una pequeña porción de sangre venosa coronaria que drena directamente al ventrículo izquierdo.",
+            "hint": "Son fracciones normales de sangre no oxigenada que se mezclan con la arterial."
+        },
+        {
+            "cat": "limitacion_difusion",
+            "q": "¿Cuál es la diferencia entre intercambio limitado por difusión y limitado por perfusión?",
+            "opts": [
+                "No hay diferencia funcional",
+                "En el limitado por difusión se mantiene el gradiente de presión a lo largo del capilar; en el limitado por perfusión el gradiente se equilibra rápido y el único modo de aumentar el intercambio es aumentar el flujo",
+                "En el limitado por perfusión el CO2 no se equilibra al final del capilar",
+                "El limitado por difusión depende solo del flujo sanguíneo"
+            ],
+            "ans": 1,
+            "just": "En el intercambio limitado por difusión se mantiene el gradiente de presión parcial a lo largo del capilar (como el CO); en el limitado por perfusión el gradiente se equilibra rápidamente y solo el flujo sanguíneo aumenta el intercambio.",
+            "hint": "El CO es el ejemplo de limitación por difusión; el N2O, de limitación por perfusión."
+        },
+        {
+            "cat": "limitacion_difusion",
+            "q": "¿Por qué el CO es un ejemplo de intercambio limitado por difusión?",
+            "opts": [
+                "Porque no se disuelve en sangre",
+                "Porque se une a la hemoglobina y mantiene el gradiente de presión parcial sin equilibrarse al final del capilar",
+                "Porque no reacciona con proteínas",
+                "Porque atraviesa la membrana muy lentamente"
+            ],
+            "ans": 1,
+            "just": "El CO se une tan fuertemente a la hemoglobina que mantiene su presión parcial libre en sangre casi en cero, conservando el gradiente de presión parcial a lo largo de todo el capilar.",
+            "hint": "Al no acumularse en solución libre, el gradiente persiste."
+        },
+        {
+            "cat": "oxigeno_sangre",
+            "q": "¿Qué porcentaje del O2 total en sangre está disuelto en plasma?",
+            "opts": [
+                "0,5%",
+                "2%",
+                "10%",
+                "20%"
+            ],
+            "ans": 1,
+            "just": "El O2 disuelto corresponde a aproximadamente el 2% del contenido total de O2 de la sangre.",
+            "hint": "La mayor parte viaja unida a la hemoglobina."
+        },
+        {
+            "cat": "oxigeno_sangre",
+            "q": "¿Cuál es la concentración de O2 disuelto en sangre con una PO2 de 100 mmHg?",
+            "opts": [
+                "0,03 mL O2/100 mL",
+                "0,1 mL O2/100 mL",
+                "0,3 mL O2/100 mL",
+                "3 mL O2/100 mL"
+            ],
+            "ans": 2,
+            "just": "La concentración de O2 disuelto es 0,3 mL O2/100 mL, calculado como 100 mmHg × 0,003 mL O2/100 mL de sangre por mmHg.",
+            "hint": "Aplicación directa de la ley de Henry."
+        },
+        {
+            "cat": "oxigeno_sangre",
+            "q": "¿Qué porcentaje del O2 total en sangre está unido a la hemoglobina?",
+            "opts": [
+                "50%",
+                "80%",
+                "95%",
+                "98%"
+            ],
+            "ans": 3,
+            "just": "El 98% del contenido total de O2 de la sangre está unido de forma reversible a la hemoglobina en el interior de los eritrocitos.",
+            "hint": "El O2 disuelto en plasma es solo el 2% restante."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Cómo se denomina la hemoglobina adulta normal?",
+            "opts": [
+                "α2γ2",
+                "α2β2",
+                "α2δ2",
+                "β4"
+            ],
+            "ans": 1,
+            "just": "La hemoglobina adulta (hemoglobina A) se denomina α2β2, compuesta por dos cadenas alfa y dos cadenas beta.",
+            "hint": "Es la forma predominante en adultos."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿En qué estado de oxidación debe estar el hierro del grupo hemo para unirse al O2?",
+            "opts": [
+                "Fe3+ (férrico)",
+                "Fe2+ (ferroso)",
+                "Fe0 (metálico)",
+                "Fe4+"
+            ],
+            "ans": 1,
+            "just": "Para que las subunidades de hemoglobina se unan al O2, el hierro en la mitad hemo debe estar en estado ferroso (Fe2+).",
+            "hint": "La oxidación a Fe3+ genera metahemoglobina, que no transporta O2."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué caracteriza a la metahemoglobina?",
+            "opts": [
+                "Tiene Fe2+ y mayor afinidad por O2",
+                "Tiene Fe3+ oxidado y no se une al O2",
+                "Tiene cadenas gamma en lugar de beta",
+                "Causa drepanocitosis"
+            ],
+            "ans": 1,
+            "just": "La metahemoglobina tiene el grupo hemo en estado Fe3+, oxidado por nitritos y sulfonamidas, por lo que no puede unirse al O2.",
+            "hint": "Se forma cuando el Fe ferroso es oxidado a férrico."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Cuál es la composición de la hemoglobina fetal (HbF) y cómo se relaciona con el O2?",
+            "opts": [
+                "α2β2 con menor afinidad por O2",
+                "α2γ2 con mayor afinidad por O2",
+                "α2δ2 con la misma afinidad que la HbA",
+                "β4 con mayor afinidad"
+            ],
+            "ans": 1,
+            "just": "La HbF tiene estructura α2γ2, donde las cadenas beta están sustituidas por cadenas gamma, lo que le confiere mayor afinidad por el O2.",
+            "hint": "Esta mayor afinidad facilita la captación de O2 desde la hemoglobina materna."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué causa la hemoglobina S?",
+            "opts": [
+                "Mayor afinidad por O2 en adultos",
+                "La enfermedad de células falciformes (drepanocitosis) y menor afinidad por O2",
+                "Mayor síntesis de surfactante",
+                "Resistencia a la malaria sin consecuencias"
+            ],
+            "ans": 1,
+            "just": "La hemoglobina S causa la drepanocitosis y tiene menor afinidad por el O2 en comparación con la hemoglobina A.",
+            "hint": "Las células falciformes se deben a la polimerización de la HbS desoxigenada."
+        },
+        {
+            "cat": "curva_disociacion",
+            "q": "¿Qué forma tiene la curva de disociación O2-hemoglobina?",
+            "opts": [
+                "Lineal",
+                "Exponencial",
+                "Sigmoidea",
+                "Hiperbólica"
+            ],
+            "ans": 2,
+            "just": "La curva de disociación O2-hemoglobina tiene forma sigmoidea, que refleja la cooperatividad entre las subunidades de hemoglobina.",
+            "hint": "La forma sigmoidea facilita tanto la captación como la liberación de O2."
+        },
+        {
+            "cat": "curva_disociacion",
+            "q": "¿Qué es la P50?",
+            "opts": [
+                "La PO2 a la cual la hemoglobina está saturada al 100%",
+                "La PO2 a la cual la hemoglobina está saturada al 50%",
+                "La PCO2 que desplaza la curva a la derecha",
+                "El punto de inflexión de la curva sigmoide"
+            ],
+            "ans": 1,
+            "just": "La P50 es la PO2 a la cual la hemoglobina está saturada al 50% y sirve como indicador de la afinidad por el O2.",
+            "hint": "Un cambio en la P50 indica un cambio en la afinidad."
+        },
+        {
+            "cat": "curva_disociacion",
+            "q": "¿Qué indica un aumento de la P50?",
+            "opts": [
+                "Mayor afinidad de la hemoglobina por el O2",
+                "Menor afinidad de la hemoglobina por el O2 (desplazamiento a la derecha)",
+                "Mayor saturación de hemoglobina",
+                "Menor ventilación alveolar"
+            ],
+            "ans": 1,
+            "just": "Un incremento de la P50 refleja una disminución de la afinidad de la hemoglobina por el O2, lo que corresponde a un desplazamiento de la curva hacia la derecha.",
+            "hint": "Mayor P50 = necesita mayor PO2 para lograr el mismo 50% de saturación."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Qué describe el efecto Bohr?",
+            "opts": [
+                "El efecto del O2 sobre la PACO2",
+                "El efecto de la PCO2 y del pH sobre la curva de disociación O2-hemoglobina",
+                "La relación entre ventilación y perfusión",
+                "El desplazamiento de la curva por temperatura únicamente"
+            ],
+            "ans": 1,
+            "just": "El efecto Bohr describe cómo la PCO2 y el pH modifican la curva de disociación O2-hemoglobina, afectando la afinidad de la hemoglobina por el O2.",
+            "hint": "Facilita la carga en pulmón y la descarga en tejidos periféricos."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Cuáles son las causas de desplazamiento de la curva a la derecha?",
+            "opts": [
+                "Menor PCO2, mayor pH, menor temperatura y menor 2,3-DPG",
+                "Mayor PCO2, menor pH, mayor temperatura, mayor 2,3-DPG",
+                "Solo la temperatura elevada",
+                "Solo el aumento de pH"
+            ],
+            "ans": 1,
+            "just": "El desplazamiento a la derecha de la curva se produce por aumento de PCO2, disminución del pH, aumento de temperatura y aumento de 2,3-DPG.",
+            "hint": "Estas condiciones existen en los tejidos periféricos activos."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Qué efecto tiene el desplazamiento a la derecha en los tejidos periféricos?",
+            "opts": [
+                "Facilita la carga de O2 en los pulmones",
+                "Facilita la descarga de O2 en los tejidos periféricos al reducir la afinidad por el O2",
+                "Aumenta la afinidad de la hemoglobina por el O2",
+                "Previene la liberación de O2"
+            ],
+            "ans": 1,
+            "just": "En los tejidos periféricos con mayor actividad metabólica, el desplazamiento a la derecha reduce la afinidad de la hemoglobina por el O2, facilitando su liberación a las células.",
+            "hint": "Los tejidos activos necesitan más O2 y el cuerpo se adapta entregando más."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Qué es el 2,3-DPG y cómo actúa?",
+            "opts": [
+                "Un antioxidante plasmático que protege la hemoglobina",
+                "Un producto del glucólisis eritrocitario que se une a las cadenas β de la desoxihemoglobina, reduciendo su afinidad por el O2",
+                "Una enzima que convierte CO2 en bicarbonato",
+                "Una proteína que facilita la captación de O2 en altitud"
+            ],
+            "ans": 1,
+            "just": "El 2,3-DPG es un producto biológico del glucólisis en eritrocitos que se une a las cadenas beta de la desoxihemoglobina, reduciendo su afinidad por el O2 y facilitando la descarga.",
+            "hint": "Vivir en altitud elevada estimula su producción."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Por qué la hemoglobina F tiene mayor afinidad por el O2 en comparación con la hemoglobina A?",
+            "opts": [
+                "Tiene cadenas beta con mayor afinidad intrínseca",
+                "Sus cadenas gamma no se unen tan ávidamente al 2,3-DPG como las cadenas beta, resultando en mayor afinidad",
+                "Tiene mayor cantidad de grupos hemo",
+                "Tiene hierro en estado Fe3+"
+            ],
+            "ans": 1,
+            "just": "La HbF tiene cadenas gamma que no se unen ávidamente al 2,3-DPG; con menos 2,3-DPG unido, la afinidad por el O2 aumenta comparada con la HbA.",
+            "hint": "Menos 2,3-DPG = más afinidad por O2."
+        },
+        {
+            "cat": "monoxido_carbono",
+            "q": "¿Qué efecto produce el monóxido de carbono sobre la curva de disociación O2-hemoglobina?",
+            "opts": [
+                "Desplazamiento a la derecha",
+                "Desplazamiento a la izquierda y disminución de los sitios de unión disponibles para el O2",
+                "No modifica la curva",
+                "Solo disminuye el número de sitios de unión sin desplazar la curva"
+            ],
+            "ans": 1,
+            "just": "El CO desplaza la curva hacia la izquierda y reduce los sitios de unión del O2 al formar carboxihemoglobina, además de que los grupos hemo no unidos a CO tienen mayor afinidad por el O2.",
+            "hint": "Doble efecto: ocupa sitios y desplaza la curva."
+        },
+        {
+            "cat": "monoxido_carbono",
+            "q": "¿Con qué afinidad comparativa se une el CO a la hemoglobina respecto al O2?",
+            "opts": [
+                "5 veces mayor",
+                "50 veces mayor",
+                "250 veces mayor",
+                "1000 veces mayor"
+            ],
+            "ans": 2,
+            "just": "El CO se une a la hemoglobina con una afinidad 250 veces mayor que la del O2, formando carboxihemoglobina.",
+            "hint": "Esta enorme afinidad explica la toxicidad del CO incluso a bajas concentraciones."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Cuál es el principal estímulo para la producción de eritropoyetina (EPO)?",
+            "opts": [
+                "Hiperoxia",
+                "Hipoxia",
+                "Hipercapnia",
+                "Alcalosis metabólica"
+            ],
+            "ans": 1,
+            "just": "La EPO se estimula en condiciones de hipoxia, que activa la producción del factor 1α inductor de la hipoxia.",
+            "hint": "Menos O2 disponible desencadena más producción de eritrocitos."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Qué porcentaje de la EPO se produce en los riñones?",
+            "opts": [
+                "50%",
+                "70%",
+                "90%",
+                "100%"
+            ],
+            "ans": 2,
+            "just": "La EPO es sintetizada en los riñones (90%) y en el hígado (10%).",
+            "hint": "La anemia de la insuficiencia renal crónica se explica por esta proporción."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Cuál es el mecanismo de acción principal de la EPO?",
+            "opts": [
+                "Inhibir la apoptosis de eritrocitos maduros",
+                "Promover la diferenciación de proeritroblastos en eritrocitos, estimulando la eritropoyesis",
+                "Aumentar la síntesis de hemoglobina en eritrocitos maduros",
+                "Estimular directamente la médula ósea sin intermediarios"
+            ],
+            "ans": 1,
+            "just": "La EPO actúa promoviendo la diferenciación de los proeritroblastos en eritrocitos, estimulando así la eritropoyesis.",
+            "hint": "Los pasos posteriores de maduración no requieren EPO."
+        },
+        {
+            "cat": "epo",
+            "q": "¿En qué célula actúa el factor 1α inductor de la hipoxia para estimular la síntesis de ARNm de EPO?",
+            "opts": [
+                "Neumocitos tipo II",
+                "Fibroblastos de la corteza y médula renales",
+                "Hepatocitos",
+                "Eritrocitos maduros"
+            ],
+            "ans": 1,
+            "just": "El factor 1α inductor de la hipoxia actúa sobre los fibroblastos de la corteza y médula renales para sintetizar el ARNm de EPO.",
+            "hint": "El riñón es el principal productor de EPO."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Dónde se ubican los centros de control de la respiración?",
+            "opts": [
+                "Corteza cerebral",
+                "Tronco del encéfalo (bulbo raquídeo y protuberancia)",
+                "Cerebelo",
+                "Hipotálamo"
+            ],
+            "ans": 1,
+            "just": "Los centros de control de la respiración están situados en el tronco del encéfalo, específicamente en el bulbo raquídeo y la protuberancia.",
+            "hint": "Son centros automáticos que controlan la respiración involuntaria."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Dónde se localiza el centro inspiratorio bulbar?",
+            "opts": [
+                "Grupo Respiratorio Ventral (GRV)",
+                "Grupo Respiratorio Dorsal (GRD)",
+                "Protuberancia superior",
+                "Protuberancia inferior"
+            ],
+            "ans": 1,
+            "just": "El centro inspiratorio se encuentra en el Grupo Respiratorio Dorsal (GRD) y controla el ritmo básico de la respiración.",
+            "hint": "El GRD controla la inspiración; el GRV, la espiración activa."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Qué nervio envía la respuesta motora desde el centro inspiratorio hasta el diafragma?",
+            "opts": [
+                "Nervio vago (PC X)",
+                "Nervio frénico",
+                "Nervio glosofaríngeo (PC IX)",
+                "Nervio intercostal"
+            ],
+            "ans": 1,
+            "just": "El centro inspiratorio envía la respuesta motora al diafragma a través del nervio frénico.",
+            "hint": "El nervio frénico inerva al diafragma, el músculo principal de la respiración."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Qué es la apneusis?",
+            "opts": [
+                "Respiración superficial y rápida",
+                "Patrón de respiración anormal con inspiraciones espasmódicas prolongadas seguidas de un breve movimiento espiratorio",
+                "Apnea completa sin movimiento respiratorio",
+                "Respiración de Kussmaul"
+            ],
+            "ans": 1,
+            "just": "La apneusis es un patrón anormal de respiración caracterizado por inspiraciones espasmódicas prolongadas seguidas de breves movimientos espiratorios, relacionado con la estimulación del centro apnéusico.",
+            "hint": "Se asocia con lesiones en la protuberancia inferior."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuál es la función del centro neumotáxico?",
+            "opts": [
+                "Estimular la inspiración prolongada",
+                "Inactivar la inspiración reduciendo los potenciales de acción en el nervio frénico, limitando el VC y regulando la FR",
+                "Activar el centro espiratorio en ejercicio",
+                "Detectar cambios de PCO2 en el LCR"
+            ],
+            "ans": 1,
+            "just": "El centro neumotáxico, ubicado en la protuberancia superior, inactiva la inspiración reduciendo la descarga en el nervio frénico y regula secundariamente la frecuencia respiratoria.",
+            "hint": "En su ausencia, el ritmo respiratorio normal persiste."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuándo se activan las neuronas del Grupo Respiratorio Ventral (GRV)?",
+            "opts": [
+                "Durante la respiración tranquila en reposo",
+                "Durante el ejercicio cuando se requiere espiración activa",
+                "Siempre, como reguladores basales del ritmo",
+                "Solo durante el sueño"
+            ],
+            "ans": 1,
+            "just": "Las neuronas del GRV están inactivas durante la respiración tranquila y se activan durante el ejercicio cuando la espiración se vuelve activa.",
+            "hint": "La espiración en reposo es pasiva y no requiere el GRV."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cuáles son los quimiorreceptores más importantes para el control respiratorio minuto a minuto?",
+            "opts": [
+                "Periféricos en cuerpos carotídeos",
+                "Centrales en la superficie ventral del bulbo",
+                "Periféricos en cuerpos aórticos",
+                "Receptores de estiramiento pulmonar"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores centrales, ubicados en la superficie ventral del bulbo, están directamente comunicados con el centro inspiratorio y controlan la respuesta minuto a minuto.",
+            "hint": "Son sensibles principalmente al pH del LCR."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿A qué son directamente sensibles los quimiorreceptores centrales?",
+            "opts": [
+                "A los cambios de PO2 arterial",
+                "A los cambios de pH del LCR",
+                "A los cambios de PCO2 directamente",
+                "A los cambios de HCO3- en sangre"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores centrales son directa y extremadamente sensibles a los cambios en el pH del LCR, mientras que responden indirectamente a los cambios de PCO2 arterial.",
+            "hint": "El CO2 atraviesa la barrera hematoencefálica y se convierte en H+ en el LCR."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Qué neurotransmisor usan los quimiorreceptores que detectan disminución del pH?",
+            "opts": [
+                "GABA",
+                "Serotonina",
+                "Dopamina",
+                "Acetilcolina"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores que detectan disminución del pH (estimulados por H+) utilizan serotonina como neurotransmisor.",
+            "hint": "La ausencia de neuronas serotoninérgicas es relevante en el SMSL."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cuál es el mecanismo por el que el aumento de PCO2 arterial estimula los quimiorreceptores centrales?",
+            "opts": [
+                "El CO2 no cruza la barrera hematoencefálica y actúa directamente en sangre",
+                "El CO2 atraviesa la barrera hematoencefálica, entra al LCR, se convierte en H+ y HCO3-, disminuyendo el pH del LCR",
+                "El H+ arterial cruza directamente la barrera hematoencefálica",
+                "El HCO3- arterial activa los quimiorreceptores"
+            ],
+            "ans": 1,
+            "just": "El CO2 es permeable a la barrera hematoencefálica y al LCR, donde se convierte en H+ y HCO3-. El aumento de H+ disminuye el pH del LCR, estimulando los quimiorreceptores centrales.",
+            "hint": "El H+ y el HCO3- NO cruzan la barrera; el CO2 sí."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Dónde se ubican los quimiorreceptores periféricos?",
+            "opts": [
+                "Solo en los cuerpos carotídeos",
+                "En los cuerpos carotídeos (bifurcación de carótidas comunes) y en los cuerpos aórticos (arco aórtico)",
+                "Solo en los cuerpos aórticos",
+                "En la superficie ventral del bulbo"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores periféricos se encuentran en los cuerpos carotídeos, localizados en la bifurcación de las arterias carótidas comunes, y en los cuerpos aórticos alrededor del arco aórtico.",
+            "hint": "Detectan O2, CO2 y H+ arteriales."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿A qué valor de PO2 comienzan a responder bruscamente los quimiorreceptores periféricos?",
+            "opts": [
+                "Cuando la PO2 cae por debajo de 80 mmHg",
+                "Cuando la PO2 cae por debajo de 60 mmHg",
+                "Cuando la PO2 cae por debajo de 40 mmHg",
+                "Siempre que hay cualquier disminución de PO2"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores periféricos responden bruscamente cuando la PO2 disminuye a menos de 60 mmHg; entre 60 y 100 mmHg la frecuencia respiratoria se mantiene constante.",
+            "hint": "La respuesta a la hipoxia es no lineal."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Qué efecto tiene la disminución del pH arterial sobre la ventilación a través de los quimiorreceptores periféricos?",
+            "opts": [
+                "Disminuye la ventilación",
+                "Aumenta la ventilación mediada solo por los cuerpos carotídeos, independiente de la PCO2",
+                "Aumenta la ventilación solo si también aumenta la PCO2",
+                "No modifica la ventilación"
+            ],
+            "ans": 1,
+            "just": "La disminución del pH arterial causa aumento de la ventilación mediado por los quimiorreceptores de H+ en los cuerpos carotídeos, de manera independiente de los cambios en la PCO2.",
+            "hint": "Es el mecanismo de compensación respiratoria de la acidosis metabólica."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Qué reflejo se asocia con los receptores de estiramiento pulmonar?",
+            "opts": [
+                "Reflejo de Bainbridge",
+                "Reflejo de Hering-Breuer: mayor distensión produce menor frecuencia respiratoria",
+                "Reflejo de Cushing",
+                "Reflejo vasovagal"
+            ],
+            "ans": 1,
+            "just": "Los receptores de estiramiento pulmonar desencadenan el reflejo de Hering-Breuer: a mayor distensión, menor frecuencia respiratoria, protegiendo los pulmones de la hiperinflación.",
+            "hint": "Mayor volumen = señal para prolongar la espiración."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Qué función tienen los receptores articulares y musculares en la respuesta ventilatoria al ejercicio?",
+            "opts": [
+                "Detectan cambios de PCO2 y disminuyen la FR",
+                "Detectan movimiento de extremidades e indican al centro respiratorio que debe aumentar la FR (respuesta ventilatoria precoz al ejercicio)",
+                "Regulan el tono muscular del diafragma",
+                "Detectan hipoxia tisular local"
+            ],
+            "ans": 1,
+            "just": "Los receptores articulares y musculares detectan el movimiento de las extremidades y señalan al centro respiratorio que debe aumentar la frecuencia respiratoria, explicando la respuesta ventilatoria precoz al inicio del ejercicio.",
+            "hint": "Esta respuesta ocurre antes de que cambien el O2 o el CO2 arteriales."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Qué son los receptores J yuxtacapilares y qué detectan?",
+            "opts": [
+                "Receptores de vías aéreas altas que detectan partículas",
+                "Receptores en paredes alveolares que detectan ingurgitación capilar o aumento de líquido intersticial",
+                "Receptores musculares que detectan hipoxia",
+                "Quimiorreceptores centrales de CO2"
+            ],
+            "ans": 1,
+            "just": "Los receptores J están en las paredes alveolares cerca de los capilares y detectan la ingurgitación capilar con sangre o el aumento del volumen de líquido intersticial.",
+            "hint": "Son relevantes en la insuficiencia cardíaca izquierda y en el edema pulmonar."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Cuál es la manifestación de la activación de los receptores J en la insuficiencia cardíaca izquierda?",
+            "opts": [
+                "Respiración lenta y profunda",
+                "Respiración superficial rápida y disnea",
+                "Apnea central",
+                "Respiración de Cheyne-Stokes"
+            ],
+            "ans": 1,
+            "just": "En la insuficiencia cardíaca izquierda, la sangre 'retrocede' hacia la circulación pulmonar e ingurgita los capilares, activando los receptores J y provocando respiración superficial rápida y disnea.",
+            "hint": "El aumento del líquido intersticial pulmonar activa estos receptores."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué son las carinas en el árbol bronquial?",
+            "opts": [
+                "Válvulas que regulan el flujo aéreo",
+                "Subdivisiones o bifurcaciones del árbol bronquial",
+                "Capas cartilaginosas de los bronquios",
+                "Células secretoras de moco"
+            ],
+            "ans": 1,
+            "just": "Las carinas son las subdivisiones o bifurcaciones del árbol bronquial que ocurren en cada generación.",
+            "hint": "La carina principal es la bifurcación de la tráquea en los bronquios principales."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Qué representan las siglas TCPS en la ecuación de ventilación alveolar?",
+            "opts": [
+                "Temperatura Corporal, Presión Sistémica",
+                "Temperatura Corporal, Presión atmosférica y Saturación de vapor de agua",
+                "Temperatura Constante, Presión Saturada",
+                "Transporte Capilar Pulmonar Sistémico"
+            ],
+            "ans": 1,
+            "just": "TCPS significa que el aire está a temperatura corporal (310 K, 37 °C), a presión atmosférica ambiental (760 mmHg) y saturado con vapor de agua.",
+            "hint": "Son las condiciones estándar del aire en las vías respiratorias."
+        },
+        {
+            "cat": "espirometria",
+            "q": "¿Qué instrumento se utiliza para determinar los volúmenes y capacidades pulmonares?",
+            "opts": [
+                "Pletismógrafo corporal",
+                "Espirómetro",
+                "Oxímetro de pulso",
+                "Gasómetro"
+            ],
+            "ans": 1,
+            "just": "Los volúmenes y capacidades pulmonares se determinan mediante un espirómetro, donde se mide el desplazamiento de aire.",
+            "hint": "Excepción: el VR no puede medirse directamente con espirometría."
+        },
+        {
+            "cat": "espirometria",
+            "q": "¿Qué volumen NO puede determinarse directamente mediante espirometría?",
+            "opts": [
+                "Volumen corriente",
+                "Volumen de reserva inspiratorio",
+                "Volumen residual",
+                "Volumen de reserva espiratorio"
+            ],
+            "ans": 2,
+            "just": "El volumen residual no puede determinarse por espirometría porque es el aire que queda en los pulmones tras una espiración máxima y no puede exhalarse.",
+            "hint": "Requiere dilución de helio o pletismografía para su medición."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuál es la PIO2 en el aire seco inspirado a nivel del mar?",
+            "opts": [
+                "100 mmHg",
+                "150 mmHg",
+                "160 mmHg",
+                "760 mmHg"
+            ],
+            "ans": 2,
+            "just": "La PIO2 en el aire seco inspirado es 760 mmHg × 0,21 = 160 mmHg.",
+            "hint": "El O2 constituye el 21% del aire seco."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuál es la concentración de O2 en el aire seco?",
+            "opts": [
+                "10%",
+                "15%",
+                "21%",
+                "79%"
+            ],
+            "ans": 2,
+            "just": "El O2 representa el 21% del aire seco, con una fracción de concentración de 0,21.",
+            "hint": "El 79% restante es principalmente N2."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué es la capacidad de unión con el O2 de la hemoglobina?",
+            "opts": [
+                "El O2 disuelto en plasma a una presión dada",
+                "La cantidad máxima de O2 que puede unirse a la hemoglobina por volumen de sangre, asumiendo saturación del 100%",
+                "La fracción de O2 que se libera en los tejidos",
+                "La diferencia entre contenido arterial y venoso de O2"
+            ],
+            "ans": 1,
+            "just": "La capacidad de unión con el O2 es la cantidad máxima de O2 que puede unirse a la hemoglobina por volumen de sangre, suponiendo que todos los grupos hemo estén ocupados.",
+            "hint": "Depende de la concentración de hemoglobina."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Cómo se calcula el contenido de O2 en sangre?",
+            "opts": [
+                "Solo el O2 disuelto",
+                "Capacidad de unión de O2 × % de saturación + O2 disuelto",
+                "Solo el O2 unido a hemoglobina",
+                "PO2 × solubilidad únicamente"
+            ],
+            "ans": 1,
+            "just": "El contenido de O2 = (Capacidad de unión de O2 × % de saturación) + O2 disuelto, combinando ambas formas de transporte.",
+            "hint": "El O2 disuelto contribuye solo el 2%, pero debe incluirse."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Por qué en el síndrome de muerte súbita del lactante (SMSL) existe un déficit en la respuesta a la hipercapnia?",
+            "opts": [
+                "Por ausencia de receptores J",
+                "Por déficit de neuronas serotoninérgicas en los quimiorreceptores centrales",
+                "Por inmadurez del centro neumotáxico",
+                "Por ausencia de cuerpos carotídeos"
+            ],
+            "ans": 1,
+            "just": "En el SMSL existe un déficit de neuronas serotoninérgicas, que son las que utilizan los quimiorreceptores centrales para detectar la disminución del pH del LCR y activar la hiperventilación.",
+            "hint": "La serotonina media la respuesta al aumento de CO2/H+."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué ocurre a volúmenes pulmonares máximos con las fuerzas elásticas pulmonares y torácicas?",
+            "opts": [
+                "Solo la pared torácica quiere colapsar",
+                "Tanto los pulmones como la pared torácica quieren colapsar",
+                "Solo los pulmones quieren colapsar",
+                "Las fuerzas se equilibran perfectamente"
+            ],
+            "ans": 1,
+            "just": "A volúmenes pulmonares máximos, tanto los pulmones como la pared torácica 'quieren' colapsar, por lo que las fuerzas de colapso superan ampliamente las de expansión.",
+            "hint": "En la inspiración máxima se genera tensión en ambas estructuras."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué sucede a volúmenes menores que la CRF con las fuerzas sobre la pared torácica?",
+            "opts": [
+                "La fuerza de expansión sobre la pared torácica es pequeña",
+                "La fuerza de expansión sobre la pared torácica es grande y la fuerza de colapso es pequeña",
+                "Las fuerzas se equilibran",
+                "La pared torácica tiende a colapsar"
+            ],
+            "ans": 1,
+            "just": "A volúmenes menores que la CRF, el pulmón tiene menor volumen, la fuerza de colapso es pequeña pero la fuerza de expansión sobre la pared torácica es grande.",
+            "hint": "Debajo de la CRF la pared torácica tiende a expandirse activamente."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuál es el papel de la diferencia alveolo-arterial (diferencia A-a) en la evaluación clínica?",
+            "opts": [
+                "Si es grande indica ventilación normal",
+                "Si es pequeña es fisiológico; si es grande sugiere un defecto de V/Q donde no se produce equilibrio adecuado de O2",
+                "No tiene utilidad clínica",
+                "Solo se usa en altitud elevada"
+            ],
+            "ans": 1,
+            "just": "Una diferencia A-a pequeña es fisiológica; si es grande, el valor aumentado sugiere que hay un defecto de ventilación/perfusión y no se logra el equilibrio de O2 entre alveolo y sangre.",
+            "hint": "El cortocircuito aumentado amplía la diferencia A-a."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Por qué la anemia es frecuente en la insuficiencia renal crónica?",
+            "opts": [
+                "Porque los riñones enfermos producen más factores inhibidores de la eritropoyesis",
+                "Porque los riñones dañados no pueden producir suficiente EPO para mantener la eritropoyesis normal",
+                "Porque la uremia destruye los eritrocitos directamente",
+                "Porque la insuficiencia renal reduce la absorción intestinal de hierro"
+            ],
+            "ans": 1,
+            "just": "La insuficiencia renal crónica compromete la capacidad renal de producir EPO, que representa el 90% de su síntesis total, resultando en anemia por deficit eritropoyético.",
+            "hint": "Se puede tratar con EPO humana recombinante."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Qué sucede fisiológicamente cuando se hiperventilar voluntariamente?",
+            "opts": [
+                "La PaCO2 aumenta y se produce inconsciencia",
+                "La PaCO2 disminuye y puede producirse inconsciencia",
+                "La PaO2 disminuye peligrosamente",
+                "No hay efectos fisiológicos relevantes"
+            ],
+            "ans": 1,
+            "just": "La hiperventilación voluntaria disminuye la PaCO2 (hipocapnia), lo que puede provocar vasoconstricción cerebral e inconsciencia.",
+            "hint": "La corteza cerebral puede anular temporalmente los centros automáticos."
+        },
+        {
+            "cat": "zona_respiratoria",
+            "q": "¿Qué estructura de la zona respiratoria tiene alvéolos pero aún conserva músculo liso y algunos cilios?",
+            "opts": [
+                "Sacos alveolares",
+                "Conductos alveolares",
+                "Bronquiolos respiratorios",
+                "Bronquiolos terminales"
+            ],
+            "ans": 2,
+            "just": "Los bronquiolos respiratorios son estructuras de transición que conservan músculo liso y cilios, aunque a veces los alvéolos pierden sus paredes.",
+            "hint": "Son la frontera entre la zona de conducción y la zona respiratoria."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "¿Cuál es la diferencia entre la circulación bronquial y la circulación pulmonar en términos de hematosis?",
+            "opts": [
+                "Ambas participan en la hematosis por igual",
+                "La circulación bronquial no participa en la hematosis; solo la circulación pulmonar (capilar alveolar) realiza el intercambio gaseoso",
+                "La circulación bronquial es más importante para la hematosis",
+                "Solo la circulación bronquial participa en la hematosis"
+            ],
+            "ans": 1,
+            "just": "La circulación bronquial irriga las vías de conducción pero no participa en la hematosis; el intercambio gaseoso ocurre exclusivamente en la circulación pulmonar a nivel de los capilares alveolares.",
+            "hint": "La hematosis requiere contacto íntimo entre aire alveolar y sangre capilar."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Cómo actúa el surfactante para reducir la tensión superficial?",
+            "opts": [
+                "Absorbe el líquido que tapiza los alvéolos",
+                "Las fuerzas intermoleculares de la DPPC rompen las fuerzas de atracción entre las moléculas líquidas que tapizan los alvéolos",
+                "Aumenta la viscosidad del líquido alveolar",
+                "Neutraliza el pH del líquido alveolar"
+            ],
+            "ans": 1,
+            "just": "Las fuerzas intermoleculares entre las moléculas de DPPC del surfactante rompen las fuerzas de atracción entre moléculas líquidas, reduciendo la tensión superficial y la presión de colapso.",
+            "hint": "La DPPC es anfipática y actúa en la interfase aire-líquido."
+        },
+        {
+            "cat": "limitacion_difusion",
+            "q": "¿Qué gas es el ejemplo clásico de intercambio limitado por perfusión?",
+            "opts": [
+                "O2 en ejercicio extremo",
+                "CO en intoxicación",
+                "N2O (óxido nitroso)",
+                "CO2"
+            ],
+            "ans": 2,
+            "just": "El N2O es el ejemplo clásico de intercambio limitado por perfusión porque no se une a proteínas sanguíneas, se equilibra rápidamente y el único modo de aumentar su transferencia es incrementando el flujo sanguíneo.",
+            "hint": "El N2O se equilibra al inicio del capilar."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Qué es la respiración de Kussmaul mencionada en el documento?",
+            "opts": [
+                "Respiración normal en lactantes",
+                "Respiración agónica",
+                "Respiración profunda y rápida de la acidosis metabólica",
+                "Respiración de Cheyne-Stokes"
+            ],
+            "ans": 1,
+            "just": "La respiración de Kussmaul se describe en el documento como respiración agónica.",
+            "hint": "Aparece como referencia clínica en la sección de mecánica respiratoria."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Cómo se crea la presión intrapleural negativa?",
+            "opts": [
+                "Por la contracción constante del diafragma",
+                "Por dos fuerzas elásticas opuestas: los pulmones que tienden a colapsar y la pared torácica que tiende a distenderse",
+                "Por la diferencia de temperatura entre el pulmón y la pleura",
+                "Por la producción de líquido pleural"
+            ],
+            "ans": 1,
+            "just": "La presión intrapleural negativa resulta de la tensión entre dos fuerzas elásticas opuestas: la tendencia de los pulmones a colapsar y la tendencia de la pared torácica a distenderse.",
+            "hint": "El espacio pleural es el resultado del equilibrio entre estas fuerzas opuestas."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Por qué la adaptabilidad del sistema combinado pulmón-pared torácica es menor que la de cada uno por separado?",
+            "opts": [
+                "Porque el pulmón es más rígido en contacto con la pleura",
+                "Porque las dos estructuras en conjunto generan una curva 'más plana', que refleja la interacción de sus propiedades elásticas opuestas",
+                "Porque la pared torácica aumenta la resistencia del pulmón",
+                "Porque la presión pleural se duplica en el sistema combinado"
+            ],
+            "ans": 1,
+            "just": "La adaptabilidad del sistema combinado es inferior a la de cualquiera de las estructuras por separado porque las propiedades elásticas opuestas de ambas estructuras generan una curva presión-volumen 'más plana'.",
+            "hint": "En el sistema combinado, las fuerzas elásticas de ambas estructuras interactúan y se limitan mutuamente."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "¿Qué es el FEV1 o VEMS1?",
+            "opts": [
+                "El volumen total espirado en 3 segundos",
+                "El volumen acumulado espirado en el primer segundo de una espiración forzada",
+                "El volumen corriente en reposo",
+                "La capacidad vital forzada completa"
+            ],
+            "ans": 1,
+            "just": "El FEV1 (o VEMS1) es el volumen acumulado espirado en el primer segundo de una espiración forzada máxima, siendo el parámetro más usado para evaluar la función pulmonar.",
+            "hint": "FEV = Forced Expiratory Volume."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Qué ocurre con el O2 y el CO2 en los capilares pulmonares?",
+            "opts": [
+                "El O2 entra a la sangre desde el alveolo y el CO2 entra al alveolo desde la sangre",
+                "El O2 sale de la sangre hacia el alveolo y el CO2 entra a la sangre",
+                "Ambos gases se difunden desde el alveolo hacia la sangre",
+                "Ambos gases se difunden desde la sangre hacia el alveolo"
+            ],
+            "ans": 0,
+            "just": "El O2 se difunde desde el gas alveolar hacia la sangre capilar pulmonar, mientras que el CO2 se difunde desde la sangre capilar hacia el gas alveolar.",
+            "hint": "Cada gas sigue su propio gradiente de presión parcial."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cómo responden los quimiorreceptores periféricos al aumento de PCO2 arterial en comparación con los centrales?",
+            "opts": [
+                "Los periféricos responden más que los centrales al CO2",
+                "Los periféricos tienen un efecto menor que los centrales ante el aumento de PCO2",
+                "Solo los periféricos responden al CO2",
+                "El efecto es igual en ambos"
+            ],
+            "ans": 1,
+            "just": "El efecto del incremento de PCO2 arterial es menor tanto en quimiorreceptores centrales como periféricos, siendo los centrales los que tienen mayor papel en la respuesta al CO2.",
+            "hint": "Los quimiorreceptores centrales son los principales reguladores del CO2."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Qué sucede con el CO2 en el interior de los eritrocitos?",
+            "opts": [
+                "Se disuelve directamente en el plasma sin transformación",
+                "Es convertido en HCO3- (bicarbonato) por la anhidrasa carbónica",
+                "Se une a la hemoglobina de la misma forma que el O2",
+                "Es eliminado por difusión directa sin conversión"
+            ],
+            "ans": 1,
+            "just": "El CO2 es convertido en HCO3- (bicarbonato) por la enzima anhidrasa carbónica dentro de los eritrocitos, siendo la principal forma de transporte del CO2 en sangre.",
+            "hint": "El bicarbonato es la forma predominante de transporte del CO2."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Qué indica el aleteo nasal en un paciente?",
+            "opts": [
+                "Respiración tranquila y normal",
+                "Dificultad para respirar",
+                "Respiración de Kussmaul",
+                "Apnea obstructiva"
+            ],
+            "ans": 1,
+            "just": "El aleteo nasal es un signo clínico de dificultad respiratoria, ya que el músculo dilatador de la narina se activa como músculo accesorio de la inspiración.",
+            "hint": "Es un signo clásico de trabajo respiratorio aumentado."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cuáles son los bronquios de primera generación?",
+            "opts": [
+                "Los bronquiolos terminales",
+                "Los bronquios principales derecho e izquierdo",
+                "Los bronquiolos respiratorios",
+                "Los bronquios segmentarios"
+            ],
+            "ans": 1,
+            "just": "Los bronquios de primera generación son los bronquios principales derecho e izquierdo, producto de la primera bifurcación de la tráquea.",
+            "hint": "La tráquea es generación 0; su primera bifurcación es la generación 1."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué es la presión alveolar en condiciones de equilibrio (sin flujo aéreo)?",
+            "opts": [
+                "Igual a la presión intrapleural",
+                "Igual a la presión atmosférica",
+                "Mayor que la presión atmosférica siempre",
+                "Negativa siempre"
+            ],
+            "ans": 1,
+            "just": "La presión alveolar es igual a la presión atmosférica en condiciones de equilibrio (sin flujo de aire).",
+            "hint": "Las presiones pulmonares se refieren siempre a la presión atmosférica como punto cero."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué relaciona la ecuación PV = nRT?",
+            "opts": [
+                "Presión y temperatura únicamente",
+                "Presión, volumen, moles del gas, constante del gas y temperatura en la ley general de los gases",
+                "La difusión de gases a través de membranas",
+                "La saturación de hemoglobina y la PO2"
+            ],
+            "ans": 1,
+            "just": "La ley general de los gases (PV = nRT) relaciona presión (P), volumen (V), moles del gas (n), constante del gas (R) y temperatura absoluta (T).",
+            "hint": "Es la ecuación fundamental para el comportamiento de gases ideales."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuál es el patrón de descarga del nervio frénico que controla la inspiración?",
+            "opts": [
+                "Descarga continua constante",
+                "Quiescencia, aumento progresivo de potenciales de acción hasta frecuencia máxima (contracción del diafragma) y vuelta a quiescencia",
+                "Descarga solo durante la espiración",
+                "Descarga aleatoria sin patrón"
+            ],
+            "ans": 1,
+            "just": "El patrón de descarga del nervio frénico es: quiescencia, seguida de potenciales de acción crecientes hasta frecuencia máxima (que produce contracción del diafragma) y retorno a la quiescencia.",
+            "hint": "Este patrón cíclico determina el ritmo respiratorio normal."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Qué ocurre con la tensión superficial alveolar durante la inspiración (rama inspiratoria)?",
+            "opts": [
+                "Es baja y permanece constante",
+                "Es alta porque las moléculas líquidas están más juntas, pero es reducida por el surfactante",
+                "Aumenta uniformemente sin límite",
+                "No existe tensión superficial en la inspiración"
+            ],
+            "ans": 1,
+            "just": "En la rama inspiratoria, el volumen pulmonar es bajo y va aumentando; las moléculas líquidas están más juntas con mayores fuerzas intermoleculares, pero el surfactante reduce esta tensión superficial.",
+            "hint": "El surfactante debe 'romperse' para permitir el inflado."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Qué ocurre con la tensión superficial alveolar durante la espiración (rama espiratoria)?",
+            "opts": [
+                "Es alta y muy peligrosa",
+                "El volumen es alto y va bajando, las moléculas líquidas están menos concentradas y la densidad de surfactante es mayor, reduciendo la tensión",
+                "Solo existe tensión superficial en la inspiración",
+                "El surfactante se degrada durante la espiración"
+            ],
+            "ans": 1,
+            "just": "En la rama espiratoria, el volumen va bajando y la densidad de moléculas de surfactante aumenta, lo que reduce más la tensión superficial y aumenta la adaptabilidad.",
+            "hint": "El surfactante se concentra más cuando el alvéolo se hace más pequeño."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Cuál es la PaO2 aproximada de un feto?",
+            "opts": [
+                "100 mmHg",
+                "60 mmHg",
+                "40 mmHg",
+                "20 mmHg"
+            ],
+            "ans": 2,
+            "just": "La PaO2 de los fetos es aproximadamente 40 mmHg, lo que refleja las condiciones de baja tensión de O2 en la circulación fetal.",
+            "hint": "La HbF con su mayor afinidad por O2 compensa esta baja PO2."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿A qué nivel de volumen se equilibran las fuerzas de colapso y de expansión de la pared torácica?",
+            "opts": [
+                "A la capacidad vital",
+                "A la capacidad residual funcional (CRF)",
+                "Al volumen residual",
+                "A la capacidad pulmonar total"
+            ],
+            "ans": 1,
+            "just": "La CRF es el volumen de equilibrio donde las fuerzas de colapso pulmonar y de expansión de la pared torácica son iguales y opuestas.",
+            "hint": "Por esto también se denomina 'volumen de equilibrio'."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué tipo de inervación recibe el músculo liso de las vías aéreas de conducción?",
+            "opts": [
+                "Solo simpática",
+                "Solo parasimpática",
+                "Simpática y parasimpática",
+                "Solo inervación entérica"
+            ],
+            "ans": 2,
+            "just": "Las paredes de las áreas de conducción contienen músculo liso inervado tanto simpática como parasimpáticamente, lo que permite el control del diámetro de las vías aéreas.",
+            "hint": "El balance entre ambos sistemas determina el tono bronquial."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Cómo se relaciona el volumen corriente con el espacio muerto anatómico?",
+            "opts": [
+                "El espacio muerto es la mitad del VC",
+                "Aproximadamente un tercio (150/500 mL) del VC se queda en el espacio muerto anatómico",
+                "El espacio muerto ocupa el 10% del VC",
+                "El VC equivale exactamente al espacio muerto"
+            ],
+            "ans": 1,
+            "just": "Aproximadamente 150 mL de los 500 mL del volumen corriente quedan en el espacio muerto anatómico, representando un tercio del mismo.",
+            "hint": "El otro tercio (350 mL) llega efectivamente a los alvéolos."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cómo se calcula la presión parcial de un gas húmido (en las vías aéreas)?",
+            "opts": [
+                "PX = PB × F",
+                "PX = (PB – PH2O) × F, descontando la presión del vapor de agua",
+                "PX = PH2O × F",
+                "PX = PB / F"
+            ],
+            "ans": 1,
+            "just": "Para el gas humidificado, la presión parcial se calcula como PX = (PB – PH2O) × F, restando la presión del vapor de agua de la presión barométrica antes de multiplicar por la fracción.",
+            "hint": "El vapor de agua 'ocupa' parte de la presión disponible."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Cuál es la estructura molecular de cada molécula de hemoglobina en términos de grupos hemo?",
+            "opts": [
+                "1 grupo hemo por molécula",
+                "2 grupos hemo por molécula",
+                "4 grupos hemo por molécula (uno por cadena polipeptídica)",
+                "8 grupos hemo por molécula"
+            ],
+            "ans": 2,
+            "just": "Cada molécula de hemoglobina tiene 4 cadenas polipeptídicas, cada una con un grupo hemo, por lo que existen 4 grupos hemo por molécula, capaces de unirse cada uno a un O2.",
+            "hint": "La capacidad máxima es de 4 moléculas de O2 por hemoglobina."
+        },
+        {
+            "cat": "monoxido_carbono",
+            "q": "¿Por qué la presencia de CO hace más difícil la descarga de O2 en los tejidos?",
+            "opts": [
+                "Porque el CO aumenta la viscosidad de la sangre",
+                "Porque los grupos hemo no unidos a CO tienen mayor afinidad por el O2, desplazando la curva a la izquierda y disminuyendo la P50",
+                "Porque el CO estimula la producción de metahemoglobina",
+                "Porque el CO bloquea los receptores en los tejidos"
+            ],
+            "ans": 1,
+            "just": "Los grupos hemo no unidos a CO tienen aumento de afinidad por el O2 (efecto de cooperatividad alterada), lo que desplaza la curva a la izquierda, disminuye la P50 y dificulta la liberación de O2 en los tejidos.",
+            "hint": "El CO tiene un doble efecto: ocupa sitios y altera la afinidad de los restantes."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Qué sucede con la respiración cuando se elimina quirúrgicamente el centro neumotáxico?",
+            "opts": [
+                "Cesa completamente la respiración",
+                "Persiste un ritmo de respiración normal (aunque puede quedar apneusis si también se cortan los vagos)",
+                "Se produce hiperventilación irreversible",
+                "Solo afecta la frecuencia, no el ritmo"
+            ],
+            "ans": 1,
+            "just": "En ausencia del centro neumotáxico, persiste un ritmo de respiración normal, lo que indica que no es indispensable para el ritmo basal.",
+            "hint": "Su función principal es regular la magnitud del VC y la frecuencia respiratoria."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cuál es la diferencia entre la respuesta de los cuerpos carotídeos y los cuerpos aórticos ante la disminución del pH arterial?",
+            "opts": [
+                "Ambos responden igual al pH bajo",
+                "Solo los cuerpos carotídeos responden al pH bajo activando un aumento de la ventilación; los cuerpos aórticos no participan en esta respuesta",
+                "Solo los cuerpos aórticos responden al pH bajo",
+                "Ninguno responde al pH directamente"
+            ],
+            "ans": 1,
+            "just": "El aumento de ventilación ante la disminución del pH arterial es mediado únicamente por los quimiorreceptores de H+ en los cuerpos carotídeos, no por los situados en los cuerpos aórticos.",
+            "hint": "Esta especificidad de respuesta de los cuerpos carotídeos es clínicamente importante."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Cómo pueden los riñones distinguir entre disminución del flujo sanguíneo y disminución del contenido de O2 arterial?",
+            "opts": [
+                "No pueden distinguirlas",
+                "Son capaces de distinguir entre la menor liberación de O2 por menor flujo y la disminución del contenido de O2 arterial",
+                "Solo detectan cambios en la concentración de hemoglobina",
+                "Solo responden al pH, no al O2 directamente"
+            ],
+            "ans": 1,
+            "just": "Los riñones son capaces de distinguir entre la disminución del flujo sanguíneo como consecuencia de la menor liberación de O2 y la disminución del contenido de O2 de la sangre arterial.",
+            "hint": "Esta capacidad de discriminación les permite ajustar la producción de EPO apropiadamente."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Qué variables necesitan conocerse para predecir la PACO2 usando la ecuación de ventilación alveolar?",
+            "opts": [
+                "Solo la ventilación alveolar",
+                "La tasa de producción de CO2 y la ventilación alveolar",
+                "La frecuencia respiratoria y el volumen corriente solamente",
+                "El espacio muerto fisiológico y la presión barométrica"
+            ],
+            "ans": 1,
+            "just": "La PACO2 puede predecirse conociendo la tasa de producción de CO2 del metabolismo aeróbico y la ventilación alveolar que excreta ese CO2.",
+            "hint": "PACO2 = VCO2 × K / VA"
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Cuál es la fórmula para calcular el espacio muerto fisiológico?",
+            "opts": [
+                "VD = VC × (PaCO2 + PECO2) / PaCO2",
+                "VD = VC × (PaCO2 – PECO2) / PaCO2",
+                "VD = VC / (PaCO2 × PECO2)",
+                "VD = VRI × (PaCO2 – PECO2)"
+            ],
+            "ans": 1,
+            "just": "El espacio muerto fisiológico se calcula como VD = VC × (PaCO2 – PECO2) / PaCO2, donde la fracción representa la dilución de la PACO2 por el aire del espacio muerto.",
+            "hint": "Esta es la ecuación de Bohr para el espacio muerto."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿A través de qué nervios llega la información sensorial de quimiorreceptores periféricos al centro inspiratorio bulbar?",
+            "opts": [
+                "Nervio frénico y nervios intercostales",
+                "Nervio glosofaríngeo (PC IX) y nervio vago (PC X)",
+                "Nervio hipogloso y nervio facial",
+                "Nervio olfatorio y nervio trigémino"
+            ],
+            "ans": 1,
+            "just": "El centro inspiratorio recibe información de los quimiorreceptores periféricos a través del nervio glosofaríngeo (PC IX) y del nervio vago (PC X), y de los mecanorreceptores pulmonares a través del vago.",
+            "hint": "El nervio frénico es eferente, no aferente en este contexto."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Qué método se utiliza para determinar la DLCO clínicamente?",
+            "opts": [
+                "Espirometría forzada",
+                "Método de la respiración única con una mezcla de gases con baja concentración de CO",
+                "Gasometría arterial",
+                "Pletismografía corporal"
+            ],
+            "ans": 1,
+            "just": "La DLCO se determina con el método de la respiración única, en que se inhala una mezcla con baja concentración de CO y se mide la tasa de desaparición del CO de la mezcla espirada.",
+            "hint": "La velocidad de captación del CO refleja la capacidad de difusión."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué porcentaje de saturación de hemoglobina corresponde a una PO2 de 50 mmHg en la curva de disociación?",
+            "opts": [
+                "50%",
+                "75% aproximadamente",
+                "85%",
+                "90%"
+            ],
+            "ans": 1,
+            "just": "A una PO2 de 50 mmHg, la saturación de hemoglobina es aproximadamente del 75% según los valores de la curva de disociación O2-hemoglobina.",
+            "hint": "La curva sigmoide muestra que entre 40-60 mmHg hay grandes cambios de saturación."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué porcentaje de saturación corresponde a una PO2 de 100 mmHg?",
+            "opts": [
+                "85%",
+                "90%",
+                "95%",
+                "98%"
+            ],
+            "ans": 3,
+            "just": "A una PO2 de 100 mmHg (sangre arterial sistémica normal), la saturación de hemoglobina es del 98%.",
+            "hint": "La parte superior de la curva sigmoide es casi plana entre 70-100 mmHg."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Qué desplazamiento de la curva de disociación favorece la carga de O2 en los pulmones?",
+            "opts": [
+                "Desplazamiento a la derecha porque aumenta la P50",
+                "Desplazamiento a la izquierda porque aumenta la afinidad por el O2, facilitando la captación en los pulmones",
+                "No hay desplazamiento en los pulmones",
+                "Solo la PCO2 baja en pulmones sin desplazamiento de curva"
+            ],
+            "ans": 1,
+            "just": "En los tejidos pulmonares, la menor PCO2 y mayor pH producen un desplazamiento a la izquierda que aumenta la afinidad de la hemoglobina por el O2, facilitando su captación.",
+            "hint": "El pulmón tiene condiciones contrarias a los tejidos periféricos."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Por qué la rama inspiratoria de la curva presión-volumen es más difícil de usar para medir la compliance?",
+            "opts": [
+                "Porque durante la inspiración no hay cambio de volumen",
+                "Porque a las presiones de expansión máximas la adaptabilidad disminuye, complicando la medición",
+                "Porque la presión intrapleural no cambia en inspiración",
+                "Porque el diafragma interfiere con las mediciones"
+            ],
+            "ans": 1,
+            "just": "La rama inspiratoria se complica por la disminución de la adaptabilidad a las presiones de expansión máximas, lo que hace que la pendiente no sea uniforme, por eso se prefiere la rama espiratoria.",
+            "hint": "La histéresis hace que ambas ramas tengan diferentes pendientes."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Por qué el H+ y el HCO3- no pueden estimular directamente los quimiorreceptores centrales desde la sangre?",
+            "opts": [
+                "Porque no se producen en la sangre",
+                "Porque la barrera hematoencefálica es relativamente impermeable al H+ y al HCO3-, que quedan atrapados en el compartimento vascular",
+                "Porque los quimiorreceptores centrales no tienen receptores para H+",
+                "Porque el H+ se neutraliza en la sangre antes de llegar al cerebro"
+            ],
+            "ans": 1,
+            "just": "La barrera hematoencefálica es relativamente impermeable al H+ y al HCO3-, que quedan atrapados en el compartimento vascular y no entran en el cerebro; en cambio, el CO2 sí es permeable.",
+            "hint": "Es por eso que el CO2 es el principal regulador de la ventilación a través de los quimiorreceptores centrales."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué ocurre con la concentración de gas en solución según la ley de Henry si la presión parcial del gas se duplica?",
+            "opts": [
+                "La concentración se reduce a la mitad",
+                "La concentración también se duplica, dado que son directamente proporcionales",
+                "La concentración permanece igual",
+                "La concentración aumenta al cuadrado"
+            ],
+            "ans": 1,
+            "just": "Según la ley de Henry (CX = PX × Solubilidad), la concentración de gas en solución es directamente proporcional a su presión parcial; si la presión se duplica, la concentración en solución también se duplica.",
+            "hint": "Esta relación lineal explica la mayor disolución de O2 en hiperbaria."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "Si la producción de CO2 se duplica de 200 a 400 ml/min manteniendo constante la PACO2, ¿qué debe ocurrir con la ventilación alveolar?",
+            "opts": [
+                "Reducirse a la mitad",
+                "Duplicarse también para mantener el equilibrio",
+                "Permanecer igual porque la PACO2 no cambia",
+                "Triplicarse"
+            ],
+            "ans": 1,
+            "just": "Si la producción de CO2 se duplica y se quiere mantener constante la PACO2, la ventilación alveolar también debe duplicarse para poder excretar el doble de CO2.",
+            "hint": "PACO2 = VCO2 × K / VA: si VCO2 se dobla y PACO2 es constante, VA debe doblarse."
+        },
+        {
+            "cat": "espirometria",
+            "q": "¿Qué método se usa para medir el volumen residual mediante dilución de un gas?",
+            "opts": [
+                "Dilución de nitrógeno",
+                "Dilución de helio",
+                "Dilución de CO",
+                "Dilución de N2O"
+            ],
+            "ans": 1,
+            "just": "La dilución de helio es uno de los métodos para determinar la CRF y por extensión el VR, aprovechando que el helio es inerte y no se absorbe.",
+            "hint": "El helio es inerte y no cruza la barrera alveolar."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué el CO2 difunde más fácilmente que el O2 a través de las membranas biológicas?",
+            "opts": [
+                "Porque tiene menor peso molecular",
+                "Porque tiene mayor solubilidad en los tejidos biológicos, lo que compensa su menor gradiente de presión parcial",
+                "Porque tiene mayor gradiente de presión parcial",
+                "Porque el CO2 no necesita difusión activa"
+            ],
+            "ans": 1,
+            "just": "Aunque el gradiente de presión parcial del CO2 es menor que el del O2, el CO2 tiene mucha mayor solubilidad en los tejidos biológicos, lo que le permite difundir eficientemente a través de las membranas.",
+            "hint": "La mayor solubilidad compensa el menor gradiente de presión."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Qué tipo de sustancias detectan los receptores irritantes de las vías aéreas?",
+            "opts": [
+                "Solo cambios de temperatura",
+                "Productos químicos y partículas nocivas",
+                "Cambios de presión arterial",
+                "Cambios de PO2 alveolar"
+            ],
+            "ans": 1,
+            "just": "Los receptores irritantes, localizados en las células epiteliales de las vías aéreas, detectan productos químicos y partículas nocivas, originando constricción refleja del músculo liso bronquial y aumento de la frecuencia respiratoria.",
+            "hint": "La tos refleja también puede activarse por estos receptores."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuál es la excitación que produce la apneusis en el contexto del centro apnéusico?",
+            "opts": [
+                "Centro apnéusico inhibe al centro inspiratorio",
+                "Centro apnéusico excita al centro inspiratorio bulbar, provocando mayor duración del potencial de acción en el nervio frénico y contracción prolongada del diafragma",
+                "Centro apnéusico activa el centro neumotáxico",
+                "Centro apnéusico activa el centro espiratorio"
+            ],
+            "ans": 1,
+            "just": "La estimulación del centro apnéusico excita al centro inspiratorio bulbar, lo que resulta en mayor duración del potencial de acción en el nervio frénico y una contracción sostenida del diafragma.",
+            "hint": "El centro apnéusico está en la protuberancia inferior."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué es la desoxihemoglobina?",
+            "opts": [
+                "Hemoglobina con hierro oxidado a Fe3+",
+                "Hemoglobina que ha liberado su O2 y está en forma no oxigenada",
+                "Hemoglobina fetal",
+                "Hemoglobina unida a CO"
+            ],
+            "ans": 1,
+            "just": "La desoxihemoglobina es la hemoglobina en estado no oxigenado, que ha liberado su O2 a los tejidos. Mantiene el hierro en estado ferroso (Fe2+), listo para volver a unirse al O2.",
+            "hint": "Es la forma que predomina en la sangre venosa."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Por qué vivir en altitud elevada estimula la producción de 2,3-DPG?",
+            "opts": [
+                "Porque la temperatura es menor en altitud",
+                "Porque en altitud hay hipoxia crónica, que estimula la producción de 2,3-DPG para facilitar la descarga de O2 en tejidos",
+                "Porque la PCO2 es mayor en altitud",
+                "Porque la presión atmosférica aumenta en altitud"
+            ],
+            "ans": 1,
+            "just": "La hipoxia crónica de la altitud estimula la producción de 2,3-DPG en los eritrocitos, lo que reduce la afinidad de la hemoglobina por el O2 y facilita su liberación a los tejidos.",
+            "hint": "Es una adaptación fisiológica a la hipoxia de altitud."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Qué le ocurre a la sangre venosa mezclada al pasar por los capilares pulmonares?",
+            "opts": [
+                "La PCO2 aumenta y la PO2 disminuye",
+                "La PCO2 disminuye de 46 a 40 mmHg y la PO2 aumenta de 40 a 100 mmHg",
+                "Solo cambia la PO2, no la PCO2",
+                "La sangre no cambia al pasar por los capilares pulmonares"
+            ],
+            "ans": 1,
+            "just": "Al pasar por los capilares pulmonares, la sangre venosa mezclada (PCO2 46 mmHg, PO2 40 mmHg) se convierte en sangre arterial sistémica (PCO2 40 mmHg, PO2 100 mmHg) al equilibrarse con el aire alveolar.",
+            "hint": "Los valores normales del gas alveolar determinan los valores de la sangre arterial."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Cómo puede explicarse el mecanismo del neumotórax en términos de fuerzas elásticas?",
+            "opts": [
+                "La presión positiva destruye la pared pleural",
+                "Al igualarse la presión intrapleural con la atmosférica, la presión transmural se vuelve cero, eliminando la fuerza de expansión pulmonar y el pulmón colapsa por su propia elasticidad",
+                "El pulmón se expande excesivamente y se rompe",
+                "La pared torácica colapsa junto con el pulmón"
+            ],
+            "ans": 1,
+            "just": "En el neumotórax, la presión intrapleural pasa de negativa a cero (igual a la atmosférica), lo que elimina la presión transmural que mantenía el pulmón expandido; entonces el pulmón colapsa por su propia elasticidad y la pared torácica se expande.",
+            "hint": "Sin la presión intrapleural negativa, el pulmón pierde su fuerza de expansión."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "¿Cuál es el FEV3 o VEMS3?",
+            "opts": [
+                "Volumen espirado en el primer segundo",
+                "Volumen espirado en el segundo segundo",
+                "Volumen acumulado espirado en los tres primeros segundos de una espiración forzada",
+                "El 80% de la CVF"
+            ],
+            "ans": 2,
+            "just": "El FEV3 (VEMS3) es el volumen acumulado espirado en los tres primeros segundos de una espiración forzada máxima.",
+            "hint": "FEV1 (1 seg), FEV2 (2 seg), FEV3 (3 seg) representan volúmenes acumulados."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuál es el porcentaje de N2 en el aire seco?",
+            "opts": [
+                "21%",
+                "50%",
+                "79%",
+                "90%"
+            ],
+            "ans": 2,
+            "just": "El N2 representa el 79% del aire seco, con una fracción de concentración de 0,79.",
+            "hint": "O2 (21%) + N2 (79%) representan prácticamente todo el aire seco."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuál es la fuente de información sensorial del nervio vago hacia el centro inspiratorio bulbar?",
+            "opts": [
+                "Solo los quimiorreceptores centrales",
+                "Los mecanorreceptores del pulmón (receptores de estiramiento) y los quimiorreceptores periféricos",
+                "Solo los quimiorreceptores periféricos carotídeos",
+                "Solo la información muscular de los intercostales"
+            ],
+            "ans": 1,
+            "just": "El nervio vago lleva al centro inspiratorio tanto la información de los mecanorreceptores del pulmón (receptores de estiramiento) como de los quimiorreceptores periféricos.",
+            "hint": "El nervio vago es la gran autopista aferente del control respiratorio."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Qué los 150 mL del espacio muerto anatómico que 'quedan' al final de una espiración tienen de relevante para la siguiente inspiración?",
+            "opts": [
+                "Se eliminan completamente antes de la siguiente inspiración",
+                "Son los primeros en entrar a los alvéolos en la siguiente inspiración, siendo aire alveolar de la respiración anterior",
+                "Contribuyen CO2 nuevo en la siguiente inspiración",
+                "No tienen relevancia funcional"
+            ],
+            "ans": 1,
+            "just": "Los 150 mL que quedan en el espacio muerto anatómico son los primeros en ingresar a los alvéolos en la siguiente respiración, correspondiendo al aire alveolar de la respiración anterior.",
+            "hint": "Este fenómeno es importante para entender el espacio muerto dinámico."
+        },
+        {
+            "cat": "oxigeno_sangre",
+            "q": "¿Cuál de estas formas de O2 contribuye a impulsar la difusión desde los pulmones hacia los tejidos?",
+            "opts": [
+                "El O2 unido a la hemoglobina porque está en mayor cantidad",
+                "El O2 disuelto porque contribuye a la presión parcial que impulsa la difusión",
+                "Ambas formas contribuyen igual a la presión parcial",
+                "Ninguna contribuye; la difusión es activa"
+            ],
+            "ans": 1,
+            "just": "Solo el O2 disuelto contribuye a la presión parcial que impulsa la difusión; el O2 unido a la hemoglobina no genera presión parcial y no participa directamente en el gradiente de difusión.",
+            "hint": "La ley de Henry se aplica solo al gas libre en solución, no al unido."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Qué establece la ley general de los gases respecto a la relación entre n, P, V y T?",
+            "opts": [
+                "A volumen constante, P y T son inversamente proporcionales",
+                "PV = nRT: el producto de presión y volumen es proporcional al número de moles y la temperatura absoluta",
+                "P y V son siempre inversamente proporcionales sin importar T",
+                "Solo aplica a gases ideales a presión atmosférica"
+            ],
+            "ans": 1,
+            "just": "La ley general de los gases establece PV = nRT, donde el producto presión-volumen es proporcional al número de moles (n) y a la temperatura absoluta (T), siendo R la constante universal del gas.",
+            "hint": "De esta ecuación se derivan las leyes de Boyle, Charles y Gay-Lussac."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué produce la oxidación del Fe2+ a Fe3+ en la hemoglobina?",
+            "opts": [
+                "Oxihemoglobina con mayor afinidad por O2",
+                "Metahemoglobina que no puede transportar O2",
+                "Hemoglobina fetal con mayor afinidad",
+                "Carboxihemoglobina"
+            ],
+            "ans": 1,
+            "just": "La oxidación del Fe ferroso (Fe2+) a Fe férrico (Fe3+) produce metahemoglobina, que no puede unirse al O2 y es clínicamente inactiva para el transporte de oxígeno.",
+            "hint": "Los nitritos y sulfonamidas son oxidantes que producen este efecto."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cómo puede la corteza cerebral modificar la respiración?",
+            "opts": [
+                "Enviando señales al diafragma directamente sin pasar por el tronco del encéfalo",
+                "Emitiendo órdenes que pueden anular temporalmente los centros automáticos del tronco del encéfalo (como en la hiperventilación voluntaria o aguantar la respiración)",
+                "Controlando permanentemente la frecuencia respiratoria basal",
+                "Solo durante el sueño"
+            ],
+            "ans": 1,
+            "just": "La corteza cerebral puede ejercer control voluntario sobre la respiración mediante órdenes que anulan temporalmente los centros automáticos del tronco del encéfalo, como en la hiperventilación voluntaria o al aguantar la respiración.",
+            "hint": "Este control es temporal; los centros automáticos recuperan el mando."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Qué significa que los alvéolos están 'ricamente perfundidos y ventilados'?",
+            "opts": [
+                "Que reciben mucho líquido y poca ventilación",
+                "Que tienen abundante flujo sanguíneo capilar y flujo de aire, optimizando el intercambio gaseoso",
+                "Que solo tienen ventilación pero poca perfusión",
+                "Que el surfactante aumenta su perfusión"
+            ],
+            "ans": 1,
+            "just": "Los alvéolos están ricamente perfundidos y ventilados, lo que maximiza el intercambio gaseoso; la ventilación se interrumpe por tamponamiento cuando no es adecuada.",
+            "hint": "El equilibrio entre ventilación y perfusión es esencial para la función alveolar."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Qué representa el área de superficie (A) en la ecuación de Fick y por qué es importante?",
+            "opts": [
+                "El área de la membrana pleural",
+                "El área de superficie disponible para la difusión en la membrana alveolo-capilar; a mayor área, mayor tasa de difusión",
+                "El área de las vías aéreas de conducción",
+                "El área corporal total del paciente"
+            ],
+            "ans": 1,
+            "just": "El área de superficie A en la ley de Fick representa la superficie disponible para la difusión en la membrana alveolo-capilar. A mayor área, mayor tasa de difusión, lo que explica por qué el enfisema (que destruye alvéolos) reduce la DL.",
+            "hint": "El pulmón tiene ~70 m2 de superficie de intercambio en condiciones normales."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuál es la relación entre la PAO2 y la PACO2 y los gases del aire inspirado?",
+            "opts": [
+                "PAO2 es mayor que en el aire inspirado y PACO2 es menor",
+                "PAO2 (100 mmHg) es menor que en el aire inspirado porque el O2 sale al capilar, y PACO2 (40 mmHg) es mayor porque el CO2 entra desde la sangre",
+                "Ambas presiones son iguales al aire inspirado en condiciones normales",
+                "PAO2 es igual al aire inspirado y PACO2 varía solo en ejercicio"
+            ],
+            "ans": 1,
+            "just": "La PAO2 (100 mmHg) es menor que en el aire inspirado porque el O2 abandona el alveolo hacia la sangre capilar, mientras que la PACO2 (40 mmHg) es mayor porque el CO2 de la sangre entra al alveolo.",
+            "hint": "El intercambio gaseoso modifica continuamente la composición del aire alveolar."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué significa que el volumen y la presión son inversamente proporcionales en la mecánica pulmonar?",
+            "opts": [
+                "A mayor presión alveolar, mayor volumen pulmonar siempre",
+                "Al aumentar el volumen pulmonar, la presión dentro de ese espacio disminuye (y viceversa), lo que es la base física de la ventilación",
+                "Solo aplica durante la espiración forzada",
+                "Solo aplica durante la inspiración"
+            ],
+            "ans": 1,
+            "just": "La inversión entre volumen y presión (ley de Boyle) es la base física de la ventilación: al aumentar el volumen torácico durante la inspiración, la presión intrapulmonar disminuye por debajo de la atmosférica, creando el gradiente que mueve el aire hacia adentro.",
+            "hint": "Es la aplicación de la ley de Boyle a la mecánica ventilatoria."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Por qué la respuesta ventilatoria al CO2 es principalmente central y no periférica?",
+            "opts": [
+                "Porque los quimiorreceptores periféricos no detectan CO2",
+                "Porque los quimiorreceptores centrales están comunicados directamente con el centro inspiratorio y son los principales reguladores minuto a minuto del CO2",
+                "Porque el CO2 no puede cruzar la barrera hematoencefálica",
+                "Porque el CO2 solo actúa en altitud"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores centrales están directamente comunicados con el centro inspiratorio y controlan la respuesta minuto a minuto al CO2 (a través del pH del LCR), siendo más importantes que los periféricos para esta función.",
+            "hint": "El efecto periférico del CO2 existe pero es menor que el central."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Por qué los volúmenes pulmonares se calculan por kilogramo de peso?",
+            "opts": [
+                "Porque el peso determina la cantidad de hemoglobina",
+                "Porque el tamaño pulmonar y los volúmenes respiratorios son proporcionales al tamaño corporal, normalizar por peso permite comparar entre individuos",
+                "Solo en pacientes pediátricos",
+                "Para calcular la dosis de broncodilatadores"
+            ],
+            "ans": 1,
+            "just": "Los volúmenes pulmonares se calculan por kilogramo de peso para normalizar los valores según el tamaño corporal, permitiendo comparaciones significativas entre diferentes individuos.",
+            "hint": "Los niños y adultos tienen pulmones de diferente tamaño absoluto pero similar relación volumen/peso."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Qué fármaco actúa como agonista β2-adrenérgico para tratar el asma?",
+            "opts": [
+                "Histamina",
+                "Isoproterenol",
+                "Atropina",
+                "Leucotrienos"
+            ],
+            "ans": 1,
+            "just": "El isoproterenol es un agonista β2-adrenérgico que actúa como la adrenalina circulante, relajando y dilatando las vías aéreas para tratar el asma.",
+            "hint": "Actúa en los mismos receptores que la adrenalina endógena de la médula suprarrenal."
+        },
+        {
+            "cat": "espacio_muerto",
+            "q": "¿Qué diferencia hay entre alvéolos ventilados no perfundidos y alvéolos perfundidos no ventilados?",
+            "opts": [
+                "No hay diferencia, ambos son espacio muerto",
+                "Los ventilados no perfundidos son espacio muerto (contribuyen al espacio muerto fisiológico); los perfundidos no ventilados causan cortocircuito (sangre no oxigenada)",
+                "Los perfundidos no ventilados son espacio muerto",
+                "Solo los ventilados no perfundidos causan hipoxia"
+            ],
+            "ans": 1,
+            "just": "Los alvéolos ventilados pero no perfundidos constituyen espacio muerto fisiológico; los alvéolos perfundidos pero no ventilados producen cortocircuito de sangre no oxigenada, ambos representan defectos de la relación V/Q.",
+            "hint": "Son los dos tipos de desequilibrio ventilación-perfusión (V/Q)."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿En qué consiste la presión de expansión pulmonar?",
+            "opts": [
+                "Presión negativa que colapsa el pulmón",
+                "La presión transmural cuando es positiva (presión intraalveolar > presión intrapleural), que resulta en expansión pulmonar",
+                "La presión negativa intrapleural solamente",
+                "La presión atmosférica por encima de la alveolar"
+            ],
+            "ans": 1,
+            "just": "La presión de expansión es la presión transmural cuando es positiva, es decir, cuando la presión intraalveolar supera a la intrapleural, lo que resulta en expansión pulmonar.",
+            "hint": "Si la transmural es negativa, el pulmón colapsa."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Por qué se dice que la HbS tiene menor afinidad por O2?",
+            "opts": [
+                "Porque tiene Fe3+ que no une O2",
+                "Porque la mutación en la cadena beta altera la estructura cuaternaria de la hemoglobina en su forma desoxigenada, reduciéndola afinidad comparada con la HbA",
+                "Porque no tiene grupos hemo funcionales",
+                "Porque el 2,3-DPG no se une a la HbS"
+            ],
+            "ans": 1,
+            "just": "La HbS tiene una mutación en la cadena beta (Glu → Val) que altera la estructura de la hemoglobina desoxigenada, causando polimerización y reduciendo su afinidad relativa por el O2.",
+            "hint": "La drepanocitosis es consecuencia de esta mutación estructural."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Qué representa la fuerza impulsora en la ecuación de difusión de Fick?",
+            "opts": [
+                "La temperatura de la membrana",
+                "La diferencia de presión parcial del gas a ambos lados de la membrana (ΔP)",
+                "El coeficiente de solubilidad del gas",
+                "El área de superficie de la membrana"
+            ],
+            "ans": 1,
+            "just": "La fuerza impulsora en la ecuación de Fick es la diferencia de presión parcial del gas (ΔP) a ambos lados de la membrana; a mayor gradiente, mayor tasa de difusión.",
+            "hint": "Sin gradiente de presión parcial no hay difusión neta."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Cuál es la función primaria del Grupo Respiratorio Dorsal (GRD)?",
+            "opts": [
+                "Controlar la espiración activa en ejercicio",
+                "Establecer el ritmo básico de la respiración controlando la frecuencia inspiratoria y servir como centro integrador de la información sensorial",
+                "Regular el tono de las vías aéreas",
+                "Detectar cambios de O2 en sangre arterial"
+            ],
+            "ans": 1,
+            "just": "El GRD (centro inspiratorio) controla el ritmo básico de la respiración estableciendo la frecuencia inspiratoria, recibiendo información sensorial de quimiorreceptores y mecanorreceptores, e integrando la respuesta ventilatoria.",
+            "hint": "Es el centro integrador principal del control respiratorio automático."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Qué factores en la secuencia de producción de EPO distinguen a los pasos que requieren EPO de los que no la requieren?",
+            "opts": [
+                "Todos los pasos de maduración eritroide requieren EPO",
+                "Solo los primeros pasos (diferenciación de proeritroblastos) requieren EPO; los pasos adicionales de maduración hasta eritrocitos maduros no necesitan EPO",
+                "Solo los últimos pasos requieren EPO",
+                "La EPO actúa en todos los pasos por igual"
+            ],
+            "ans": 1,
+            "just": "La EPO es necesaria para los primeros pasos de diferenciación de proeritroblastos en la línea eritroide; sin embargo, los pasos adicionales de maduración hasta eritrocitos maduros no requieren EPO.",
+            "hint": "EPO da el 'arranque' pero no controla toda la maduración."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿La ley de Henry se aplica al O2 total en sangre o solo al O2 disuelto?",
+            "opts": [
+                "Al O2 total, incluyendo el unido a hemoglobina",
+                "Solo al O2 libre disuelto en solución; no incluye el gas unido a proteínas como la hemoglobina",
+                "Solo al O2 unido a hemoglobina",
+                "A ambas formas por igual"
+            ],
+            "ans": 1,
+            "just": "La ley de Henry se aplica solo al gas disuelto que está libre en solución; no incluye el gas que se encuentra en forma unida a proteínas como la hemoglobina.",
+            "hint": "El O2 unido a hemoglobina no contribuye a la presión parcial."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Qué neurotransmisor utilizan los quimiorreceptores centrales que son inhibidos por H+ (es decir, que detectan aumento de pH)?",
+            "opts": [
+                "Serotonina",
+                "GABA (ácido γ-aminobutírico)",
+                "Dopamina",
+                "Acetilcolina"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores centrales que detectan aumento del pH (inhibidos por H+) utilizan GABA como neurotransmisor, disminuyendo la frecuencia respiratoria.",
+            "hint": "GABA es un neurotransmisor inhibidor; la alcalosis inhibe el impulso respiratorio."
+        },
+        {
+            "cat": "tension_superficial",
+            "q": "¿Por qué un alvéolo grande tiene menor presión de colapso que uno pequeño?",
+            "opts": [
+                "Porque tiene menos surfactante",
+                "Porque según la ley de Laplace, P = 2T/r, a mayor radio (alvéolo grande), la presión de colapso es inversamente menor",
+                "Porque tiene mayor temperatura interna",
+                "Porque está más perfundido"
+            ],
+            "ans": 1,
+            "just": "Según la ley de Laplace (P = 2T/r), la presión de colapso es inversamente proporcional al radio; un alvéolo grande tiene mayor radio y por tanto menor presión de colapso, requiriendo mínima presión para mantenerse abierto.",
+            "hint": "Relación inversa entre radio y presión de colapso."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Hacia qué ventrículo llega la sangre que abandona los capilares pulmonares oxigenada?",
+            "opts": [
+                "Ventrículo derecho",
+                "Ventrículo izquierdo, a través de las venas pulmonares",
+                "Directamente a la aorta",
+                "Al ventrículo derecho a través de los senos coronarios"
+            ],
+            "ans": 1,
+            "just": "La sangre que abandona el capilar pulmonar llega al corazón izquierdo (ventrículo izquierdo a través de las venas pulmonares) y se convierte en sangre arterial sistémica.",
+            "hint": "El circuito pulmonar conecta el corazón derecho con el izquierdo."
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Cuáles son las tres porciones de inserción del diafragma?",
+            "opts": [
+                "Lumbar, costal y esternal",
+                "Cervical, torácica y lumbar",
+                "Esternal, vertebral y pleural",
+                "Xifoidea, intercostal y vertebral"
+            ],
+            "ans": 0,
+            "just": "Las inserciones del diafragma se dividen en porción lumbar (pilares), costal (cartílagos costales 7-12) y esternal (apófisis xifoides).",
+            "hint": "El diafragma separa el tórax del abdomen con estas tres zonas de anclaje."
+        },
+        {
+            "cat": "volumenes",
+            "q": "¿Qué es el volumen de reserva espiratorio en términos funcionales?",
+            "opts": [
+                "El volumen que no puede espirarse después de una espiración máxima",
+                "El volumen adicional que puede espirarse mediante espiración activa por debajo del nivel de la espiración normal",
+                "El volumen inspirado por encima del volumen corriente",
+                "El volumen que queda siempre en los pulmones"
+            ],
+            "ans": 1,
+            "just": "El VRE es el volumen adicional de aire que puede espirarse activamente por debajo del nivel al que llega la espiración pasiva normal (por debajo del VC).",
+            "hint": "Se moviliza cuando se pide al paciente que espire todo el aire que pueda."
+        },
+        {
+            "cat": "otros_receptores",
+            "q": "¿Por qué los receptores J son clínicamente relevantes en el contexto de la insuficiencia cardíaca izquierda?",
+            "opts": [
+                "Porque detectan la hipoxemia en la insuficiencia cardíaca",
+                "Porque en la insuficiencia cardíaca izquierda la sangre retrocede a la circulación pulmonar ingurgitando los capilares y aumentando el líquido intersticial, activando los receptores J y causando disnea",
+                "Porque detectan cambios de PCO2 en el edema pulmonar",
+                "Porque son los receptores que responden a la histamina en el edema pulmonar"
+            ],
+            "ans": 1,
+            "just": "En la insuficiencia cardíaca izquierda, la sangre retrocede hacia la circulación pulmonar, ingurgita los capilares alveolares y aumenta el líquido intersticial, lo que activa los receptores J y produce la característica respiración superficial y rápida con disnea.",
+            "hint": "La activación de receptores J produce un patrón respiratorio específico: rápido y superficial."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué relación existe entre la adaptabilidad de la pared torácica y la de los pulmones por separado?",
+            "opts": [
+                "La pared torácica tiene mucho más compliance que los pulmones",
+                "La adaptabilidad de la pared torácica sola es aproximadamente igual a la adaptabilidad de los pulmones solos",
+                "Los pulmones tienen siempre más compliance que la pared torácica",
+                "Son completamente diferentes y no se pueden comparar"
+            ],
+            "ans": 1,
+            "just": "La adaptabilidad de la pared torácica por sí sola es aproximadamente igual a la adaptabilidad de los pulmones solos; sin embargo, cuando se combinan, la adaptabilidad del sistema es menor que cualquiera de las dos estructuras por separado.",
+            "hint": "La curva combinada es 'más plana' que la de cada estructura por separado."
+        },
+        {
+            "cat": "volumenes_forzados",
+            "q": "¿Cuántos segundos dura clásicamente la evaluación de los volúmenes espiratorios forzados?",
+            "opts": [
+                "1 segundo",
+                "2 segundos",
+                "3 segundos",
+                "5 segundos"
+            ],
+            "ans": 2,
+            "just": "La evaluación clásica de los volúmenes espiratorios forzados evalúa el FEV1 (1 seg), FEV2 (2 seg) y FEV3 (3 seg) durante los tres primeros segundos de una espiración forzada.",
+            "hint": "FEV1 es el más clínicamente utilizado pero la evaluación cubre 3 segundos."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Qué diferencia existe entre capacidad vital y capacidad pulmonar total?",
+            "opts": [
+                "No hay diferencia, son equivalentes",
+                "La capacidad pulmonar total incluye adicionalmente el volumen residual que no puede espirarse; la CV excluye el VR",
+                "La CV es mayor que la CPT",
+                "La CPT no incluye el VRI"
+            ],
+            "ans": 1,
+            "just": "La diferencia entre la capacidad pulmonar total (5900 mL) y la capacidad vital (4700 mL) es exactamente el volumen residual (1200 mL), que no puede espirarse y por tanto no forma parte de la CV.",
+            "hint": "CPT = CV + VR."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué el CO es útil para medir la DLCO pero no el O2 ni el CO2?",
+            "opts": [
+                "Porque el CO es más barato y fácil de medir",
+                "Porque el CO es exclusivamente difusión-limitado por su unión a hemoglobina, a diferencia del O2 (limitado por perfusión en condiciones normales) y el CO2 (muy soluble)",
+                "Porque el CO no es tóxico en concentraciones de medición",
+                "Porque el O2 y el CO2 no se difunden en los pulmones"
+            ],
+            "ans": 1,
+            "just": "El CO está exclusivamente limitado por difusión gracias a su alta afinidad por la hemoglobina, lo que mantiene su gradiente a lo largo del capilar; el O2 normal y el CO2 tienen características de perfusión que complicarían la medición.",
+            "hint": "La exclusividad de la limitación por difusión hace al CO el estándar de medición."
+        },
+        {
+            "cat": "efecto_bohr",
+            "q": "¿Cuáles son las causas del desplazamiento de la curva de disociación O2-hemoglobina a la izquierda?",
+            "opts": [
+                "Mayor PCO2, menor pH, mayor temperatura",
+                "Menor PCO2, mayor pH, menor temperatura, menor 2,3-DPG y hemoglobina F",
+                "Solo el aumento de pH",
+                "Solo la hemoglobina F"
+            ],
+            "ans": 1,
+            "just": "El desplazamiento a la izquierda es causado por menor PCO2, mayor pH, menor temperatura, menor 2,3-DPG y la presencia de hemoglobina F; todas aumentan la afinidad por el O2.",
+            "hint": "Estas condiciones predominan en los capilares pulmonares."
+        },
+        {
+            "cat": "zona_respiratoria",
+            "q": "¿Cuál es el número total de sacos alveolares en ambos pulmones?",
+            "opts": [
+                "300 millones",
+                "600 millones",
+                "6 × 10^8 (600 millones)",
+                "No se conoce con exactitud"
+            ],
+            "ans": 2,
+            "just": "El número total de sacos alveolares es de 6 × 10^8 (600 millones) en los dos pulmones, contribuyendo a la enorme área de superficie para el intercambio gaseoso.",
+            "hint": "Cada pulmón tiene aproximadamente 300 millones de alvéolos."
+        },
+        {
+            "cat": "control_respiracion",
+            "q": "¿Por qué el centro neumotáxico se considera un centro regulador y no un generador de ritmo?",
+            "opts": [
+                "Porque solo actúa durante el ejercicio",
+                "Porque en su ausencia persiste un ritmo de respiración normal, indicando que no es esencial para generar el ritmo, sino para regular la magnitud y frecuencia",
+                "Porque solo recibe aferencias sensoriales",
+                "Porque solo controla la espiración"
+            ],
+            "ans": 1,
+            "just": "En ausencia del centro neumotáxico persiste un ritmo de respiración normal, lo que indica que su papel es regulador (modula VC y FR) más que generador de ritmo; el GRD del bulbo es el generador principal.",
+            "hint": "El GRD genera el ritmo; el neumotáxico lo afina."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cuáles son los tres parámetros que detectan los quimiorreceptores periféricos?",
+            "opts": [
+                "Solo O2 y CO2",
+                "O2, CO2 y H+ arteriales",
+                "Solo H+ y CO2",
+                "Solo PO2 arterial"
+            ],
+            "ans": 1,
+            "just": "Los quimiorreceptores periféricos detectan cambios en la PO2 arterial, la PCO2 arterial y el pH (H+) arterial, integrando múltiples señales metabólicas.",
+            "hint": "Están ubicados en los cuerpos carotídeos y aórticos."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Qué tipo de neumocito cubre la mayor parte de la superficie alveolar?",
+            "opts": [
+                "Neumocito tipo II",
+                "Neumocito tipo I",
+                "Macrófago alveolar",
+                "Célula ciliada"
+            ],
+            "ans": 1,
+            "just": "Los neumocitos tipo I son células planas y delgadas que cubren la mayor parte de la superficie alveolar, formando la barrera para el intercambio gaseoso; los tipo II se encargan de producir surfactante.",
+            "hint": "Los tipo I son estructurales; los tipo II son secretores."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Por qué la transferencia de O2 desde el aire alveolar equivale al consumo de O2 del organismo en estado estacionario?",
+            "opts": [
+                "Porque toda la ventilación va al alveolo",
+                "Porque en estado estacionario todo el O2 que entra al alveolo desde el aire es captado por la sangre para ser consumido por los tejidos metabólicamente activos",
+                "Porque el O2 no se consume en los pulmones",
+                "Porque la hemoglobina fija todo el O2 alveolar"
+            ],
+            "ans": 1,
+            "just": "En estado estacionario, el O2 que transfiere desde el aire alveolar a la sangre es exactamente igual al que los tejidos consumen metabólicamente, estableciendo un equilibrio dinámico.",
+            "hint": "En ejercicio, mayor consumo exige mayor transferencia alveolar."
+        },
+        {
+            "cat": "limitacion_difusion",
+            "q": "¿Qué condición clínica puede convertir el intercambio de O2 (normalmente perfusión-limitado) en difusión-limitado?",
+            "opts": [
+                "Taquicardia",
+                "La fibrosis pulmonar (que aumenta la distancia de difusión) especialmente en ejercicio, donde el tiempo de tránsito capilar se reduce",
+                "El asma",
+                "La EPOC con enfisema leve"
+            ],
+            "ans": 1,
+            "just": "En la fibrosis pulmonar, la membrana engrosada aumenta la distancia de difusión; en ejercicio, el tiempo de tránsito sanguíneo en el capilar se reduce, y el O2 no alcanza a equilibrarse, convirtiéndose en difusión-limitado.",
+            "hint": "El ejercicio puede desenmascarar limitaciones de difusión que están compensadas en reposo."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Cuál es la relación entre la producción de CO2 por el metabolismo y la PACO2?",
+            "opts": [
+                "Son inversamente proporcionales; más producción de CO2 baja la PACO2",
+                "Son directamente proporcionales; mayor producción metabólica de CO2 aumenta la PACO2 si la ventilación no aumenta proporcionalmente",
+                "No tienen relación",
+                "La PACO2 no depende del metabolismo"
+            ],
+            "ans": 1,
+            "just": "Son directamente proporcionales según la ecuación PACO2 = VCO2 × K / VA: mayor producción metabólica de CO2 eleva la PACO2 a menos que la ventilación alveolar aumente proporcionalmente.",
+            "hint": "El ejercicio produce más CO2 y la ventilación debe aumentar para mantener la PACO2 normal."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Qué sucede cuando todos los grupos hemo de una molécula de hemoglobina están unidos a O2?",
+            "opts": [
+                "Se forma desoxihemoglobina",
+                "Se forma oxihemoglobina y la hemoglobina está saturada al 100%",
+                "Se libera inmediatamente el O2",
+                "Se produce metahemoglobina"
+            ],
+            "ans": 1,
+            "just": "Cuando todos los cuatro grupos hemo de una molécula de hemoglobina están unidos a O2, se forma oxihemoglobina y la molécula está saturada al 100%.",
+            "hint": "La saturación del 100% representa la capacidad máxima de unión."
+        },
+        {
+            "cat": "epo",
+            "q": "¿Cuál es la aplicación clínica de la EPO humana recombinante?",
+            "opts": [
+                "Tratar la policitemia vera",
+                "Tratar la anemia de la insuficiencia renal crónica donde hay déficit de producción endógena de EPO",
+                "Tratar la hipoxia de altitud aguda",
+                "Estimular la producción de surfactante"
+            ],
+            "ans": 1,
+            "just": "La EPO humana recombinante se utiliza para tratar la anemia frecuente en la insuficiencia renal crónica, donde los riñones dañados no producen suficiente EPO endógena.",
+            "hint": "Reemplaza la EPO que el riñón enfermo no puede producir."
+        },
+        {
+            "cat": "leyes_gases",
+            "q": "¿Cuántos mmHg representa la presión del O2 en el aire seco a nivel del mar?",
+            "opts": [
+                "100 mmHg",
+                "150 mmHg",
+                "160 mmHg",
+                "200 mmHg"
+            ],
+            "ans": 2,
+            "just": "La PO2 en el aire seco inspirado es 760 × 0,21 = 160 mmHg, antes de la humidificación que ocurre en las vías aéreas.",
+            "hint": "21% del aire es O2 y la presión total es 760 mmHg."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Cuáles son los factores que aumentarían teóricamente la tasa de difusión de un gas según la ley de Fick?",
+            "opts": [
+                "Mayor espesor de membrana y menor gradiente de presión",
+                "Mayor área de superficie, mayor gradiente de presión parcial y mayor coeficiente de difusión",
+                "Menor área y mayor temperatura únicamente",
+                "Solo el mayor gradiente de presión parcial"
+            ],
+            "ans": 1,
+            "just": "Según la ley de Fick, la tasa de difusión aumenta con mayor área de superficie, mayor gradiente de presión parcial (ΔP) y mayor coeficiente de difusión, siendo inversamente afectada por el espesor de la membrana.",
+            "hint": "VX = D × A × ΔP / ΔX"
+        },
+        {
+            "cat": "mecanica",
+            "q": "¿Cuál es el mecanismo exacto por el que los abdominales ayudan en la espiración?",
+            "opts": [
+                "Elevan las costillas para aumentar el volumen torácico",
+                "Comprimen la cavidad abdominal y empujan el diafragma hacia arriba, reduciendo el volumen intratorácico",
+                "Ayudan al diafragma a bajar durante la inspiración",
+                "Solo se activan durante la tos o estornudo"
+            ],
+            "ans": 1,
+            "just": "Los músculos abdominales comprimen la cavidad abdominal, empujando el diafragma hacia arriba y reduciendo el volumen intratorácico, lo que facilita la espiración activa.",
+            "hint": "Es el mecanismo contrario al de la contracción diafragmática."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Cómo se determina la adaptabilidad pulmonar?",
+            "opts": [
+                "Mediante espirometría simple",
+                "Requiriendo la determinación simultánea de la presión y el volumen pulmonares",
+                "Solo mediante pletismografía corporal",
+                "A través de la gasometría arterial"
+            ],
+            "ans": 1,
+            "just": "La determinación de la adaptabilidad pulmonar requiere la medición simultánea de la presión y el volumen pulmonares, generando la curva presión-volumen.",
+            "hint": "La compliance es la pendiente de la curva P-V."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cómo se explica la compensación respiratoria de la acidosis metabólica?",
+            "opts": [
+                "Los quimiorreceptores centrales detectan el aumento de H+ directamente",
+                "La disminución del pH arterial estimula los quimiorreceptores periféricos (cuerpos carotídeos), que aumentan la ventilación para eliminar CO2 y subir el pH",
+                "Los pulmones absorben H+ directamente del plasma",
+                "El centro neumotáxico regula el pH directamente"
+            ],
+            "ans": 1,
+            "just": "En la acidosis metabólica, la disminución del pH arterial estimula los quimiorreceptores de H+ en los cuerpos carotídeos, que señalan al centro inspiratorio para aumentar la ventilación, eliminando más CO2 y elevando el pH.",
+            "hint": "Esto explica la respiración de Kussmaul en la cetoacidosis diabética."
+        },
+        {
+            "cat": "zona_conduccion",
+            "q": "¿Cómo se relacionan el número de vías aéreas y su resistencia en las generaciones distales?",
+            "opts": [
+                "Menos vías pero mayor resistencia total",
+                "Más vías en paralelo en cada generación, lo que reduce la resistencia total a pesar del menor diámetro individual",
+                "El diámetro aumenta en las generaciones distales",
+                "La resistencia no cambia entre generaciones"
+            ],
+            "ans": 1,
+            "just": "Aunque el diámetro individual disminuye en las generaciones distales, el número de vías en paralelo aumenta exponencialmente, lo que reduce dramáticamente la resistencia total a medida que se avanza hacia los bronquiolos.",
+            "hint": "La resistencia total depende de cuántas vías hay en paralelo, no solo del diámetro individual."
+        },
+        {
+            "cat": "ventilacion",
+            "q": "¿Qué implica clínicamente que la PACO2 puede predecirse conociendo la producción de CO2 y la ventilación alveolar?",
+            "opts": [
+                "Que la PACO2 no varía en patología",
+                "Que en un paciente con hipoventilación (VA disminuida), la PACO2 aumentará; en hiperventilación (VA aumentada), disminuirá",
+                "Que solo cambia en ejercicio",
+                "Que la PACO2 solo refleja el metabolismo celular"
+            ],
+            "ans": 1,
+            "just": "La relación PACO2 = VCO2 × K / VA implica que la hipoventilación eleva la PACO2 (hipercapnia) y la hiperventilación la reduce (hipocapnia), lo que tiene importantes aplicaciones diagnósticas y terapéuticas.",
+            "hint": "Esta es la base para entender la hipercapnia en enfermedades obstructivas graves."
+        },
+        {
+            "cat": "monoxido_carbono",
+            "q": "¿Por qué el tratamiento del envenenamiento por CO implica administrar O2 a alta presión?",
+            "opts": [
+                "Porque el O2 no puede desplazar al CO en condiciones normales",
+                "Porque administrar O2 al 100% o en cámara hiperbárica aumenta la PO2, compitiendo con el CO y favoreciendo su disociación de la hemoglobina",
+                "Porque el CO no se elimina por los pulmones",
+                "Porque solo el O2 hiperbárico puede convertir carboxihemoglobina"
+            ],
+            "ans": 1,
+            "just": "Al aumentar la PO2 (O2 al 100% o hiperbárico), la presión parcial del O2 compite favorablemente con el CO por los sitios de unión de la hemoglobina, acelerando la disociación de la carboxihemoglobina.",
+            "hint": "La ley de acción de masas: mayor concentración de O2 desplaza el CO."
+        },
+        {
+            "cat": "alveolo",
+            "q": "¿Cuál es la relevancia de que los alvéolos tengan paredes delgadas y gran área de superficie?",
+            "opts": [
+                "Para mayor resistencia mecánica",
+                "Para maximizar la difusión de gases: mayor área facilita la difusión y menor espesor reduce la distancia que deben recorrer los gases",
+                "Para producir más surfactante",
+                "Para tener mayor capacidad de almacenamiento de aire"
+            ],
+            "ans": 1,
+            "just": "Las paredes alveolares delgadas reducen la distancia de difusión (↑ VX) y la gran área de superficie maximiza el área disponible para el intercambio (↑ A × VX), ambos factores optimizando la difusión según la ley de Fick.",
+            "hint": "Estructura y función están íntimamente relacionadas en el diseño alveolar."
+        },
+        {
+            "cat": "hemoglobina",
+            "q": "¿Cuál sería la saturación de hemoglobina aproximada a una PO2 de 25 mmHg?",
+            "opts": [
+                "10%",
+                "25%",
+                "50%",
+                "75%"
+            ],
+            "ans": 2,
+            "just": "Según la curva de disociación O2-hemoglobina, a una PO2 de 25 mmHg corresponde una saturación del 50%, que es precisamente la definición de P50.",
+            "hint": "P50 es la PO2 a la que la saturación es del 50%, y su valor normal es 25 mmHg."
+        },
+        {
+            "cat": "capacidades",
+            "q": "¿Cuál es la diferencia entre la Capacidad Inspiratoria y el Volumen de Reserva Inspiratorio?",
+            "opts": [
+                "Son idénticos",
+                "La CI incluye el VC más el VRI; el VRI es solo el volumen adicional por encima de la respiración normal",
+                "La CI es menor que el VRI",
+                "Solo difieren en pacientes con enfermedad pulmonar"
+            ],
+            "ans": 1,
+            "just": "La CI = VC (500 mL) + VRI (3000 mL) = 3500 mL, mientras que el VRI es solo los 3000 mL adicionales por encima del volumen corriente; la CI incluye ambos.",
+            "hint": "La CI es lo que puede inspirarse desde la espiración normal; el VRI es solo el extra."
+        },
+        {
+            "cat": "quimiorreceptores",
+            "q": "¿Cuál es la importancia de que los quimiorreceptores periféricos puedan responder en un único ciclo respiratorio?",
+            "opts": [
+                "Indica que son poco sensibles",
+                "Permite una respuesta ventilatoria extremadamente rápida ante caídas bruscas de PO2, siendo esencial como mecanismo de seguridad en hipoxia aguda",
+                "Solo es relevante en ejercicio prolongado",
+                "Indica que la respuesta es poco precisa"
+            ],
+            "ans": 1,
+            "just": "La capacidad de los quimiorreceptores periféricos de responder en un único ciclo respiratorio cuando la PO2 cae por debajo de 60 mmHg permite una respuesta protectora inmediata ante hipoxia aguda.",
+            "hint": "Esta velocidad de respuesta puede ser crítica en situaciones como apnea o hipoxia súbita."
+        },
+        {
+            "cat": "compliance",
+            "q": "¿Qué sucede en la fase media de la curva presión-volumen, a un volumen igual a la CRF?",
+            "opts": [
+                "Las fuerzas de colapso superan a las de expansión",
+                "Las fuerzas de colapso y expansión son iguales, lo que define el volumen de equilibrio del sistema",
+                "Solo las fuerzas de expansión torácica están activas",
+                "El pulmón tiende a colapsar completamente"
+            ],
+            "ans": 1,
+            "just": "En el punto correspondiente a la CRF, las fuerzas de colapso del pulmón y las fuerzas de expansión de la pared torácica son exactamente iguales y opuestas, definiendo el punto de equilibrio o volumen de reposo del sistema respiratorio.",
+            "hint": "Este equilibrio es lo que mantiene el pulmón expandido en reposo sin actividad muscular."
+        },
+        {
+            "cat": "difusion",
+            "q": "¿Por qué el coeficiente de difusión (D) de un gas es una característica relevante en la ley de Fick?",
+            "opts": [
+                "Porque determina la presión que ejerce el gas",
+                "Porque incorpora las propiedades físicas del gas (incluyendo su solubilidad y peso molecular) que determinan con qué facilidad puede atravesar una membrana biológica",
+                "Porque es igual para todos los gases",
+                "Porque solo depende de la temperatura"
+            ],
+            "ans": 1,
+            "just": "El coeficiente de difusión D incorpora las propiedades físicas del gas que determinan con qué facilidad puede atravesar la membrana biológica, incluyendo su solubilidad y peso molecular; el CO2 tiene un D mayor que el O2.",
+            "hint": "Mayor coeficiente de difusión significa que el gas atraviesa más fácilmente la membrana."
+        },
+        {
+            "cat": "transporte",
+            "q": "¿Cuáles son los dos gases cuya transferencia se verifica en la hematosis pulmonar?",
+            "opts": [
+                "Solo el O2",
+                "O2 (del alveolo a la sangre) y CO2 (de la sangre al alveolo)",
+                "O2 y N2",
+                "CO2 y N2O"
+            ],
+            "ans": 1,
+            "just": "La hematosis implica la transferencia bidireccional de O2 (desde el aire alveolar hacia la sangre capilar pulmonar) y CO2 (desde la sangre capilar pulmonar hacia el aire alveolar).",
+            "hint": "Cada gas sigue su propio gradiente de presión parcial en direcion opuesta."
+        },
+        {
+            "cat": "flujo_pulmonar",
+            "q": "¿Por qué el flujo sanguíneo pulmonar no se distribuye uniformemente en un sujeto de pie?",
+            "opts": [
+                "Porque los bronquios de la base son más amplios",
+                "Porque la gravedad genera una mayor presión hidrostática en la base que en el vértice, aumentando la perfusión hacia zonas dependientes",
+                "Porque la ventilación es mayor en el vértice",
+                "Porque el corazón derecho no puede vencer la gravedad completamente"
+            ],
+            "ans": 1,
+            "just": "En bipedestación, la gravedad genera mayor presión hidrostática en la base pulmonar, lo que aumenta la distensión capilar y el flujo sanguíneo en esa zona; el vértice, al estar más alto, recibe menos perfusión.",
+            "hint": "Es el fundamento de las zonas de West en la distribución de la perfusión pulmonar."
+        }
+    ]
+}

@@ -1,0 +1,262 @@
+[
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Determine la nomenclatura empleada en la tabla de derivadas para representar la notación de Lagrange.",
+        "opts": [
+            "$y'$",
+            "$\\frac{dy}{dx}$",
+            "$f(x)$",
+            "$D_x$"
+        ],
+        "ans": 0,
+        "just": "El formato tradicional de Lagrange utiliza el apostrofe o prima para denotar la tasa de cambio de una función.",
+        "hint": "Busca la opción que contiene una comilla simple sobre la variable."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Identifique la expresión que define a la notación de Leibniz para la derivada de una función.",
+        "opts": [
+            "$\\frac{dy}{dx}$",
+            "$y'$",
+            "$\\lim_{h\\rightarrow 0}$",
+            "$f'(x)$"
+        ],
+        "ans": 0,
+        "just": "Leibniz propuso una estructura de cociente de diferenciales para expresar matemáticamente la derivación.",
+        "hint": "La respuesta correcta tiene forma de fracción."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "De acuerdo con el documento de resumen matemático determine la derivada de la función identidad y=x.",
+        "opts": [
+            "$y'=1$",
+            "$y'=0$",
+            "$y'=x$",
+            "$y'=k$"
+        ],
+        "ans": 0,
+        "just": "La tasa de cambio de la variable identidad siempre resulta en la unidad entera.",
+        "hint": "El valor numérico representa la unidad absoluta."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Para una función de la forma y=kx donde k es una constante el valor de su derivada corresponde a.",
+        "opts": [
+            "$k$",
+            "$1$",
+            "$x$",
+            "$0$"
+        ],
+        "ans": 0,
+        "just": "Al derivar una variable multiplicada por un escalar la función desaparece dejando exclusivamente la constante original.",
+        "hint": "El resultado carece de variables literales."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Según la regla de la potencia generalizada en la tabla indique la derivada de y=x^m siendo m una constante.",
+        "opts": [
+            "$mx^{m-1}$",
+            "$x^{m-1}$",
+            "$m x^m$",
+            "$\\frac{x^{m+1}}{m+1}$"
+        ],
+        "ans": 0,
+        "just": "Por regla general el exponente baja a multiplicar el término principal reduciéndose en un grado consecuentemente.",
+        "hint": "El exponente inicial se convierte en un coeficiente multiplicador."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Establezca la derivada de la función exponencial de base natural y=e^x.",
+        "opts": [
+            "$e^x$",
+            "$x e^{x-1}$",
+            "$e^x \\ln(x)$",
+            "$\\frac{1}{e^x}$"
+        ],
+        "ans": 0,
+        "just": "La exponencial de base e posee la particularidad inusual de ser exactamente igual a su propia derivada.",
+        "hint": "Selecciona el término idéntico al original."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Para una constante a defina la derivada de la función exponencial y=a^x.",
+        "opts": [
+            "$a^x \\ln(a)$",
+            "$a^x$",
+            "$x a^{x-1}$",
+            "$\\frac{a^x}{\\ln(a)}$"
+        ],
+        "ans": 0,
+        "just": "Las bases distintas al número de Euler requieren ser multiplicadas por su respectivo logaritmo natural al derivarse.",
+        "hint": "Se debe incorporar el logaritmo de la base original."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Indique la derivada de la función logaritmo natural y=ln(x).",
+        "opts": [
+            "$\\frac{1}{x}$",
+            "$\\frac{1}{x \\ln(x)}$",
+            "$e^x$",
+            "$\\frac{x}{\\ln(x)}$"
+        ],
+        "ans": 0,
+        "just": "El logaritmo natural se transforma directamente en el recíproco de su argumento inicial.",
+        "hint": "Busca la opción que invierte la variable."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Calcule la derivada de la función logarítmica con base a y=log_a(x).",
+        "opts": [
+            "$\\frac{1}{x \\ln(a)}$",
+            "$\\frac{1}{x}$",
+            "$\\frac{\\ln(a)}{x}$",
+            "$\\frac{1}{\\ln(a)}$"
+        ],
+        "ans": 0,
+        "just": "Esta operación genera una fracción cuyo denominador combina la variable con el logaritmo natural de la base original.",
+        "hint": "La base del logaritmo afecta el divisor final."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Determine la derivada de la función trigonométrica inversa y=arcsen(x).",
+        "opts": [
+            "$\\frac{1}{\\sqrt{1-x^2}}$",
+            "$-\\frac{1}{\\sqrt{1-x^2}}$",
+            "$\\frac{1}{1+x^2}$",
+            "$\\frac{1}{\\sqrt{x^2-1}}$"
+        ],
+        "ans": 0,
+        "just": "El arcoseno produce una fracción positiva estructurada con un radical limitante inferior.",
+        "hint": "La opción correcta carece de signo negativo."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Señale la derivada correspondiente a la función y=arccos(x).",
+        "opts": [
+            "$\\frac{-1}{\\sqrt{1-x^2}}$",
+            "$\\frac{1}{\\sqrt{1-x^2}}$",
+            "$\\frac{-1}{1+x^2}$",
+            "$\\frac{1}{\\sqrt{x^2-1}}$"
+        ],
+        "ans": 0,
+        "just": "A diferencia de su cofunción esta expresión requiere obligatoriamente un signo negativo antecediendo la fracción.",
+        "hint": "El resultado incluye un signo opuesto al arcoseno."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Identifique la derivada de la función y=arctan(x).",
+        "opts": [
+            "$\\frac{1}{1+x^2}$",
+            "$\\frac{1}{\\sqrt{1-x^2}}$",
+            "$-\\frac{1}{1+x^2}$",
+            "$\\sec^2(x)$"
+        ],
+        "ans": 0,
+        "just": "El arcotangente se distingue por poseer un divisor cuadrático carente de radicales.",
+        "hint": "Evita las opciones que contengan raíces cuadradas."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Para la función secante y=sec(x) su derivada se define formalmente como.",
+        "opts": [
+            "$\\sec(x) \\tan(x)$",
+            "$-\\csc(x) \\cot(x)$",
+            "$\\sec^2(x)$",
+            "$\\tan^2(x)$"
+        ],
+        "ans": 0,
+        "just": "La derivación de la secante genera el producto de la misma función multiplicada por la tangente.",
+        "hint": "Combina dos funciones trigonométricas directas."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "La derivada de la función cosecante y=csc(x) resulta ser.",
+        "opts": [
+            "$-\\csc(x) \\cot(x)$",
+            "$\\csc(x) \\cot(x)$",
+            "$-\\sec(x) \\tan(x)$",
+            "$-\\csc^2(x)$"
+        ],
+        "ans": 0,
+        "just": "Esta derivada arroja un término negativo compuesto por la función original junto a su respectiva cofunción.",
+        "hint": "Incluye un signo negativo previo al producto."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Al calcular derivadas de orden superior en funciones implícitas el procedimiento habitual para obtener la segunda derivada requiere.",
+        "opts": [
+            "Derivar la primera derivada calculada previamente",
+            "Integrar la función original dos veces consecutivas",
+            "Ignorar por completo los términos que contengan la variable dependiente",
+            "Asumir la primera derivada como una constante igual a cero"
+        ],
+        "ans": 0,
+        "just": "Para encontrar tasas de cambio adicionales se debe volver a derivar la expresión resultante previa de manera secuencial.",
+        "hint": "Requiere aplicar el operador derivada nuevamente sobre el primer resultado obtenido."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "En el ejemplo de derivación implícita de orden superior si la primera derivada es el cociente y'=x^2/y se debe aplicar obligatoriamente cierta regla para obtener la segunda derivada.",
+        "opts": [
+            "Regla del cociente",
+            "Regla de la cadena",
+            "Regla del producto",
+            "Regla de la potencia"
+        ],
+        "ans": 0,
+        "just": "Dado que la expresión inicial es fraccionaria resulta imperativo usar la regla matemática de divisiones para continuar el procedimiento.",
+        "hint": "Observa la operación principal que separa el numerador del denominador."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Dentro del cálculo de la segunda derivada a partir del cociente x^2/y el desarrollo del numerador incorpora la primera derivada como factor de la siguiente forma.",
+        "opts": [
+            "$2xy - x^2 y'$",
+            "$2x - x^2 y'$",
+            "$2xy + x^2 y'$",
+            "$x^2 y - 2x y'$"
+        ],
+        "ans": 0,
+        "just": "El numerador resultante de la regla aplicada incorpora las variables originales restadas del producto cruzado con la primera tasa de cambio hallada.",
+        "hint": "Se restan los productos multiplicados asegurando incluir la derivada interna de la función dependiente."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Indique la condición estricta bajo la cual es matemáticamente válida una derivada que contiene a la variable y en su denominador tal como y'=x^2/y.",
+        "opts": [
+            "$y \\neq 0$",
+            "$x \\neq 0$",
+            "$y > 0$",
+            "$x > y$"
+        ],
+        "ans": 0,
+        "just": "Al estar ubicada en un divisor la variable no puede asumir el valor nulo pues indefiniere absolutamente toda la expresión fraccionaria.",
+        "hint": "Cualquier división requiere obligatoriamente un divisor diferente de cero absoluto."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "Una vez obtenida la expresión algebraica de la segunda derivada implícita el paso final consiste en realizar una acción específica para simplificar la respuesta.",
+        "opts": [
+            "Sustituir la primera derivada para expresar el resultado en términos exclusivos de las variables originales",
+            "Igualar toda la ecuación resultante a cero",
+            "Despejar la variable independiente del denominador",
+            "Multiplicar por la constante original dictada por el problema"
+        ],
+        "ans": 0,
+        "just": "El resultado absoluto de una segunda derivada requiere reemplazar la primera tasa de cambio calculada previamente garantizando una simplificación basada únicamente en las variables de origen.",
+        "hint": "Reemplaza el símbolo prima por su respectiva equivalencia algebraica para alcanzar el valor definitivo."
+    },
+    {
+        "cat": "tabla_de_derivadas_y_orden_superior",
+        "q": "En la tabla general de cálculo ciertas letras se declaran explícitamente como constantes al inicio del documento.",
+        "opts": [
+            "a, k, m",
+            "x, y, z",
+            "c, C",
+            "h, t"
+        ],
+        "ans": 0,
+        "just": "El texto introductorio de la tabla especifica textualmente cuáles letras representan valores inmutables para el resto de las fórmulas mostradas.",
+        "hint": "Identifica el conjunto específico de tres letras ubicado en la cabecera principal del documento."
+    }
+]

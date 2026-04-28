@@ -11,6 +11,7 @@ async function createCategory(formData) {
   const name = formData.get("name");
   const careerId = formData.get("careerId");
   const description = formData.get("description");
+  const theory = formData.get("theory");
 
   await prisma.category.create({
     data: {
@@ -18,7 +19,21 @@ async function createCategory(formData) {
       slug: slugify(name),
       careerId,
       description: description || null,
+      theory: theory || null,
     },
+  });
+  redirect(`/admin/categories?careerId=${careerId}`);
+}
+
+async function updateCategory(formData) {
+  "use server";
+  const id = formData.get("id");
+  const theory = formData.get("theory");
+  const careerId = formData.get("careerId");
+
+  await prisma.category.update({
+    where: { id },
+    data: { theory: theory || null },
   });
   redirect(`/admin/categories?careerId=${careerId}`);
 }
@@ -90,7 +105,7 @@ export default async function CategoriesPage({ searchParams }) {
         <div className="solid-card" style={{ padding: "1.5rem", marginBottom: "1.5rem" }}>
           <h2 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "1rem" }}>Nueva Categoría</h2>
           <form action={createCategory}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", alignItems: "end" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem", marginBottom: "1rem" }}>
               <div>
                 <label htmlFor="cat-career" className="label">Carrera</label>
                 <select id="cat-career" name="careerId" required className="select" defaultValue={careerId}>
@@ -108,6 +123,17 @@ export default async function CategoriesPage({ searchParams }) {
                 <label htmlFor="cat-desc" className="label">Descripción</label>
                 <input id="cat-desc" name="description" className="input" placeholder="Opcional" />
               </div>
+            </div>
+            <div>
+              <label htmlFor="cat-theory" className="label">Contenido de Teoría (Markdown/LaTeX)</label>
+              <textarea 
+                id="cat-theory" 
+                name="theory" 
+                className="input" 
+                rows={5} 
+                placeholder="Escribe aquí la teoría que verán los alumnos..."
+                style={{ resize: "vertical", minHeight: "100px", fontFamily: "inherit" }}
+              ></textarea>
             </div>
             <button type="submit" className="btn btn-primary" style={{ marginTop: "1rem" }} id="create-category-btn">
               Crear Categoría
@@ -130,6 +156,7 @@ export default async function CategoriesPage({ searchParams }) {
                 <th>Categoría</th>
                 <th>Carrera</th>
                 <th>Preguntas</th>
+                <th>Teoría</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -145,9 +172,31 @@ export default async function CategoriesPage({ searchParams }) {
                   <td>{cat.career.name}</td>
                   <td><span className="badge badge-primary">{cat._count.questions}</span></td>
                   <td>
+                    <details>
+                      <summary style={{ cursor: "pointer", fontSize: "0.8125rem", color: "var(--accent-400)" }}>
+                        {cat.theory ? "Ver/Editar Teoría" : "Añadir Teoría"}
+                      </summary>
+                      <form action={updateCategory} style={{ marginTop: "0.5rem" }}>
+                        <input type="hidden" name="id" value={cat.id} />
+                        <input type="hidden" name="careerId" value={careerId} />
+                        <textarea 
+                          name="theory" 
+                          className="input" 
+                          rows={4} 
+                          defaultValue={cat.theory || ""}
+                          placeholder="Markdown..."
+                          style={{ fontSize: "0.8125rem", width: "100%", minWidth: "200px" }}
+                        ></textarea>
+                        <button type="submit" className="btn btn-primary btn-sm" style={{ marginTop: "0.25rem" }}>
+                          Guardar
+                        </button>
+                      </form>
+                    </details>
+                  </td>
+                  <td>
                     <div style={{ display: "flex", gap: "0.5rem" }}>
                       <Link href={`/admin/questions?categoryId=${cat.id}`} className="btn btn-ghost btn-sm">
-                        Ver preguntas
+                        Preguntas
                       </Link>
                       <form action={deleteCategory}>
                         <input type="hidden" name="id" value={cat.id} />

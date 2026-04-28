@@ -1,0 +1,262 @@
+[
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Qué nombre recibe geométricamente el límite de la pendiente de la recta secante cuando la distancia entre los puntos tiende a cero?",
+        "opts": [
+            "La pendiente de la curva en un punto",
+            "La asíntota de la función",
+            "El cociente de diferencias exacto",
+            "La recta normal a la curva"
+        ],
+        "ans": 0,
+        "just": "El límite de la pendiente secante conforme el incremento se reduce a cero define directamente la pendiente de la curva en el punto de análisis.",
+        "hint": "Esta medida geométrica es equivalente a la pendiente de la recta tangente."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Cuál es la expresión formal de la pendiente de la curva y=f(x) en el punto P(x_0, f(x_0))?",
+        "opts": [
+            "$m=\\lim_{h\\rightarrow0}\\frac{f(x_0+h)-f(x_0)}{h}$",
+            "$m=\\lim_{h\\rightarrow0}\\frac{f(x_0)-f(h)}{h}$",
+            "$m=\\lim_{h\\rightarrow x_0}\\frac{f(x_0+h)-f(x_0)}{h}$",
+            "$m=\\frac{f(x_0+h)-f(x_0)}{h}$"
+        ],
+        "ans": 0,
+        "just": "La definición formal establece este límite específico evaluando el cambio de la función respecto al incremento que se aproxima a cero.",
+        "hint": "Identifica la opción que incluye el límite cuando h tiende a cero evaluado en el incremento de la función."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Cómo se denomina a la expresión fraccionaria antes de aplicar el límite en el cálculo de la derivada?",
+        "opts": [
+            "Cociente de diferencias",
+            "Razón trigonométrica",
+            "Tasa de cambio instantánea",
+            "Diferencial exacto"
+        ],
+        "ans": 0,
+        "just": "El texto especifica que la fracción evaluada con un incremento h distinto de cero es conocida académicamente como cociente de diferencias.",
+        "hint": "Se trata de una división que mide variaciones previas al cálculo límite."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Para determinar la tangente a una curva en el punto P(x_0, f(x_0)), se utiliza un punto cercano Q. ¿Cuáles son las coordenadas de Q?",
+        "opts": [
+            "$(x_0+h, f(x_0+h))$",
+            "$(x_0-h, f(x_0-h))$",
+            "$(h, f(h))$",
+            "$(x_0, f(x_0+h))$"
+        ],
+        "ans": 0,
+        "just": "El punto Q se define añadiendo un pequeño incremento h tanto a la abscisa original como a su correspondiente evaluación en la función.",
+        "hint": "Ambas coordenadas del punto vecino deben incorporar el incremento h."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Determine la pendiente de la curva y=1/x en cualquier punto x=a (a distinto de cero) mediante la definición por límite.",
+        "opts": [
+            "$-\\frac{1}{a^2}$",
+            "$\\frac{1}{a^2}$",
+            "$-\\frac{1}{a}$",
+            "$\\frac{1}{a}$"
+        ],
+        "ans": 0,
+        "just": "El desarrollo del límite del cociente de diferencias para esta función simplifica el numerador a -h, resultando en un valor negativo cuadrático en el denominador.",
+        "hint": "El resultado final conlleva un signo negativo debido a la resta algebraica en el numerador."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Qué condición fundamental debe cumplirse para que exista la derivada de una función en un punto específico?",
+        "opts": [
+            "El límite del cociente de diferencias debe existir",
+            "La función debe ser igual a cero en ese punto",
+            "El incremento h debe ser mayor a uno",
+            "La función no debe tener raíces reales"
+        ],
+        "ans": 0,
+        "just": "La definición matemática estipula que la existencia del límite cuando h tiende a cero es obligatoria para establecer el valor de la derivada.",
+        "hint": "La derivada es por definición el resultado de una operación de convergencia que debe ser válida."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "El dominio de la función derivada f'(x) se define como:",
+        "opts": [
+            "El conjunto de puntos en el dominio de f para los cuales existe el límite",
+            "Todos los números reales positivos",
+            "El mismo dominio de la función original f sin restricciones",
+            "Los puntos donde la función f cruza el eje x"
+        ],
+        "ans": 0,
+        "just": "La función derivada únicamente está definida en las abscisas pertenecientes a la función original donde el cálculo límite arroja un resultado real y existente.",
+        "hint": "No asumas que la derivada comparte automáticamente todo el dominio original de la función."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Si la derivada f' existe en un punto x particular, entonces se afirma que la función f es:",
+        "opts": [
+            "Derivable en x",
+            "Continua pero no derivable",
+            "Asintótica en x",
+            "Constante en x"
+        ],
+        "ans": 0,
+        "just": "El concepto de derivabilidad en un punto está directamente ligado y condicionado a la existencia matemática de la función derivada en dicha coordenada.",
+        "hint": "El término correcto describe la cualidad de poseer derivada."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Cuál es la fórmula alternativa válida para calcular la derivada de una función?",
+        "opts": [
+            "$f'(x)=\\lim_{z\\rightarrow x}\\frac{f(z)-f(x)}{z-x}$",
+            "$f'(x)=\\lim_{z\\rightarrow 0}\\frac{f(z)-f(x)}{z-x}$",
+            "$f'(x)=\\lim_{x\\rightarrow z}\\frac{f(x)-f(z)}{x}$",
+            "$f'(x)=\\lim_{h\\rightarrow x}\\frac{f(x+h)-f(z)}{h}$"
+        ],
+        "ans": 0,
+        "just": "Al aplicar el cambio de variable z=x+h, el incremento h tiende a 0 únicamente si z tiende a x, reestructurando el límite hacia esta forma equivalente.",
+        "hint": "Busca la expresión donde la nueva variable de aproximación z tiende directamente al punto de interés x."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Al utilizar la fórmula alternativa de la derivada, ¿qué relación matemática se establece entre las variables si escribimos z=x+h?",
+        "opts": [
+            "$h=z-x$",
+            "$h=x-z$",
+            "$h=z+x$",
+            "$h=\\frac{z}{x}$"
+        ],
+        "ans": 0,
+        "just": "Despejando el incremento h de la sustitución planteada, se obtiene una diferencia simple que servirá como denominador en la fórmula alternativa.",
+        "hint": "Resta la variable original de la nueva variable para aislar el incremento."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "En el cálculo por definición de la derivada de f(x)=x/(x-1), ¿cuál es la correcta evaluación de f(x+h)?",
+        "opts": [
+            "$\\frac{x+h}{(x+h)-1}$",
+            "$\\frac{x+h}{x-1}$",
+            "$\\frac{x}{x+h-1}$",
+            "$\\frac{x+h}{x+h}$"
+        ],
+        "ans": 0,
+        "just": "Para construir el cociente de diferencias correctamente se debe reemplazar cada instancia de x en la función original por el binomio (x+h).",
+        "hint": "Sustituye la variable independiente tanto en el numerador como en el denominador simultáneamente."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Posterior a realizar la resta de fracciones en el numerador al derivar f(x)=x/(x-1) por definición, el término resultante antes de simplificar h es:",
+        "opts": [
+            "$\\frac{-h}{(x+h-1)(x-1)}$",
+            "$\\frac{h}{(x+h-1)(x-1)}$",
+            "$\\frac{x^2-h}{(x+h-1)(x-1)}$",
+            "$\\frac{-1}{(x+h-1)(x-1)}$"
+        ],
+        "ans": 0,
+        "just": "Al ejecutar las operaciones algebraicas cruzadas en el numerador, todos los términos con x se cancelan mutuamente dejando únicamente un término lineal de h negativo.",
+        "hint": "El resultado intermedio conserva la h en el numerador acompañada de un signo negativo."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Cuál es el resultado final de la derivada de la función f(x)=x/(x-1) obtenido mediante la definición del límite?",
+        "opts": [
+            "$\\frac{-1}{(x-1)^2}$",
+            "$\\frac{1}{(x-1)^2}$",
+            "$\\frac{-1}{x-1}$",
+            "$\\frac{-x}{(x-1)^2}$"
+        ],
+        "ans": 0,
+        "just": "Tras simplificar el incremento h y evaluar el límite tendiendo a cero, el denominador adquiere dos factores idénticos multiplicados formando un cuadrado perfecto.",
+        "hint": "El límite elimina la h restante, convirtiendo el denominador en un binomio al cuadrado con numerador negativo."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Al emplear la fórmula alternativa para derivar f(x)=\\sqrt{x}, ¿qué técnica algebraica se utiliza en el numerador?",
+        "opts": [
+            "Multiplicación por el conjugado",
+            "Suma de fracciones parciales",
+            "Diferencia de cubos perfectos",
+            "Factorización por agrupación"
+        ],
+        "ans": 0,
+        "just": "Para evadir la indeterminación se multiplica tanto el numerador como el denominador por la expresión suma conjugada de las raíces cuadradas presentes.",
+        "hint": "Se busca eliminar las raíces del numerador mediante un producto notable que genera una diferencia de cuadrados."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Durante el cálculo alternativo de la derivada de f(x)=\\sqrt{x}, la expresión del denominador se expande como:",
+        "opts": [
+            "$(\\sqrt{z}+\\sqrt{x})(\\sqrt{z}-\\sqrt{x})$",
+            "$(\\sqrt{z}+\\sqrt{x})^2$",
+            "$(\\sqrt{z}-\\sqrt{x})^2$",
+            "$z^2-x^2$"
+        ],
+        "ans": 0,
+        "just": "El denominador z-x se reescribe estratégicamente como una diferencia de cuadrados de sus respectivas raíces para facilitar la simplificación posterior.",
+        "hint": "Se factoriza asumiendo que los términos lineales provienen de elevar raíces cuadradas al cuadrado."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "¿Cuál es el resultado matemático de derivar f(x)=\\sqrt{x} mediante la fórmula de límite alternativo para x>0?",
+        "opts": [
+            "$\\frac{1}{2\\sqrt{x}}$",
+            "$\\frac{1}{\\sqrt{x}}$",
+            "$2\\sqrt{x}$",
+            "$-\\frac{1}{2\\sqrt{x}}$"
+        ],
+        "ans": 0,
+        "just": "Al evaluar el límite cuando z tiende a x, las raíces en el denominador se suman resultando en el doble de la raíz cuadrada de la variable original.",
+        "hint": "La simplificación final arroja un denominador donde se combinan dos términos radicales idénticos."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Según las observaciones del texto académico, utilizar la notación f(x) en la definición central tiene como propósito:",
+        "opts": [
+            "Enfatizar la variable independiente x respecto a la cual se define la función derivada",
+            "Simplificar visualmente el cálculo de los límites trigonométricos",
+            "Omitir el uso del incremento h en cálculos complejos",
+            "Diferenciar entre derivadas implícitas y explícitas"
+        ],
+        "ans": 0,
+        "just": "La nomenclatura subraya que el resultado del proceso de derivación genera una nueva función estructurada en base a la misma variable independiente de origen.",
+        "hint": "Busca la opción relacionada con la variable principal de la función."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Si se evalúa el límite de la pendiente de la curva y el mismo no existe algebraicamente, ¿qué se concluye de la recta tangente?",
+        "opts": [
+            "La recta tangente no se puede definir mediante esa pendiente en dicho punto",
+            "La tangente es paralela al eje horizontal",
+            "La recta tangente siempre será idéntica a la secante",
+            "La pendiente se asume como cero automáticamente"
+        ],
+        "ans": 0,
+        "just": "La definición formal de la recta tangente requiere indispensablemente la existencia del límite numérico del cociente de diferencias evaluado.",
+        "hint": "La inexistencia del límite imposibilita la caracterización formal descrita en el documento."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "En el ejemplo desarrollado para y=1/x, el cálculo lim_{h->0} (-h)/(h*a(a+h)) se simplifica directamente eliminando:",
+        "opts": [
+            "El incremento h tanto en el numerador como en el denominador",
+            "La variable a del numerador",
+            "El paréntesis (a+h)",
+            "El signo negativo"
+        ],
+        "ans": 0,
+        "just": "Previo a sustituir el valor límite se cancela la variable del incremento presente como factor común rompiendo la indeterminación matemática inicial.",
+        "hint": "Se elimina el elemento que está causando que la división resulte en cero sobre cero."
+    },
+    {
+        "cat": "derivada_por_definicion",
+        "q": "Al formular el cociente de diferencias general, se asume inicialmente como restricción matemática que:",
+        "opts": [
+            "$h\\neq0$",
+            "$x=0$",
+            "$f(x_0)=0$",
+            "$h=1$"
+        ],
+        "ans": 0,
+        "just": "Para que la fracción del cociente se encuentre definida analíticamente el denominador correspondiente al incremento jamás puede ser igual a cero.",
+        "hint": "Toda división requiere que su elemento divisor sea diferente al valor nulo."
+    }
+]

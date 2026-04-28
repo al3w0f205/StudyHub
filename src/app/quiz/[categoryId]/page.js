@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import { auth } from "@/auth";
 import QuizClient from "@/components/quiz/QuizClient";
 
 export const dynamic = "force-dynamic";
@@ -16,11 +17,12 @@ export async function generateMetadata({ params }) {
 
 export default async function QuizPage({ params }) {
   const { categoryId } = await params;
+  const session = await auth();
 
   const category = await prisma.category.findUnique({
     where: { id: categoryId },
     include: {
-      career: { select: { name: true } },
+      career: { select: { id: true, name: true, slug: true } },
       questions: {
         select: { id: true, text: true, options: true, correctIndex: true, hint: true, explanation: true },
       },
@@ -29,10 +31,46 @@ export default async function QuizPage({ params }) {
 
   if (!category || category.questions.length === 0) notFound();
 
-  const allCategories = await prisma.category.findMany({
-    where: { careerId: category.careerId },
-    select: { id: true, name: true }
+  // Server-side career access verification
+  if (session?.user?.role !== "ADMIN") {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { allowedCareers: true },
+    });
+
+    if (!user?.allowedCareers || user.allowedCareers.trim() === "") {
+      notFound(); // No access at all
+    }
+
+    const allowed = user.allowedCareers.split(",").filter(Boolean);
+    if (!allowed.includes(category.career.slug)) {
+      notFound(); // Not allowed for this career
+    }
+  }
+
+  // Fetch all careers with categories for the sidebar navigation
+  const careers = await prisma.career.findMany({
+    orderBy: { name: "asc" },
+    include: {
+      categories: {
+        orderBy: { name: "asc" },
+        select: { id: true, name: true },
+      },
+    },
   });
+
+  // Filter careers based on user access
+  let filteredCareers = careers;
+  if (session?.user?.role !== "ADMIN") {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { allowedCareers: true },
+    });
+    if (user?.allowedCareers) {
+      const allowed = user.allowedCareers.split(",").filter(Boolean);
+      filteredCareers = careers.filter(c => allowed.includes(c.slug));
+    }
+  }
 
   // Shuffle questions and options
   const shuffled = [...category.questions].sort(() => Math.random() - 0.5).map(q => {
@@ -52,7 +90,8 @@ export default async function QuizPage({ params }) {
         questions={shuffled}
         categoryName={category.name}
         careerName={category.career.name}
-        allCategories={allCategories}
+        careers={filteredCareers}
+        currentCareerId={category.career.id}
         categoryId={categoryId}
       />
     </div>

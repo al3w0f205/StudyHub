@@ -25,6 +25,16 @@ export default async function DashboardPage() {
     select: { id: true, name: true, career: { select: { name: true } } }
   });
 
+  const quizProgress = await prisma.quizProgress.findMany({
+    where: { userId: session.user.id },
+    select: { categoryId: true, score: true },
+  });
+
+  const progressMap = {};
+  for (const p of quizProgress) {
+    progressMap[p.categoryId] = p.score;
+  }
+
   return (
     <div>
       <div className="page-header">
@@ -94,7 +104,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <ClientStats categories={categories} />
+      <ClientStats categories={categories} progress={progressMap} />
 
       {/* Quick Actions */}
       <h2 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "1rem" }}>Accesos Rápidos</h2>

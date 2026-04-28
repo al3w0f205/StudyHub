@@ -67,12 +67,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             role: true,
             subscriptionExpiry: true,
             isSuspended: true,
+            allowedCareers: true,
           },
         });
         if (dbUser) {
           token.role = dbUser.role;
           token.subscriptionExpiry = dbUser.subscriptionExpiry?.toISOString() ?? null;
           token.isSuspended = dbUser.isSuspended;
+          token.allowedCareers = dbUser.allowedCareers;
         }
       }
 
@@ -83,9 +85,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user.id) {
         const dbUser = await prisma.user.findUnique({
           where: { id: user.id },
-          select: { isSuspended: true },
+          select: { isSuspended: true, allowedCareers: true },
         });
         if (dbUser?.isSuspended) return false;
+
+        // For new Google users: set allowedCareers to "" (no access) if still null
+        if (account?.provider === "google" && dbUser && dbUser.allowedCareers === null) {
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { allowedCareers: "" },
+          });
+        }
       }
       return true;
     },

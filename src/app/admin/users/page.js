@@ -162,8 +162,8 @@ export default async function UsersPage() {
                         <form action={grantSubscription}>
                           <input type="hidden" name="id" value={u.id} />
                           <input type="hidden" name="days" value="30" />
-                          <button type="submit" className="btn btn-sm btn-ghost" style={{ color: "var(--accent-400)" }}>
-                            +30 días
+                          <button type="submit" className="btn btn-sm btn-primary" style={{ background: "var(--success-400)", borderColor: "var(--success-400)" }}>
+                            Activar Suscripción
                           </button>
                         </form>
                         <form action={toggleRole}>

@@ -28,6 +28,7 @@ export default function QuizClient({
   const [history, setHistory] = useState([]); // [{ questionId, isCorrect }]
   const [completedCount, setCompletedCount] = useState(initialCompletedCount);
   const [isResetting, setIsResetting] = useState(false);
+  const [isSavingFinal, setIsSavingFinal] = useState(false);
   
   // Tools
   const [isZenMode, setIsZenMode] = useState(false);
@@ -46,6 +47,7 @@ export default function QuizClient({
   const [categoryProgress, setCategoryProgress] = useState({});
 
   useEffect(() => {
+    if (isOfflineMode) return;
     // Load progress from API
     fetch("/api/quiz-progress")
       .then(r => r.ok ? r.json() : {})
@@ -80,8 +82,10 @@ export default function QuizClient({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      return true;
     } catch (e) {
       console.error("Failed to save progress:", e);
+      return false;
     }
   }, [categoryId, history, isOfflineMode]);
 
@@ -125,21 +129,24 @@ export default function QuizClient({
     }
   }, [isTimePressure, selected, finished, current, handleAnswer, view]);
 
-  function nextQuestion() {
+  async function nextQuestion() {
+    if (isSavingFinal) return;
     if (selected === q?.correctIndex) {
       setCompletedCount(prev => prev + 1);
     }
 
     if (current + 1 >= total) {
-      setFinished(true);
       // Final overall score update
       const finalScore = totalQuestionsInCategory > 0 
         ? Math.round(((completedCount + (selected === q?.correctIndex ? 1 : 0)) / totalQuestionsInCategory) * 100)
         : 100;
-      saveProgress({
+      setIsSavingFinal(true);
+      await saveProgress({
         type: "final",
         score: Math.max(0, Math.min(100, finalScore)),
       });
+      setIsSavingFinal(false);
+      setFinished(true);
       return;
     }
     setCurrent((c) => c + 1);
@@ -725,8 +732,8 @@ export default function QuizClient({
           </div>
           
           {selected !== null && (
-            <button onClick={nextQuestion} className="btn btn-primary animate-fade-in quiz-next-btn">
-              {current + 1 >= total ? "Ver Resultados 🏆" : "Siguiente →"}
+            <button onClick={nextQuestion} className="btn btn-primary animate-fade-in quiz-next-btn" disabled={isSavingFinal}>
+              {isSavingFinal ? "Guardando..." : current + 1 >= total ? "Ver Resultados 🏆" : "Siguiente →"}
             </button>
           )}
         </div>

@@ -9,6 +9,7 @@ import { auth } from "@/auth";
 import QuizAgreement from "@/components/quiz/QuizAgreement";
 import ClientStats from "@/app/dashboard/ClientStats";
 import GlobalSearch from "@/components/ui/GlobalSearch";
+import CareerSelector from "@/components/quiz/CareerSelector";
 
 export default async function QuizSelectorPage({ searchParams }) {
   const params = await searchParams;
@@ -90,6 +91,12 @@ export default async function QuizSelectorPage({ searchParams }) {
           <p className="page-subtitle" style={{ fontSize: "0.875rem" }}>Panel de estudio interactivo</p>
         </div>
         <div style={{ display: "flex", gap: "0.5rem" }}>
+          <Link href="/quiz/repaso" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+            🧠 Repaso
+          </Link>
+          <Link href="/badges" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+            🏅 Logros
+          </Link>
           <Link href="/leaderboard" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
             🏆 Leaderboard
           </Link>
@@ -108,6 +115,18 @@ export default async function QuizSelectorPage({ searchParams }) {
         <GlobalSearch categories={allCategories} />
       </div>
 
+      <h2 style={{ fontSize: "1.25rem", fontWeight: "700", marginBottom: "0.5rem", marginTop: "0" }}>
+        ¿Qué quieres estudiar hoy?
+      </h2>
+      <p style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", marginBottom: "1rem" }}>
+        Elige primero tu carrera y luego revisa tus estadísticas.
+      </p>
+
+      {!noAccess && (
+        <div id="career-selector" style={{ marginBottom: "2rem" }}>
+          <CareerSelector careers={careers} selectedCareerSlug={selectedCareerSlug} />
+        </div>
+      )}
       {!noAccess && (
         <ClientStats categories={allCategories} progress={progressMap} user={user} />
       )}
@@ -115,67 +134,6 @@ export default async function QuizSelectorPage({ searchParams }) {
       <h2 style={{ fontSize: "1.25rem", fontWeight: "700", marginBottom: "1.25rem", marginTop: noAccess ? "0" : "1.5rem" }}>
         Módulos Disponibles
       </h2>
-
-      {!noAccess && (
-        <div style={{ marginBottom: "2.5rem" }}>
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", 
-            gap: "0.75rem",
-          }}>
-            {careers.map((career) => {
-              const isActive = (selectedCareerSlug === career.slug || (!selectedCareerSlug && careers[0]?.slug === career.slug));
-              return (
-                <Link
-                  key={career.id}
-                  href={`/quiz?career=${career.slug}`}
-                  scroll={false}
-                  className={`solid-card ${isActive ? 'active-career-card' : ''}`}
-                  style={{
-                    padding: "1rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textAlign: "center",
-                    gap: "0.5rem",
-                    background: isActive ? "var(--gradient-primary)" : "var(--bg-card)",
-                    borderColor: isActive ? "transparent" : "var(--border-default)",
-                    color: isActive ? "white" : "var(--text-primary)",
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    position: "relative",
-                    overflow: "hidden",
-                    minHeight: "100px"
-                  }}
-                >
-                  <span style={{ fontSize: "2rem", marginBottom: "0.25rem", filter: isActive ? "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" : "none" }}>
-                    {career.icon || "📚"}
-                  </span>
-                  <span style={{ 
-                    fontSize: "0.875rem", 
-                    fontWeight: "700",
-                    lineHeight: "1.2"
-                  }}>
-                    {career.name}
-                  </span>
-                  {isActive && (
-                    <div style={{ 
-                      position: "absolute", 
-                      bottom: "0", 
-                      left: "0", 
-                      right: "0", 
-                      height: "3px", 
-                      background: "rgba(255,255,255,0.3)" 
-                    }} />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       {noAccess ? (
         <div className="solid-card" style={{ padding: "2.5rem 2rem", textAlign: "center" }}>

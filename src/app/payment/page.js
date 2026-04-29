@@ -6,11 +6,22 @@ import { uploadToUploadThing } from "@/lib/uploadthing";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
+const TRANSFER_ACCOUNTS = (process.env.NEXT_PUBLIC_TRANSFER_ACCOUNTS || "")
+  .split(";")
+  .map((item) => item.trim())
+  .filter(Boolean);
 
 async function submitReceipt(formData) {
   "use server";
   const session = await auth();
   if (!session) redirect("/auth/login");
+  const existingPending = await prisma.paymentRequest.findFirst({
+    where: { userId: session.user.id, status: "PENDING" },
+    select: { id: true },
+  });
+  if (existingPending) {
+    redirect("/payment?error=pending_exists");
+  }
 
   const file = formData.get("receipt");
   if (!file || file.size === 0) return;
@@ -44,6 +55,7 @@ export default async function PaymentPage({ searchParams }) {
   const session = await auth();
   const params = await searchParams;
   const success = params?.success === "true";
+  const hasPendingError = params?.error === "pending_exists";
   const reason = params?.reason;
 
   const user = await prisma.user.findUnique({
@@ -95,6 +107,13 @@ export default async function PaymentPage({ searchParams }) {
           </div>
           <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
             Tu comprobante ha sido enviado exitosamente. Un administrador lo revisará y te habilitará el acceso en un máximo de <strong style={{ color: "var(--text-primary)" }}>24 horas</strong>.
+          </p>
+        </div>
+      )}
+      {hasPendingError && (
+        <div className="solid-card animate-fade-in" style={{ padding: "1rem 1.25rem", marginBottom: "1.5rem", borderColor: "rgba(245,158,11,0.3)", background: "rgba(245,158,11,0.05)" }}>
+          <p style={{ fontSize: "0.875rem", color: "var(--warning-400)" }}>
+            Ya tienes un pago pendiente de revisión. No puedes enviar otro comprobante todavía.
           </p>
         </div>
       )}
@@ -150,16 +169,35 @@ export default async function PaymentPage({ searchParams }) {
             <strong style={{ color: "var(--text-primary)" }}>Proceso:</strong> Envía tu comprobante y un admin aprobará tu acceso en menos de 24h.
           </p>
         </div>
+        <div style={{ background: "rgba(34,211,238,0.04)", borderRadius: "var(--radius-md)", padding: "1rem", border: "1px solid rgba(34,211,238,0.2)" }}>
+          <h3 style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.5rem" }}>Cuentas para transferir</h3>
+          {TRANSFER_ACCOUNTS.length > 0 ? (
+            <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.8 }}>
+              {TRANSFER_ACCOUNTS.map((account) => (
+                <li key={account}>{account}</li>
+              ))}
+            </ul>
+          ) : (
+            <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", margin: 0 }}>
+              Configura `NEXT_PUBLIC_TRANSFER_ACCOUNTS` (separadas por `;`) para mostrar las cuentas.
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Upload Form */}
-      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
+      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem", opacity: pendingPayment ? 0.65 : 1 }}>
         <h2 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "1rem" }}>📷 Enviar Comprobante</h2>
+        {pendingPayment && (
+          <div style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "var(--warning-400)" }}>
+            Ya tienes un comprobante pendiente de revisión. Debes esperar la respuesta del administrador antes de volver a enviar otro pago.
+          </div>
+        )}
         <form action={submitReceipt}>
           {/* Receipt upload */}
           <div style={{ marginBottom: "1rem" }}>
             <label className="label">Foto del Comprobante *</label>
-            <input type="file" name="receipt" accept="image/*" required className="input" style={{ padding: "0.5rem" }} />
+            <input type="file" name="receipt" accept="image/*" required className="input" style={{ padding: "0.5rem" }} disabled={!!pendingPayment} />
           </div>
 
           {/* Career selection */}
@@ -180,6 +218,7 @@ export default async function PaymentPage({ searchParams }) {
                     name="requestedCareers"
                     value={c.slug}
                     defaultChecked={allowedList.includes(c.slug)}
+                    disabled={!!pendingPayment}
                     style={{ accentColor: "var(--accent-400)", width: 16, height: 16 }}
                   />
                   <span>{c.icon || "📚"} {c.name}</span>
@@ -196,11 +235,12 @@ export default async function PaymentPage({ searchParams }) {
               placeholder="Escribe cualquier información relevante sobre tu pago, solicitud o dudas..."
               className="input textarea"
               style={{ minHeight: 80, resize: "vertical" }}
+              disabled={!!pendingPayment}
             />
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-            Enviar Comprobante
+          <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={!!pendingPayment}>
+            {pendingPayment ? "Comprobante en Revisión" : "Enviar Comprobante"}
           </button>
         </form>
       </div>

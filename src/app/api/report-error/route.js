@@ -16,16 +16,41 @@ export async function POST(request) {
   }
 
   const { questionId, reason } = body;
-  if (!questionId || !reason) {
+  const cleanReason = String(reason || "").trim();
+
+  if (!questionId || !cleanReason) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
+  if (cleanReason.length < 8) {
+    return NextResponse.json(
+      { error: "El reporte debe tener al menos 8 caracteres." },
+      { status: 400 }
+    );
+  }
+
   try {
+    const existingPending = await prisma.errorReport.findFirst({
+      where: {
+        questionId,
+        userId: session.user.id,
+        status: "PENDING",
+      },
+      select: { id: true },
+    });
+
+    if (existingPending) {
+      return NextResponse.json(
+        { error: "Ya tienes un reporte pendiente para esta pregunta." },
+        { status: 409 }
+      );
+    }
+
     await prisma.errorReport.create({
       data: {
         questionId,
         userId: session.user.id,
-        reason,
+        reason: cleanReason,
       },
     });
 

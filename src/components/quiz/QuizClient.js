@@ -29,6 +29,9 @@ export default function QuizClient({
   const [completedCount, setCompletedCount] = useState(initialCompletedCount);
   const [isResetting, setIsResetting] = useState(false);
   const [isSavingFinal, setIsSavingFinal] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [reportReason, setReportReason] = useState("");
+  const [isReporting, setIsReporting] = useState(false);
   
   // Tools
   const [isZenMode, setIsZenMode] = useState(false);
@@ -199,11 +202,15 @@ export default function QuizClient({
     }
   }
 
-  async function reportError() {
-    if (!q) return;
-    const reason = window.prompt("¿Cuál es el error en esta pregunta? (Ej: respuesta incorrecta, error de dedo, latex mal escrito)");
-    if (!reason) return;
+  async function reportError(customReason) {
+    if (!q || isReporting) return;
+    const reason = String(customReason || "").trim();
+    if (reason.length < 8) {
+      alert("Describe un poco más el error (mínimo 8 caracteres).");
+      return;
+    }
 
+    setIsReporting(true);
     try {
       const res = await fetch("/api/report-error", {
         method: "POST",
@@ -212,11 +219,16 @@ export default function QuizClient({
       });
       if (res.ok) {
         alert("Reporte enviado. ¡Gracias por ayudarnos a mejorar!");
+        setReportReason("");
+        setReportOpen(false);
       } else {
-        alert("Error al enviar el reporte. Inténtalo de nuevo.");
+        const payload = await res.json().catch(() => ({}));
+        alert(payload?.error || "Error al enviar el reporte. Inténtalo de nuevo.");
       }
     } catch (e) {
       alert("Error de conexión.");
+    } finally {
+      setIsReporting(false);
     }
   }
 
@@ -274,16 +286,6 @@ export default function QuizClient({
   return (
     <div className={`quiz-layout ${isZenMode ? 'zen-mode' : ''}`}>
       
-      {/* Mobile sidebar toggle */}
-      {!isZenMode && (
-        <button 
-          className="quiz-mobile-toggle btn btn-secondary btn-sm"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          {sidebarOpen ? "✕ Cerrar" : "☰ Navegación"}
-        </button>
-      )}
-
       {/* Sidebar overlay for mobile */}
       {sidebarOpen && (
         <div className="quiz-sidebar-overlay" onClick={() => setSidebarOpen(false)} />
@@ -520,7 +522,7 @@ export default function QuizClient({
               </div>
             </div>
 
-            <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "1rem" }}>
+            <div className="quiz-flashcard-actions" style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "1rem" }}>
                <button 
                 onClick={() => {
                   if (current > 0) {
@@ -577,7 +579,7 @@ export default function QuizClient({
         ) : (
           <>
             {/* Header */}
-        <div className="quiz-header">
+        <div className="quiz-header quiz-topbar">
           <div style={{ minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <Link href="/quiz" className="quiz-breadcrumb" style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", cursor: "pointer" }}>
@@ -597,7 +599,7 @@ export default function QuizClient({
             </h1>
           </div>
           
-          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
+          <div className="quiz-top-actions" style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
             {isTimePressure && selected === null && (
               <div style={{ fontSize: "1.125rem", fontWeight: 700, color: timeLeft <= 5 ? "var(--danger-400)" : "var(--warning-400)" }}>
                 00:{timeLeft.toString().padStart(2, "0")}
@@ -720,13 +722,13 @@ export default function QuizClient({
         {/* Hint & Actions */}
         {total > 0 && (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
-          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+          <div className="quiz-actions-row" style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
             {q.hint && selected === null && !isExamMode && (
               <button onClick={() => setShowHint(!showHint)} className="btn btn-ghost" style={{ color: "var(--warning-400)", fontSize: "0.875rem" }}>
                 💡 {showHint ? "Ocultar Pista" : "Ver Pista"}
               </button>
             )}
-            <button onClick={reportError} className="btn btn-ghost" style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem", opacity: 0.6 }}>
+            <button onClick={() => setReportOpen((prev) => !prev)} className="btn btn-ghost" style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem", opacity: 0.8 }}>
               🚩 Reportar Error
             </button>
           </div>
@@ -737,6 +739,33 @@ export default function QuizClient({
             </button>
           )}
         </div>
+        )}
+
+        {total > 0 && reportOpen && (
+          <div className="solid-card animate-fade-in" style={{ padding: "0.875rem", marginBottom: "0.75rem", border: "1px solid rgba(244,63,94,0.25)" }}>
+            <label htmlFor="report-reason" style={{ display: "block", fontSize: "0.75rem", color: "var(--text-tertiary)", marginBottom: "0.375rem", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700 }}>
+              ¿Qué problema encontraste?
+            </label>
+            <textarea
+              id="report-reason"
+              className="input textarea"
+              value={reportReason}
+              onChange={(e) => setReportReason(e.target.value)}
+              placeholder="Ej: la opción correcta no coincide con la explicación, hay error de redacción o fórmula."
+              style={{ minHeight: 86, marginBottom: "0.625rem" }}
+            />
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "0.5rem", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }>Mínimo 8 caracteres.</span>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setReportOpen(false)} disabled={isReporting}>
+                  Cancelar
+                </button>
+                <button type="button" className="btn btn-primary btn-sm" onClick={() => reportError(reportReason)} disabled={isReporting}>
+                  {isReporting ? "Enviando..." : "Enviar Reporte"}
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Hint Box */}
@@ -762,6 +791,31 @@ export default function QuizClient({
           </>
         )}
       </div>
+
+      {!isZenMode && (
+        <nav className="quiz-mobile-bottom-nav" aria-label="Navegación rápida móvil">
+          <Link href="/quiz" className="quiz-mobile-bottom-link">
+            <span>🧭</span>
+            <span>Menú</span>
+          </Link>
+          <Link href="/quiz/repaso" className="quiz-mobile-bottom-link">
+            <span>🧠</span>
+            <span>Repaso</span>
+          </Link>
+          <Link href="/badges" className="quiz-mobile-bottom-link">
+            <span>🏅</span>
+            <span>Logros</span>
+          </Link>
+          <button
+            type="button"
+            className="quiz-mobile-bottom-link quiz-mobile-bottom-link-btn"
+            onClick={() => setSidebarOpen((prev) => !prev)}
+          >
+            <span>{sidebarOpen ? "✕" : "☰"}</span>
+            <span>{sidebarOpen ? "Cerrar" : "Panel"}</span>
+          </button>
+        </nav>
+      )}
     </div>
   );
 }

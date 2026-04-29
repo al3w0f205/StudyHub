@@ -15,7 +15,7 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, readdirSync, statSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -38,87 +38,103 @@ function slugify(text) {
 }
 
 async function main() {
-  const filePath = resolve(__dirname, "../data/questions.json");
-
-  if (!existsSync(filePath)) {
-    console.error("❌ File not found:", filePath);
-    console.error("   Create data/questions.json with your questions first.");
+  const dataDir = resolve(__dirname, "../data");
+  
+  if (!existsSync(dataDir)) {
+    console.error("❌ Data directory not found:", dataDir);
     process.exit(1);
   }
 
-  console.log("📖 Reading questions from", filePath);
-  const raw = readFileSync(filePath, "utf-8");
-  const data = JSON.parse(raw);
-  const preguntas = data.preguntas || data.questions || [];
-
-  if (preguntas.length === 0) {
-    console.error("❌ No questions found in the JSON file.");
-    process.exit(1);
-  }
-
-  console.log(`📊 Found ${preguntas.length} questions`);
-
-  // ── Step 1: Extract unique categories ──
-  const categoryNames = [...new Set(preguntas.map((p) => p.cat))];
-  console.log(`📁 Found ${categoryNames.length} unique categories:`, categoryNames);
-
-  // ── Step 2: Create a default career if none exists ──
-  let defaultCareer = await prisma.career.findFirst();
-  if (!defaultCareer) {
-    defaultCareer = await prisma.career.create({
-      data: {
-        name: "General",
-        slug: "general",
-        description: "Carrera predeterminada para preguntas importadas",
-        icon: "📚",
-      },
+  // Recursive function to get all JSON files
+  const getJsonFiles = (dir) => {
+    let results = [];
+    const list = readdirSync(dir);
+    list.forEach((file) => {
+      const path = resolve(dir, file);
+      const stat = statSync(path);
+      if (stat && stat.isDirectory()) {
+        results = results.concat(getJsonFiles(path));
+      } else if (file.endsWith(".json") && file !== "package.json") {
+        results.push(path);
+      }
     });
-    console.log("🎓 Created default career: General");
-  }
+    return results;
+  };
 
-  // ── Step 3: Upsert categories ──
-  const categoryMap = {};
-  for (const catName of categoryNames) {
-    const slug = slugify(catName);
-    let category = await prisma.category.findFirst({
-      where: { slug, careerId: defaultCareer.id },
-    });
+  const jsonFiles = getJsonFiles(dataDir);
+  console.log(`📂 Found ${jsonFiles.length} JSON files to process.`);
 
-    if (!category) {
-      category = await prisma.category.create({
-        data: {
-          name: catName.charAt(0).toUpperCase() + catName.slice(1),
-          slug,
-          careerId: defaultCareer.id,
-        },
-      });
-      console.log(`  ✅ Created category: ${category.name}`);
-    } else {
-      console.log(`  ⏭️  Category exists: ${category.name}`);
+  for (const filePath of jsonFiles) {
+    const relativePath = filePath.replace(dataDir, "");
+    const folderName = relativePath.split(/[\\\/]/)[1] || "General";
+    const careerName = folderName.charAt(0).toUpperCase() + folderName.slice(1);
+    const careerSlug = slugify(careerName);
+
+    console.log(`\n📖 Processing: ${filePath}`);
+    console.log(`🎓 Target Career: ${careerName}`);
+
+    const raw = readFileSync(filePath, "utf-8");
+    let preguntas = [];
+    let theoryText = null;
+
+    try {
+      const data = JSON.parse(raw);
+      preguntas = data.preguntas || data.questions || (Array.isArray(data) ? data : []);
+      theoryText = data.theory || null;
+    } catch (e) {
+      console.error(`  ❌ Failed to parse ${filePath}:`, e.message);
+      continue;
     }
 
-    categoryMap[catName] = category.id;
-  }
+    if (preguntas.length === 0 && !theoryText) {
+      console.log("  ⚠️ No questions or theory found, skipping.");
+      continue;
+    }
 
-  // ── Step 4: Insert questions ──
-  let inserted = 0;
-  let skipped = 0;
-  const batchSize = 100;
-  const batches = [];
+    // ── Step 1: Ensure Career exists ──
+    let career = await prisma.career.upsert({
+      where: { slug: careerSlug },
+      update: {},
+      create: {
+        name: careerName,
+        slug: careerSlug,
+        description: `Carrera de ${careerName}`,
+        icon: careerName === "Medicina" ? "🏥" : careerName === "Ingenieria" ? "🏗️" : "📚",
+      },
+    });
 
-  for (let i = 0; i < preguntas.length; i += batchSize) {
-    batches.push(preguntas.slice(i, i + batchSize));
-  }
+    // ── Step 2: Extract unique categories in this file ──
+    const categoryNames = [...new Set(preguntas.map((p) => p.cat))];
+    
+    // If there are no questions but there is theory, we might have a single category name in the JSON or use the filename
+    if (categoryNames.length === 0 && theoryText) {
+      const catFromFilename = resolve(filePath).split(/[\\\/]/).pop().replace(".json", "");
+      categoryNames.push(catFromFilename);
+    }
 
-  for (const batch of batches) {
-    const questionsToCreate = batch
-      .filter((p) => {
-        if (!p.q || !p.opts || p.opts.length < 2 || p.ans === undefined) {
-          skipped++;
-          return false;
-        }
-        return true;
-      })
+    const categoryMap = {};
+
+    for (const catName of categoryNames) {
+      const slug = slugify(catName);
+      let category = await prisma.category.upsert({
+        where: { slug_careerId: { slug, careerId: career.id } },
+        update: { 
+          name: catName.charAt(0).toUpperCase() + catName.slice(1),
+          theory: theoryText // Update theory if provided
+        },
+        create: {
+          name: catName.charAt(0).toUpperCase() + catName.slice(1),
+          slug,
+          careerId: career.id,
+          theory: theoryText
+        },
+      });
+      categoryMap[catName] = category.id;
+    }
+
+    // ── Step 3: Insert questions ──
+    const questionsToCreate = preguntas
+      .filter((p) => p.q && p.opts && p.opts.length >= 2 && p.ans !== undefined)
       .map((p) => ({
         text: p.q,
         options: p.opts,
@@ -133,21 +149,20 @@ async function main() {
         data: questionsToCreate,
         skipDuplicates: true,
       });
-      inserted += result.count;
+      console.log(`  ✅ Inserted ${result.count} questions into ${careerName}.`);
     }
   }
 
   console.log("\n═══════════════════════════════════════");
-  console.log("✅ Migration complete!");
-  console.log(`   Inserted: ${inserted} questions`);
-  console.log(`   Skipped:  ${skipped} (invalid format)`);
-  console.log(`   Categories: ${categoryNames.length}`);
+  console.log("✨ All data files processed successfully!");
   console.log("═══════════════════════════════════════\n");
 }
 
+
 main()
   .catch((e) => {
-    console.error("❌ Error:", e);
+    console.error("❌ Global Error:", e);
     process.exit(1);
   })
   .finally(() => prisma.$disconnect());
+

@@ -58,7 +58,7 @@ export default async function QuizPage({ params }) {
     },
   });
 
-  if (!category || category.questions.length === 0) notFound();
+  if (!category || (category.questions.length === 0 && !category.theory)) notFound();
 
   // Server-side career access verification
   if (session?.user?.role !== "ADMIN") {

@@ -131,7 +131,7 @@
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "En el cálculo por definición de la derivada de f(x)=x/(x-1), ¿cuál es la correcta evaluación de f(x+h)?",
+        "q": "En el cálculo por definición de la derivada de $f(x)=x/(x-1)$, ¿cuál es la correcta evaluación de $f(x+h)$?",
         "opts": [
             "$\\frac{x+h}{(x+h)-1}$",
             "$\\frac{x+h}{x-1}$",
@@ -235,11 +235,11 @@
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "En el ejemplo desarrollado para y=1/x, el cálculo lim_{h->0} (-h)/(h*a(a+h)) se simplifica directamente eliminando:",
+        "q": "En el ejemplo desarrollado para $y=1/x$, el cálculo $\\lim_{h \\to 0} \\frac{-h}{h \\cdot a(a+h)}$ se simplifica directamente eliminando:",
         "opts": [
-            "El incremento h tanto en el numerador como en el denominador",
-            "La variable a del numerador",
-            "El paréntesis (a+h)",
+            "El incremento $h$ tanto en el numerador como en el denominador",
+            "La variable $a$ del numerador",
+            "El paréntesis $(a+h)$",
             "El signo negativo"
         ],
         "ans": 0,

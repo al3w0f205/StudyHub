@@ -13,14 +13,28 @@ import "katex/dist/katex.min.css";
 export default function MathText({ children, className = "" }) {
   if (typeof children !== "string") return children;
 
+  // Preprocess text to fix common issues in the data
+  const processed = children
+    // Replace arrows
+    .replace(/->/g, "\\to ")
+    .replace(/→/g, "\\to ")
+    // Auto-wrap common math patterns that are missing $ delimiters
+    // (e.g., lim_{h\to0}, f(x+h), y=1/x)
+    .replace(/(?<!\$)\blim_\{([^}]*)\}/g, "$\\lim_{$1}$")
+    .replace(/(?<!\$)\b([a-z]\([a-z]\+h\))(?!\$)/g, "$$ $1 $$")
+    .replace(/(?<!\$)\b([a-z]\([a-z]\))(?!\$)/g, "$$ $1 $$")
+    // Fix common fractions in text like 1/x
+    .replace(/(?<!\$)\b(y\s*=\s*[0-9a-z\/]+)(?!\$)/g, "$$ $1 $$");
+
   return (
     <div className={`math-text-wrapper ${className}`}>
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[rehypeKatex]}
       >
-        {children}
+        {processed}
       </ReactMarkdown>
     </div>
   );
 }
+

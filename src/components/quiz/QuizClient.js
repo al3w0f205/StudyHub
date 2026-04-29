@@ -6,7 +6,7 @@ import MathText from "@/components/ui/MathText";
 
 export default function QuizClient({ questions, theory, categoryName, careerName, careers, currentCareerId, categoryId }) {
   // State
-  const [view, setView] = useState("quiz"); // "quiz" or "theory"
+  const [view, setView] = useState(questions.length === 0 ? "theory" : "quiz"); // "quiz" or "theory"
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showHint, setShowHint] = useState(false);
@@ -42,8 +42,8 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   }, []);
 
   const total = questions.length;
-  const q = questions[current];
-  const progress = ((current + 1) / total) * 100;
+  const q = questions[current] || null;
+  const progress = total > 0 ? ((current + 1) / total) * 100 : 0;
 
   const saveProgress = useCallback(async (newScore) => {
     const pct = Math.round((newScore / total) * 100);
@@ -118,7 +118,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   const filteredCategories = selectedCareer?.categories || [];
 
   // Final Results Screen
-  if (finished) {
+  if (finished && total > 0) {
     const pct = Math.round((score / total) * 100);
     return (
       <div className="quiz-results-container">
@@ -245,8 +245,9 @@ export default function QuizClient({ questions, theory, categoryName, careerName
                 onClick={() => setView(view === "quiz" ? "theory" : "quiz")}
                 className={`btn btn-sm ${view === "theory" ? "btn-primary" : "btn-secondary"}`}
                 style={{ width: "100%", justifyContent: "center", display: "flex", gap: "0.5rem" }}
+                disabled={total === 0}
               >
-                {view === "quiz" ? "📚 Estudiar Teoría" : "✍️ Volver al Quiz"}
+                {view === "quiz" ? "📚 Estudiar Teoría" : (total > 0 ? "✍️ Volver al Quiz" : "📚 Solo Teoría")}
               </button>
             </div>
           )}
@@ -289,7 +290,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
                 <h1 className="quiz-question-number">Material de Estudio</h1>
               </div>
               <div style={{ display: "flex", gap: "0.5rem" }}>
-                <button onClick={() => setView("quiz")} className="btn btn-primary btn-sm">Empezar Quiz →</button>
+                {total > 0 && <button onClick={() => setView("quiz")} className="btn btn-primary btn-sm">Empezar Quiz →</button>}
                 <Link href="/quiz" className="btn btn-sm btn-secondary" style={{ border: "1px solid var(--border-default)", fontWeight: 700 }}>
                   SALIR ✕
                 </Link>

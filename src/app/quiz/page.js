@@ -129,6 +129,7 @@ export default async function QuizSelectorPage({ searchParams }) {
                 <Link
                   key={career.id}
                   href={`/quiz?career=${career.slug}`}
+                  scroll={false}
                   className={`solid-card ${isActive ? 'active-career-card' : ''}`}
                   style={{
                     padding: "1rem",
@@ -265,6 +266,25 @@ export default async function QuizSelectorPage({ searchParams }) {
                     >
                       <div>
                         <div style={{ fontWeight: "700", fontSize: "1.125rem", color: "var(--text-primary)", marginBottom: "0.5rem" }}>{cat.name}</div>
+                        
+                        {/* Mastery Progress */}
+                        {progressMap[cat.id] !== undefined && (
+                          <div style={{ marginBottom: "0.75rem" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.6875rem", fontWeight: 700, color: "var(--text-tertiary)", marginBottom: "0.25rem" }}>
+                              <span>DOMINIO</span>
+                              <span>{progressMap[cat.id]}%</span>
+                            </div>
+                            <div style={{ height: "4px", background: "var(--bg-secondary)", borderRadius: "var(--radius-full)", overflow: "hidden" }}>
+                              <div style={{ 
+                                height: "100%", 
+                                width: `${progressMap[cat.id]}%`, 
+                                background: progressMap[cat.id] >= 80 ? "var(--success-400)" : progressMap[cat.id] >= 50 ? "var(--warning-400)" : "var(--primary-400)",
+                                transition: "width 0.6s ease-out"
+                              }} />
+                            </div>
+                          </div>
+                        )}
+
                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                           <span style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
                             <span style={{ fontSize: "1rem" }}>📝</span> {cat._count.questions} preguntas

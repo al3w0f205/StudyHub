@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { getPresignedUrl } from "@/lib/s3";
+
 
 export const metadata = { title: "Gestión de Pagos" };
 export const dynamic = "force-dynamic";

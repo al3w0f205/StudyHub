@@ -5,20 +5,6 @@ import { formatDate } from "@/lib/utils";
 export const metadata = { title: "Gestión de Usuarios" };
 export const dynamic = "force-dynamic";
 
-async function toggleSuspend(formData) {
-  "use server";
-  const id = formData.get("id");
-  const current = formData.get("isSuspended") === "true";
-  await prisma.user.update({
-    where: { id },
-    data: {
-      isSuspended: !current,
-      suspendedReason: !current ? "Suspendido por administrador" : null,
-    },
-  });
-  redirect("/admin/users");
-}
-
 async function toggleSubscription(formData) {
   "use server";
   const id = formData.get("id");
@@ -33,29 +19,31 @@ async function toggleSubscription(formData) {
   redirect("/admin/users");
 }
 
-async function toggleRole(formData) {
-  "use server";
-  const id = formData.get("id");
-  const currentRole = formData.get("role");
-  
-  await prisma.user.update({
-    where: { id },
-    data: { role: currentRole === "ADMIN" ? "USER" : "ADMIN" },
-  });
-  redirect("/admin/users");
-}
-
 async function updateAllowedCareers(formData) {
   "use server";
   const id = formData.get("id");
   const careerSlug = formData.get("careerSlug");
-  const action = formData.get("action"); // 'add' or 'remove'
+  const action = formData.get("action");
   
-  const user = await prisma.user.findUnique({ where: { id }, select: { allowedCareers: true } });
+  const [user, allCareers] = await Promise.all([
+    prisma.user.findUnique({ where: { id }, select: { allowedCareers: true } }),
+    prisma.career.findMany({ select: { slug: true } })
+  ]);
+  
   let allowed = user.allowedCareers ? user.allowedCareers.split(",").filter(c => c.trim()) : [];
   
-  if (action === "add" && !allowed.includes(careerSlug)) allowed.push(careerSlug);
-  if (action === "remove") allowed = allowed.filter(c => c !== careerSlug);
+  if (careerSlug === "general" && action === "add") {
+    // Grant access to ALL careers
+    allowed = allCareers.map(c => c.slug);
+  } else if (action === "add" && !allowed.includes(careerSlug)) {
+    allowed.push(careerSlug);
+  } else if (action === "remove") {
+    if (careerSlug === "general") {
+      allowed = []; // Remove all if general is removed
+    } else {
+      allowed = allowed.filter(c => c !== careerSlug);
+    }
+  }
   
   await prisma.user.update({
     where: { id },
@@ -92,7 +80,7 @@ export default async function UsersPage() {
         <div className="table-container">
           <table className="table">
             <thead>
-              <tr><th>Usuario</th><th>Rol</th><th>Accesos (Carreras)</th><th>Suscripción</th><th>Estado</th><th>Pagos</th><th>Acciones</th></tr>
+              <tr><th>Usuario</th><th>Rol</th><th>Accesos (Carreras)</th><th>Suscripción</th><th>Pagos</th><th>Acciones</th></tr>
             </thead>
             <tbody>
               {users.map((u) => {
@@ -118,25 +106,44 @@ export default async function UsersPage() {
                     </td>
                     <td><span className={`badge ${u.role === "ADMIN" ? "badge-primary" : "badge-success"}`}>{u.role}</span></td>
                     <td>
-                      {u.role === "ADMIN" ? "Todas" : (
-                        <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-                          {careers.map((c) => {
-                            const hasAccess = allowedList.includes(c.slug);
-                            return (
-                              <form action={updateAllowedCareers} key={c.id} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                                <input type="hidden" name="id" value={u.id} />
-                                <input type="hidden" name="careerSlug" value={c.slug} />
-                                <input type="hidden" name="action" value={hasAccess && u.allowedCareers ? "remove" : "add"} />
-                                <button type="submit" style={{ 
-                                  background: "none", border: "none", cursor: "pointer", 
-                                  color: hasAccess ? "var(--success-400)" : "var(--text-tertiary)",
-                                  fontSize: "0.8rem", textAlign: "left", padding: 0
-                                }}>
-                                  {hasAccess ? "✅" : "❌"} {c.name}
-                                </button>
-                              </form>
-                            );
-                          })}
+                      {u.role === "ADMIN" ? "Todas (Admin)" : (
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.375rem" }}>
+                          {/* General Access Toggle */}
+                          <form action={updateAllowedCareers}>
+                            <input type="hidden" name="id" value={u.id} />
+                            <input type="hidden" name="careerSlug" value="general" />
+                            <input type="hidden" name="action" value={allowedList.length === careers.length ? "remove" : "add"} />
+                            <button type="submit" style={{ 
+                              background: allowedList.length === careers.length ? "rgba(16,185,129,0.15)" : "var(--glass-bg)",
+                              border: "1px solid " + (allowedList.length === careers.length ? "rgba(16,185,129,0.3)" : "var(--border-default)"),
+                              borderRadius: "var(--radius-sm)",
+                              color: allowedList.length === careers.length ? "var(--success-400)" : "var(--text-primary)",
+                              fontSize: "0.7rem", fontWeight: "700", cursor: "pointer",
+                              padding: "0.25rem 0.5rem", width: "100%", textAlign: "center"
+                            }}>
+                              {allowedList.length === careers.length ? "✨ ACCESO GENERAL" : "🔓 DAR ACCESO GENERAL"}
+                            </button>
+                          </form>
+                          
+                          <div style={{ borderTop: "1px solid var(--border-default)", marginTop: "0.25rem", paddingTop: "0.25rem" }}>
+                            {careers.map((c) => {
+                              const hasAccess = allowedList.includes(c.slug);
+                              return (
+                                <form action={updateAllowedCareers} key={c.id} style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.125rem" }}>
+                                  <input type="hidden" name="id" value={u.id} />
+                                  <input type="hidden" name="careerSlug" value={c.slug} />
+                                  <input type="hidden" name="action" value={hasAccess && u.allowedCareers ? "remove" : "add"} />
+                                  <button type="submit" style={{ 
+                                    background: "none", border: "none", cursor: "pointer", 
+                                    color: hasAccess ? "var(--success-400)" : "var(--text-tertiary)",
+                                    fontSize: "0.75rem", textAlign: "left", padding: 0
+                                  }}>
+                                    {hasAccess ? "✅" : "❌"} {c.name}
+                                  </button>
+                                </form>
+                              );
+                            })}
+                          </div>
                         </div>
                       )}
                     </td>
@@ -145,19 +152,9 @@ export default async function UsersPage() {
                         <div><span className="badge badge-success">Activa</span><div style={{ fontSize: "0.7rem", color: "var(--text-tertiary)", marginTop: "0.125rem" }}>hasta {formatDate(u.subscriptionExpiry)}</div></div>
                       ) : (<span className="badge badge-danger">Inactiva</span>)}
                     </td>
-                    <td>{u.isSuspended ? <span className="badge badge-danger">Suspendido</span> : <span className="badge badge-success">Activo</span>}</td>
                     <td>{u._count.paymentRequests}</td>
                     <td>
                       <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                        {u.role !== "ADMIN" && (
-                          <form action={toggleSuspend}>
-                            <input type="hidden" name="id" value={u.id} />
-                            <input type="hidden" name="isSuspended" value={String(u.isSuspended)} />
-                            <button type="submit" className={`btn btn-sm ${u.isSuspended ? "btn-primary" : "btn-danger"}`}>
-                              {u.isSuspended ? "Reactivar" : "Suspender"}
-                            </button>
-                          </form>
-                        )}
                         <form action={toggleSubscription}>
                           <input type="hidden" name="id" value={u.id} />
                           <input type="hidden" name="isActive" value={String(isActive)} />
@@ -165,17 +162,11 @@ export default async function UsersPage() {
                             {isActive ? "Desactivar" : "Activar"} Suscripción
                           </button>
                         </form>
-                        <form action={toggleRole}>
-                          <input type="hidden" name="id" value={u.id} />
-                          <input type="hidden" name="role" value={u.role} />
-                          <button type="submit" className="btn btn-sm btn-ghost" style={{ color: "var(--warning-400)" }}>
-                            {u.role === "ADMIN" ? "Quitar Admin" : "Hacer Admin"}
-                          </button>
-                        </form>
                       </div>
                     </td>
                   </tr>
                 );
+
               })}
             </tbody>
           </table>

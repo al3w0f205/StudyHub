@@ -23,7 +23,14 @@ async function approvePayment(formData) {
   const userId = payment.userId;
   const requestedCareers = payment.requestedCareers;
 
-  const expiry = new Date();
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionExpiry: true, allowedCareers: true } });
+  
+  const now = new Date();
+  const currentExpiry = user?.subscriptionExpiry && new Date(user.subscriptionExpiry) > now 
+    ? new Date(user.subscriptionExpiry) 
+    : now;
+
+  const expiry = new Date(currentExpiry);
   expiry.setDate(expiry.getDate() + 30);
 
   const userUpdateData = { subscriptionExpiry: expiry };

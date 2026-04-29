@@ -4,7 +4,18 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import MathText from "@/components/ui/MathText";
 
-export default function QuizClient({ questions, theory, categoryName, careerName, careers, currentCareerId, categoryId, isOfflineMode = false }) {
+export default function QuizClient({ 
+  questions, 
+  theory, 
+  categoryName, 
+  careerName, 
+  careers, 
+  currentCareerId, 
+  categoryId, 
+  isOfflineMode = false,
+  totalQuestionsInCategory = 0,
+  initialCompletedCount = 0
+}) {
   // State
   const [view, setView] = useState(questions.length === 0 ? "theory" : "quiz"); // "quiz", "theory", "flashcards"
   const [current, setCurrent] = useState(0);
@@ -15,6 +26,8 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   const [answered, setAnswered] = useState(0);
   const [finished, setFinished] = useState(false);
   const [history, setHistory] = useState([]); // [{ questionId, isCorrect }]
+  const [completedCount, setCompletedCount] = useState(initialCompletedCount);
+  const [isResetting, setIsResetting] = useState(false);
   
   // Tools
   const [isZenMode, setIsZenMode] = useState(false);
@@ -48,41 +61,53 @@ export default function QuizClient({ questions, theory, categoryName, careerName
 
   const total = questions.length;
   const q = questions[current] || null;
-  const progress = total > 0 ? ((current + 1) / total) * 100 : 0;
+  
+  // Progress calculation based on the whole category
+  const effectiveTotal = totalQuestionsInCategory || total;
+  const currentProgressCount = completedCount + (selected !== null && selected === q?.correctIndex ? 1 : 0);
+  const progress = effectiveTotal > 0 ? (currentProgressCount / effectiveTotal) * 100 : 0;
 
-  const saveProgress = useCallback(async (correctCount) => {
-    const pct = Math.round((correctCount / total) * 100);
-    setCategoryProgress(prev => ({ ...prev, [categoryId]: pct }));
-    
-    if (isOfflineMode) return; // Skip saving progress if offline
+  const saveProgress = useCallback(async (payload) => {
+    if (isOfflineMode) return;
     
     try {
+      const body = payload.type === "single"
+        ? { categoryId, questionId: payload.questionId, selectedIndex: payload.selectedIndex }
+        : { categoryId, score: payload.score, results: payload.results || history };
+
       await fetch("/api/quiz-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ categoryId, score: pct, results: history }),
+        body: JSON.stringify(body),
       });
     } catch (e) {
       console.error("Failed to save progress:", e);
     }
-  }, [categoryId, total, history]);
+  }, [categoryId, history, isOfflineMode]);
 
 
   const handleAnswer = useCallback((index) => {
+    if (!q) return;
     if (selected !== null) return;
     setSelected(index);
     setAnswered((a) => a + 1);
 
-    if (index === q.correctIndex) {
+    const isCorrect = index === q.correctIndex;
+    if (isCorrect) {
       setScore((currentScore) => currentScore + 1);
+      // Don't update completedCount yet, wait for progress bar or next?
+      // Actually let's keep it sync with the visual
     }
 
-    setHistory(prev => [...prev, { questionId: q.id, isCorrect: index === q.correctIndex }]);
+    setHistory(prev => [...prev, { questionId: q.id, isCorrect }]);
+
+    // Save immediately
+    saveProgress({ type: "single", questionId: q.id, selectedIndex: index });
 
     if (!isExamMode) {
       setShowExplanation(true);
     }
-  }, [q.correctIndex, selected, isExamMode, q.id]);
+  }, [q, selected, isExamMode, saveProgress]);
 
   // Timer logic
   useEffect(() => {
@@ -101,9 +126,20 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   }, [isTimePressure, selected, finished, current, handleAnswer, view]);
 
   function nextQuestion() {
+    if (selected === q?.correctIndex) {
+      setCompletedCount(prev => prev + 1);
+    }
+
     if (current + 1 >= total) {
       setFinished(true);
-      saveProgress(score);
+      // Final overall score update
+      const finalScore = totalQuestionsInCategory > 0 
+        ? Math.round(((completedCount + (selected === q?.correctIndex ? 1 : 0)) / totalQuestionsInCategory) * 100)
+        : 100;
+      saveProgress({
+        type: "final",
+        score: Math.max(0, Math.min(100, finalScore)),
+      });
       return;
     }
     setCurrent((c) => c + 1);
@@ -115,6 +151,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   }
 
   function startExamMode() {
+    if (total === 0) return;
     setIsExamMode(true);
     setIsTimePressure(true);
     setIsZenMode(true);
@@ -133,6 +170,26 @@ export default function QuizClient({ questions, theory, categoryName, careerName
     setFinished(false);
     setHistory([]);
     setTimeLeft(30);
+  }
+
+  async function resetProgress() {
+    if (!window.confirm("¿Estás seguro de que quieres reiniciar tu progreso en este módulo? Se borrarán todas tus respuestas guardadas.")) return;
+    
+    setIsResetting(true);
+    try {
+      const res = await fetch(`/api/quiz-progress?categoryId=${categoryId}`, {
+        method: "DELETE"
+      });
+      if (res.ok) {
+        window.location.reload(); // Reload to fetch all questions again
+      } else {
+        alert("Error al reiniciar progreso.");
+      }
+    } catch (e) {
+      alert("Error de conexión.");
+    } finally {
+      setIsResetting(false);
+    }
   }
 
   async function reportError() {
@@ -289,6 +346,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
               <button 
                 onClick={() => { setView("quiz"); restart(); }}
                 className={`btn btn-sm ${view === "quiz" && !isExamMode ? "btn-primary" : "btn-secondary"}`}
+                disabled={total === 0}
                 style={{ width: "100%", justifyContent: "flex-start", gap: "0.5rem" }}
               >
                 ✍️ Cuestionario
@@ -296,6 +354,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
               <button 
                 onClick={() => { setView("flashcards"); restart(); }}
                 className={`btn btn-sm ${view === "flashcards" ? "btn-primary" : "btn-secondary"}`}
+                disabled={total === 0}
                 style={{ width: "100%", justifyContent: "flex-start", gap: "0.5rem" }}
               >
                 🃏 Flashcards
@@ -312,6 +371,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
               <button 
                 onClick={startExamMode}
                 className="btn btn-sm btn-secondary"
+                disabled={total === 0}
                 style={{ width: "100%", justifyContent: "flex-start", gap: "0.5rem", border: "1px solid var(--danger-400)", color: "var(--danger-400)" }}
               >
                 ⏱️ Simulacro Examen
@@ -336,6 +396,24 @@ export default function QuizClient({ questions, theory, categoryName, careerName
 
               <button onClick={() => window.location.reload()} className="quiz-tool-label" style={{ background: "transparent", border: "1px solid var(--border-default)", cursor: "pointer", color: "var(--text-primary)", width: "100%", textAlign: "left", fontFamily: "inherit" }}>
                 <span>🔀 Mezclar Todo</span>
+              </button>
+
+              <button 
+                onClick={resetProgress} 
+                className="quiz-tool-label" 
+                disabled={isResetting}
+                style={{ 
+                  background: "transparent", 
+                  border: "1px solid rgba(244, 63, 94, 0.2)", 
+                  cursor: "pointer", 
+                  color: "var(--danger-400)", 
+                  width: "100%", 
+                  textAlign: "left", 
+                  fontFamily: "inherit",
+                  marginTop: "0.5rem"
+                }}
+              >
+                <span>{isResetting ? "⌛ Reiniciando..." : "🗑️ Reiniciar Progreso"}</span>
               </button>
 
             </div>
@@ -504,6 +582,11 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             <h1 className="quiz-question-number">
               {isExamMode ? "Simulacro — " : ""}
               Pregunta {current + 1} <span style={{ color: "var(--text-tertiary)", fontSize: "1rem", fontWeight: 500 }}>/ {total}</span>
+              {totalQuestionsInCategory > total && (
+                <span style={{ fontSize: "0.75rem", color: "var(--success-400)", marginLeft: "0.5rem" }}>
+                  ({initialCompletedCount} ya completadas)
+                </span>
+              )}
             </h1>
           </div>
           
@@ -535,13 +618,28 @@ export default function QuizClient({ questions, theory, categoryName, careerName
         </div>
 
         {/* Question Card */}
-        <div className="solid-card animate-fade-in quiz-question-card">
-          <MathText className="quiz-question-text">{q.text}</MathText>
-        </div>
+        {total === 0 ? (
+          <div className="solid-card animate-fade-in" style={{ padding: "4rem 2rem", textAlign: "center" }}>
+            <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>✨</div>
+            <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem" }}>¡Módulo Completado!</h2>
+            <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>Has respondido correctamente todas las preguntas de esta categoría.</p>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+              <button onClick={resetProgress} className="btn btn-primary">Reiniciar para Practicar</button>
+              <Link href="/quiz" className="btn btn-secondary">Ir a otra Materia</Link>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="solid-card animate-fade-in quiz-question-card">
+              <MathText className="quiz-question-text">{q.text}</MathText>
+            </div>
+          </>
+        )}
 
         {/* Options */}
+        {total > 0 && (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.25rem" }}>
-          {q.options.map((opt, i) => {
+          {q?.options?.map((opt, i) => {
             let bg = "var(--bg-card)";
             let border = "var(--border-default)";
             let color = "var(--text-primary)";
@@ -610,8 +708,10 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             );
           })}
         </div>
+        )}
 
         {/* Hint & Actions */}
+        {total > 0 && (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
           <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
             {q.hint && selected === null && !isExamMode && (
@@ -630,9 +730,10 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             </button>
           )}
         </div>
+        )}
 
         {/* Hint Box */}
-        {showHint && !showExplanation && !isExamMode && (
+        {total > 0 && showHint && !showExplanation && !isExamMode && (
           <div className="solid-card animate-fade-in" style={{ padding: "1rem", borderLeft: "3px solid var(--warning-400)", background: "rgba(245,158,11,0.05)" }}>
             <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.875rem", color: "var(--text-secondary)" }}>
               <span>💡</span>
@@ -645,7 +746,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
         )}
 
         {/* Explanation Box */}
-        {showExplanation && q.explanation && !isExamMode && (
+        {total > 0 && showExplanation && q?.explanation && !isExamMode && (
           <div className="solid-card animate-fade-in" style={{ padding: "1.25rem", borderLeft: "3px solid var(--accent-400)", background: "rgba(34,211,238,0.05)", marginTop: "0.75rem" }}>
             <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-400)", marginBottom: "0.375rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Justificación</p>
             <MathText className="quiz-explanation-text">{q.explanation}</MathText>

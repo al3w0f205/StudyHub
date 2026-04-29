@@ -30,7 +30,7 @@ async function updateAllowedCareers(formData) {
   const action = formData.get("action");
   
   const [user, allCareers] = await Promise.all([
-    prisma.user.findUnique({ where: { id }, select: { allowedCareers: true } }),
+    prisma.user.findUnique({ where: { id }, select: { allowedCareers: true, subscriptionExpiry: true } }),
     prisma.career.findMany({ select: { slug: true } })
   ]);
   
@@ -53,9 +53,20 @@ async function updateAllowedCareers(formData) {
     }
   }
   
+  const userUpdateData = {
+    allowedCareers: allowed.length > 0 ? allowed.join(",") : null 
+  };
+
+  // If we added access (either general or specific), and the user has no active sub, 
+  // give them 30 days automatically to avoid the "payment required" loop.
+  const isSubActive = user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date();
+  if (action === "add" && !isSubActive) {
+    userUpdateData.subscriptionExpiry = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  }
+  
   await prisma.user.update({
     where: { id },
-    data: { allowedCareers: allowed.length > 0 ? allowed.join(",") : null },
+    data: userUpdateData,
   });
   redirect("/admin/users");
 }

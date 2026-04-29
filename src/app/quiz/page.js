@@ -16,10 +16,10 @@ export default async function QuizSelectorPage({ searchParams }) {
   const session = await auth();
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { id: true, name: true, allowedCareers: true, role: true }
+    select: { id: true, name: true, allowedCareers: true, role: true, subscriptionExpiry: true }
   });
 
-  // Admin has access to everything
+  const isSubActive = user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date();
   const isAdmin = user.role === "ADMIN";
 
   let careers = await prisma.career.findMany({
@@ -45,7 +45,7 @@ export default async function QuizSelectorPage({ searchParams }) {
     }
   }
 
-  const noAccess = !isAdmin && (!user.allowedCareers || user.allowedCareers.trim() === "");
+  const noAccess = !isAdmin && (!isSubActive || !user.allowedCareers || user.allowedCareers.trim() === "");
 
   // --- Fetch Data for Stats ---
   const allCategories = await prisma.category.findMany({

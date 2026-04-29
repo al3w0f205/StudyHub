@@ -121,7 +121,7 @@ export default async function UsersPage() {
                       {u.role === "ADMIN" ? "Todas" : (
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
                           {careers.map((c) => {
-                            const hasAccess = allowedList.includes(c.slug) || !u.allowedCareers;
+                            const hasAccess = allowedList.includes(c.slug);
                             return (
                               <form action={updateAllowedCareers} key={c.id} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                                 <input type="hidden" name="id" value={u.id} />

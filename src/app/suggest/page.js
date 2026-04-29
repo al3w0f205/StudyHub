@@ -64,6 +64,9 @@ async function submitSuggestion(formData) {
   redirect("/suggest?success=true");
 }
 
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
 export default async function SuggestPage({ searchParams }) {
   const params = await searchParams;
   const success = params?.success === "true";
@@ -75,6 +78,12 @@ export default async function SuggestPage({ searchParams }) {
 
   return (
     <div style={{ maxWidth: 700, margin: "0 auto" }}>
+      <div style={{ marginBottom: "1.5rem" }}>
+        <Link href="/quiz" className="btn btn-ghost" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", paddingLeft: 0, color: "var(--text-tertiary)" }}>
+          <ArrowLeft size={18} /> Regresar al Menú
+        </Link>
+      </div>
+
       <div className="page-header">
         <div>
           <h1 className="page-title">Sugerir Pregunta 💡</h1>

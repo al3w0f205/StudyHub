@@ -33,25 +33,25 @@ async function seedBadges() {
       name: "Novato",
       slug: "first_quiz",
       description: "¡Has completado tu primer cuestionario!",
-      icon: "🥉",
+      icon: "🏁",
       criteria: { type: "count", target: "quiz_completed", value: 1 }
     },
     {
       name: "Perfeccionista",
       slug: "score_100",
       description: "Has obtenido un 100% en un cuestionario.",
-      icon: "✨",
+      icon: "🎯",
       criteria: { type: "event", target: "perfect_score" }
     },
     {
-      name: "Constancia",
+      name: "Constancia Bronze",
       slug: "streak_3",
       description: "Has mantenido una racha de 3 días.",
       icon: "🔥",
       criteria: { type: "streak", value: 3 }
     },
     {
-      name: "Disciplina",
+      name: "Constancia Silver",
       slug: "streak_7",
       description: "Has mantenido una racha de 7 días.",
       icon: "⚡",
@@ -72,17 +72,17 @@ async function seedBadges() {
       criteria: { type: "count", target: "quiz_completed", value: 50 }
     },
     {
-      name: "Millonario",
+      name: "Aprendiz Avanzado",
       slug: "points_1000",
       description: "Has alcanzado los 1,000 puntos totales.",
-      icon: "💰",
+      icon: "💎",
       criteria: { type: "points", value: 1000 }
     },
     {
-      name: "Leyenda",
+      name: "Sabio del Hub",
       slug: "points_5000",
       description: "Has alcanzado los 5,000 puntos totales.",
-      icon: "💎",
+      icon: "🧙‍♂️",
       criteria: { type: "points", value: 5000 }
     },
     {
@@ -91,6 +91,27 @@ async function seedBadges() {
       description: "Has sugerido una pregunta para la comunidad.",
       icon: "💡",
       criteria: { type: "event", target: "suggestion" }
+    },
+    {
+      name: "Maestro de la Salud",
+      slug: "career_medicina",
+      description: "Has completado 5 módulos de Medicina.",
+      icon: "🩺",
+      criteria: { type: "count", target: "career_quiz", value: 5, career: "medicina" }
+    },
+    {
+      name: "Arquitecto del Saber",
+      slug: "career_ingenieria",
+      description: "Has completado 5 módulos de Ingeniería.",
+      icon: "⚙️",
+      criteria: { type: "count", target: "career_quiz", value: 5, career: "ingenieria" }
+    },
+    {
+      name: "Tiburón de Negocios",
+      slug: "career_negocios",
+      description: "Has completado 5 módulos de Negocios.",
+      icon: "📈",
+      criteria: { type: "count", target: "career_quiz", value: 5, career: "negocios" }
     }
   ];
 

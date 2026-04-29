@@ -1,9 +1,10 @@
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import Link from "next/link";
+import { Trophy, Shield, Zap, Star, Lock, CheckCircle, GraduationCap, ArrowLeft, Activity } from "lucide-react";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Trofeos — StudyHub" };
+export const metadata = { title: "Trofeos y Logros — StudyHub" };
 
 export default async function BadgesPage() {
   const session = await auth();
@@ -25,181 +26,183 @@ export default async function BadgesPage() {
 
   const totalEarned = userBadges.length;
   const progressPercent = allBadges.length > 0 ? Math.round((totalEarned / allBadges.length) * 100) : 0;
-  const lockedBadges = allBadges.filter((badge) => !earnedMap[badge.id]);
-  const earnedBadges = allBadges.filter((badge) => !!earnedMap[badge.id]);
+  
+  const generalBadges = allBadges.filter(b => !b.slug.startsWith('career_'));
+  const careerBadges = allBadges.filter(b => b.slug.startsWith('career_'));
 
   return (
-    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "3rem 1.25rem" }}>
-      {/* PS Style Header */}
+    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "2rem 1.25rem" }}>
+      
+      {/* Header Premium */}
       <div style={{ 
-        background: "linear-gradient(135deg, #003087 0%, #001a4d 100%)", 
+        background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)", 
         borderRadius: "var(--radius-xl)", 
         padding: "2.5rem", 
-        marginBottom: "3rem",
-        boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1.5rem",
+        marginBottom: "2.5rem",
+        border: "1px solid rgba(99, 102, 241, 0.2)",
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
       }}>
-        {/* Decorative background circle */}
-        <div style={{ 
-          position: "absolute", 
-          right: "-50px", 
-          top: "-50px", 
-          width: "250px", 
-          height: "250px", 
-          borderRadius: "50%", 
-          background: "rgba(255,255,255,0.05)",
-          pointerEvents: "none"
-        }} />
-
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1.5rem" }}>
+        {/* Glow effect */}
+        <div style={{ position: "absolute", top: "-50%", right: "-20%", width: "400px", height: "400px", background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
+        
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "2rem", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
             <div style={{ 
-              width: "80px", 
-              height: "80px", 
-              borderRadius: "50%", 
-              background: "white", 
-              display: "grid", 
-              placeItems: "center", 
-              fontSize: "2.5rem",
-              boxShadow: "0 0 20px rgba(255,255,255,0.3)"
+              width: "84px", height: "84px", borderRadius: "20px", 
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
+              display: "grid", placeItems: "center", fontSize: "2.5rem",
+              boxShadow: "0 0 30px rgba(0,0,0,0.3)"
             }}>
               🏆
             </div>
             <div>
-              <h1 style={{ fontSize: "2rem", fontWeight: "900", color: "white", marginBottom: "0.25rem" }}>Trofeos</h1>
-              <p style={{ color: "rgba(255,255,255,0.7)", fontWeight: "600" }}>{session.user.name}</p>
+              <h1 style={{ fontSize: "2.25rem", fontWeight: "900", color: "white", marginBottom: "0.25rem", letterSpacing: "-0.02em" }}>Trofeos</h1>
+              <p style={{ color: "var(--primary-300)", fontWeight: "600", fontSize: "0.9375rem" }}>{session.user.name}</p>
             </div>
           </div>
           
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: "2.5rem", fontWeight: "900", color: "white" }}>{progressPercent}%</div>
-            <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.75rem", fontWeight: "700", textTransform: "uppercase" }}>Progreso Total</div>
+            <div style={{ fontSize: "2.75rem", fontWeight: "900", color: "white", lineHeight: 1 }}>{progressPercent}%</div>
+            <div style={{ color: "var(--text-tertiary)", fontSize: "0.75rem", fontWeight: "700", textTransform: "uppercase", marginTop: "0.5rem", letterSpacing: "0.05em" }}>Progreso Total</div>
           </div>
         </div>
 
-        <div style={{ height: "8px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", overflow: "hidden" }}>
+        <div style={{ height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "10px", overflow: "hidden", marginTop: "2rem" }}>
           <div style={{ 
             height: "100%", 
             width: `${progressPercent}%`, 
-            background: "linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%)",
-            boxShadow: "0 0 10px #00d2ff"
+            background: "linear-gradient(90deg, var(--primary-500) 0%, var(--accent-500) 100%)",
+            boxShadow: "0 0 15px var(--primary-500)"
           }} />
         </div>
 
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <Link href="/dashboard" className="btn btn-secondary" style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "none", backdropFilter: "blur(10px)" }}>
-            ← Volver
+        <div style={{ display: "flex", gap: "1rem", marginTop: "2rem" }}>
+          <Link href="/quiz" className="btn btn-secondary" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "white" }}>
+            <ArrowLeft size={16} /> Volver al Menú
           </Link>
         </div>
       </div>
 
-      {/* Trophy List */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem", marginBottom: "1rem" }}>
-        <div className="solid-card" style={{ padding: "1rem" }}>
-          <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700 }}>Desbloqueados</div>
-          <div style={{ fontSize: "1.5rem", fontWeight: 900 }}>{earnedBadges.length}</div>
+      {/* Stats Grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
+        <div className="solid-card" style={{ padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em" }}>Desbloqueados</div>
+              <div style={{ fontSize: "1.75rem", fontWeight: 900 }}>{totalEarned}</div>
+            </div>
+            <CheckCircle size={28} color="var(--success-400)" opacity={0.5} />
+          </div>
         </div>
-        <div className="solid-card" style={{ padding: "1rem" }}>
-          <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700 }}>Pendientes</div>
-          <div style={{ fontSize: "1.5rem", fontWeight: 900 }}>{lockedBadges.length}</div>
+        <div className="solid-card" style={{ padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em" }}>Pendientes</div>
+              <div style={{ fontSize: "1.75rem", fontWeight: 900 }}>{allBadges.length - totalEarned}</div>
+            </div>
+            <Lock size={28} color="var(--text-tertiary)" opacity={0.3} />
+          </div>
         </div>
       </div>
 
-      {lockedBadges.length > 0 && (
-        <div className="solid-card" style={{ padding: "1rem 1.25rem", marginBottom: "1rem" }}>
-          <h2 style={{ fontSize: "0.9375rem", fontWeight: 700, marginBottom: "0.5rem" }}>Revisión de Logros Pendientes</h2>
-          <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", marginBottom: "0.5rem" }}>
-            Estos son los próximos logros que puedes desbloquear:
-          </p>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            {lockedBadges.slice(0, 4).map((badge) => (
-              <span key={badge.id} className="badge" style={{ background: "rgba(255,255,255,0.1)", color: "var(--text-secondary)" }}>
-                {badge.icon} {badge.name}
-              </span>
-            ))}
+      {/* Badges Sections */}
+      <div style={{ display: "grid", gap: "3rem" }}>
+        
+        {/* Section 1: General */}
+        <section>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
+            <Zap size={20} color="var(--primary-400)" />
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 800 }}>Logros Generales</h2>
           </div>
-        </div>
+          <div style={{ display: "grid", gap: "0.75rem" }}>
+            {generalBadges.map(badge => <BadgeRow key={badge.id} badge={badge} earnedAt={earnedMap[badge.id]} />)}
+          </div>
+        </section>
+
+        {/* Section 2: Careers */}
+        <section>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
+            <GraduationCap size={20} color="var(--accent-400)" />
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 800 }}>Especialización por Carrera</h2>
+          </div>
+          <div style={{ display: "grid", gap: "0.75rem" }}>
+            {careerBadges.map(badge => <BadgeRow key={badge.id} badge={badge} earnedAt={earnedMap[badge.id]} />)}
+          </div>
+        </section>
+
+      </div>
+    </div>
+  );
+}
+
+function BadgeRow({ badge, earnedAt }) {
+  const isEarned = !!earnedAt;
+  
+  return (
+    <div 
+      className="solid-card animate-fade-in" 
+      style={{ 
+        padding: "1.25rem 1.5rem", 
+        display: "grid", 
+        gridTemplateColumns: "auto 1fr auto", 
+        alignItems: "center", 
+        gap: "1.5rem",
+        opacity: isEarned ? 1 : 0.5,
+        background: isEarned ? "rgba(255,255,255,0.02)" : "transparent",
+        border: isEarned ? "1px solid var(--border-default)" : "1px solid rgba(255,255,255,0.05)",
+        transition: "all 0.3s ease",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      {isEarned && (
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "3px", background: "var(--primary-500)" }} />
       )}
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-        {allBadges.length === 0 && (
-          <div className="solid-card" style={{ padding: "3rem", textAlign: "center", color: "var(--text-tertiary)" }}>
-            Aún no se han definido trofeos en el sistema.
-          </div>
-        )}
-        {allBadges.map((badge) => {
-          const isEarned = !!earnedMap[badge.id];
-          return (
-            <div 
-              key={badge.id} 
-              className="solid-card animate-fade-in" 
-              style={{ 
-                padding: "1rem 1.5rem", 
-                display: "grid", 
-                gridTemplateColumns: "auto 1fr auto", 
-                alignItems: "center", 
-                gap: "1.5rem",
-                opacity: isEarned ? 1 : 0.4,
-                filter: isEarned ? "none" : "grayscale(1)",
-                transition: "all 0.3s ease",
-                background: isEarned ? "var(--bg-card)" : "rgba(255,255,255,0.02)",
-                border: isEarned ? "1px solid var(--border-default)" : "1px solid rgba(255,255,255,0.05)",
-                transform: isEarned ? "scale(1.01)" : "scale(1)",
-                boxShadow: isEarned ? "0 4px 12px rgba(0,0,0,0.1)" : "none"
-              }}
-            >
-              {/* Icon Container */}
-              <div style={{ 
-                width: "60px", 
-                height: "60px", 
-                background: isEarned ? "rgba(34, 211, 238, 0.1)" : "rgba(255,255,255,0.05)", 
-                borderRadius: "12px", 
-                display: "grid", 
-                placeItems: "center", 
-                fontSize: "2rem",
-                border: isEarned ? "1px solid rgba(34, 211, 238, 0.3)" : "1px solid transparent"
-              }}>
-                {badge.icon}
-              </div>
+      {/* Icon */}
+      <div style={{ 
+        width: "56px", 
+        height: "56px", 
+        background: isEarned ? "var(--bg-tertiary)" : "rgba(255,255,255,0.05)", 
+        borderRadius: "14px", 
+        display: "grid", 
+        placeItems: "center", 
+        fontSize: "1.75rem",
+        boxShadow: isEarned ? "inset 0 0 10px rgba(99, 102, 241, 0.2)" : "none",
+        border: isEarned ? "1px solid rgba(99, 102, 241, 0.3)" : "1px solid transparent"
+      }}>
+        {isEarned ? badge.icon : "🔒"}
+      </div>
 
-              {/* Content */}
-              <div>
-                <h3 style={{ 
-                  fontSize: "1.125rem", 
-                  fontWeight: "800", 
-                  marginBottom: "0.25rem",
-                  color: isEarned ? "var(--text-primary)" : "var(--text-tertiary)"
-                }}>
-                  {badge.name}
-                </h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", maxWidth: "500px" }}>
-                  {badge.description}
-                </p>
-              </div>
+      {/* Info */}
+      <div>
+        <h3 style={{ 
+          fontSize: "1.0625rem", 
+          fontWeight: "800", 
+          marginBottom: "0.25rem",
+          color: isEarned ? "var(--text-primary)" : "var(--text-tertiary)"
+        }}>
+          {badge.name}
+        </h3>
+        <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", maxWidth: "600px" }}>
+          {badge.description}
+        </p>
+      </div>
 
-              {/* Status */}
-              <div style={{ textAlign: "right" }}>
-                {isEarned ? (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem" }}>
-                    <div className="badge badge-success" style={{ fontSize: "0.625rem", padding: "0.2rem 0.5rem" }}>DESBLOQUEADO</div>
-                    <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", fontWeight: "600" }}>
-                      {new Date(earnedMap[badge.id]).toLocaleDateString()}
-                    </div>
-                  </div>
-                ) : (
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem" }}>
-                    <div className="badge" style={{ background: "rgba(255,255,255,0.1)", color: "var(--text-tertiary)", fontSize: "0.625rem", padding: "0.2rem 0.5rem" }}>BLOQUEADO</div>
-                    <div style={{ fontSize: "1rem", opacity: 0.3 }}>🔒</div>
-                  </div>
-                )}
-              </div>
+      {/* Status Label */}
+      <div style={{ textAlign: "right" }}>
+        {isEarned ? (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem" }}>
+            <div style={{ fontSize: "0.625rem", fontWeight: 800, padding: "0.25rem 0.5rem", borderRadius: "4px", background: "var(--success-500)20", color: "var(--success-400)", border: "1px solid var(--success-500)30" }}>DESBLOQUEADO</div>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", fontWeight: "600", marginTop: "0.25rem" }}>
+              {new Date(earnedAt).toLocaleDateString("es-ES", { day: 'numeric', month: 'short' })}
             </div>
-          );
-        })}
+          </div>
+        ) : (
+          <div style={{ fontSize: "0.625rem", fontWeight: 800, padding: "0.25rem 0.5rem", borderRadius: "4px", background: "rgba(255,255,255,0.05)", color: "var(--text-tertiary)", border: "1px solid rgba(255,255,255,0.1)" }}>BLOQUEADO</div>
+        )}
       </div>
     </div>
   );

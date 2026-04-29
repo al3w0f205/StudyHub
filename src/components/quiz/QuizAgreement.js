@@ -1,26 +1,36 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
+
+const AGREEMENT_EVENT = "studyhub-agreement-change";
+
+function hasAgreement() {
+  if (typeof window === "undefined") return true;
+  return localStorage.getItem("studyhub_agreement") === "true";
+}
+
+function subscribeToAgreement(callback) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(AGREEMENT_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(AGREEMENT_EVENT, callback);
+  };
+}
 
 export default function QuizAgreement() {
-  const [showModal, setShowModal] = useState(false);
+  const agreed = useSyncExternalStore(subscribeToAgreement, hasAgreement, () => true);
   const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    const agreed = localStorage.getItem("studyhub_agreement");
-    if (!agreed) {
-      setShowModal(true);
-    }
-  }, []);
 
   const handleAccept = () => {
     if (checked) {
       localStorage.setItem("studyhub_agreement", "true");
-      setShowModal(false);
+      window.dispatchEvent(new Event(AGREEMENT_EVENT));
     }
   };
 
-  if (!showModal) return null;
+  if (agreed) return null;
 
   return (
     <div style={{

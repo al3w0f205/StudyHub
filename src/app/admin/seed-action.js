@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { readFileSync, existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { revalidatePath } from "next/cache";
+import { requireAdmin } from "@/lib/auth-guards";
 
 function slugify(text) {
   return text
@@ -18,6 +19,8 @@ function slugify(text) {
 }
 
 export async function runSeed() {
+  await requireAdmin();
+
   try {
     const dataDir = join(process.cwd(), "data");
     if (!existsSync(dataDir)) {

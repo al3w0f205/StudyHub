@@ -47,8 +47,15 @@ export default async function QuizSelectorPage({ searchParams }) {
 
   const noAccess = !isAdmin && (!isSubActive || !user.allowedCareers || user.allowedCareers.trim() === "");
 
+  const visibleCareerSlugs = careers.map((career) => career.slug);
+
   // --- Fetch Data for Stats ---
   const allCategories = await prisma.category.findMany({
+    where: isAdmin
+      ? {}
+      : visibleCareerSlugs.length > 0
+        ? { career: { slug: { in: visibleCareerSlugs } } }
+        : { id: "__no_access__" },
     select: { id: true, name: true, career: { select: { name: true } } }
   });
 
@@ -73,9 +80,19 @@ export default async function QuizSelectorPage({ searchParams }) {
           </h1>
           <p className="page-subtitle" style={{ fontSize: "0.875rem" }}>Panel de estudio interactivo</p>
         </div>
-        <Link href="/settings" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-          ⚙️ Ajustes
-        </Link>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <Link href="/leaderboard" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+            🏆 Leaderboard
+          </Link>
+          <Link href="/dashboard" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+            🏠 Volver al Inicio
+          </Link>
+          <Link href="/settings" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
+            ⚙️ Ajustes
+          </Link>
+        </div>
+
+
       </div>
 
       {!noAccess && (

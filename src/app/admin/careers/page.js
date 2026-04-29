@@ -2,12 +2,14 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { slugify } from "@/lib/utils";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const metadata = { title: "Gestión de Carreras" };
 export const dynamic = "force-dynamic";
 
 async function createCareer(formData) {
   "use server";
+  await requireAdmin();
   const name = formData.get("name");
   const description = formData.get("description");
   const icon = formData.get("icon");
@@ -25,6 +27,7 @@ async function createCareer(formData) {
 
 async function deleteCareer(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   await prisma.career.delete({ where: { id } });
   redirect("/admin/careers");

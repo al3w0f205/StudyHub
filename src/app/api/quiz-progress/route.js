@@ -38,20 +38,30 @@ export async function POST(request) {
   }
 
   const { categoryId, score } = body;
-  console.log(`[QuizProgress] Saving progress for user ${session.user.id}, category ${categoryId}, score ${score}`);
-
   if (!categoryId || typeof score !== "number" || score < 0 || score > 100) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 
 
-  // Verify category exists
   const category = await prisma.category.findUnique({
     where: { id: categoryId },
-    select: { id: true },
+    select: { id: true, career: { select: { slug: true } } },
   });
   if (!category) {
     return NextResponse.json({ error: "Category not found" }, { status: 404 });
+  }
+
+  if (session.user.role !== "ADMIN") {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { allowedCareers: true, subscriptionExpiry: true },
+    });
+    const isSubActive = user?.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date();
+    const allowedCareers = user?.allowedCareers?.split(",").filter(Boolean) ?? [];
+
+    if (!isSubActive || !allowedCareers.includes(category.career.slug)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
   }
 
   // Upsert: update if exists, create if not. Keep best score.

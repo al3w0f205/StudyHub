@@ -129,7 +129,7 @@ model PaymentRequest {
   id               String               @id @default(cuid())
   userId           String
   user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  receiptUrl       String               // S3/MinIO URL of the payment receipt photo
+  receiptUrl       String               // UploadThing URL of the payment receipt photo
   status           PaymentRequestStatus @default(PENDING)
   adminNotes       String?
   userComment      String?              @db.Text // User's comment/message with payment

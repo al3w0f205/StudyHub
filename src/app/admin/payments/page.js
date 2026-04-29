@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { requireAdmin } from "@/lib/auth-guards";
 
 
 export const metadata = { title: "Gestión de Pagos" };
@@ -7,9 +8,20 @@ export const dynamic = "force-dynamic";
 
 async function approvePayment(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
-  const userId = formData.get("userId");
-  const requestedCareers = formData.get("requestedCareers");
+
+  const payment = await prisma.paymentRequest.findUnique({
+    where: { id },
+    select: { userId: true, requestedCareers: true, status: true },
+  });
+
+  if (!payment || payment.status !== "PENDING") {
+    redirect("/admin/payments");
+  }
+
+  const userId = payment.userId;
+  const requestedCareers = payment.requestedCareers;
 
   const expiry = new Date();
   expiry.setDate(expiry.getDate() + 30);
@@ -20,8 +32,11 @@ async function approvePayment(formData) {
     const user = await prisma.user.findUnique({ where: { id: userId }, select: { allowedCareers: true } });
     let allowed = user.allowedCareers ? user.allowedCareers.split(",").filter(Boolean) : [];
     
-    // Add requested careers that aren't already there
-    const requested = requestedCareers.split(",");
+    const careers = await prisma.career.findMany({ select: { slug: true } });
+    const validCareerSlugs = new Set(careers.map((career) => career.slug));
+
+    // Add requested careers that exist and aren't already there.
+    const requested = requestedCareers.split(",").filter((slug) => validCareerSlugs.has(slug));
     for (const c of requested) {
       if (!allowed.includes(c)) allowed.push(c);
     }
@@ -38,6 +53,7 @@ async function approvePayment(formData) {
 
 async function rejectPayment(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   const notes = formData.get("notes");
   await prisma.paymentRequest.update({ where: { id }, data: { status: "REJECTED", adminNotes: notes || "Rechazado", reviewedAt: new Date() } });
@@ -87,7 +103,7 @@ export default async function PaymentsPage() {
                   )}
                   {p.userComment && (
                     <div style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", marginTop: "0.375rem", fontStyle: "italic", background: "var(--glass-bg)", padding: "0.5rem", borderRadius: "var(--radius-sm)" }}>
-                      "{p.userComment}"
+                      &ldquo;{p.userComment}&rdquo;
                     </div>
                   )}
                   <a href={p.receiptUrl} target="_blank" rel="noopener" className="btn btn-ghost btn-sm" style={{ marginTop: "0.5rem", paddingLeft: 0 }}>

@@ -235,7 +235,7 @@ export default async function PaymentPage({ searchParams }) {
                   )}
                   {p.userComment && (
                     <div style={{ fontSize: "0.8125rem", color: "var(--text-secondary)", marginTop: "0.25rem", fontStyle: "italic" }}>
-                      "{p.userComment}"
+                      &ldquo;{p.userComment}&rdquo;
                     </div>
                   )}
                   {p.status === "REJECTED" && p.adminNotes && (

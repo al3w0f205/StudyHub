@@ -1,12 +1,15 @@
+import Image from "next/image";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { formatDate } from "@/lib/utils";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const metadata = { title: "Gestión de Usuarios" };
 export const dynamic = "force-dynamic";
 
 async function toggleSubscription(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   const isActive = formData.get("isActive") === "true";
   
@@ -21,6 +24,7 @@ async function toggleSubscription(formData) {
 
 async function updateAllowedCareers(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   const careerSlug = formData.get("careerSlug");
   const action = formData.get("action");
@@ -30,12 +34,16 @@ async function updateAllowedCareers(formData) {
     prisma.career.findMany({ select: { slug: true } })
   ]);
   
+  if (!user) redirect("/admin/users");
+
   let allowed = user.allowedCareers ? user.allowedCareers.split(",").filter(c => c.trim()) : [];
   
+  const validCareerSlugs = new Set(allCareers.map(c => c.slug));
+
   if (careerSlug === "general" && action === "add") {
     // Grant access to ALL careers
     allowed = allCareers.map(c => c.slug);
-  } else if (action === "add" && !allowed.includes(careerSlug)) {
+  } else if (action === "add" && validCareerSlugs.has(careerSlug) && !allowed.includes(careerSlug)) {
     allowed.push(careerSlug);
   } else if (action === "remove") {
     if (careerSlug === "general") {
@@ -92,7 +100,7 @@ export default async function UsersPage() {
                     <td>
                       <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                         {u.image ? (
-                          <img src={u.image} alt="" style={{ width: 32, height: 32, borderRadius: "var(--radius-full)" }} />
+                          <Image src={u.image} alt="" width={32} height={32} style={{ borderRadius: "var(--radius-full)" }} />
                         ) : (
                           <div style={{ width: 32, height: 32, borderRadius: "var(--radius-full)", background: "var(--glass-bg)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.8rem" }}>
                             {(u.name || u.email || "?").charAt(0).toUpperCase()}

@@ -61,6 +61,18 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   }, [categoryId, total]);
 
 
+  const handleAnswer = useCallback((index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    setAnswered((a) => a + 1);
+
+    if (index === q.correctIndex) {
+      setScore((currentScore) => currentScore + 1);
+    }
+
+    setShowExplanation(true);
+  }, [q.correctIndex, selected]);
+
   // Timer logic
   useEffect(() => {
     if (isTimePressure && !selected && !finished) {
@@ -75,26 +87,12 @@ export default function QuizClient({ questions, theory, categoryName, careerName
       }, 1000);
       return () => clearInterval(timer);
     }
-  }, [isTimePressure, selected, finished, current]);
-
-  function handleAnswer(index) {
-    if (selected !== null) return;
-    setSelected(index);
-    setAnswered((a) => a + 1);
-    
-    let newScore = score;
-    if (index === q.correctIndex) {
-      newScore = score + 1;
-      setScore(newScore);
-    }
-    
-    setShowExplanation(true);
-  }
+  }, [isTimePressure, selected, finished, current, handleAnswer]);
 
   function nextQuestion() {
     if (current + 1 >= total) {
       setFinished(true);
-      saveProgress(score + (selected === q.correctIndex ? 1 : 0));
+      saveProgress(score);
       return;
     }
     setCurrent((c) => c + 1);

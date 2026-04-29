@@ -28,8 +28,7 @@ export default async function QuizSelectorPage({ searchParams }) {
       categories: {
         orderBy: { name: "asc" },
         include: { 
-          _count: { select: { questions: true } },
-          theory: true
+          _count: { select: { questions: true } }
         },
       },
     },

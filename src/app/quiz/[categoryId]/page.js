@@ -35,11 +35,13 @@ export default async function QuizPage({ params }) {
   if (session?.user?.role !== "ADMIN") {
     const user = await prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { allowedCareers: true },
+      select: { allowedCareers: true, subscriptionExpiry: true },
     });
 
-    if (!user?.allowedCareers || user.allowedCareers.trim() === "") {
-      notFound(); // No access at all
+    const isSubActive = user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date();
+
+    if (!isSubActive || !user?.allowedCareers || user.allowedCareers.trim() === "") {
+      notFound(); // No access or expired subscription
     }
 
     const allowed = user.allowedCareers.split(",").filter(Boolean);

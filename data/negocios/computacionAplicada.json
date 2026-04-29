@@ -1,0 +1,615 @@
+{
+    "preguntas": [
+        {
+            "cat": "hardware",
+            "q": "¿Cuál es la función principal que desempeña la Unidad Central de Procesamiento dentro de un sistema informático moderno?",
+            "opts": [
+                "Ejecutar instrucciones matemáticas procesando todos los datos ingresados.",
+                "Almacenar información permanentemente conservando los archivos creados.",
+                "Proveer energía eléctrica ininterrumpida protegiendo componentes físicos.",
+                "Renderizar gráficos tridimensionales acelerando las texturas visualizadas."
+            ],
+            "ans": 0,
+            "just": "Este componente actúa como el cerebro del computador coordinando además calculando las operaciones lógicas requeridas por el sistema operativo.",
+            "hint": "Considera el elemento responsable de realizar cálculos matemáticos complejos."
+        },
+        {
+            "cat": "sistemas_info",
+            "q": "¿Qué característica define primordialmente a un Sistema de Planificación de Recursos Empresariales en las organizaciones?",
+            "opts": [
+                "Integrar múltiples procesos operativos utilizando una base centralizada.",
+                "Proteger la red corporativa bloqueando accesos externos no autorizados.",
+                "Diseñar interfaces gráficas optimizando la experiencia del usuario final.",
+                "Ensamblar componentes físicos mejorando el rendimiento de los servidores."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas empresariales consolidan la información de distintos departamentos facilitando la toma de decisiones gerenciales mediante datos unificados.",
+            "hint": "Identifica la herramienta enfocada en unificar departamentos corporativos."
+        },
+        {
+            "cat": "redes",
+            "q": "¿Cuál es el propósito fundamental de implementar una red de área amplia conectando distintas sucursales corporativas?",
+            "opts": [
+                "Interconectar dispositivos geográficamente dispersos compartiendo datos.",
+                "Refrigerar los microprocesadores previniendo el sobrecalentamiento local.",
+                "Traducir lenguajes de programación estructurando los códigos fuente base.",
+                "Clasificar correos electrónicos filtrando todos los mensajes publicitarios."
+            ],
+            "ans": 0,
+            "just": "Las redes amplias superan las limitaciones geográficas permitiendo la transmisión de información continua entre ubicaciones físicamente distantes.",
+            "hint": "Piensa en infraestructuras tecnológicas diseñadas para largas distancias."
+        },
+        {
+            "cat": "software",
+            "q": "¿Cómo se describe técnicamente el rol fundamental del software de sistema operativo en una computadora personal?",
+            "opts": [
+                "Proporcionar instrucciones lógicas permitiendo operar equipos electrónicos.",
+                "Transmitir señales analógicas amplificando las frecuencias electromagnéticas.",
+                "Imprimir documentos físicos utilizando cartuchos con tinta intercambiables.",
+                "Suministrar voltajes adecuados estabilizando todas corrientes eléctricas hoy."
+            ],
+            "ans": 0,
+            "just": "El sistema operativo administra los recursos del hardware sirviendo como intermediario indispensable entre el usuario final junto con los componentes físicos.",
+            "hint": "Evalúa el programa base necesario para arrancar cualquier dispositivo."
+        },
+        {
+            "cat": "almacenamiento",
+            "q": "¿Qué diferencia arquitectónica distingue a la memoria de acceso aleatorio respecto a un disco duro tradicional?",
+            "opts": [
+                "Conservar temporalmente la información procesada mientras existe energía.",
+                "Almacenar permanentemente los sistemas operativos protegiendo su código.",
+                "Digitalizar documentos físicos transformándolos hacia formatos portátiles.",
+                "Proyectar imágenes luminosas ampliando las presentaciones multimedia hoy."
+            ],
+            "ans": 0,
+            "just": "La memoria principal posee naturaleza volátil perdiendo sus datos almacenados inmediatamente cuando se interrumpe el suministro de corriente eléctrica.",
+            "hint": "Observa el comportamiento del componente ante cortes de energía."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Qué beneficio competitivo aporta la implementación de un Sistema de Gestión de Relaciones con Clientes comercialmente?",
+            "opts": [
+                "Centralizar historiales de consumo anticipando necesidades de compradores.",
+                "Automatizar líneas de ensamblaje robótico reduciendo costos de producción.",
+                "Estandarizar protocolos de enrutamiento acelerando conexiones a internet.",
+                "Compilar códigos estructurados transformándolos hacia lenguaje de máquina."
+            ],
+            "ans": 0,
+            "just": "Dichos sistemas recopilan interacciones comerciales generando perfiles detallados por consiguiente incrementan la fidelización mediante atención personalizada.",
+            "hint": "Reflexiona sobre las herramientas enfocadas en mejorar ventas corporativas."
+        },
+        {
+            "cat": "comunicacion",
+            "q": "¿Qué función técnica cumple un enrutador dentro de una infraestructura de telecomunicaciones empresariales moderna?",
+            "opts": [
+                "Direccionar paquetes de datos determinando las rutas más eficientes posibles.",
+                "Proyectar gráficos vectoriales calculando polígonos complejos en tiempo real.",
+                "Escanear vulnerabilidades informáticas eliminando virus troyanos ocultos.",
+                "Digitalizar señales de audio comprimiendo las ondas sonoras capturadas hoy."
+            ],
+            "ans": 0,
+            "just": "Este dispositivo de red analiza las direcciones de destino seleccionando el camino óptimo garantizando la entrega correcta de información entre subredes.",
+            "hint": "Considera el equipo encargado de guiar el tráfico en internet."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Por qué motivo tecnológico las unidades de estado sólido han reemplazado progresivamente a los discos magnéticos?",
+            "opts": [
+                "Carecer de partes mecánicas móviles acelerando la lectura de información.",
+                "Disponer de capacidades inalámbricas integradas conectándose a satélites.",
+                "Poseer pantallas táctiles capacitivas facilitando la interacción del usuario.",
+                "Utilizar cintas magnéticas secuenciales garantizando respaldos inmutables."
+            ],
+            "ans": 0,
+            "just": "La arquitectura basada en memoria flash elimina la latencia mecánica propia de los discos tradicionales multiplicando exponencialmente las velocidades de transferencia.",
+            "hint": "Analiza la ventaja de omitir motores giratorios en el diseño."
+        },
+        {
+            "cat": "software",
+            "q": "¿Qué característica esencial define al software de código abierto frente a las soluciones comerciales propietarias?",
+            "opts": [
+                "Permitir la modificación comunitaria distribuyendo libremente sus fuentes.",
+                "Bloquear el acceso al código fuente protegiendo la propiedad intelectual hoy.",
+                "Requerir suscripciones mensuales obligatorias asegurando soporte técnico.",
+                "Instalar componentes físicos adicionales mejorando el rendimiento gráfico."
+            ],
+            "ans": 0,
+            "just": "Este modelo de desarrollo fomenta la colaboración global otorgando libertades para estudiar además de modificar el programa según necesidades específicas.",
+            "hint": "Busca el enfoque que promueve la transparencia estructural del programa."
+        },
+        {
+            "cat": "sistemas_info",
+            "q": "¿Cuál es el objetivo primordial de implementar inteligencia de negocios procesando enormes bases de datos corporativas?",
+            "opts": [
+                "Transformar datos crudos en conocimiento accionable mejorando estrategias.",
+                "Refrigerar servidores de alto rendimiento controlando temperaturas locales.",
+                "Encriptar contraseñas de usuarios previniendo accesos externos maliciosos.",
+                "Imprimir reportes financieros utilizando tecnologías láser de alta precisión."
+            ],
+            "ans": 0,
+            "just": "El procesamiento analítico extrae patrones ocultos permitiendo a los directivos tomar decisiones fundamentadas respaldadas por evidencias estadísticas concretas.",
+            "hint": "Evalúa el proceso de convertir información bruta en ventajas directivas."
+        },
+        {
+            "cat": "comunicacion",
+            "q": "¿Cómo impacta la tecnología de fibra óptica en la transmisión de datos respecto a los cables de cobre tradicionales?",
+            "opts": [
+                "Transmitir pulsos luminosos logrando velocidades de banda ancha superiores.",
+                "Conducir electricidad estabilizada evitando cortocircuitos en los servidores.",
+                "Capturar imágenes fotográficas procesando resoluciones visuales extremas.",
+                "Sintetizar voces humanas facilitando la accesibilidad para usuarios ciegos."
+            ],
+            "ans": 0,
+            "just": "El uso de luz confinada en filamentos de vidrio minimiza la atenuación de señales logrando distancias mayores junto con capacidades de transmisión insuperables.",
+            "hint": "Recuerda el medio de transporte basado en haces de luz continua."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Qué ventaja operativa sustancial proporciona la computación en la nube para empresas de reciente creación moderna?",
+            "opts": [
+                "Escalar recursos informáticos dinámicamente pagando solo capacidad usada.",
+                "Fabricar microprocesadores personalizados optimizando algoritmos locales.",
+                "Desarrollar sistemas operativos propietarios evitando dependencias externas.",
+                "Construir centros de datos subterráneos protegiendo información clasificada."
+            ],
+            "ans": 0,
+            "just": "La infraestructura externalizada elimina gigantescos gastos iniciales de capital permitiendo flexibilidad operativa adaptándose instantáneamente a la demanda.",
+            "hint": "Piensa en el modelo de arrendamiento de servidores por consumo."
+        },
+        {
+            "cat": "almacenamiento",
+            "q": "¿Qué función técnica cumple implementar configuraciones de discos redundantes dentro de servidores empresariales?",
+            "opts": [
+                "Prevenir pérdida de datos tolerando fallas físicas en discos individuales hoy.",
+                "Aumentar el consumo eléctrico iluminando gabinetes con luces decorativas.",
+                "Disminuir la velocidad de escritura cifrando todos los archivos almacenados.",
+                "Convertir señales digitales procesando transmisiones de radiofrecuencias."
+            ],
+            "ans": 0,
+            "just": "Dichos arreglos distribuyen información a través de múltiples unidades asegurando continuidad operativa incluso ante daños catastróficos de componentes físicos.",
+            "hint": "Identifica la tecnología enfocada en salvaguardar datos mediante copias."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Por qué es tecnológicamente imprescindible la placa base dentro de cualquier arquitectura computacional estándar?",
+            "opts": [
+                "Interconectar todos los componentes permitiendo su comunicación integrada.",
+                "Proporcionar refrigeración líquida disminuyendo temperaturas operativas hoy.",
+                "Proyectar entornos de realidad virtual engañando los sentidos del usuario.",
+                "Imprimir circuitos electrónicos ensamblando microchips de silicio puro."
+            ],
+            "ans": 0,
+            "just": "Este circuito impreso actúa como la espina dorsal del sistema unificando el procesador junto con la memoria además de los periféricos en una red de comunicación.",
+            "hint": "Considera la matriz física donde se insertan todas las piezas."
+        },
+        {
+            "cat": "redes",
+            "q": "¿Qué rol de seguridad desempeña un cortafuegos protegiendo una red corporativa frente a conexiones exteriores?",
+            "opts": [
+                "Filtrar tráfico entrante descartando paquetes según políticas de seguridad.",
+                "Incrementar velocidades de descarga comprimiendo videos de alta definición.",
+                "Traducir direcciones de red facilitando el enrutamiento de correos físicos.",
+                "Almacenar copias de seguridad resguardando documentos confidenciales hoy."
+            ],
+            "ans": 0,
+            "just": "El dispositivo inspecciona las comunicaciones bloqueando amenazas potenciales por consiguiente establece una barrera entre redes internas seguras y el internet público.",
+            "hint": "Evalúa el mecanismo de control de acceso perimetral."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Qué función principal desempeña la Unidad Central de Procesamiento en una computadora moderna?",
+            "opts": [
+                "Procesar instrucciones matemáticas ejecutando operaciones lógicas del sistema base.",
+                "Almacenar archivos digitales conservando toda información de manera permanente.",
+                "Suministrar energía eléctrica estabilizando el voltaje para los componentes físicos.",
+                "Renderizar modelos tridimensionales acelerando la visualización de los gráficos."
+            ],
+            "ans": 0,
+            "just": "Este componente funciona como el cerebro del computador coordinando todas las tareas operativas procesando los cálculos requeridos por el sistema central.",
+            "hint": "Considera el elemento responsable de realizar cálculos complejos velozmente."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Cuál es la principal característica técnica que diferencia a la memoria de acceso aleatorio?",
+            "opts": [
+                "Retener datos temporalmente permitiendo un acceso veloz mientras existe energía.",
+                "Guardar programas permanentemente protegiendo el código fuente de modificaciones.",
+                "Digitalizar documentos impresos transformando el papel hacia un formato portátil.",
+                "Proyectar imágenes luminosas facilitando presentaciones en entornos corporativos."
+            ],
+            "ans": 0,
+            "just": "La memoria principal posee naturaleza volátil perdiendo su información almacenada inmediatamente cuando el equipo informático interrumpe su flujo eléctrico.",
+            "hint": "Observa el comportamiento de este componente ante un corte de energía."
+        },
+        {
+            "cat": "almacenamiento",
+            "q": "¿Qué ventaja tecnológica ofrecen las unidades de estado sólido frente a los discos duros clásicos?",
+            "opts": [
+                "Carecer de componentes mecánicos móviles acelerando la lectura de la información.",
+                "Disponer de capacidades inalámbricas integradas conectándose con satélites hoy.",
+                "Poseer pantallas táctiles capacitivas facilitando la interacción de todo usuario.",
+                "Utilizar cintas magnéticas secuenciales garantizando respaldos inmutables base."
+            ],
+            "ans": 0,
+            "just": "La arquitectura basada en memoria flash elimina la latencia mecánica propia de los discos tradicionales multiplicando exponencialmente la tasa de transferencia.",
+            "hint": "Analiza el beneficio de omitir motores giratorios en el diseño interno."
+        },
+        {
+            "cat": "redes",
+            "q": "¿Cuál es el propósito fundamental de implementar una red de área local en una oficina corporativa?",
+            "opts": [
+                "Interconectar dispositivos cercanos facilitando el intercambio de recursos locales.",
+                "Refrigerar los microprocesadores previniendo un sobrecalentamiento estructural.",
+                "Traducir lenguajes de programación estructurando diversos códigos fuente nuevos.",
+                "Clasificar correos electrónicos filtrando todos los mensajes publicitarios masivos."
+            ],
+            "ans": 0,
+            "just": "Estas infraestructuras conectan computadoras dentro de un espacio físico limitado permitiendo compartir impresoras o archivos con gran eficiencia operativa.",
+            "hint": "Piensa en tecnologías diseñadas para distancias geográficamente cortas."
+        },
+        {
+            "cat": "redes",
+            "q": "¿Qué dispositivo cumple la función de enrutar paquetes de datos entre diferentes redes informáticas?",
+            "opts": [
+                "Direccionar paquetes de información determinando las rutas más eficientes posibles.",
+                "Proyectar gráficos vectoriales calculando polígonos complejos en tiempo real hoy.",
+                "Escanear vulnerabilidades informáticas eliminando virus troyanos ocultos locales.",
+                "Digitalizar señales de audio comprimiendo las ondas sonoras capturadas del medio."
+            ],
+            "ans": 0,
+            "just": "Este dispositivo de red analiza las direcciones de destino seleccionando el camino óptimo garantizando la entrega correcta de datos entre distintas subredes.",
+            "hint": "Considera el equipo encargado de guiar el tráfico en la supercarretera."
+        },
+        {
+            "cat": "software",
+            "q": "¿Qué característica esencial define al sistema operativo dentro de la arquitectura de una computadora?",
+            "opts": [
+                "Administrar los recursos del hardware sirviendo como intermediario para el usuario.",
+                "Transmitir señales analógicas amplificando las frecuencias electromagnéticas base.",
+                "Imprimir documentos físicos utilizando cartuchos con tinta intercambiables nuevos.",
+                "Suministrar voltajes adecuados estabilizando las corrientes eléctricas principales."
+            ],
+            "ans": 0,
+            "just": "Este programa base coordina los componentes físicos proporcionando una plataforma lógica indispensable para ejecutar todas las aplicaciones adicionales.",
+            "hint": "Evalúa el software necesario para poder arrancar cualquier dispositivo."
+        },
+        {
+            "cat": "software",
+            "q": "¿Cuál es la principal ventaja que proporciona el uso de software de código abierto en las empresas?",
+            "opts": [
+                "Permitir la modificación comunitaria distribuyendo libremente sus fuentes base.",
+                "Bloquear el acceso al código fuente protegiendo la propiedad intelectual privada.",
+                "Requerir suscripciones mensuales obligatorias asegurando un soporte técnico.",
+                "Instalar componentes físicos adicionales mejorando todo el rendimiento gráfico."
+            ],
+            "ans": 0,
+            "just": "Este modelo de desarrollo fomenta una colaboración global otorgando libertades para estudiar el programa adaptándolo hacia necesidades corporativas.",
+            "hint": "Busca el enfoque que promueve la transparencia estructural del programa."
+        },
+        {
+            "cat": "sistemasInfo",
+            "q": "¿Qué beneficio competitivo aporta un Sistema de Planificación de Recursos Empresariales implementado?",
+            "opts": [
+                "Integrar múltiples procesos operativos utilizando una base de datos centralizada.",
+                "Proteger la red corporativa bloqueando accesos externos no autorizados masivos.",
+                "Diseñar interfaces gráficas optimizando la experiencia del usuario final siempre.",
+                "Ensamblar componentes físicos mejorando el rendimiento de los servidores locales."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas empresariales consolidan la información de distintos departamentos facilitando toda decisión gerencial mediante datos unificados precisos.",
+            "hint": "Identifica la herramienta enfocada en unificar departamentos corporativos."
+        },
+        {
+            "cat": "sistemasInfo",
+            "q": "¿Cuál es el objetivo primordial de utilizar sistemas de inteligencia de negocios en una organización?",
+            "opts": [
+                "Transformar datos crudos en conocimiento accionable mejorando las estrategias.",
+                "Refrigerar servidores de alto rendimiento controlando temperaturas locales hoy.",
+                "Encriptar contraseñas de usuarios previniendo accesos externos maliciosos base.",
+                "Imprimir reportes financieros utilizando tecnologías láser de alta precisión visual."
+            ],
+            "ans": 0,
+            "just": "El procesamiento analítico extrae patrones ocultos permitiendo a los directivos tomar decisiones fundamentadas respaldadas por evidencias estadísticas.",
+            "hint": "Evalúa el proceso de convertir información bruta en ventajas directivas."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Qué funcionalidad distingue a un Sistema de Gestión de Relaciones con Clientes en el área comercial?",
+            "opts": [
+                "Centralizar historiales de consumo anticipando necesidades de compradores clave.",
+                "Automatizar líneas de ensamblaje robótico reduciendo costos de producción base.",
+                "Estandarizar protocolos de enrutamiento acelerando conexiones de internet local.",
+                "Compilar códigos estructurados transformándolos hacia un lenguaje de máquina."
+            ],
+            "ans": 0,
+            "just": "Dichos sistemas recopilan interacciones comerciales generando perfiles detallados incrementando la fidelización mediante una atención personalizada total.",
+            "hint": "Reflexiona sobre las herramientas enfocadas en mejorar ventas corporativas."
+        },
+        {
+            "cat": "comunicacion",
+            "q": "¿Cómo mejora la tecnología de fibra óptica la transmisión de información comparada con el cobre?",
+            "opts": [
+                "Transmitir pulsos luminosos logrando velocidades de banda ancha muy superiores.",
+                "Conducir electricidad estabilizada evitando cortocircuitos en los servidores base.",
+                "Capturar imágenes fotográficas procesando resoluciones visuales extremas locales.",
+                "Sintetizar voces humanas facilitando la accesibilidad para usuarios ciegos hoy."
+            ],
+            "ans": 0,
+            "just": "El uso de luz confinada en filamentos de vidrio minimiza la atenuación de señales logrando distancias mayores junto con capacidades de transmisión insuperables.",
+            "hint": "Recuerda el medio de transporte basado en haces de luz ininterrumpida."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Qué ventaja operativa sustancial proporciona la computación en la nube para empresas emergentes?",
+            "opts": [
+                "Escalar recursos informáticos dinámicamente pagando solo la capacidad usada.",
+                "Fabricar microprocesadores personalizados optimizando algoritmos locales base.",
+                "Desarrollar sistemas operativos propietarios evitando dependencias externas hoy.",
+                "Construir centros de datos subterráneos protegiendo información clasificada local."
+            ],
+            "ans": 0,
+            "just": "La infraestructura externalizada elimina gigantescos gastos iniciales de capital permitiendo una flexibilidad operativa adaptándose instantáneamente a toda demanda.",
+            "hint": "Piensa en el modelo de arrendamiento de servidores según el consumo."
+        },
+        {
+            "cat": "almacenamiento",
+            "q": "¿Qué función técnica cumple implementar configuraciones de discos redundantes en servidores locales?",
+            "opts": [
+                "Prevenir pérdida de datos tolerando fallas físicas en discos individuales del equipo.",
+                "Aumentar el consumo eléctrico iluminando gabinetes con luces decorativas visuales.",
+                "Disminuir la velocidad de escritura cifrando todos los archivos almacenados base.",
+                "Convertir señales digitales procesando transmisiones de radiofrecuencias del área."
+            ],
+            "ans": 0,
+            "just": "Dichos arreglos distribuyen la información a través de múltiples unidades asegurando una continuidad operativa incluso ante daños catastróficos de componentes físicos.",
+            "hint": "Identifica la tecnología enfocada en salvaguardar datos mediante copias."
+        },
+        {
+            "cat": "seguridad",
+            "q": "¿Qué rol de protección desempeña un cortafuegos resguardando una red corporativa comunicada al exterior?",
+            "opts": [
+                "Filtrar tráfico entrante descartando paquetes según políticas de seguridad previas.",
+                "Incrementar velocidades de descarga comprimiendo videos de alta definición base.",
+                "Traducir direcciones de red facilitando el enrutamiento de correos físicos locales.",
+                "Almacenar copias de seguridad resguardando documentos confidenciales corporativos."
+            ],
+            "ans": 0,
+            "just": "El dispositivo inspecciona las comunicaciones bloqueando amenazas potenciales estableciendo una barrera estricta entre redes internas seguras el internet público.",
+            "hint": "Evalúa el mecanismo de control de acceso perimetral en la arquitectura."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Por qué resulta tecnológicamente imprescindible la placa base dentro de una arquitectura computacional?",
+            "opts": [
+                "Interconectar todos los componentes permitiendo su comunicación centralizada base.",
+                "Proporcionar refrigeración líquida disminuyendo temperaturas operativas de trabajo.",
+                "Proyectar entornos de realidad virtual engañando los sentidos del usuario final hoy.",
+                "Imprimir circuitos electrónicos ensamblando microchips de silicio puro comerciales."
+            ],
+            "ans": 0,
+            "just": "Este circuito impreso actúa como la espina dorsal del sistema unificando el procesador la memoria los periféricos en una sola red de comunicación fluida.",
+            "hint": "Considera la matriz física donde se insertan absolutamente todas las piezas."
+        },
+        {
+            "cat": "sistemasInfo",
+            "q": "¿Qué característica distingue fundamentalmente a un sistema de procesamiento de transacciones diario?",
+            "opts": [
+                "Registrar operaciones rutinarias alimentando las bases de datos organizacionales.",
+                "Predecir tendencias futuras del mercado utilizando redes neuronales artificiales.",
+                "Diseñar campañas de mercadotecnia automatizando publicaciones en redes sociales.",
+                "Simular comportamientos aerodinámicos calculando físicas complejas estructurales."
+            ],
+            "ans": 0,
+            "just": "Estos sistemas operativos capturan las actividades elementales del negocio garantizando que la información fundamental fluya correctamente hacia los niveles superiores.",
+            "hint": "Identifica el software encargado de las operaciones cotidianas repetitivas."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Cuál es la aportación principal de los Sistemas de Apoyo a las Decisiones para la gerencia intermedia?",
+            "opts": [
+                "Analizar grandes volúmenes de datos proyectando escenarios empresariales futuros.",
+                "Controlar maquinarias industriales regulando la producción en fábricas modernas.",
+                "Gestionar el pago de nóminas calculando impuestos mensuales correspondientes hoy.",
+                "Ensamblar computadoras de escritorio configurando los sistemas operativos base."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas combinan modelos analíticos con bases de datos estructuradas facilitando resoluciones óptimas ante problemas corporativos poco habituales.",
+            "hint": "Busca la herramienta utilizada para resolver problemas no estructurados."
+        },
+        {
+            "cat": "comunicacion",
+            "q": "¿Qué ventaja aporta el protocolo de voz sobre protocolo de internet para las empresas multinacionales?",
+            "opts": [
+                "Enrutar llamadas telefónicas mediante redes digitales reduciendo los costos fijos.",
+                "Amplificar señales de radio FM transmitiendo música hacia dispositivos analógicos.",
+                "Imprimir documentos remotamente conectando dispositivos mediante bluetooth base.",
+                "Detectar movimientos físicos activando cámaras de seguridad perimetrales nocturnas."
+            ],
+            "ans": 0,
+            "just": "Esta tecnología convierte el audio analógico en paquetes digitales permitiendo comunicaciones globales económicas utilizando infraestructuras de internet existentes.",
+            "hint": "Piensa en el mecanismo que reemplaza las líneas telefónicas tradicionales."
+        },
+        {
+            "cat": "software",
+            "q": "¿Qué función cumple un programa compilador durante el desarrollo de una nueva aplicación informática?",
+            "opts": [
+                "Traducir código fuente humano transformándolo en lenguaje de máquina ejecutable.",
+                "Proteger el disco duro eliminando archivos maliciosos descargados accidentalmente.",
+                "Sincronizar carpetas locales respaldando información en servidores de la nube hoy.",
+                "Reproducir formatos de video decodificando las señales visuales de alta definición."
+            ],
+            "ans": 0,
+            "just": "Esta herramienta resulta indispensable para convertir las instrucciones escritas por programadores hacia binarios comprensibles procesables por el microprocesador.",
+            "hint": "Evalúa la fase de conversión entre el texto humano los comandos del CPU."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Cuál es la principal limitación técnica que presenta la memoria caché integrada en los procesadores?",
+            "opts": [
+                "Poseer una capacidad de almacenamiento extremadamente reducida frente al sistema.",
+                "Consumir inmensas cantidades de energía sobrecalentando el equipo informático.",
+                "Requerir discos magnéticos externos para poder funcionar correctamente siempre.",
+                "Impedir la ejecución de programas modernos limitando las instrucciones matemáticas."
+            ],
+            "ans": 0,
+            "just": "A pesar de ser la memoria más veloz del computador su costo de fabricación diseño miniaturizado obligan a que su capacidad total sea sumamente pequeña.",
+            "hint": "Analiza la desventaja de este componente a pesar de su gran velocidad."
+        },
+        {
+            "cat": "almacenamiento",
+            "q": "¿Qué característica define al almacenamiento secundario dentro de un sistema informático convencional?",
+            "opts": [
+                "Conservar enormes cantidades de información incluso sin suministro de electricidad.",
+                "Procesar instrucciones lógicas acelerando el rendimiento de los juegos de video.",
+                "Conectar periféricos externos estandarizando los puertos de comunicación locales.",
+                "Capturar pulsaciones del teclado enviando los comandos hacia la tarjeta madre."
+            ],
+            "ans": 0,
+            "just": "Estos dispositivos no volátiles garantizan la preservación prolongada de documentos sistemas operativos constituyendo la bóveda de información del computador.",
+            "hint": "Observa el destino final donde se guardan los archivos permanentemente."
+        },
+        {
+            "cat": "redes",
+            "q": "¿Qué función cumple la dirección de control de acceso al medio en las tarjetas de red de las máquinas?",
+            "opts": [
+                "Identificar unívocamente el hardware de red conectándose a infraestructuras locales.",
+                "Proporcionar direcciones lógicas enrutando paquetes a través de la web mundial.",
+                "Cifrar correos electrónicos impidiendo la lectura por parte de terceros maliciosos.",
+                "Optimizar el flujo de electricidad mejorando la vida útil de las baterías portátiles."
+            ],
+            "ans": 0,
+            "just": "Este identificador físico grabado de fábrica permite la comunicación a nivel de enlace de datos garantizando que los paquetes lleguen al dispositivo correcto localmente.",
+            "hint": "Considera la huella digital física inalterable de cada tarjeta de red."
+        },
+        {
+            "cat": "software",
+            "q": "¿Cómo se define conceptualmente el software de aplicación dentro de un entorno corporativo moderno?",
+            "opts": [
+                "Programas informáticos diseñados facilitando la realización de tareas específicas.",
+                "Sistemas base controlando la asignación de memoria procesador en los servidores.",
+                "Controladores de hardware traduciendo señales físicas hacia comandos digitales.",
+                "Herramientas de diagnóstico evaluando la salud térmica de los discos de estado."
+            ],
+            "ans": 0,
+            "just": "Estas aplicaciones interactúan directamente con el usuario final proporcionando soluciones prácticas desde procesadores de texto hasta hojas de cálculo empresariales.",
+            "hint": "Busca la categoría de programas orientada hacia el trabajo diario del usuario."
+        },
+        {
+            "cat": "sistemasInfo",
+            "q": "¿Qué ventaja principal ofrece un Sistema de Gestión de la Cadena de Suministro para las manufactureras?",
+            "opts": [
+                "Optimizar la logística coordinando el flujo de materiales desde proveedores clave.",
+                "Diseñar productos virtuales renderizando prototipos tridimensionales de vehículos.",
+                "Evaluar el desempeño laboral calculando las bonificaciones de los empleados base.",
+                "Filtrar comunicaciones entrantes bloqueando correos basura de dominios extraños."
+            ],
+            "ans": 0,
+            "just": "Dichas plataformas integran a múltiples socios comerciales reduciendo inventarios ociosos garantizando la entrega oportuna de productos hacia los consumidores.",
+            "hint": "Reflexiona sobre el software enfocado en mejorar la logística externa."
+        },
+        {
+            "cat": "seguridad",
+            "q": "¿Qué objetivo fundamental persigue la implementación de criptografía en las comunicaciones de red?",
+            "opts": [
+                "Proteger la confidencialidad de los datos transformándolos en texto incomprensible.",
+                "Aumentar la velocidad de conexión eliminando los protocolos de verificación base.",
+                "Almacenar terabytes de información comprimiendo archivos de manera muy agresiva.",
+                "Interconectar oficinas remotas utilizando cableados de cobre de gran grosor local."
+            ],
+            "ans": 0,
+            "just": "El cifrado de información asegura que los datos interceptados durante su tránsito resulten completamente ilegibles resguardando secretos comerciales privados.",
+            "hint": "Evalúa el mecanismo utilizado para codificar mensajes confidenciales."
+        },
+        {
+            "cat": "negocios",
+            "q": "¿Cuál es el propósito principal de implementar sistemas de gestión del conocimiento organizacional?",
+            "opts": [
+                "Capturar la experiencia de los empleados facilitando su distribución corporativa.",
+                "Controlar los inventarios físicos automatizando pedidos hacia proveedores base.",
+                "Diseñar arquitecturas de hardware optimizando el consumo eléctrico de oficinas.",
+                "Proyectar campañas publicitarias administrando los presupuestos de medios hoy."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas transforman la experiencia individual en activos intelectuales documentados previniendo la pérdida de saberes críticos cuando el personal rota.",
+            "hint": "Busca la herramienta encargada de preservar la sabiduría institucional."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Qué tarea asume la unidad aritmético lógica dentro del procesador principal de las computadoras?",
+            "opts": [
+                "Ejecutar los cálculos matemáticos procesando todas las comparaciones de los datos.",
+                "Almacenar archivos digitales conservando toda información de manera permanente.",
+                "Suministrar energía eléctrica estabilizando el voltaje para los componentes físicos.",
+                "Renderizar modelos tridimensionales acelerando la visualización de los gráficos."
+            ],
+            "ans": 0,
+            "just": "Este subcomponente vital de la unidad central asume la responsabilidad exclusiva de concretar las operaciones matemáticas determinando la resolución de instrucciones.",
+            "hint": "Considera el núcleo matemático operativo de todo microprocesador."
+        },
+        {
+            "cat": "software",
+            "q": "¿Qué función de servicio cumplen los controladores de dispositivo integrados en un sistema operativo?",
+            "opts": [
+                "Traducir las instrucciones del software permitiendo controlar hardware periférico.",
+                "Proteger la red corporativa bloqueando accesos externos no autorizados masivos.",
+                "Diseñar interfaces gráficas optimizando la experiencia del usuario final siempre.",
+                "Ensamblar componentes físicos mejorando el rendimiento de los servidores locales."
+            ],
+            "ans": 0,
+            "just": "Estos pequeños programas actúan como traductores técnicos permitiendo que el sistema operativo logre comunicarse correctamente con impresoras tarjetas gráficas.",
+            "hint": "Identifica el software necesario para que una impresora nueva funcione."
+        },
+        {
+            "cat": "comunicacion",
+            "q": "¿Qué característica distingue a la topología de red en estrella dentro de las infraestructuras locales?",
+            "opts": [
+                "Conectar todos los nodos hacia un conmutador central facilitando el control local.",
+                "Enlazar las computadoras en un círculo cerrado transmitiendo la señal en secuencia.",
+                "Compartir un único cable principal conectando a todas las máquinas en línea recta.",
+                "Unir cada equipo directamente con todos los demás formando una malla inquebrantable."
+            ],
+            "ans": 0,
+            "just": "Este diseño centralizado asegura que el fallo de un cable individual no afecte al resto de la red simplificando enormemente el diagnóstico la gestión del tráfico interno.",
+            "hint": "Piensa en un diseño donde todos los cables convergen en un solo punto."
+        },
+        {
+            "cat": "sistemasInfo",
+            "q": "¿Cuál es la característica principal de un sistema de información de nivel ejecutivo gerencial alto?",
+            "opts": [
+                "Presentar datos resumidos estratégicos apoyando la dirección de alta corporación.",
+                "Registrar las ventas diarias en tiendas minoristas calculando el cambio de dinero.",
+                "Controlar brazos robóticos ensamblando piezas automotrices con máxima precisión.",
+                "Calcular la ruta de reparto más corta economizando el combustible de la flotilla."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas sintetizan información clave del entorno interno externo ofreciendo tableros de control intuitivos vitales para la planeación a muy largo plazo.",
+            "hint": "Reflexiona sobre las herramientas utilizadas exclusivamente por la cúpula directiva."
+        },
+        {
+            "cat": "hardware",
+            "q": "¿Cuál es la función principal de la memoria caché integrada directamente dentro de los microprocesadores modernos?",
+            "opts": [
+                "Almacenar temporalmente datos frecuentemente usados maximizando la velocidad del sistema.",
+                "Mantener los archivos del sistema operativo cuando la energía eléctrica cesa permanentemente.",
+                "Conectar directamente múltiples unidades de disco duro formando arreglos RAID complejos.",
+                "Controlar el movimiento de los brazos robóticos en líneas de producción automatizadas de alta velocidad."
+            ],
+            "ans": 0,
+            "just": "Esta memoria ultrarrápida reduce significativamente la latencia de acceso guardando las instrucciones las variables que el procesador necesita con mayor frecuencia.",
+            "hint": "Piensa en un buffer diminuto pero extremadamente veloz dentro del procesador."
+        },
+        {
+            "cat": "software",
+            "q": "¿Cuál es el propósito fundamental de aplicar técnicas de machine learning en plataformas de comercio electrónico moderno?",
+            "opts": [
+                "Personalizar recomendaciones de productos mejorando la experiencia del usuario final.",
+                "Controlar la temperatura de los servidores evitando el sobrecalentamiento masivo.",
+                "Optimizar la ruta de reparto minimizando el consumo de combustible y el tiempo.",
+                "Diseñar interfaces gráficas interactivas facilitando la navegación de los usuarios."
+            ],
+            "ans": 0,
+            "just": "Los algoritmos aprenden del comportamiento del consumidor prediciendo preferencias futuras lo que incrementa significativamente la probabilidad de compra.",
+            "hint": "Piensa en cómo Amazon sugiere productos que te podrían interesar."
+        }
+    ]
+}

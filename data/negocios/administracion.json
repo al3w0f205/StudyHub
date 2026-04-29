@@ -1,0 +1,1044 @@
+{
+    "preguntas": [
+        {
+            "cat": "conceptos_basicos",
+            "q": "¿Cómo se define fundamentalmente el acto de administrar dentro del contexto de las organizaciones empresariales modernas?",
+            "opts": [
+                "Planificar organizar dirigir controlar recursos para alcanzar metas establecidas de manera eficiente.",
+                "Comercializar productos internacionales distribuyendo mercancías globales para mejorar utilidades.",
+                "Programar sistemas informáticos desarrollando códigos estructurados destinados a plataformas nuevas.",
+                "Evaluar balances financieros calculando impuestos gubernamentales mediante estrictas normas legales."
+            ],
+            "ans": 0,
+            "just": "Administrar implica la gestión estratégica de diversos recursos optimizando el desempeño para garantizar la sostenibilidad de toda organización.",
+            "hint": "Considera el proceso integral que abarca desde la planificación hasta el control operativo."
+        },
+        {
+            "cat": "conceptos_basicos",
+            "q": "¿Qué representa la estrategia corporativa cuando se aplica al desarrollo competitivo de organizaciones comerciales?",
+            "opts": [
+                "Plan de acción diseñado para alcanzar objetivos maximizando las probabilidades de éxito empresarial.",
+                "Reglamento disciplinario enfocado en sancionar el comportamiento laboral inadecuado del personal base.",
+                "Documento contable destinado a registrar transacciones diarias previniendo posibles fraudes fiscales.",
+                "Software especializado utilizado para automatizar líneas productivas reduciendo la intervención humana."
+            ],
+            "ans": 0,
+            "just": "La estrategia implica tomar decisiones basadas en el análisis del entorno para lograr un objetivo específico de manera efectiva.",
+            "hint": "Busca la opción relacionada con la planificación estructurada para lograr metas futuras."
+        },
+        {
+            "cat": "conceptos_basicos",
+            "q": "¿Cuál es el propósito principal que persigue la innovación aplicada a los procesos operativos organizacionales?",
+            "opts": [
+                "Crear o transformar productos servicios modelos buscando generar mayor valor para los consumidores finales.",
+                "Mantener intactas las tradiciones corporativas evitando cualquier modificación en las cadenas logísticas.",
+                "Reducir los salarios del personal contratado para incrementar los márgenes de ganancia trimestrales hoy.",
+                "Eliminar los departamentos de investigación centralizando todas las decisiones en la junta directiva local."
+            ],
+            "ans": 0,
+            "just": "La innovación busca satisfacer necesidades de manera más eficiente transformando la oferta comercial para generar valor agregado constante.",
+            "hint": "Identifica el concepto asociado a la mejora continua junto con la creación de valor."
+        },
+        {
+            "cat": "teorias_administrativas",
+            "q": "¿Qué enfoque administrativo introdujo Frederick Taylor revolucionando la gestión de la producción industrial?",
+            "opts": [
+                "Administración científica enfocada en situar a la persona correcta en el puesto de trabajo correcto.",
+                "Teoría de relaciones humanas centrada en los efectos psicológicos del ambiente sobre el trabajador.",
+                "Modelo burocrático diseñado para estandarizar los trámites gubernamentales mediante reglas estrictas.",
+                "Gestión empírica basada en la intuición de los gerentes para resolver conflictos laborales cotidianos."
+            ],
+            "ans": 0,
+            "just": "Taylor impulsó la administración científica buscando la mejora productiva mediante la planeación preparación control ejecución sistemática.",
+            "hint": "Recuerda al autor asociado con la eficiencia operativa a través de métodos científicos."
+        },
+        {
+            "cat": "teorias_administrativas",
+            "q": "¿Cuáles son las funciones administrativas fundamentales propuestas originalmente por el teórico Henri Fayol?",
+            "opts": [
+                "Prever organizar dirigir coordinar controlar las actividades para asegurar la eficacia institucional global.",
+                "Contratar despedir capacitar auditar financiar los recursos humanos para maximizar la rentabilidad total.",
+                "Investigar diseñar fabricar vender distribuir los productos manufacturados hacia los mercados externos.",
+                "Sancionar vigilar reportar archivar documentar los procesos operativos para evitar posibles demandas legales."
+            ],
+            "ans": 0,
+            "just": "Fayol estableció la teoría clásica de la administración definiendo cinco funciones esenciales para mantener el orden la eficacia estructural.",
+            "hint": "Busca la secuencia de cinco verbos que describen el ciclo directivo clásico."
+        },
+        {
+            "cat": "teorias_administrativas",
+            "q": "¿Qué aspecto fundamental investigó Elton Mayo durante sus experimentos sobre el comportamiento laboral?",
+            "opts": [
+                "Los efectos psicológicos del trabajador condicionados por las situaciones físicas de su entorno laboral.",
+                "Los tiempos cronometrados necesarios para ensamblar maquinarias pesadas en las fábricas automotrices.",
+                "Las estrategias de marketing requeridas para posicionar marcas de consumo masivo en mercados locales.",
+                "Las normativas legales relacionadas con el pago de horas extras durante los turnos nocturnos rotativos."
+            ],
+            "ans": 0,
+            "just": "Mayo fundó el movimiento de las relaciones humanas demostrando que factores psicológicos ambientales afectan profundamente la productividad laboral.",
+            "hint": "Considera los estudios enfocados en la mente humana dentro del lugar de trabajo."
+        },
+        {
+            "cat": "entorno_empresarial",
+            "q": "¿Cómo se define a un stakeholder dentro del marco de la gestión corporativa moderna internacional?",
+            "opts": [
+                "Cualquier persona grupo organización que afecta o resulta afectada por las actividades de una empresa.",
+                "Exclusivamente los inversionistas mayoritarios que aportan capital financiero para expandir operaciones.",
+                "Únicamente las entidades gubernamentales encargadas de cobrar los impuestos corporativos anuales.",
+                "Solamente los proveedores internacionales que suministran materias primas a las grandes fábricas locales."
+            ],
+            "ans": 0,
+            "just": "Un stakeholder abarca a todas las partes interesadas internas externas que tienen impacto o reciben consecuencias de las decisiones organizacionales.",
+            "hint": "Identifica la opción que incluye a múltiples actores impactados por la corporación."
+        },
+        {
+            "cat": "entorno_empresarial",
+            "q": "¿Qué grupo de personas representa un claro ejemplo de stakeholders internos para una organización?",
+            "opts": [
+                "Empleados directivos accionistas que forman parte estructural de la dinámica organizativa diaria.",
+                "Clientes proveedores competidores que interactúan comercialmente desde fuera de la empresa local.",
+                "Medios de comunicación autoridades fiscales que vigilan el cumplimiento de las normativas externas.",
+                "Comunidades aledañas activistas ambientales que exigen prácticas ecológicas a las manufactureras."
+            ],
+            "ans": 0,
+            "just": "Los stakeholders internos son aquellos individuos que trabajan directamente dentro de la institución aportando a su funcionamiento interno regular.",
+            "hint": "Busca a los actores que perciben un salario o poseen acciones directas de la firma."
+        },
+        {
+            "cat": "responsabilidad_social",
+            "q": "¿Cuál es la premisa central de la Responsabilidad Social aplicada a las actividades corporativas actuales?",
+            "opts": [
+                "Asumir un compromiso ético con la sociedad junto con la protección activa del medio ambiente natural.",
+                "Maximizar los dividendos de los accionistas reduciendo drásticamente los costos de producción industrial.",
+                "Evadir los controles tributarios trasladando las operaciones hacia paraísos fiscales poco regulados hoy.",
+                "Eliminar la competencia local mediante la creación de monopolios comerciales agresivos en el mercado."
+            ],
+            "ans": 0,
+            "just": "La responsabilidad social implica que las empresas operen de forma sostenible contribuyendo positivamente al bienestar social ecológico global.",
+            "hint": "Considera el deber ético de las empresas hacia su entorno humano ambiental."
+        },
+        {
+            "cat": "modelos_empresariales",
+            "q": "¿Qué característica define principalmente a una empresa exportadora frente a otros modelos internacionales?",
+            "opts": [
+                "Vende productos en mercados extranjeros pero mantiene toda su producción en su país de origen matriz.",
+                "Posee fábricas en múltiples continentes adaptando sus productos a la cultura de cada región específica.",
+                "Gestiona sus operaciones de manera global manteniendo una estrategia totalmente uniforme centralizada.",
+                "Opera de forma descentralizada permitiendo gran independencia administrativa a todas sus filiales locales."
+            ],
+            "ans": 0,
+            "just": "El modelo exportador concentra sus operaciones principales localmente dedicándose únicamente a comercializar sus bienes hacia el exterior.",
+            "hint": "Identifica el modelo donde la fabricación nunca sale de las fronteras nacionales."
+        },
+        {
+            "cat": "modelos_empresariales",
+            "q": "¿Cómo opera fundamentalmente una corporación clasificada como empresa multinacional en la actualidad?",
+            "opts": [
+                "Mantiene presencia en varios países permitiendo que cada filial se adapte a las regulaciones locales.",
+                "Fabrica sus productos exclusivamente en un solo país vendiéndolos a través de plataformas de internet.",
+                "Centraliza todas las decisiones operativas obligando a las sucursales a vender exactamente lo mismo.",
+                "Terceriza la totalidad de sus servicios productivos contratando únicamente a trabajadores independientes."
+            ],
+            "ans": 0,
+            "just": "Las multinacionales otorgan autonomía a sus filiales para que modifiquen sus productos estrategias según las costumbres normativas de cada nación.",
+            "hint": "Busca la opción que menciona la adaptación cultural regulatoria por regiones."
+        },
+        {
+            "cat": "modelos_empresariales",
+            "q": "¿Qué estrategia organizativa diferencia a una empresa global respecto a una empresa transnacional?",
+            "opts": [
+                "Mantiene una estrategia uniforme centralizada vendiendo productos idénticos en todo el mundo actual.",
+                "Otorga independencia total a sus sucursales permitiéndoles crear marcas nuevas para cada mercado local.",
+                "Funciona únicamente mediante trabajadores independientes que ofrecen servicios a través de plataformas.",
+                "Concentra su comercialización en un solo continente evitando expandirse hacia mercados desconocidos."
+            ],
+            "ans": 0,
+            "just": "Las empresas globales buscan economías de escala integrando operaciones aplicando estrategias estandarizadas globalmente con mínima adaptación.",
+            "hint": "Considera el enfoque que busca vender el mismo producto exacto en todo el planeta."
+        },
+        {
+            "cat": "mercado_laboral",
+            "q": "¿En qué consiste la modalidad de trabajo digital conocida comercialmente como dropshipping moderno?",
+            "opts": [
+                "El vendedor actúa como intermediario comercial entre el proveedor original los clientes minoristas.",
+                "El profesional ofrece sus servicios especializados a múltiples empresas sin poseer contratos fijos.",
+                "La persona realiza trabajos esporádicos por demanda utilizando aplicaciones móviles de transporte.",
+                "El estudiante accede a plataformas de formación continua adquiriendo nuevas habilidades técnicas."
+            ],
+            "ans": 0,
+            "just": "Esta práctica permite vender productos sin mantener inventarios propios transfiriendo los pedidos directamente al mayorista para su despacho.",
+            "hint": "Identifica el modelo de ventas sin necesidad de almacenar mercancía física."
+        },
+        {
+            "cat": "mercado_laboral",
+            "q": "¿Qué caracteriza a la economía colaborativa conocida como gig economy en el entorno laboral actual?",
+            "opts": [
+                "Consiste en realizar trabajos esporádicos por demanda a través de plataformas o aplicaciones móviles.",
+                "Representa la creación de grandes corporaciones transnacionales con miles de empleados permanentes.",
+                "Consiste en automatizar fábricas manufactureras utilizando sistemas robóticos de inteligencia artificial.",
+                "Representa la comercialización exclusiva de libros electrónicos mediante páginas web gubernamentales."
+            ],
+            "ans": 0,
+            "just": "La economía de pequeños encargos utiliza la tecnología para conectar rápidamente a trabajadores independientes con consumidores que requieren servicios puntuales.",
+            "hint": "Piensa en aplicaciones como Uber donde se paga por trayectos específicos realizados."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿Qué beneficio primordial proporciona la planeación estratégica adecuada dentro de las empresas?",
+            "opts": [
+                "Fomenta la creatividad optimiza el uso de recursos incrementando notablemente la competitividad.",
+                "Incentiva la rotación del personal disminuyendo las obligaciones patronales hacia los trabajadores.",
+                "Elimina por completo el pago de tributos fiscales mediante la creación de fundaciones comunitarias.",
+                "Promueve el monopolio de mercado destruyendo sistemáticamente a todas las empresas competidoras."
+            ],
+            "ans": 0,
+            "just": "La planificación fortalece a la organización permitiendo anticipar escenarios asignar recursos inteligentemente desarrollando ventajas competitivas claras.",
+            "hint": "Busca la opción que resalte mejoras internas eficiencias operativas sostenibles."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿Cuáles son los componentes principales que conforman la fase filosófica de la planeación corporativa?",
+            "opts": [
+                "Misión visión objetivos valores cultura políticas organizacionales que definen la identidad empresarial.",
+                "Análisis del entorno matriz de fortalezas oportunidades debilidades amenazas evaluadas minuciosamente.",
+                "Plan de acción implementación de estrategias cronogramas de trabajo presupuestos financieros anuales.",
+                "Contratación de personal pago de planillas salariales diseño de campañas publicitarias internacionales."
+            ],
+            "ans": 0,
+            "just": "La fase filosófica establece el ADN de la organización definiendo su propósito fundamental sus aspiraciones futuras sus principios rectores básicos.",
+            "hint": "Considera los elementos abstractos que dan identidad propósito a la corporación."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿Qué propósito cumple la declaración de la misión dentro de la estructura ideológica empresarial?",
+            "opts": [
+                "Definir la razón de ser de la organización comunicando claramente qué hace para quién lo hace hoy.",
+                "Proyectar la imagen deseada de la corporación estableciendo metas a largo plazo inalcanzables pronto.",
+                "Establecer las reglas de comportamiento obligatorio que todo empleado debe seguir bajo amenaza estricta.",
+                "Enumerar detalladamente los costos de producción requeridos para fabricar una línea de productos nueva."
+            ],
+            "ans": 0,
+            "just": "La misión articula el propósito actual de la empresa explicando su actividad principal su público objetivo justificando su existencia mercantil.",
+            "hint": "Identifica el concepto que responde a la pregunta de por qué existe la entidad."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿En qué consiste la fase analítica durante el desarrollo de la planeación estratégica institucional?",
+            "opts": [
+                "Realizar un análisis interno externo de la organización aplicando herramientas diagnósticas específicas.",
+                "Redactar los valores corporativos seleccionando las virtudes morales que guiarán a todos los empleados.",
+                "Ejecutar directamente las tácticas comerciales invirtiendo el capital disponible en nuevas tecnologías.",
+                "Evaluar el desempeño del personal administrativo aplicando encuestas de satisfacción laboral cerradas."
+            ],
+            "ans": 0,
+            "just": "Esta fase involucra evaluar el contexto competitivo las capacidades internas utilizando matrices para identificar variables que impactarán el negocio.",
+            "hint": "Busca la opción relacionada con el diagnóstico situacional la evaluación de datos."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Cuál es la ventaja principal de aplicar el modelo racional durante la toma de decisiones gerenciales?",
+            "opts": [
+                "Mejora la calidad de la decisión alineándola con las metas estratégicas reduciendo la incertidumbre.",
+                "Permite tomar resoluciones inmediatas sin requerir información previa ni análisis estadísticos complejos.",
+                "Garantiza resultados perfectos eliminando absolutamente todos los riesgos asociados a los negocios nuevos.",
+                "Delega la responsabilidad hacia los empleados de menor rango evitando comprometer a los directivos altos."
+            ],
+            "ans": 0,
+            "just": "El enfoque racional utiliza un análisis sistemático de datos para anticipar resultados minimizando riesgos asegurando coherencia con los objetivos generales.",
+            "hint": "Considera los beneficios de un proceso lógico analítico basado en evidencias sólidas."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Qué limitación importante presenta el proceso de toma racional de decisiones en entornos volátiles?",
+            "opts": [
+                "Consume mucho tiempo recursos dificultando su aplicación ante situaciones de altísima incertidumbre.",
+                "Fomenta decisiones impulsivas basadas exclusivamente en las emociones temporales de los directivos.",
+                "Requiere la contratación de consultores externos incrementando excesivamente los gastos operativos.",
+                "Prohíbe la creatividad del personal forzando la implementación de soluciones tecnológicamente obsoletas."
+            ],
+            "ans": 0,
+            "just": "La necesidad de recopilar procesar información completa hace que este método resulte ineficiente frente a escenarios impredecibles urgentes.",
+            "hint": "Identifica el problema relacionado con la velocidad la disponibilidad de datos."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Cómo se define el uso de la heurística en el proceso de resolución de problemas organizacionales?",
+            "opts": [
+                "Consiste en tomar atajos mentales basados en la experiencia para resolver problemas velozmente hoy.",
+                "Representa un modelo matemático complejo utilizado para pronosticar las ventas internacionales futuras.",
+                "Es una herramienta de software diseñada para organizar bases de datos gigantescas corporativamente.",
+                "Significa delegar todas las decisiones críticas hacia comités de expertos internacionales independientes."
+            ],
+            "ans": 0,
+            "just": "Las heurísticas son reglas generales derivadas de experiencias previas que aceleran la toma de decisiones aunque pueden introducir sesgos cognitivos.",
+            "hint": "Busca la opción referida a soluciones rápidas fundamentadas en conocimientos previos."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Qué característica distingue claramente a las decisiones programadas en el ambiente administrativo?",
+            "opts": [
+                "Son rutinarias repetitivas tomadas siguiendo procedimientos reglas políticas previamente establecidas.",
+                "Son estrategias de alto impacto diseñadas para enfrentar crisis financieras mundiales impredecibles.",
+                "Requieren un análisis profundo prolongado debido a la falta de información histórica sobre el evento.",
+                "Son tomadas exclusivamente por el presidente de la compañía durante las asambleas anuales cerradas."
+            ],
+            "ans": 0,
+            "just": "Estas decisiones abordan problemas cotidianos estructurados automatizando las respuestas mediante directrices claras ahorrando recursos directivos.",
+            "hint": "Piensa en acciones que ocurren regularmente poseen protocolos de actuación fijos."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿En qué circunstancias se requiere aplicar procesos para tomar decisiones no programadas empresariales?",
+            "opts": [
+                "Ante situaciones nuevas complejas donde no existen procedimientos predefinidos para actuar pronto.",
+                "Cuando se necesita reponer el inventario de materiales de oficina tras alcanzar el límite establecido.",
+                "Para asignar los turnos de trabajo mensuales del personal de seguridad física dentro de la fábrica.",
+                "Al momento de aprobar el pago automático de los salarios básicos de todos los empleados contratados."
+            ],
+            "ans": 0,
+            "just": "Las decisiones no programadas enfrentan escenarios inéditos estratégicos demandando creatividad análisis crítico juicio gerencial personalizado.",
+            "hint": "Considera situaciones extraordinarias que carecen de manuales de instrucción previos."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Cuál es la función estructuradora que posee la organización como disciplina administrativa corporativa?",
+            "opts": [
+                "Definir cómo se distribuyen las tareas se asignan recursos se establecen jerarquías organizacionales.",
+                "Pronosticar las tasas de inflación económica para ajustar los precios de venta al público en general.",
+                "Contratar campañas de publicidad masivas para promover la imagen comercial de las nuevas marcas.",
+                "Inspeccionar la calidad de las materias primas despachadas por los proveedores internacionales hoy."
+            ],
+            "ans": 0,
+            "just": "La organización estructura el funcionamiento interno creando un marco jerárquico distribuyendo responsabilidades para lograr eficiencia operativa coordinada.",
+            "hint": "Busca la opción vinculada a la creación del organigrama la división del trabajo."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Por qué se considera que la organización empresarial es un proceso continuo dinámico permanentemente?",
+            "opts": [
+                "Porque debe adaptarse constantemente a los cambios del entorno la tecnología los objetivos planteados.",
+                "Debido a que los gerentes son reemplazados diariamente impidiendo la consolidación de planes fijos.",
+                "Ya que las máquinas de producción nunca detienen su marcha funcionando veinticuatro horas continuas.",
+                "Porque los clientes exigen devoluciones constantes modificando los inventarios de los almacenes hoy."
+            ],
+            "ans": 0,
+            "just": "Las estructuras organizacionales requieren ajustes regulares para responder a las transformaciones del mercado innovaciones asegurando su supervivencia.",
+            "hint": "Identifica la idea de flexibilidad corporativa frente a variaciones externas inminentes."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué describe el componente de procesos dentro de los fundamentos de la organización institucional?",
+            "opts": [
+                "Conjunto de actividades articuladas que transforman los insumos iniciales en resultados valorables.",
+                "Agrupación de empleados según sus afinidades personales para organizar eventos sociales internos.",
+                "Protocolo de comunicación informal utilizado por los operarios durante sus periodos de descanso.",
+                "Documento legal que establece la constitución jurídica de la sociedad anónima frente a los registros."
+            ],
+            "ans": 0,
+            "just": "Los procesos constituyen la maquinaria operativa del negocio donde los recursos humanos técnicos interactúan agregando valor a las materias primas.",
+            "hint": "Considera la secuencia de pasos que convierte materiales en bienes finales terminados."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Cómo opera la estructura organizacional lineal clásica dentro de las empresas tradicionales pequeñas?",
+            "opts": [
+                "Cada persona tiene un jefe directo recibiendo órdenes claras jerárquicas garantizando mando único.",
+                "Los trabajadores se agrupan temporalmente para desarrollar proyectos específicos retornando luego.",
+                "Cada empleado responde simultáneamente a múltiples directivos según el área de especialización.",
+                "Las decisiones se toman democráticamente mediante asambleas semanales con todos los miembros."
+            ],
+            "ans": 0,
+            "just": "El modelo lineal establece líneas directas únicas de autoridad responsabilidad facilitando la disciplina la velocidad en la transmisión de comandos.",
+            "hint": "Busca el diseño donde existe una cadena de mando simple sin cruces de jefaturas."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué característica principal define a la estructura organizacional matricial utilizada corporativamente?",
+            "opts": [
+                "Combina estructura funcional por proyectos generando doble jefatura para maximizar especialización.",
+                "Divide a la corporación en unidades de negocio totalmente independientes que compiten entre ellas.",
+                "Elimina por completo la figura de los gerentes permitiendo autogestión absoluta de los operarios.",
+                "Centraliza el poder en una sola persona que dicta instrucciones directas a cada nivel subordinado."
+            ],
+            "ans": 0,
+            "just": "La matriz permite flexibilidad optimización de recursos al asignar especialistas funcionales a proyectos temporales aunque rompe el principio de mando único.",
+            "hint": "Considera el formato donde un trabajador reporta al jefe de área al jefe de proyecto."
+        },
+        {
+            "cat": "conceptos_basicos",
+            "q": "¿Qué rol asume el espíritu emprendedor introducido dentro de las grandes organizaciones consolidadas?",
+            "opts": [
+                "Impulsar creación de valor innovación toma de riesgos calculados promoción de la mejora continua.",
+                "Imponer reglas restrictivas para evitar que los empleados propongan ideas arriesgadas peligrosas.",
+                "Reducir drásticamente el presupuesto destinado a la investigación tecnológica para ahorrar capital.",
+                "Centralizar la toma de decisiones estratégicas ignorando las opiniones de los niveles operativos hoy."
+            ],
+            "ans": 0,
+            "just": "El intraemprendimiento fomenta una cultura proactiva donde los colaboradores actúan como creadores de soluciones asegurando la evolución empresarial constante.",
+            "hint": "Busca la opción que resalta actitudes propositivas tolerantes al riesgo innovador."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué persigue el proceso de reingeniería cuando es aplicado en estructuras empresariales obsoletas?",
+            "opts": [
+                "Replantear rediseñar radicalmente procesos clave logrando mejoras dramáticas en rendimiento final.",
+                "Realizar pequeños ajustes estéticos en los manuales de funciones manteniendo los procesos intactos.",
+                "Contratar asesores de imagen para mejorar la percepción de la marca frente a los consumidores hoy.",
+                "Sustituir el mobiliario de las oficinas corporativas para crear espacios laborales más confortables."
+            ],
+            "ans": 0,
+            "just": "La reingeniería implica destruir paradigmas viejos construyendo sistemas desde cero enfocándose en resultados sustanciales en costos calidad servicio.",
+            "hint": "Identifica el concepto relacionado con una transformación profunda drástica interna."
+        },
+        {
+            "cat": "teorias_administrativas",
+            "q": "¿En qué se basaba principalmente el modelo de administración científica para mejorar la producción?",
+            "opts": [
+                "Analizar tiempos movimientos estableciendo estándares de trabajo precisos optimizando eficiencia.",
+                "Mejorar la iluminación ventilación de las plantas industriales motivando psicológicamente al grupo.",
+                "Establecer reglas jerárquicas estrictas creando un organigrama burocrático profundamente rígido.",
+                "Promover la participación activa de los trabajadores en la repartición equitativa de las utilidades."
+            ],
+            "ans": 0,
+            "just": "La administración científica aplicó métodos observacionales métricos para descubrir la manera óptima de realizar tareas industriales repetitivas específicas.",
+            "hint": "Piensa en el uso de cronómetros el estudio detallado de cada acción del obrero."
+        },
+        {
+            "cat": "entorno_empresarial",
+            "q": "¿Qué factores conforman el ambiente externo específico o microentorno de una entidad comercial hoy?",
+            "opts": [
+                "Clientes proveedores competidores entidades reguladoras que influyen directamente en la actividad.",
+                "Condiciones económicas tendencias socioculturales avances tecnológicos de toda la región continental.",
+                "Estructura organizacional cultura corporativa políticas internas adoptadas por la gerencia general.",
+                "Estado de resultados flujos de efectivo estados financieros auditados por los contadores públicos."
+            ],
+            "ans": 0,
+            "just": "El entorno específico incluye a los actores externos que interactúan cotidianamente con la empresa afectando su desempeño operativo comercial directo.",
+            "hint": "Considera a los agentes externos cercanos que interactúan con la cadena de valor."
+        },
+        {
+            "cat": "responsabilidad_social",
+            "q": "¿Qué iniciativa representa una acción clara de responsabilidad social empresarial hacia la comunidad?",
+            "opts": [
+                "Desarrollar proyectos sostenibles colaborando activamente con fundaciones programas de voluntariado.",
+                "Aumentar el precio de venta de los productos aprovechando la escasez temporal de materias primas.",
+                "Reemplazar a los trabajadores de mayor edad contratando pasantes universitarios sin experiencia hoy.",
+                "Invertir millones en publicidad televisiva resaltando los beneficios nutricionales de los alimentos."
+            ],
+            "ans": 0,
+            "just": "La responsabilidad social se manifiesta en acciones voluntarias que generan impactos sociales ambientales positivos superando las obligaciones legales estrictas.",
+            "hint": "Busca programas que beneficien genuinamente al entorno social sin fines de lucro."
+        },
+        {
+            "cat": "modelos_empresariales",
+            "q": "¿Cuál es la función principal de las sedes corporativas centrales en las empresas internacionales?",
+            "opts": [
+                "Coordinar la planificación estratégica general dictando directrices maestras hacia filiales globales.",
+                "Fabricar personalmente la totalidad de los productos que serán exportados hacia los distribuidores.",
+                "Atender las quejas de los clientes locales solucionando problemas técnicos de los electrodomésticos.",
+                "Distribuir mercancías mediante flotas de camiones terrestres hacia todos los minoristas regionales."
+            ],
+            "ans": 0,
+            "just": "Las casas matrices concentran el poder de decisión estratégica estableciendo la visión los valores gestionando las finanzas consolidadas de la corporación.",
+            "hint": "Considera el rol directivo normativo que asume la oficina principal de la marca."
+        },
+        {
+            "cat": "mercado_laboral",
+            "q": "¿Qué herramienta tecnológica resulta indispensable para realizar trabajo colaborativo digitalmente?",
+            "opts": [
+                "Plataformas basadas en la nube que permiten compartir editar documentos simultáneamente online.",
+                "Sistemas de transporte mecanizado utilizados para movilizar contenedores en puertos marítimos.",
+                "Maquinaria industrial especializada en la impresión tridimensional de prototipos arquitectónicos.",
+                "Sensores electrónicos instalados en maquinarias para medir niveles de temperatura vibraciones."
+            ],
+            "ans": 0,
+            "just": "El trabajo remoto moderno depende de infraestructuras en la nube garantizando el acceso concurrente a la información desde ubicaciones geográficas dispares.",
+            "hint": "Identifica los sistemas informáticos que facilitan la conexión sincronización de equipos."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿Qué elementos evalúa la herramienta matricial DOFA durante el diagnóstico organizacional interno?",
+            "opts": [
+                "Analiza las fortalezas debilidades propias evaluando los recursos capacidades operativas internas.",
+                "Estudia las oportunidades amenazas presentadas por los competidores las variaciones económicas.",
+                "Calcula la rentabilidad financiera esperada de los nuevos proyectos de expansión internacional hoy.",
+                "Mide la satisfacción laboral de los operarios encuestando su percepción sobre el clima de trabajo."
+            ],
+            "ans": 0,
+            "just": "La porción interna de la matriz DOFA identifica factores positivos negativos bajo el control de la empresa permitiendo potenciar virtudes corregir fallos.",
+            "hint": "Concéntrate en las dos siglas que representan variables controlables por la gerencia."
+        },
+        {
+            "cat": "planeacion_estrategica",
+            "q": "¿Qué representan las políticas corporativas establecidas durante la fase filosófica administrativa?",
+            "opts": [
+                "Lineamientos generales reglas de conducta normativas institucionales que guían la toma de acciones.",
+                "Metas cuantitativas financieras que deben alcanzarse obligatoriamente durante el primer trimestre.",
+                "Procesos técnicos detallados especificando cómo operar maquinarias pesadas previniendo accidentes.",
+                "Presupuestos económicos asignados para ejecutar campañas publicitarias en redes sociales digitales."
+            ],
+            "ans": 0,
+            "just": "Las políticas son declaraciones institucionales que establecen límites criterios orientando el comportamiento organizacional asegurando decisiones consistentes.",
+            "hint": "Busca la opción que describe normas directrices estables para encauzar acciones."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Cuál es el primer paso metodológico indispensable dentro del proceso racional de toma de decisiones?",
+            "opts": [
+                "Identificar analizar claramente el problema definiendo sus causas síntomas antes de buscar opciones.",
+                "Generar múltiples alternativas creativas realizando lluvias de ideas grupales sin restricciones hoy.",
+                "Implementar inmediatamente la primera solución encontrada ahorrando valioso tiempo corporativo.",
+                "Delegar la responsabilidad evaluando el desempeño del equipo técnico posterior a la intervención."
+            ],
+            "ans": 0,
+            "just": "El modelo racional exige comprender perfectamente la situación problemática asegurando que las soluciones posteriores ataquen la raíz del inconveniente real.",
+            "hint": "Piensa en lo que se debe comprender cabalmente antes de proponer cualquier solución."
+        },
+        {
+            "cat": "toma_decisiones",
+            "q": "¿Qué riesgo inherente conllevan las decisiones basadas en heurística dentro de la gestión gerencial?",
+            "opts": [
+                "Pueden generar errores graves sesgos cognitivos debido a que ignoran el análisis de datos completo.",
+                "Consumen recursos financieros desproporcionados paralizando las operaciones de la planta fabril.",
+                "Retrasan la resolución de problemas urgentes burocratizando la respuesta ante crisis inesperadas.",
+                "Obligan a consultar a todos los empleados de la organización desestabilizando la cadena de mando."
+            ],
+            "ans": 0,
+            "just": "Los atajos mentales sacrifican precisión por velocidad exponiendo a la empresa a fallos sistémicos si la experiencia previa no se ajusta al contexto nuevo.",
+            "hint": "Considera los peligros de actuar por instinto costumbre descartando información vital."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué ventaja competitiva fundamental ofrece la adopción de una estructura divisional departamentalizada?",
+            "opts": [
+                "Permite especialización autonomía acelerando la respuesta comercial de cada unidad de negocios.",
+                "Reduce radicalmente los costos operativos centralizando todas funciones administrativas corporativas.",
+                "Garantiza que todos los empleados reciban instrucciones de un único jefe supremo incondicional hoy.",
+                "Elimina la competencia interna estandarizando completamente los métodos de trabajo industriales."
+            ],
+            "ans": 0,
+            "just": "La departamentalización divisional organiza la empresa por productos geografías dotando a cada segmento de agilidad enfoque para competir eficazmente.",
+            "hint": "Identifica los beneficios asociados a la descentralización la especialización operativa."
+        },
+        {
+            "cat": "conceptos",
+            "q": "¿Qué elemento resulta fundamental al definir el acto de administrar dentro de corporaciones modernas?",
+            "opts": [
+                "Planificar organizar dirigir controlar recursos buscando alcanzar las metas con eficiencia total.",
+                "Producir comercializar bienes internacionales maximizando las utilidades financieras corporativas.",
+                "Programar sistemas informáticos desarrollando códigos estructurados para plataformas novedosas.",
+                "Auditar balances contables calculando los impuestos gubernamentales mediante normas estrictas."
+            ],
+            "ans": 0,
+            "just": "Administrar requiere gestionar estratégicamente diversos recursos optimizando su desempeño para garantizar la sostenibilidad corporativa.",
+            "hint": "Considera el proceso integral desde la planificación inicial hasta el control operativo final."
+        },
+        {
+            "cat": "conceptos",
+            "q": "¿Qué propósito primordial persigue la innovación aplicada a los procesos operativos organizacionales?",
+            "opts": [
+                "Transformar productos servicios buscando generar mayor valor para los consumidores del mercado.",
+                "Conservar intactas las tradiciones empresariales evitando modificaciones en cadenas logísticas.",
+                "Disminuir los salarios del personal contratado incrementando los márgenes de ganancia anuales.",
+                "Eliminar departamentos de investigación centralizando todas las decisiones en la junta directiva."
+            ],
+            "ans": 0,
+            "just": "La innovación busca satisfacer necesidades con mayor eficacia transformando la oferta comercial para entregar valor agregado constante.",
+            "hint": "Identifica el concepto asociado a la mejora continua junto con la creación de utilidades."
+        },
+        {
+            "cat": "teorias",
+            "q": "¿Qué enfoque teórico introdujo Frederick Taylor para revolucionar la gestión productiva industrial?",
+            "opts": [
+                "Administración científica enfocada en situar a la persona correcta en el puesto laboral adecuado.",
+                "Teoría de relaciones humanas centrada en efectos psicológicos del ambiente sobre el trabajador.",
+                "Modelo burocrático diseñado para estandarizar trámites gubernamentales mediante normas duras.",
+                "Gestión empírica basada en la intuición de los gerentes para resolver conflictos empresariales."
+            ],
+            "ans": 0,
+            "just": "Taylor impulsó la eficiencia productiva mediante la planeación preparación ejecución sistemática de las tareas industriales operativas.",
+            "hint": "Recuerda al autor asociado con la eficiencia operativa a través de métodos de observación."
+        },
+        {
+            "cat": "teorias",
+            "q": "¿Cuáles son las funciones administrativas esenciales propuestas originalmente por Henri Fayol?",
+            "opts": [
+                "Prever organizar dirigir coordinar controlar actividades asegurando eficacia institucional total.",
+                "Contratar despedir capacitar auditar financiar recursos humanos maximizando la rentabilidad.",
+                "Investigar diseñar fabricar vender distribuir productos manufacturados hacia mercados externos.",
+                "Sancionar vigilar reportar archivar documentar procesos operativos evitando demandas legales."
+            ],
+            "ans": 0,
+            "just": "Fayol estableció la teoría clásica definiendo cinco funciones esenciales para mantener el orden la estructura organizativa corporativa.",
+            "hint": "Busca la secuencia de cinco verbos que describen el ciclo directivo clásico empresarial."
+        },
+        {
+            "cat": "teorias",
+            "q": "¿Qué aspecto fundamental investigó Elton Mayo durante sus experimentos sobre comportamiento laboral?",
+            "opts": [
+                "Los efectos psicológicos del trabajador condicionados por las situaciones físicas de su entorno.",
+                "Los tiempos cronometrados necesarios para ensamblar maquinarias pesadas en fábricas locales.",
+                "Las estrategias de mercadotecnia requeridas para posicionar marcas masivas internacionalmente.",
+                "Las normativas legales relacionadas con el pago de horas extras durante turnos nocturnos largos."
+            ],
+            "ans": 0,
+            "just": "Mayo demostró que los factores psicológicos ambientales afectan profundamente la productividad fundando las relaciones humanas.",
+            "hint": "Considera los estudios enfocados en la mente humana dentro del lugar de trabajo industrial."
+        },
+        {
+            "cat": "entorno",
+            "q": "¿Cómo se define a un stakeholder dentro del marco de la gestión corporativa moderna internacional?",
+            "opts": [
+                "Cualquier persona grupo organización que afecta o resulta afectada por actividades corporativas.",
+                "Exclusivamente los inversionistas mayoritarios que aportan capital financiero para expandirse.",
+                "Únicamente las entidades gubernamentales encargadas de cobrar los impuestos anuales vigentes.",
+                "Solamente los proveedores internacionales que suministran materias primas a las grandes fábricas."
+            ],
+            "ans": 0,
+            "just": "Un stakeholder abarca a todas las partes interesadas internas externas que tienen impacto o reciben consecuencias de decisiones directivas.",
+            "hint": "Identifica la opción que incluye a múltiples actores impactados por la entidad comercial."
+        },
+        {
+            "cat": "entorno",
+            "q": "¿Qué grupo de personas representa un claro ejemplo de stakeholders internos para una organización?",
+            "opts": [
+                "Empleados directivos accionistas que forman parte estructural de la dinámica organizativa diaria.",
+                "Clientes proveedores competidores que interactúan comercialmente desde fuera de la empresa.",
+                "Medios de comunicación autoridades fiscales que vigilan el cumplimiento de normativas legales.",
+                "Comunidades aledañas activistas ambientales que exigen prácticas ecológicas a manufactureras."
+            ],
+            "ans": 0,
+            "just": "Los stakeholders internos son aquellos individuos que trabajan directamente dentro de la institución aportando a su funcionamiento regular.",
+            "hint": "Busca a los actores que perciben un salario o poseen acciones directas de la compañía."
+        },
+        {
+            "cat": "entorno",
+            "q": "¿Cuál es la premisa central de la Responsabilidad Social aplicada a las actividades corporativas?",
+            "opts": [
+                "Asumir un compromiso ético con la sociedad junto con la protección activa del medio ambiente.",
+                "Maximizar los dividendos de los accionistas reduciendo drásticamente costos de producción.",
+                "Evadir los controles tributarios trasladando las operaciones hacia paraísos fiscales regulados.",
+                "Eliminar la competencia local mediante la creación de monopolios comerciales agresivos hoy."
+            ],
+            "ans": 0,
+            "just": "La responsabilidad social implica operar de forma sostenible contribuyendo positivamente al bienestar social ecológico globalmente.",
+            "hint": "Considera el deber ético de las empresas hacia su entorno humano natural circundante."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Qué característica define principalmente a una empresa exportadora frente a otros modelos globales?",
+            "opts": [
+                "Vende productos en mercados extranjeros manteniendo su producción en el país de origen matriz.",
+                "Posee fábricas en múltiples continentes adaptando sus productos a la cultura de cada región.",
+                "Gestiona sus operaciones de manera global manteniendo una estrategia uniforme centralizada.",
+                "Opera de forma descentralizada permitiendo gran independencia administrativa a sus filiales."
+            ],
+            "ans": 0,
+            "just": "El modelo exportador concentra sus operaciones principales localmente dedicándose únicamente a comercializar sus bienes hacia el exterior.",
+            "hint": "Identifica el modelo donde la fabricación nunca sale de las fronteras nacionales propias."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Cómo opera fundamentalmente una corporación clasificada como empresa multinacional actualmente?",
+            "opts": [
+                "Mantiene presencia en varios países permitiendo que cada filial se adapte a normativas locales.",
+                "Fabrica sus productos exclusivamente en un solo país vendiéndolos a través de portales web.",
+                "Centraliza todas las decisiones operativas obligando a las sucursales a vender lo mismo siempre.",
+                "Terceriza la totalidad de sus servicios productivos contratando únicamente a trabajadores libres."
+            ],
+            "ans": 0,
+            "just": "Las multinacionales otorgan autonomía a sus filiales para modificar productos estrategias según las costumbres de cada nación receptora.",
+            "hint": "Busca la opción que menciona la adaptación cultural regulatoria por regiones geográficas."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Qué estrategia organizativa diferencia a una empresa global respecto a una corporación transnacional?",
+            "opts": [
+                "Mantiene una estrategia uniforme centralizada vendiendo productos idénticos en todo el mundo.",
+                "Otorga independencia total a sus sucursales permitiéndoles crear marcas para mercados locales.",
+                "Funciona únicamente mediante trabajadores independientes ofreciendo servicios por plataformas.",
+                "Concentra su comercialización en un solo continente evitando expandirse hacia nuevos mercados."
+            ],
+            "ans": 0,
+            "just": "Las empresas globales buscan economías de escala aplicando estrategias estandarizadas globalmente con mínima adaptación cultural.",
+            "hint": "Considera el enfoque que busca vender el mismo producto exacto en todo el planeta tierra."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿En qué consiste la modalidad de trabajo digital conocida comercialmente como dropshipping moderno?",
+            "opts": [
+                "El vendedor actúa como intermediario comercial entre el proveedor original los consumidores.",
+                "El profesional ofrece sus servicios especializados a múltiples empresas sin poseer contratos.",
+                "La persona realiza trabajos esporádicos por demanda utilizando aplicaciones móviles de viajes.",
+                "El estudiante accede a plataformas de formación continua adquiriendo nuevas habilidades útiles."
+            ],
+            "ans": 0,
+            "just": "Esta práctica permite vender productos sin mantener inventarios propios transfiriendo los pedidos directamente al mayorista para despacho.",
+            "hint": "Identifica el modelo de ventas sin necesidad de almacenar mercancía física previamente."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Qué caracteriza a la economía colaborativa conocida como gig economy en el entorno laboral actual?",
+            "opts": [
+                "Consiste en realizar trabajos esporádicos por demanda a través de aplicaciones móviles nuevas.",
+                "Representa la creación de grandes corporaciones transnacionales con miles de empleados fijos.",
+                "Consiste en automatizar fábricas manufactureras utilizando sistemas robóticos de inteligencia.",
+                "Representa la comercialización exclusiva de libros electrónicos mediante páginas web estatales."
+            ],
+            "ans": 0,
+            "just": "La economía de pequeños encargos utiliza la tecnología para conectar rápidamente a trabajadores independientes con consumidores activos.",
+            "hint": "Piensa en aplicaciones donde se paga por trayectos específicos realizados diariamente."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿Qué beneficio primordial proporciona la planeación estratégica adecuada dentro de las empresas?",
+            "opts": [
+                "Fomenta la creatividad optimiza el uso de recursos incrementando notablemente competitividad.",
+                "Incentiva la rotación del personal disminuyendo las obligaciones patronales hacia trabajadores.",
+                "Elimina por completo el pago de tributos fiscales mediante la creación de fundaciones sociales.",
+                "Promueve el monopolio de mercado destruyendo sistemáticamente a todas las empresas rivales."
+            ],
+            "ans": 0,
+            "just": "La planificación fortalece a la organización permitiendo anticipar escenarios asignando recursos inteligentemente para desarrollar ventajas.",
+            "hint": "Busca la opción que resalte mejoras internas eficiencias operativas sostenibles futuras."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿Cuáles son los componentes principales que conforman la fase filosófica de la planeación general?",
+            "opts": [
+                "Misión visión objetivos valores cultura políticas organizacionales definiendo la identidad corporativa.",
+                "Análisis del entorno matriz de fortalezas oportunidades debilidades amenazas evaluadas muy bien.",
+                "Plan de acción implementación de estrategias cronogramas de trabajo presupuestos financieros.",
+                "Contratación de personal pago de planillas salariales diseño de campañas publicitarias gigantes."
+            ],
+            "ans": 0,
+            "just": "La fase filosófica establece el ADN de la organización definiendo su propósito fundamental sus aspiraciones sus principios rectores.",
+            "hint": "Considera los elementos abstractos que dan identidad propósito a la corporación actual."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿Qué propósito cumple la declaración de la misión dentro de la estructura ideológica empresarial?",
+            "opts": [
+                "Definir la razón de ser de la organización comunicando claramente qué hace para quién lo hace.",
+                "Proyectar la imagen deseada de la corporación estableciendo metas a largo plazo inalcanzables.",
+                "Establecer las reglas de comportamiento obligatorio que todo empleado debe seguir rígidamente.",
+                "Enumerar detalladamente los costos de producción requeridos para fabricar una línea novedosa."
+            ],
+            "ans": 0,
+            "just": "La misión articula el propósito actual de la empresa explicando su actividad principal justificando su existencia mercantil frente al mundo.",
+            "hint": "Identifica el concepto que responde a la pregunta fundamental de por qué existe la entidad."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿En qué consiste la fase analítica durante el desarrollo de la planeación estratégica institucional?",
+            "opts": [
+                "Realizar un análisis interno externo de la organización aplicando herramientas diagnósticas base.",
+                "Redactar los valores corporativos seleccionando virtudes morales que guiarán a los empleados.",
+                "Ejecutar directamente las tácticas comerciales invirtiendo el capital disponible en tecnologías.",
+                "Evaluar el desempeño del personal administrativo aplicando encuestas de satisfacción cerradas."
+            ],
+            "ans": 0,
+            "just": "Esta fase involucra evaluar el contexto competitivo las capacidades internas utilizando matrices para identificar variables determinantes.",
+            "hint": "Busca la opción relacionada con el diagnóstico situacional la evaluación de datos reales."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Cuál es la ventaja principal de aplicar el modelo racional durante la toma de decisiones gerenciales?",
+            "opts": [
+                "Mejora la calidad de la decisión alineándola con metas estratégicas reduciendo la incertidumbre.",
+                "Permite tomar resoluciones inmediatas sin requerir información previa ni análisis estadísticos.",
+                "Garantiza resultados perfectos eliminando absolutamente todos los riesgos asociados al negocio.",
+                "Delega la responsabilidad hacia los empleados de menor rango evitando comprometer directivos."
+            ],
+            "ans": 0,
+            "just": "El enfoque racional utiliza un análisis sistemático de datos para anticipar resultados asegurando coherencia con los objetivos generales.",
+            "hint": "Considera los beneficios de un proceso lógico analítico basado en evidencias muy sólidas."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Qué limitación importante presenta el proceso de toma racional de decisiones en entornos volátiles?",
+            "opts": [
+                "Consume mucho tiempo recursos dificultando su aplicación ante situaciones de gran incertidumbre.",
+                "Fomenta decisiones impulsivas basadas exclusivamente en las emociones temporales del gerente.",
+                "Requiere la contratación de consultores externos incrementando excesivamente los gastos fijos.",
+                "Prohíbe la creatividad del personal forzando la implementación de soluciones muy tradicionales."
+            ],
+            "ans": 0,
+            "just": "La necesidad de recopilar procesar información completa hace que este método resulte ineficiente frente a escenarios impredecibles urgentes.",
+            "hint": "Identifica el problema relacionado con la velocidad la disponibilidad de datos concretos."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Cómo se define el uso de la heurística en el proceso de resolución de problemas organizacionales?",
+            "opts": [
+                "Consiste en tomar atajos mentales basados en la experiencia para resolver problemas velozmente.",
+                "Representa un modelo matemático complejo utilizado para pronosticar las ventas internacionales.",
+                "Es una herramienta de software diseñada para organizar bases de datos gigantescas rápidamente.",
+                "Significa delegar todas las decisiones críticas hacia comités de expertos independientes hoy."
+            ],
+            "ans": 0,
+            "just": "Las heurísticas son reglas generales derivadas de experiencias previas que aceleran la toma de decisiones introduciendo posibles sesgos.",
+            "hint": "Busca la opción referida a soluciones rápidas fundamentadas en conocimientos pasados."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Qué característica distingue claramente a las decisiones programadas en el ambiente administrativo?",
+            "opts": [
+                "Son rutinarias repetitivas tomadas siguiendo procedimientos reglas políticas preestablecidas.",
+                "Son estrategias de alto impacto diseñadas para enfrentar crisis financieras mundiales graves.",
+                "Requieren un análisis profundo prolongado debido a la falta de información histórica previa.",
+                "Son tomadas exclusivamente por el presidente de la compañía durante las asambleas anuales."
+            ],
+            "ans": 0,
+            "just": "Estas decisiones abordan problemas cotidianos estructurados automatizando las respuestas mediante directrices claras predefinidas operativas.",
+            "hint": "Piensa en acciones que ocurren regularmente poseyendo protocolos de actuación fijos."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿En qué circunstancias se requiere aplicar procesos para tomar decisiones no programadas gerenciales?",
+            "opts": [
+                "Ante situaciones nuevas complejas donde no existen procedimientos predefinidos para actuar pronto.",
+                "Cuando se necesita reponer el inventario de materiales de oficina tras alcanzar su límite bajo.",
+                "Para asignar los turnos de trabajo mensuales del personal de seguridad física en las fábricas.",
+                "Al momento de aprobar el pago automático de los salarios básicos de todos los empleados fijos."
+            ],
+            "ans": 0,
+            "just": "Las decisiones no programadas enfrentan escenarios inéditos estratégicos demandando creatividad análisis crítico juicio gerencial especializado.",
+            "hint": "Considera situaciones extraordinarias que carecen de manuales de instrucción corporativos."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Cuál es la función estructuradora que posee la organización como disciplina administrativa corporativa?",
+            "opts": [
+                "Definir cómo se distribuyen tareas se asignan recursos se establecen jerarquías organizacionales.",
+                "Pronosticar las tasas de inflación económica para ajustar los precios de venta al público general.",
+                "Contratar campañas de publicidad masivas para promover la imagen comercial de las marcas nuevas.",
+                "Inspeccionar la calidad de las materias primas despachadas por los proveedores internacionales."
+            ],
+            "ans": 0,
+            "just": "La organización estructura el funcionamiento interno creando un marco jerárquico distribuyendo responsabilidades logrando eficiencia operativa.",
+            "hint": "Busca la opción vinculada a la creación del organigrama la división del trabajo interno."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Por qué se considera que la organización empresarial es un proceso continuo dinámico permanentemente?",
+            "opts": [
+                "Porque debe adaptarse constantemente a los cambios del entorno la tecnología los nuevos objetivos.",
+                "Debido a que los gerentes son reemplazados diariamente impidiendo la consolidación de planes.",
+                "Ya que las máquinas de producción nunca detienen su marcha funcionando veinticuatro horas hoy.",
+                "Porque los clientes exigen devoluciones constantes modificando los inventarios de los almacenes."
+            ],
+            "ans": 0,
+            "just": "Las estructuras organizacionales requieren ajustes regulares para responder a las transformaciones del mercado innovaciones externas inminentes.",
+            "hint": "Identifica la idea de flexibilidad corporativa frente a variaciones externas tecnológicas."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué describe el componente de procesos dentro de los fundamentos de la organización institucional?",
+            "opts": [
+                "Conjunto de actividades articuladas que transforman los insumos iniciales en resultados valiosos.",
+                "Agrupación de empleados según sus afinidades personales para organizar eventos sociales siempre.",
+                "Protocolo de comunicación informal utilizado por los operarios durante sus periodos de descanso.",
+                "Documento legal que establece la constitución jurídica de la sociedad anónima frente al estado."
+            ],
+            "ans": 0,
+            "just": "Los procesos constituyen la maquinaria operativa del negocio donde los recursos humanos técnicos interactúan agregando valor mercantil.",
+            "hint": "Considera la secuencia de pasos que convierte materiales base en bienes finales terminados."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Cómo opera la estructura organizacional lineal clásica dentro de las empresas tradicionales pequeñas?",
+            "opts": [
+                "Cada persona tiene un jefe directo recibiendo órdenes claras jerárquicas garantizando mando único.",
+                "Los trabajadores se agrupan temporalmente para desarrollar proyectos específicos retornando luego.",
+                "Cada empleado responde simultáneamente a múltiples directivos según el área de especialización.",
+                "Las decisiones se toman democráticamente mediante asambleas semanales con todos los miembros."
+            ],
+            "ans": 0,
+            "just": "El modelo lineal establece líneas directas únicas de autoridad responsabilidad facilitando la disciplina la velocidad de las órdenes.",
+            "hint": "Busca el diseño donde existe una cadena de mando simple sin cruces de jefaturas complejas."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué característica principal define a la estructura organizacional matricial utilizada corporativamente?",
+            "opts": [
+                "Combina estructura funcional por proyectos generando doble jefatura maximizando especialización.",
+                "Divide a la corporación en unidades de negocio totalmente independientes que compiten fuertemente.",
+                "Elimina por completo la figura de los gerentes permitiendo autogestión absoluta de operarios.",
+                "Centraliza el poder en una sola persona que dicta instrucciones directas a cada nivel subordinado."
+            ],
+            "ans": 0,
+            "just": "La matriz permite flexibilidad optimización de recursos al asignar especialistas a proyectos rompiendo el principio de mando unitario.",
+            "hint": "Considera el formato donde un trabajador reporta simultáneamente al jefe de área de proyecto."
+        },
+        {
+            "cat": "conceptos",
+            "q": "¿Qué rol asume el espíritu emprendedor introducido dentro de las grandes organizaciones consolidadas?",
+            "opts": [
+                "Impulsar creación de valor innovación toma de riesgos calculados promoción de mejora continua.",
+                "Imponer reglas restrictivas para evitar que los empleados propongan ideas arriesgadas peligrosas.",
+                "Reducir drásticamente el presupuesto destinado a la investigación tecnológica para ahorrar costos.",
+                "Centralizar la toma de decisiones estratégicas ignorando las opiniones de los niveles operativos."
+            ],
+            "ans": 0,
+            "just": "El intraemprendimiento fomenta una cultura proactiva donde los colaboradores actúan como creadores de soluciones corporativas rentables.",
+            "hint": "Busca la opción que resalta actitudes propositivas tolerantes al riesgo innovador constante."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué persigue el proceso de reingeniería cuando es aplicado en estructuras empresariales obsoletas?",
+            "opts": [
+                "Replantear rediseñar radicalmente procesos clave logrando mejoras dramáticas en el rendimiento.",
+                "Realizar pequeños ajustes estéticos en los manuales de funciones manteniendo los procesos fijos.",
+                "Contratar asesores de imagen para mejorar la percepción de la marca frente a los consumidores.",
+                "Sustituir el mobiliario de las oficinas corporativas para crear espacios laborales confortables."
+            ],
+            "ans": 0,
+            "just": "La reingeniería implica destruir paradigmas viejos construyendo sistemas desde cero enfocándose en resultados sustanciales definitivos.",
+            "hint": "Identifica el concepto relacionado con una transformación profunda drástica estructural."
+        },
+        {
+            "cat": "teorias",
+            "q": "¿En qué se basaba principalmente el modelo de administración científica para mejorar la producción?",
+            "opts": [
+                "Analizar tiempos movimientos estableciendo estándares de trabajo precisos optimizando la labor.",
+                "Mejorar la iluminación ventilación de las plantas industriales motivando psicológicamente a todos.",
+                "Establecer reglas jerárquicas estrictas creando un organigrama burocrático profundamente duro.",
+                "Promover la participación activa de los trabajadores en la repartición equitativa de utilidades."
+            ],
+            "ans": 0,
+            "just": "La administración científica aplicó métodos observacionales métricos para descubrir la manera óptima de realizar tareas fabriles.",
+            "hint": "Piensa en el uso de cronómetros el estudio detallado de cada acción del obrero operario."
+        },
+        {
+            "cat": "entorno",
+            "q": "¿Qué factores conforman el ambiente externo específico o microentorno de una entidad comercial hoy?",
+            "opts": [
+                "Clientes proveedores competidores entidades reguladoras que influyen directamente en la actividad.",
+                "Condiciones económicas tendencias socioculturales avances tecnológicos de toda la región mundial.",
+                "Estructura organizacional cultura corporativa políticas internas adoptadas por la gerencia alta.",
+                "Estado de resultados flujos de efectivo estados financieros auditados por los contadores locales."
+            ],
+            "ans": 0,
+            "just": "El entorno específico incluye a los actores externos que interactúan cotidianamente con la empresa afectando su desempeño operativo.",
+            "hint": "Considera a los agentes externos cercanos que interactúan con la cadena de valor diariamente."
+        },
+        {
+            "cat": "entorno",
+            "q": "¿Qué iniciativa representa una acción clara de responsabilidad social empresarial hacia la comunidad?",
+            "opts": [
+                "Desarrollar proyectos sostenibles colaborando activamente con fundaciones programas ambientales.",
+                "Aumentar el precio de venta de los productos aprovechando la escasez temporal de materias primas.",
+                "Reemplazar a los trabajadores de mayor edad contratando pasantes universitarios sin experiencia.",
+                "Invertir millones en publicidad televisiva resaltando los beneficios nutricionales alimenticios."
+            ],
+            "ans": 0,
+            "just": "La responsabilidad social se manifiesta en acciones voluntarias que generan impactos sociales ambientales positivos altruistas corporativamente.",
+            "hint": "Busca programas que beneficien genuinamente al entorno social sin fines de lucro directo."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Cuál es la función principal de las sedes corporativas centrales en las empresas internacionales?",
+            "opts": [
+                "Coordinar la planificación estratégica general dictando directrices maestras hacia las filiales.",
+                "Fabricar personalmente la totalidad de los productos que serán exportados hacia distribuidores.",
+                "Atender las quejas de los clientes locales solucionando problemas técnicos de electrodomésticos.",
+                "Distribuir mercancías mediante flotas de camiones terrestres hacia todos los minoristas diarios."
+            ],
+            "ans": 0,
+            "just": "Las casas matrices concentran el poder de decisión estratégica estableciendo la visión los valores gestionando finanzas consolidadas.",
+            "hint": "Considera el rol directivo normativo que asume la oficina principal de la marca comercial."
+        },
+        {
+            "cat": "globalizacion",
+            "q": "¿Qué herramienta tecnológica resulta indispensable para realizar trabajo colaborativo digitalmente?",
+            "opts": [
+                "Plataformas basadas en la nube permitiendo compartir editar documentos simultáneamente en red.",
+                "Sistemas de transporte mecanizado utilizados para movilizar contenedores en puertos marítimos.",
+                "Maquinaria industrial especializada en la impresión tridimensional de prototipos arquitectónicos.",
+                "Sensores electrónicos instalados en maquinarias para medir niveles de temperatura vibraciones."
+            ],
+            "ans": 0,
+            "just": "El trabajo remoto moderno depende de infraestructuras en la nube garantizando el acceso concurrente a la información operativa global.",
+            "hint": "Identifica los sistemas informáticos que facilitan la conexión sincronización de los equipos."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿Qué elementos evalúa la herramienta matricial DOFA durante el diagnóstico organizacional interno?",
+            "opts": [
+                "Analiza fortalezas debilidades propias evaluando los recursos capacidades operativas internas.",
+                "Estudia oportunidades amenazas presentadas por competidores las variaciones económicas globales.",
+                "Calcula la rentabilidad financiera esperada de los nuevos proyectos de expansión internacional.",
+                "Mide la satisfacción laboral de los operarios encuestando su percepción sobre el clima laboral."
+            ],
+            "ans": 0,
+            "just": "La porción interna de la matriz DOFA identifica factores positivos negativos bajo el control de la empresa permitiendo mejorarlos.",
+            "hint": "Concéntrate en las dos siglas que representan variables controlables por la gerencia directiva."
+        },
+        {
+            "cat": "planeacion",
+            "q": "¿Qué representan las políticas corporativas establecidas durante la fase filosófica administrativa?",
+            "opts": [
+                "Lineamientos generales reglas de conducta normativas institucionales que guían la toma de acciones.",
+                "Metas cuantitativas financieras que deben alcanzarse obligatoriamente durante el primer trimestre.",
+                "Procesos técnicos detallados especificando cómo operar maquinarias pesadas previniendo peligros.",
+                "Presupuestos económicos asignados para ejecutar campañas publicitarias en redes sociales digitales."
+            ],
+            "ans": 0,
+            "just": "Las políticas son declaraciones institucionales que establecen límites criterios orientando el comportamiento organizacional predecible.",
+            "hint": "Busca la opción que describe normas directrices estables para encauzar acciones corporativas."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Cuál es el primer paso metodológico indispensable dentro del proceso racional de toma de decisiones?",
+            "opts": [
+                "Identificar analizar claramente el problema definiendo sus causas síntomas antes de buscar opciones.",
+                "Generar múltiples alternativas creativas realizando lluvias de ideas grupales sin restricciones hoy.",
+                "Implementar inmediatamente la primera solución encontrada ahorrando valioso tiempo corporativo siempre.",
+                "Delegar la responsabilidad evaluando el desempeño del equipo técnico posterior a la intervención útil."
+            ],
+            "ans": 0,
+            "just": "El modelo racional exige comprender perfectamente la situación problemática asegurando que las soluciones ataquen la raíz del inconveniente.",
+            "hint": "Piensa en lo que se debe comprender cabalmente antes de proponer cualquier solución definitiva."
+        },
+        {
+            "cat": "decisiones",
+            "q": "¿Qué riesgo inherente conllevan las decisiones basadas en heurística dentro de la gestión gerencial?",
+            "opts": [
+                "Pueden generar errores graves sesgos cognitivos debido a que ignoran el análisis de datos completo.",
+                "Consumen recursos financieros desproporcionados paralizando las operaciones de la planta fabril.",
+                "Retrasan la resolución de problemas urgentes burocratizando la respuesta ante crisis inesperadas.",
+                "Obligan a consultar a todos los empleados de la organización desestabilizando la cadena de mando."
+            ],
+            "ans": 0,
+            "just": "Los atajos mentales sacrifican precisión por velocidad exponiendo a la empresa a fallos sistémicos graves impredecibles operativamente.",
+            "hint": "Considera los peligros de actuar por instinto costumbre descartando información vital importante."
+        },
+        {
+            "cat": "organizacion",
+            "q": "¿Qué ventaja competitiva fundamental ofrece la adopción de una estructura divisional departamentalizada?",
+            "opts": [
+                "Permite especialización autonomía acelerando la respuesta comercial de cada unidad de negocios clave.",
+                "Reduce radicalmente los costos operativos centralizando todas funciones administrativas corporativas.",
+                "Garantiza que todos los empleados reciban instrucciones de un único jefe supremo incondicional hoy.",
+                "Elimina la competencia interna estandarizando completamente los métodos de trabajo industriales siempre."
+            ],
+            "ans": 0,
+            "just": "La departamentalización divisional organiza la empresa por productos geografías dotando a cada segmento de gran agilidad comercial.",
+            "hint": "Identifica los beneficios asociados a la descentralización la especialización operativa comercial."
+        },
+        {
+            "cat": "conceptos",
+            "q": "¿Cómo se define fundamentalmente la estrategia corporativa al aplicarse al desarrollo competitivo moderno?",
+            "opts": [
+                "Plan de acción diseñado para alcanzar objetivos maximizando las probabilidades de éxito empresarial.",
+                "Reglamento disciplinario enfocado en sancionar el comportamiento laboral inadecuado del personal base.",
+                "Documento contable destinado a registrar transacciones diarias previniendo posibles fraudes fiscales.",
+                "Software especializado utilizado para automatizar líneas productivas reduciendo la intervención humana."
+            ],
+            "ans": 0,
+            "just": "La estrategia implica tomar decisiones basadas en el análisis del entorno para lograr un objetivo específico de manera muy efectiva.",
+            "hint": "Busca la opción relacionada con la planificación estructurada para lograr metas futuras eficientemente."
+        }
+    ]
+}

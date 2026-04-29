@@ -17,33 +17,36 @@ function getAvatarUrl(user) {
 export default async function LeaderboardPage() {
   const session = await auth();
   
-  // Fetch all quiz progress with user details
-  const allProgress = await prisma.quizProgress.findMany({
-    include: {
-      user: {
-        select: { id: true, name: true, image: true, email: true }
+  // Fetch users sorted by totalPoints
+  const users = await prisma.user.findMany({
+    where: {
+      totalPoints: { gt: 0 }
+    },
+    select: {
+      id: true,
+      name: true,
+      image: true,
+      email: true,
+      totalPoints: true,
+      streak: true,
+      quizProgress: {
+        select: { id: true }
       }
-    }
+    },
+    orderBy: {
+      totalPoints: "desc"
+    },
+    take: 50
   });
 
-  // Aggregate points per user
-  const userMap = {};
-  allProgress.forEach(p => {
-    if (!userMap[p.userId]) {
-      userMap[p.userId] = {
-        id: p.userId,
-        name: getDisplayName(p.user),
-        image: getAvatarUrl({ name: getDisplayName(p.user), image: p.user.image }),
-        totalPoints: 0,
-        completedQuizzes: 0
-      };
-    }
-    userMap[p.userId].totalPoints += p.score;
-    userMap[p.userId].completedQuizzes += 1;
-  });
-
-  // Convert to array and sort
-  const rankings = Object.values(userMap).sort((a, b) => b.totalPoints - a.totalPoints);
+  const rankings = users.map(u => ({
+    id: u.id,
+    name: getDisplayName(u),
+    image: getAvatarUrl({ name: getDisplayName(u), image: u.image }),
+    totalPoints: u.totalPoints,
+    completedQuizzes: u.quizProgress.length,
+    streak: u.streak
+  }));
   
   // Get top 3
   const top3 = rankings.slice(0, 3);
@@ -140,7 +143,10 @@ export default async function LeaderboardPage() {
                 <Image src={user.image} alt="" width={36} height={36} style={{ borderRadius: "50%" }} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: "600", fontSize: "0.9375rem" }}>{user.name} {user.id === session?.user?.id && <span style={{ fontSize: "0.7rem", color: "var(--accent-400)" }}>(Tú)</span>}</div>
-                  <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>{user.completedQuizzes} cuestionarios</div>
+                  <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>{user.completedQuizzes} cuestionarios</span>
+                    {user.streak > 0 && <span style={{ color: "var(--warning-400)", fontWeight: "600" }}>🔥 {user.streak}</span>}
+                  </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontWeight: "800", color: "var(--text-primary)" }}>{user.totalPoints.toLocaleString()}</div>

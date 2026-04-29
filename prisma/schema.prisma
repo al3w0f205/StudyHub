@@ -74,15 +74,45 @@ model User {
   isSuspended         Boolean              @default(false)
   suspendedReason     String?
   allowedCareers      String?              // Comma-separated career slugs. null or "" = NO access. Admin must assign.
+  
+  // Gamification
+  streak              Int                  @default(0)
+  lastActive          DateTime?
+  totalPoints         Int                  @default(0)
+  badges              UserBadge[]
 
   accounts            Account[]
   sessions            Session[]
   paymentRequests     PaymentRequest[]
   questionSuggestions QuestionSuggestion[]
   quizProgress        QuizProgress[]
+  errorReports        ErrorReport[]
+  questionResponses   QuestionResponse[]
 
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+}
+
+model Badge {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  slug        String      @unique
+  description String
+  icon        String      // Emoji or URL
+  criteria    Json        // { type: 'completed_quizzes', count: 10 }
+  users       UserBadge[]
+  createdAt   DateTime    @default(now())
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
 }
 
 model Career {
@@ -121,6 +151,8 @@ model Question {
   explanation  String?  @db.Text
   categoryId   String
   category     Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  errorReports ErrorReport[]
+  responses    QuestionResponse[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -164,4 +196,25 @@ model QuizProgress {
   updatedAt  DateTime @updatedAt
 
   @@unique([userId, categoryId])
+}
+
+model QuestionResponse {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  isCorrect  Boolean
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+model ErrorReport {
+  id         String   @id @default(cuid())
+  questionId String
+  userId     String
+  reason     String   @db.Text
+  status     String   @default("PENDING") // PENDING, RESOLVED, DISMISSED
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
 }

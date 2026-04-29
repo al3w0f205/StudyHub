@@ -99,6 +99,18 @@ export default async function AdminDashboard() {
         </Link>
       )}
 
+      {/* Admin Actions Quick Links */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem", marginBottom: "2rem" }}>
+        <Link href="/admin/error-reports" className="solid-card hover-scale" style={{ padding: "1.25rem", textDecoration: "none", borderLeft: "4px solid var(--danger-400)", display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ fontSize: "1.5rem" }}>🚩</div>
+          <div>
+            <h3 style={{ fontWeight: 700, fontSize: "0.9375rem", marginBottom: "0.125rem" }}>Reportes de Error</h3>
+            <p style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>Ver correcciones de usuarios</p>
+          </div>
+          <span style={{ marginLeft: "auto", opacity: 0.5 }}>→</span>
+        </Link>
+      </div>
+
       {/* Recent Users */}
       <div className="solid-card" style={{ overflow: "hidden" }}>
         <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid var(--border-default)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>

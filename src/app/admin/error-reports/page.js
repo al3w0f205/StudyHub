@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Reportes de Error — Admin" };
 
 export default async function AdminErrorReportsPage() {

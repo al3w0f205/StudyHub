@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import QuizClient from "@/components/quiz/QuizClient";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Repaso Inteligente — StudyHub" };
 
 export default async function RepasoPage() {

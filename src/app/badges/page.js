@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Mis Logros — StudyHub" };
 
 export default async function BadgesPage() {

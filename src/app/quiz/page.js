@@ -81,35 +81,62 @@ export default async function QuizSelectorPage({ searchParams }) {
   // ----------------------------
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "1.5rem 1.25rem" }}>
+    <div className="quiz-selector-page" style={{ maxWidth: "1200px", margin: "0 auto", padding: "1.5rem 1.25rem" }}>
       <QuizAgreement />
-      <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem" }}>
-        <div>
-          <h1 className="page-title" style={{ fontSize: "clamp(1.5rem, 5vw, 1.875rem)" }}>
-            Hola, {user.name?.split(" ")[0] || "Estudiante"} 👋
+      <header style={{ marginBottom: "2rem", width: "100%" }}>
+        <div style={{ marginBottom: "1.25rem" }}>
+          <h1 className="page-title" style={{ 
+            fontSize: "clamp(1.75rem, 6vw, 2.25rem)", 
+            margin: 0, 
+            textAlign: "left",
+            lineHeight: 1.1
+          }}>
+            Hola, {user.name?.trim().split(/\s+/)[0] || "Estudiante"} 👋
           </h1>
-          <p className="page-subtitle" style={{ fontSize: "0.875rem" }}>Panel de estudio interactivo</p>
+          <p className="page-subtitle" style={{ 
+            fontSize: "0.9375rem", 
+            margin: "0.375rem 0 0 0", 
+            textAlign: "left",
+            opacity: 0.7 
+          }}>
+            Panel de estudio interactivo
+          </p>
         </div>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
-          <Link href="/quiz/repaso" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-            🧠 Repaso
-          </Link>
-          <Link href="/badges" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-            🏅 Logros
-          </Link>
-          <Link href="/leaderboard" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-            🏆 Leaderboard
-          </Link>
-          <Link href="/dashboard" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-            🏠 Volver al Inicio
-          </Link>
-          <Link href="/settings" className="btn btn-secondary" style={{ borderRadius: "var(--radius-full)", padding: "0.5rem 1rem", fontSize: "0.8125rem" }}>
-            ⚙️ Ajustes
-          </Link>
+        
+        <div className="quiz-header-actions" style={{ 
+          display: "flex", 
+          gap: "0.625rem", 
+          overflowX: "auto", 
+          padding: "0.25rem 0 0.75rem 0",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitOverflowScrolling: "touch"
+        }}>
+          <style dangerouslySetInnerHTML={{ __html: `.quiz-header-actions::-webkit-scrollbar { display: none; }` }} />
+          {[
+            { href: "/quiz/repaso", icon: "🧠", label: "Repaso" },
+            { href: "/badges", icon: "🏅", label: "Logros" },
+            { href: "/leaderboard", icon: "🏆", label: "Ranking" },
+            { href: "/dashboard", icon: "🏠", label: "Inicio" },
+            { href: "/settings", icon: "⚙️", label: "Ajustes" }
+          ].map((item) => (
+            <Link 
+              key={item.href}
+              href={item.href} 
+              className="btn btn-secondary btn-sm" 
+              style={{ 
+                borderRadius: "var(--radius-full)", 
+                whiteSpace: "nowrap",
+                padding: "0.5rem 1rem",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border-default)"
+              }}
+            >
+              {item.icon} {item.label}
+            </Link>
+          ))}
         </div>
-
-
-      </div>
+      </header>
 
       <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "center" }}>
         <GlobalSearch categories={allCategories} />
@@ -203,12 +230,12 @@ export default async function QuizSelectorPage({ searchParams }) {
                   </p>
                 </div>
               ) : (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
+                <div className="quiz-modules-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
                   {career.categories.map((cat) => (
                     <Link 
                       key={cat.id} 
                       href={`/quiz/${cat.id}`} 
-                      className="solid-card hover-scale" 
+                      className="solid-card hover-scale quiz-module-card" 
                       style={{ 
                         padding: "1.5rem", 
                         textDecoration: "none", 
@@ -265,6 +292,25 @@ export default async function QuizSelectorPage({ searchParams }) {
           ))}
         </div>
       )}
+
+      <nav className="quiz-mobile-bottom-nav" aria-label="Navegación rápida móvil">
+        <Link href="/dashboard" className="quiz-mobile-bottom-link">
+          <span>🏠</span>
+          <span>Inicio</span>
+        </Link>
+        <Link href="/quiz/repaso" className="quiz-mobile-bottom-link">
+          <span>🧠</span>
+          <span>Repaso</span>
+        </Link>
+        <Link href="/badges" className="quiz-mobile-bottom-link">
+          <span>🏅</span>
+          <span>Logros</span>
+        </Link>
+        <Link href="/settings" className="quiz-mobile-bottom-link">
+          <span>⚙️</span>
+          <span>Ajustes</span>
+        </Link>
+      </nav>
     </div>
   );
 }

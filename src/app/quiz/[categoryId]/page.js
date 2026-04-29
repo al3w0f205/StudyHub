@@ -126,7 +126,8 @@ export default async function QuizPage({ params }) {
   // Filter questions to show only pending/incorrect ones
   const pendingQuestions = category.questions.filter(q => !completedQuestionIds.includes(q.id));
 
-  const quizSeed = `${categoryId}:${session.user.id}:${new Date().toISOString().slice(0, 10)}`;
+  const { encodeForensic } = await import("@/lib/forensic");
+
   const shuffled = seededShuffle(pendingQuestions, quizSeed).map((question) => {
     const options = question.options.map((text, index) => ({
       text,
@@ -134,8 +135,16 @@ export default async function QuizPage({ params }) {
     }));
     const shuffledOptions = seededShuffle(options, `${quizSeed}:${question.id}`);
 
+    // Inject invisible forensic watermark
+    const watermarkedText = encodeForensic(question.text, session.user.id);
+    const watermarkedExplanation = question.explanation 
+      ? encodeForensic(question.explanation, session.user.id) 
+      : null;
+
     return {
       ...question,
+      text: watermarkedText,
+      explanation: watermarkedExplanation,
       options: shuffledOptions.map((option) => option.text),
       correctIndex: shuffledOptions.findIndex((option) => option.isCorrect),
     };
@@ -153,6 +162,7 @@ export default async function QuizPage({ params }) {
         categoryId={categoryId}
         totalQuestionsInCategory={totalQuestionsInCategory}
         initialCompletedCount={completedQuestionIds.length}
+        isAdmin={session?.user?.role === "ADMIN"}
       />
     </div>
   );

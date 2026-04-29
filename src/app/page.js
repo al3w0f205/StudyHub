@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LandingSectionNav from "./landing-section-nav";
 
 const formatNumber = new Intl.NumberFormat("es-EC");
 const LANDING_STATS_TIMEOUT_MS = 2500;
@@ -265,10 +266,10 @@ export default async function HomePage() {
         </div>
       )}
 
-      <header className="landing-shell landing-nav">
+      <header className="landing-shell landing-nav scroll-reveal">
         <Link href="/" className="landing-brand" aria-label="StudyHub inicio">
           <BrandMark />
-          <span>StudyHub</span>
+          <span className="landing-brand-text">StudyHub</span>
         </Link>
 
         <div className="landing-nav-actions">
@@ -301,8 +302,10 @@ export default async function HomePage() {
       </header>
 
       <main>
+        <LandingSectionNav />
+
         <section className="landing-shell hero">
-          <div>
+          <div className="scroll-reveal">
             <div className="eyebrow">Preparación universitaria más inteligente</div>
             <h1>
               Estudia con foco. <span>Llega seguro al examen.</span>
@@ -332,10 +335,12 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <ProductPreview totalFormatted={totalFormatted} topCareer={topCareer} />
+          <div className="scroll-reveal reveal-delay-1">
+            <ProductPreview totalFormatted={totalFormatted} topCareer={topCareer} />
+          </div>
         </section>
 
-        <section className="logo-strip">
+        <section className="logo-strip scroll-reveal">
           <div className="landing-shell logo-strip-inner">
             <p>Creado para estudiantes que necesitan practicar, corregir y avanzar.</p>
             <div className="school-logos" aria-label="Universidades mencionadas">
@@ -346,7 +351,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="landing-shell section" aria-labelledby="stats-title">
+        <section id="stats" className="landing-shell section scroll-reveal" aria-labelledby="stats-title">
           <div className="section-header">
             <div>
               <span className="section-kicker">Contenido en vivo</span>
@@ -358,19 +363,19 @@ export default async function HomePage() {
           </div>
 
           <div className="stats-grid">
-            <div className="stat-card-landing">
+            <div className="stat-card-landing stagger-item">
               <strong>{totalFormatted}</strong>
               <span>preguntas disponibles para practicar.</span>
             </div>
-            <div className="stat-card-landing">
+            <div className="stat-card-landing stagger-item">
               <strong>{formatNumber.format(statsByCareer.length)}</strong>
               <span>carreras o áreas con preguntas activas.</span>
             </div>
-            <div className="stat-card-landing">
+            <div className="stat-card-landing stagger-item">
               <strong>{topCareer ? topCareer.name : "En expansión"}</strong>
               <span>{topCareer ? "área con más contenido hoy." : "nuevas áreas listas para cargar contenido."}</span>
             </div>
-            <div className="stat-card-landing">
+            <div className="stat-card-landing stagger-item">
               <strong>3 pasos</strong>
               <span>elige, practica y refuerza con explicaciones.</span>
             </div>
@@ -379,7 +384,7 @@ export default async function HomePage() {
           <div className="careers-grid" style={{ marginTop: "1rem" }}>
             {statsByCareer.length > 0 ? (
               statsByCareer.slice(0, 6).map((career) => (
-                <div key={career.name} className="career-card">
+                <div key={career.name} className="career-card stagger-item">
                   <strong>{career.name}</strong>
                   <span>{formatNumber.format(career.questionCount)}</span>
                 </div>
@@ -393,7 +398,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="landing-shell section" aria-labelledby="features-title">
+        <section id="features" className="landing-shell section scroll-reveal" aria-labelledby="features-title">
           <div className="section-header">
             <div>
               <span className="section-kicker">Ventajas</span>
@@ -406,7 +411,7 @@ export default async function HomePage() {
 
           <div className="features-grid">
             {features.map((feature) => (
-              <article key={feature.title} className="feature-card">
+              <article key={feature.title} className="feature-card stagger-item">
                 <div className="feature-icon">
                   <Icon name={feature.icon} />
                 </div>
@@ -417,7 +422,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="landing-shell section" aria-labelledby="steps-title">
+        <section id="steps" className="landing-shell section scroll-reveal" aria-labelledby="steps-title">
           <div className="section-header">
             <div>
               <span className="section-kicker">Flujo de estudio</span>
@@ -427,7 +432,7 @@ export default async function HomePage() {
 
           <div className="steps-grid">
             {steps.map((item) => (
-              <article key={item.step} className="step-card">
+              <article key={item.step} className="step-card stagger-item">
                 <span className="step-number">{item.step}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
@@ -436,7 +441,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="landing-shell section pricing-layout" aria-labelledby="pricing-title">
+        <section id="pricing" className="landing-shell section pricing-layout scroll-reveal" aria-labelledby="pricing-title">
           <div className="pricing-copy">
             <span className="section-kicker">Acceso</span>
             <h2 id="pricing-title">Precio claro para estudiar sin fricción.</h2>
@@ -461,7 +466,7 @@ export default async function HomePage() {
           </aside>
         </section>
 
-        <section id="preguntas" className="landing-shell section" aria-labelledby="faq-title">
+        <section id="preguntas" className="landing-shell section scroll-reveal" aria-labelledby="faq-title">
           <div className="section-header">
             <div>
               <span className="section-kicker">Dudas comunes</span>
@@ -471,7 +476,7 @@ export default async function HomePage() {
 
           <div className="faq-grid">
             {faqs.map((faq) => (
-              <article key={faq.q} className="faq-card">
+              <article key={faq.q} className="faq-card stagger-item">
                 <h3>{faq.q}</h3>
                 <p>{faq.a}</p>
               </article>
@@ -479,7 +484,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="final-cta">
+        <section className="final-cta scroll-reveal">
           <div className="landing-shell">
             <h2>Tu siguiente sesión de estudio puede tener más intención.</h2>
             <p>

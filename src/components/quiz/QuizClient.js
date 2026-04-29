@@ -1,11 +1,13 @@
 "use client";
-
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import MathText from "@/components/ui/MathText";
+import { useToast } from "@/components/ui/Toast";
+import { Edit2, Save, Trash2, Layout, Layers, GraduationCap, Clock, Monitor, RefreshCw } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function QuizClient({ 
-  questions, 
+  questions: initialQuestions, 
   theory, 
   categoryName, 
   careerName, 
@@ -14,8 +16,12 @@ export default function QuizClient({
   categoryId, 
   isOfflineMode = false,
   totalQuestionsInCategory = 0,
-  initialCompletedCount = 0
+  initialCompletedCount = 0,
+  isAdmin = false
 }) {
+  const { addToast } = useToast();
+  const [questions, setQuestions] = useState(initialQuestions);
+
   // State
   const [view, setView] = useState(questions.length === 0 ? "theory" : "quiz"); // "quiz", "theory", "flashcards"
   const [current, setCurrent] = useState(0);
@@ -29,6 +35,14 @@ export default function QuizClient({
   const [completedCount, setCompletedCount] = useState(initialCompletedCount);
   const [isResetting, setIsResetting] = useState(false);
   const [isSavingFinal, setIsSavingFinal] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [reportReason, setReportReason] = useState("");
+  const [isReporting, setIsReporting] = useState(false);
+
+  // Admin Editor State
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedQuestion, setEditedQuestion] = useState(null);
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
   
   // Tools
   const [isZenMode, setIsZenMode] = useState(false);
@@ -70,24 +84,83 @@ export default function QuizClient({
   const progress = effectiveTotal > 0 ? (currentProgressCount / effectiveTotal) * 100 : 0;
 
   const saveProgress = useCallback(async (payload) => {
-    if (isOfflineMode) return;
+    if (isOfflineMode) {
+      // Manual offline mode saves only to local
+      const key = `offline_progress_${categoryId}`;
+      const existing = JSON.parse(localStorage.getItem(key) || "[]");
+      existing.push(payload);
+      localStorage.setItem(key, JSON.stringify(existing));
+      return true;
+    }
     
     try {
       const body = payload.type === "single"
         ? { categoryId, questionId: payload.questionId, selectedIndex: payload.selectedIndex }
         : { categoryId, score: payload.score, results: payload.results || history };
 
-      await fetch("/api/quiz-progress", {
+      const res = await fetch("/api/quiz-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+
+      if (!res.ok) throw new Error("Failed to save");
+      
+      const data = await res.json();
+      if (data.unlockedBadges && data.unlockedBadges.length > 0) {
+        data.unlockedBadges.forEach(badge => {
+          addToast(`${badge.icon} ¡Logro Desbloqueado: ${badge.name}!`, "success", 5000);
+        });
+      }
+
       return true;
     } catch (e) {
-      console.error("Failed to save progress:", e);
+      console.error("Failed to save progress, queuing for sync:", e);
+      // Queue for background sync
+      const queue = JSON.parse(localStorage.getItem("studyhub_sync_queue") || "[]");
+      queue.push({ ...payload, categoryId, timestamp: new Date().getTime() });
+      localStorage.setItem("studyhub_sync_queue", JSON.stringify(queue));
       return false;
     }
   }, [categoryId, history, isOfflineMode]);
+
+  // Background Sync Effect
+  useEffect(() => {
+    if (typeof window === "undefined" || isOfflineMode) return;
+
+    const syncProgress = async () => {
+      const queue = JSON.parse(localStorage.getItem("studyhub_sync_queue") || "[]");
+      if (queue.length === 0) return;
+
+      console.log(`Syncing ${queue.length} items...`);
+      let successCount = 0;
+
+      for (const item of queue) {
+        try {
+          const res = await fetch("/api/quiz-progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(item),
+          });
+          if (res.ok) successCount++;
+        } catch (e) {
+          break; // Stop if still offline
+        }
+      }
+
+      if (successCount > 0) {
+        const remaining = queue.slice(successCount);
+        localStorage.setItem("studyhub_sync_queue", JSON.stringify(remaining));
+        addToast(`Sincronizadas ${successCount} respuestas guardadas offline 🔄`, "info");
+      }
+    };
+
+    window.addEventListener("online", syncProgress);
+    // Try once on mount
+    if (navigator.onLine) syncProgress();
+
+    return () => window.removeEventListener("online", syncProgress);
+  }, [addToast, isOfflineMode]);
 
 
   const handleAnswer = useCallback((index) => {
@@ -99,8 +172,9 @@ export default function QuizClient({
     const isCorrect = index === q.correctIndex;
     if (isCorrect) {
       setScore((currentScore) => currentScore + 1);
-      // Don't update completedCount yet, wait for progress bar or next?
-      // Actually let's keep it sync with the visual
+      addToast("¡Respuesta correcta! 🚀", "success", 2000);
+    } else {
+      addToast("Respuesta incorrecta. ¡Sigue intentando!", "warning", 2000);
     }
 
     setHistory(prev => [...prev, { questionId: q.id, isCorrect }]);
@@ -111,7 +185,31 @@ export default function QuizClient({
     if (!isExamMode) {
       setShowExplanation(true);
     }
-  }, [q, selected, isExamMode, saveProgress]);
+  }, [q, selected, isExamMode, saveProgress, addToast]);
+
+  const handleSaveEdit = async () => {
+    if (!editedQuestion || isSavingEdit) return;
+    setIsSavingEdit(true);
+    try {
+      const res = await fetch("/api/admin/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editedQuestion),
+      });
+      if (res.ok) {
+        const updated = await res.json();
+        setQuestions(prev => prev.map(qq => qq.id === updated.id ? updated : qq));
+        setIsEditing(false);
+        addToast("Pregunta actualizada correctamente ✨", "success");
+      } else {
+        addToast("Error al actualizar la pregunta", "error");
+      }
+    } catch (e) {
+      addToast("Error de conexión", "error");
+    } finally {
+      setIsSavingEdit(false);
+    }
+  };
 
   // Timer logic
   useEffect(() => {
@@ -188,22 +286,27 @@ export default function QuizClient({
         method: "DELETE"
       });
       if (res.ok) {
-        window.location.reload(); // Reload to fetch all questions again
+        addToast("Progreso reiniciado. ¡A por ello de nuevo! 🔄", "info");
+        setTimeout(() => window.location.reload(), 1500);
       } else {
-        alert("Error al reiniciar progreso.");
+        addToast("Error al reiniciar progreso.", "error");
       }
     } catch (e) {
-      alert("Error de conexión.");
+      addToast("Error de conexión.", "error");
     } finally {
       setIsResetting(false);
     }
   }
 
-  async function reportError() {
-    if (!q) return;
-    const reason = window.prompt("¿Cuál es el error en esta pregunta? (Ej: respuesta incorrecta, error de dedo, latex mal escrito)");
-    if (!reason) return;
+  async function reportError(customReason) {
+    if (!q || isReporting) return;
+    const reason = String(customReason || "").trim();
+    if (reason.length < 8) {
+      alert("Describe un poco más el error (mínimo 8 caracteres).");
+      return;
+    }
 
+    setIsReporting(true);
     try {
       const res = await fetch("/api/report-error", {
         method: "POST",
@@ -212,11 +315,16 @@ export default function QuizClient({
       });
       if (res.ok) {
         alert("Reporte enviado. ¡Gracias por ayudarnos a mejorar!");
+        setReportReason("");
+        setReportOpen(false);
       } else {
-        alert("Error al enviar el reporte. Inténtalo de nuevo.");
+        const payload = await res.json().catch(() => ({}));
+        alert(payload?.error || "Error al enviar el reporte. Inténtalo de nuevo.");
       }
     } catch (e) {
       alert("Error de conexión.");
+    } finally {
+      setIsReporting(false);
     }
   }
 
@@ -274,16 +382,6 @@ export default function QuizClient({
   return (
     <div className={`quiz-layout ${isZenMode ? 'zen-mode' : ''}`}>
       
-      {/* Mobile sidebar toggle */}
-      {!isZenMode && (
-        <button 
-          className="quiz-mobile-toggle btn btn-secondary btn-sm"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          {sidebarOpen ? "✕ Cerrar" : "☰ Navegación"}
-        </button>
-      )}
-
       {/* Sidebar overlay for mobile */}
       {sidebarOpen && (
         <div className="quiz-sidebar-overlay" onClick={() => setSidebarOpen(false)} />
@@ -520,7 +618,7 @@ export default function QuizClient({
               </div>
             </div>
 
-            <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "1rem" }}>
+            <div className="quiz-flashcard-actions" style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "1rem" }}>
                <button 
                 onClick={() => {
                   if (current > 0) {
@@ -577,7 +675,7 @@ export default function QuizClient({
         ) : (
           <>
             {/* Header */}
-        <div className="quiz-header">
+        <div className="quiz-header quiz-topbar">
           <div style={{ minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <Link href="/quiz" className="quiz-breadcrumb" style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", cursor: "pointer" }}>
@@ -597,7 +695,7 @@ export default function QuizClient({
             </h1>
           </div>
           
-          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
+          <div className="quiz-top-actions" style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
             {isTimePressure && selected === null && (
               <div style={{ fontSize: "1.125rem", fontWeight: 700, color: timeLeft <= 5 ? "var(--danger-400)" : "var(--warning-400)" }}>
                 00:{timeLeft.toString().padStart(2, "0")}
@@ -612,6 +710,15 @@ export default function QuizClient({
             )}
             {isZenMode && (
               <button onClick={() => { setIsZenMode(false); setIsExamMode(false); }} className="btn btn-sm btn-secondary">Salir Modo Enfoque</button>
+            )}
+            {isAdmin && !isOfflineMode && !isExamMode && (
+              <button 
+                onClick={() => { setEditedQuestion({...q}); setIsEditing(true); }} 
+                className="btn btn-sm btn-secondary"
+                style={{ border: "1px solid var(--primary-400)", color: "var(--primary-400)" }}
+              >
+                <Edit2 size={14} style={{ marginRight: "0.25rem" }} /> Editar
+              </button>
             )}
             <Link href="/quiz" className="btn btn-sm btn-secondary" style={{ border: "1px solid var(--border-default)", fontWeight: 700 }}>
               SALIR ✕
@@ -720,13 +827,13 @@ export default function QuizClient({
         {/* Hint & Actions */}
         {total > 0 && (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
-          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+          <div className="quiz-actions-row" style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
             {q.hint && selected === null && !isExamMode && (
               <button onClick={() => setShowHint(!showHint)} className="btn btn-ghost" style={{ color: "var(--warning-400)", fontSize: "0.875rem" }}>
                 💡 {showHint ? "Ocultar Pista" : "Ver Pista"}
               </button>
             )}
-            <button onClick={reportError} className="btn btn-ghost" style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem", opacity: 0.6 }}>
+            <button onClick={() => setReportOpen((prev) => !prev)} className="btn btn-ghost" style={{ color: "var(--text-tertiary)", fontSize: "0.8125rem", opacity: 0.8 }}>
               🚩 Reportar Error
             </button>
           </div>
@@ -737,6 +844,33 @@ export default function QuizClient({
             </button>
           )}
         </div>
+        )}
+
+        {total > 0 && reportOpen && (
+          <div className="solid-card animate-fade-in" style={{ padding: "0.875rem", marginBottom: "0.75rem", border: "1px solid rgba(244,63,94,0.25)" }}>
+            <label htmlFor="report-reason" style={{ display: "block", fontSize: "0.75rem", color: "var(--text-tertiary)", marginBottom: "0.375rem", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700 }}>
+              ¿Qué problema encontraste?
+            </label>
+            <textarea
+              id="report-reason"
+              className="input textarea"
+              value={reportReason}
+              onChange={(e) => setReportReason(e.target.value)}
+              placeholder="Ej: la opción correcta no coincide con la explicación, hay error de redacción o fórmula."
+              style={{ minHeight: 86, marginBottom: "0.625rem" }}
+            />
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "0.5rem", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>Mínimo 8 caracteres.</span>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setReportOpen(false)} disabled={isReporting}>
+                  Cancelar
+                </button>
+                <button type="button" className="btn btn-primary btn-sm" onClick={() => reportError(reportReason)} disabled={isReporting}>
+                  {isReporting ? "Enviando..." : "Enviar Reporte"}
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Hint Box */}
@@ -762,6 +896,116 @@ export default function QuizClient({
           </>
         )}
       </div>
+
+      {!isZenMode && (
+        <nav className="quiz-mobile-bottom-nav" aria-label="Navegación rápida móvil">
+          <Link href="/quiz" className="quiz-mobile-bottom-link">
+            <span>🧭</span>
+            <span>Menú</span>
+          </Link>
+          <Link href="/quiz/repaso" className="quiz-mobile-bottom-link">
+            <span>🧠</span>
+            <span>Repaso</span>
+          </Link>
+          <Link href="/badges" className="quiz-mobile-bottom-link">
+            <span>🏅</span>
+            <span>Logros</span>
+          </Link>
+          <button
+            type="button"
+            className="quiz-mobile-bottom-link quiz-mobile-bottom-link-btn"
+            onClick={() => setSidebarOpen((prev) => !prev)}
+          >
+            <span>{sidebarOpen ? "✕" : "☰"}</span>
+            <span>{sidebarOpen ? "Cerrar" : "Panel"}</span>
+          </button>
+        </nav>
+      )}
+
+      {/* ADMIN IN-SITU EDITOR MODAL */}
+      <AnimatePresence>
+        {isEditing && editedQuestion && (
+          <div style={{ position: "fixed", inset: 0, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem", background: "rgba(0,0,0,0.8)", backdropFilter: "blur(4px)" }}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="solid-card" 
+              style={{ width: "100%", maxWidth: "600px", maxHeight: "90vh", overflowY: "auto", padding: "2rem", border: "1px solid var(--primary-400)" }}
+            >
+              <h2 style={{ fontSize: "1.25rem", fontWeight: 800, marginBottom: "1.5rem", color: "var(--primary-400)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <Edit2 size={20} /> Editor de Pregunta (Modo Admin)
+              </h2>
+              
+              <div style={{ display: "grid", gap: "1rem" }}>
+                <div>
+                  <label style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-tertiary)", textTransform: "uppercase" }}>Pregunta</label>
+                  <textarea 
+                    className="input" 
+                    value={editedQuestion.text} 
+                    onChange={e => setEditedQuestion({...editedQuestion, text: e.target.value})} 
+                    style={{ minHeight: "80px", marginTop: "0.25rem" }}
+                  />
+                </div>
+
+                <div style={{ display: "grid", gap: "0.5rem" }}>
+                  <label style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-tertiary)", textTransform: "uppercase" }}>Opciones</label>
+                  {editedQuestion.options.map((opt, i) => (
+                    <div key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                      <input 
+                        type="radio" 
+                        name="correct" 
+                        checked={editedQuestion.correctIndex === i} 
+                        onChange={() => setEditedQuestion({...editedQuestion, correctIndex: i})} 
+                      />
+                      <input 
+                        className="input" 
+                        value={opt} 
+                        onChange={e => {
+                          const newOpts = [...editedQuestion.options];
+                          newOpts[i] = e.target.value;
+                          setEditedQuestion({...editedQuestion, options: newOpts});
+                        }} 
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <label style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-tertiary)", textTransform: "uppercase" }}>Pista (Hint)</label>
+                  <input 
+                    className="input" 
+                    value={editedQuestion.hint || ""} 
+                    onChange={e => setEditedQuestion({...editedQuestion, hint: e.target.value})} 
+                  />
+                </div>
+
+                <div>
+                  <label style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-tertiary)", textTransform: "uppercase" }}>Explicación</label>
+                  <textarea 
+                    className="input" 
+                    value={editedQuestion.explanation || ""} 
+                    onChange={e => setEditedQuestion({...editedQuestion, explanation: e.target.value})} 
+                    style={{ minHeight: "80px", marginTop: "0.25rem" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "1rem", marginTop: "2rem" }}>
+                <button onClick={() => setIsEditing(false)} className="btn btn-secondary" style={{ flex: 1 }}>Cancelar</button>
+                <button 
+                  onClick={handleSaveEdit} 
+                  className="btn btn-primary" 
+                  style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}
+                  disabled={isSavingEdit}
+                >
+                  {isSavingEdit ? "Guardando..." : <><Save size={18} /> Guardar Cambios</>}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

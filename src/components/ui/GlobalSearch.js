@@ -5,23 +5,15 @@ import Link from "next/link";
 
 export default function GlobalSearch({ categories }) {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    if (!query.trim()) {
-      setResults([]);
-      return;
-    }
-
-    const filtered = categories.filter(cat => 
-      cat.name.toLowerCase().includes(query.toLowerCase()) ||
-      cat.career?.name?.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 8);
-
-    setResults(filtered);
-  }, [query, categories]);
+  const results = query.trim() 
+    ? categories.filter(cat => 
+        cat.name.toLowerCase().includes(query.toLowerCase()) ||
+        cat.career?.name?.toLowerCase().includes(query.toLowerCase())
+      ).slice(0, 8)
+    : [];
 
   useEffect(() => {
     function handleClickOutside(event) {

@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { isSubscriptionActive, daysRemaining, formatDate } from "@/lib/utils";
 import { uploadToUploadThing } from "@/lib/uploadthing";
+import { Building, Copy } from "lucide-react";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
@@ -12,6 +13,23 @@ function parseTransferAccounts(rawValue) {
     .split(";")
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function parseTransferAccountDetail(account) {
+  // Split by dash, but handle cases with and without spaces
+  const parts = String(account)
+    .split(/\s*-\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return {
+    bank: parts[0] || null,
+    accountType: parts[1] || null,
+    accountNumber: parts[2] || null,
+    owner: parts[3] || null,
+    idNumber: parts[4] || null,
+    raw: account,
+  };
 }
 
 async function submitReceipt(formData) {
@@ -166,27 +184,151 @@ export default async function PaymentPage({ searchParams }) {
       </div>
 
       {/* Payment Info */}
-      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <h2 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "0.75rem" }}>💰 Información de Pago</h2>
-        <div style={{ background: "var(--glass-bg)", borderRadius: "var(--radius-md)", padding: "1rem", marginBottom: "1rem", border: "1px solid var(--border-default)" }}>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
-            <strong style={{ color: "var(--text-primary)" }}>Precio:</strong> $10 USD / mes<br/>
-            <strong style={{ color: "var(--text-primary)" }}>Método:</strong> Transferencia bancaria<br/>
-            <strong style={{ color: "var(--text-primary)" }}>Proceso:</strong> Envía tu comprobante y un admin aprobará tu acceso en menos de 24h.
-          </p>
+      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem", border: "1px solid var(--border-default)" }}>
+        <h2 style={{ fontSize: "1.125rem", fontWeight: 800, marginBottom: "1.25rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <span>💰</span> Información de Pago
+        </h2>
+        
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+          gap: "1rem", 
+          marginBottom: "1.5rem" 
+        }}>
+          <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "var(--radius-lg)", padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Precio del Plan</div>
+            <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "var(--primary-400)" }}>$10 USD <span style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", fontWeight: 500 }}>/ mes</span></div>
+          </div>
+          <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "var(--radius-lg)", padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Tiempo de Espera</div>
+            <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "var(--accent-400)" }}>&lt; 24h <span style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", fontWeight: 500 }}>aprobación</span></div>
+          </div>
         </div>
-        <div style={{ background: "rgba(34,211,238,0.04)", borderRadius: "var(--radius-md)", padding: "1rem", border: "1px solid rgba(34,211,238,0.2)" }}>
-          <h3 style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.5rem" }}>Cuentas para transferir</h3>
+
+        <div style={{ marginBottom: "1.5rem" }}>
+          <h3 style={{ fontSize: "0.875rem", fontWeight: 800, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ width: "20px", height: "1px", background: "var(--border-default)" }}></span>
+            Cuentas para Transferir
+            <span style={{ flex: 1, height: "1px", background: "var(--border-default)" }}></span>
+          </h3>
+
           {transferAccounts.length > 0 ? (
-            <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.8 }}>
-              {transferAccounts.map((account) => (
-                <li key={account}>{account}</li>
-              ))}
-            </ul>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
+              {transferAccounts.map((account, idx) => {
+                const detail = parseTransferAccountDetail(account);
+                // Simple color logic based on index or name
+                const isPichincha = detail.bank?.toLowerCase().includes("pichincha");
+                const cardAccent = isPichincha ? "var(--warning-400)" : "var(--primary-400)";
+                const cardBg = isPichincha ? "rgba(245,158,11,0.03)" : "rgba(34,211,238,0.03)";
+                const cardBorder = isPichincha ? "rgba(245,158,11,0.15)" : "rgba(34,211,238,0.15)";
+
+                return (
+                  <div
+                    key={account}
+                    className="animate-fade-in"
+                    style={{
+                      background: "var(--bg-tertiary)",
+                      border: `1px solid ${cardBorder}`,
+                      borderRadius: "var(--radius-xl)",
+                      padding: "1.5rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                      position: "relative",
+                      overflow: "hidden",
+                      boxShadow: "0 10px 30px -15px rgba(0,0,0,0.3)"
+                    }}
+                  >
+                    {/* Decorative bank indicator */}
+                    <div style={{ 
+                      position: "absolute", top: 0, left: 0, width: "100%", height: "4px", 
+                      background: cardAccent 
+                    }} />
+
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ 
+                        width: "44px", height: "44px", borderRadius: "12px", 
+                        background: `${cardAccent}15`, display: "grid", placeItems: "center",
+                        color: cardAccent, border: `1px solid ${cardAccent}30`
+                      }}>
+                        <Building size={24} />
+                      </div>
+                      <div>
+                        <div style={{ fontSize: "1.125rem", fontWeight: 900, color: "white", letterSpacing: "-0.01em" }}>
+                          {detail.bank || "Banco"}
+                        </div>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 800, letterSpacing: "0.05em" }}>
+                          {detail.accountType || "Cuenta"}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ display: "grid", gap: "0.75rem", marginTop: "0.5rem" }}>
+                      {/* Account Number Card */}
+                      <div style={{ 
+                        background: "rgba(0,0,0,0.25)", borderRadius: "var(--radius-lg)", 
+                        padding: "1rem", border: "1px solid rgba(255,255,255,0.05)",
+                        position: "relative"
+                      }}>
+                        <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.25rem" }}>Número de Cuenta</div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "1.125rem", fontWeight: 800, color: cardAccent, fontFamily: "monospace" }}>{detail.accountNumber || "---"}</span>
+                          <button 
+                            onClick={() => {
+                              navigator.clipboard.writeText(detail.accountNumber);
+                              const t = document.createElement('div');
+                              t.className = 'badge badge-success';
+                              t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
+                              t.innerText = '¡Copiado!';
+                              document.body.appendChild(t);
+                              setTimeout(() => t.remove(), 2000);
+                            }}
+                            className="btn btn-sm"
+                            style={{ padding: "0.4rem", minWidth: "32px", height: "32px", background: "rgba(255,255,255,0.05)" }}
+                            title="Copiar Número"
+                          >
+                            <Copy size={14} />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Info Row */}
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                          <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>Titular</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{detail.owner || "---"}</div>
+                        </div>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                          <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>CI / RIF</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700 }}>{detail.idNumber || "---"}</div>
+                        </div>
+                      </div>
+
+                      <button 
+                         onClick={() => {
+                          const text = `${detail.bank} - ${detail.accountNumber} - ${detail.owner} - ${detail.idNumber}`;
+                          navigator.clipboard.writeText(text);
+                          const t = document.createElement('div');
+                          t.className = 'badge badge-success';
+                          t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
+                          t.innerText = '¡Toda la info copiada!';
+                          document.body.appendChild(t);
+                          setTimeout(() => t.remove(), 2000);
+                        }}
+                        className="btn btn-sm" 
+                        style={{ width: "100%", background: "transparent", border: "1px dashed var(--border-default)", fontSize: "0.75rem", marginTop: "0.25rem", color: "var(--text-tertiary)" }}
+                      >
+                        Copiar todos los datos
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           ) : (
-            <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", margin: 0 }}>
-              Configura `NEXT_PUBLIC_TRANSFER_ACCOUNTS` (separadas por `;`) para mostrar las cuentas.
-            </p>
+            <div style={{ textAlign: "center", padding: "3rem 1rem", background: "rgba(255,255,255,0.01)", borderRadius: "var(--radius-lg)", border: "1px dashed var(--border-default)" }}>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-tertiary)" }}>No hay cuentas configuradas actualmente.</p>
+            </div>
           )}
         </div>
       </div>

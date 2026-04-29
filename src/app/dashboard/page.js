@@ -50,12 +50,25 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <div className="page-header">
-        <div>
-          <h1 className="page-title">
-            Hola, {user.name?.split(" ")[0] || "Estudiante"} 👋
-          </h1>
-          <p className="page-subtitle">Tu centro de estudio personalizado</p>
+      <div
+        className="solid-card animate-fade-in"
+        style={{
+          padding: "1.5rem",
+          marginBottom: "1.5rem",
+          background: "linear-gradient(135deg, rgba(99,102,241,0.14) 0%, rgba(34,211,238,0.08) 100%)",
+          border: "1px solid rgba(99,102,241,0.28)",
+        }}
+      >
+        <div className="page-header" style={{ marginBottom: 0 }}>
+          <div>
+            <h1 className="page-title">
+              Hola, {user.name?.split(" ")[0] || "Estudiante"} 👋
+            </h1>
+            <p className="page-subtitle">Tu centro de estudio personalizado</p>
+          </div>
+          <Link href="/quiz" className="btn btn-primary btn-sm">
+            Empezar a estudiar
+          </Link>
         </div>
       </div>
 

@@ -1,264 +1,654 @@
 {
     "preguntas": [
         {
-            "cat": "comercio",
-            "q": "¿Qué mide fundamentalmente el concepto de costo de oportunidad dentro del marco del comercio internacional?",
+            "cat": "globalizacion",
+            "q": "¿Qué fenómeno contemporáneo ha redefinido las reglas del juego económico al facilitar el flujo masivo de bienes e información?",
             "opts": [
-                "Aquello a lo que renuncias irremediablemente para obtener otra cosa.",
-                "La cantidad exacta de recursos financieros gastados en fabricar hoy.",
-                "El tiempo total invertido por los trabajadores durante la industria.",
-                "Los impuestos agregados sobre las exportaciones internacionales hoy."
+                "La globalización económica mundial.",
+                "El proteccionismo comercial estricto.",
+                "La restricción de capitales locales.",
+                "El aislamiento financiero regional."
             ],
             "ans": 0,
-            "just": "El costo de oportunidad representa el valor de la alternativa sacrificada al tomar una decisión productiva estableciendo la base fundamental de la ventaja comparativa.",
-            "hint": "Considera el sacrificio invisible que implica elegir una opción sobre las demás."
-        },
-        {
-            "cat": "comercio",
-            "q": "¿Cuál es el requisito indispensable para que exista ventaja comparativa entre dos productores distintos?",
-            "opts": [
-                "Poseer el menor costo de oportunidad respecto al otro productor.",
-                "Disponer de mayor cantidad de recursos naturales en todo el país.",
-                "Fabricar los bienes en el menor tiempo posible a un nivel global.",
-                "Dominar absolutamente todas las etapas de un proceso productivo."
-            ],
-            "ans": 0,
-            "just": "La ventaja comparativa no requiere ser el mejor en términos absolutos sino producir incurriendo en el menor costo de oportunidad relativo frente a los competidores.",
-            "hint": "Identifica la métrica enfocada en el sacrificio en lugar de la velocidad absoluta."
-        },
-        {
-            "cat": "comercio",
-            "q": "¿Qué sucede económicamente cuando dos países presentan líneas de costo de oportunidad paralelas?",
-            "opts": [
-                "El comercio no genera valor adicional ni beneficios para nadie.",
-                "La especialización aumenta exponencialmente toda riqueza total.",
-                "Ambos países logran maximizar su nivel de consumo interno hoy.",
-                "El intercambio comercial resulta obligatorio por una ley global."
-            ],
-            "ans": 0,
-            "just": "Cuando los costos relativos son idénticos desaparece la ventaja comparativa anulando la posibilidad de crear riqueza adicional mediante el intercambio bilateral.",
-            "hint": "Analiza la excepción matemática donde las diferencias productivas resultan nulas."
-        },
-        {
-            "cat": "comercio",
-            "q": "¿Cómo se define matemáticamente el precio justo dentro de la zona de ganancia mutua al intercambiar?",
-            "opts": [
-                "Debe ubicarse estrictamente entre ambos costos de oportunidad.",
-                "Debe igualar el costo absoluto del productor de mayor eficacia.",
-                "Debe superar siempre el valor nominal de la moneda de reserva.",
-                "Debe calcularse sumando las horas de trabajo de ambos agentes."
-            ],
-            "ans": 0,
-            "just": "El comercio beneficia a ambas partes únicamente si el precio de intercambio permite a cada productor recibir más de lo que le costaría fabricar el bien por cuenta propia.",
-            "hint": "Observa el intervalo donde ambos participantes obtienen beneficios tangibles."
-        },
-        {
-            "cat": "pib",
-            "q": "¿Qué indicador mide de manera exclusiva la producción económica considerando únicamente la nacionalidad?",
-            "opts": [
-                "El Producto Nacional Bruto excluyendo a extranjeros locales.",
-                "El Producto Interno Bruto sumando las empresas extranjeras.",
-                "El Índice de Precios al Consumidor ajustado por la inflación.",
-                "El Deflactor del mercado calculado mediante bienes formales."
-            ],
-            "ans": 0,
-            "just": "El Producto Nacional Bruto contabiliza la producción de los residentes nacionales sin importar su ubicación geográfica excluyendo el capital extranjero operando internamente.",
-            "hint": "Diferencia el enfoque basado en el pasaporte frente al enfoque territorial."
-        },
-        {
-            "cat": "pib",
-            "q": "¿Qué actividad económica queda sistemáticamente excluida del cálculo oficial del Producto Interno Bruto?",
-            "opts": [
-                "El trabajo doméstico no remunerado efectuado en los hogares.",
-                "La producción de bienes finales destinados para uso público.",
-                "El gasto gubernamental invertido en nuevas infraestructuras.",
-                "Las exportaciones netas comercializadas durante el periodo."
-            ],
-            "ans": 0,
-            "just": "Las actividades carentes de facturación formal tales como las labores del hogar o la economía sumergida escapan de los registros oficiales limitando la precisión del indicador.",
-            "hint": "Busca aquella labor diaria que carece de precios de mercado verificables."
-        },
-        {
-            "cat": "pib",
-            "q": "¿Qué formula especifica se emplea para calcular correctamente las exportaciones netas en la economía?",
-            "opts": [
-                "Las exportaciones totales restando las importaciones totales.",
-                "El consumo ciudadano sumado al gasto público ya consolidado.",
-                "Las inversiones corporativas junto a los cobros de aranceles.",
-                "El ingreso total dividido para todos los habitantes presentes."
-            ],
-            "ans": 0,
-            "just": "La deducción de las importaciones resulta vital debido a que dichos bienes provienen de fábricas externas evitando contabilizar producción ajena como riqueza nacional.",
-            "hint": "Recuerda la operación matemática entre los flujos de comercio exterior."
-        },
-        {
-            "cat": "pib",
-            "q": "¿Qué error lógico comete un analista al sumar el valor del trigo junto con el valor final del pan?",
-            "opts": [
-                "Incurre en el problema de doble conteo de bienes intermedios.",
-                "Olvida restar las importaciones de la balanza comercial total.",
-                "Confunde la riqueza nominal con la riqueza real ajustada hoy.",
-                "Estima incorrectamente el índice generalizado de la inflación."
-            ],
-            "ans": 0,
-            "just": "Sumar los insumos por separado infla artificialmente los datos macroeconómicos dado que el precio del producto terminado ya engloba todos los costos previos de la cadena.",
-            "hint": "Considera el efecto de contar dos veces un mismo recurso procesado."
-        },
-        {
-            "cat": "bienestar",
-            "q": "¿Cuál es la función principal de la Canasta Básica dentro del análisis del nivel de vida poblacional?",
-            "opts": [
-                "Representar el nivel mínimo de consumo para una vida digna.",
-                "Determinar el límite exacto de la pobreza extrema nacional.",
-                "Cuantificar exclusivamente los alimentos de supervivencia.",
-                "Establecer el monto total de exportaciones e importaciones."
-            ],
-            "ans": 0,
-            "just": "Este conjunto de bienes indispensables abarca alimentación junto con vivienda y salud marcando la línea divisoria entre el bienestar pleno y la vulnerabilidad financiera.",
-            "hint": "Identifica el umbral de recursos necesarios para no solo sobrevivir sino prosperar."
-        },
-        {
-            "cat": "bienestar",
-            "q": "¿Qué efecto destructivo genera una inflación desmedida sobre los ingresos nominales fijos de las familias?",
-            "opts": [
-                "Destruye el poder adquisitivo real de todos los ciudadanos.",
-                "Aumenta la capacidad de ahorro mensual de los trabajadores.",
-                "Disminuye los precios de los bienes de primera necesidad.",
-                "Incrementa el bienestar económico general de la población."
-            ],
-            "ans": 0,
-            "just": "La inflación opera como un mecanismo de fricción económica encareciendo el costo de vida destruyendo la capacidad real de compra si los salarios no crecen simétricamente.",
-            "hint": "Reflexiona sobre el impacto del aumento generalizado de precios."
-        },
-        {
-            "cat": "indicadores",
-            "q": "¿Qué característica distingue principalmente al Índice de Precios al Consumidor respecto al Deflactor?",
-            "opts": [
-                "Mide el costo de vida basándose en una canasta de bienes fija.",
-                "Considera toda la producción nacional omitiendo la importada.",
-                "Establece la política fiscal para todas las empresas privadas.",
-                "Determina la emisión de billetes mediante los bancos locales."
-            ],
-            "ans": 0,
-            "just": "El Índice de Precios al Consumidor rastrea un conjunto específico de productos representativos para los hogares incluyendo bienes foráneos consumidos por las familias.",
-            "hint": "Diferencia la métrica centrada en el ciudadano de la métrica general de producción."
-        },
-        {
-            "cat": "indicadores",
-            "q": "¿Cómo se interpreta un escenario donde el Producto Interno Bruto aumenta pero la inflación se dispara?",
-            "opts": [
-                "Ocurre un espejismo de crecimiento con pérdida de bienestar.",
-                "Se confirma un desarrollo económico robusto e inquebrantable.",
-                "Disminuye progresivamente el desempleo en toda la industria.",
-                "Aumenta el poder de compra real de las unidades familiares."
-            ],
-            "ans": 0,
-            "just": "Un incremento nominal eclipsado por tasas inflacionarias superiores resulta en un empobrecimiento real de la población desmintiendo el aparente éxito macroeconómico.",
-            "hint": "Evalúa el balance entre ingresos crecientes frente a costos descontrolados."
+            "just": "La globalización ha transformado el panorama económico facilitando un flujo sin precedentes de recursos a escala mundial[cite: 114, 115].",
+            "hint": "Considera el proceso de integración económica internacional."
         },
         {
             "cat": "globalizacion",
-            "q": "¿Qué fenómeno específico desencadenó la crisis financiera asiática ocurrida durante el año mil novecientos noventa y siete?",
+            "q": "¿Qué consecuencia directa tiene la reducción de barreras arancelarias sobre los mercados internacionales?",
             "opts": [
-                "La devaluación abrupta del baht tailandés en los mercados.",
-                "El colapso total del mercado hipotecario estadounidense.",
-                "Las debilidades estructurales de la unión monetaria local.",
-                "La fragilidad extrema de todas las cadenas de suministros."
+                "Aumenta la competencia además de la eficiencia económica.",
+                "Disminuye completamente el intercambio de servicios.",
+                "Frena la movilidad de los capitales foráneos.",
+                "Impide el desarrollo de las instituciones reguladoras."
             ],
             "ans": 0,
-            "just": "El colapso de la divisa tailandesa expuso severas vulnerabilidades en economías emergentes destacando la fragilidad ante flujos de capital sumamente volátiles.",
-            "hint": "Busca el evento monetario originado en el sudeste asiático."
+            "just": "La liberalización del comercio facilita el intercambio global lo cual incrementa notablemente la competencia junto con la eficiencia[cite: 120, 121].",
+            "hint": "Piensa en el efecto positivo de abrir las fronteras comerciales."
         },
         {
             "cat": "globalizacion",
-            "q": "¿Qué ventaja principal prometen introducir las monedas digitales de bancos centrales en las finanzas?",
+            "q": "¿Qué elementos han permitido el flujo veloz de inversiones entre distintos países?",
             "opts": [
-                "Otorgan mayor eficiencia a las transacciones transfronterizas.",
-                "Eliminan por completo los riesgos de seguridad informáticos.",
-                "Reducen el nivel de desempleo en las economías en desarrollo.",
-                "Aseguran el crecimiento infinito del Producto Interno Bruto."
+                "La desregulación financiera y los avances tecnológicos.",
+                "El incremento de los impuestos a la exportación.",
+                "La eliminación de las monedas de reserva globales.",
+                "El cierre de las instituciones internacionales de crédito."
             ],
             "ans": 0,
-            "just": "Estas herramientas digitales centralizadas buscan revolucionar los sistemas de pago internacionales reduciendo tiempos de liquidación aumentando el control operativo.",
-            "hint": "Analiza las mejoras en la agilidad de las transferencias de dinero entre naciones."
+            "just": "Estos dos factores han sido fundamentales para integrar los mercados financieros permitiendo la rápida movilidad de los capitales[cite: 123, 124].",
+            "hint": "Relaciona la tecnología con la flexibilización de normas bancarias."
         },
         {
-            "cat": "regulacion",
-            "q": "¿Qué propósito fundamental cumplen los Acuerdos de Basilea en el contexto del sistema financiero global?",
+            "cat": "globalizacion",
+            "q": "¿Cómo impacta la revolución tecnológica en los costos de transacción a nivel global?",
             "opts": [
-                "Armonizar regulaciones bancarias y evitar arbitraje normativo.",
-                "Fomentar el uso exclusivo de criptomonedas descentralizadas.",
-                "Prohibir totalmente las transferencias de divisas extranjeras.",
-                "Eliminar la necesidad de proteger a los consumidores activos."
+                "Reduce los costos además de disminuir los tiempos requeridos.",
+                "Incrementa el valor de las barreras no arancelarias.",
+                "Limita la coordinación de las actividades productivas.",
+                "Obliga a utilizar exclusivamente dinero físico local."
             ],
             "ans": 0,
-            "just": "Estos acuerdos internacionales establecen estándares comunes para la supervisión bancaria buscando crear un campo de juego nivelado reduciendo riesgos sistémicos.",
-            "hint": "Piensa en el mecanismo diseñado para estandarizar las reglas de las instituciones financieras."
+            "just": "Las innovaciones en áreas de comunicación y transporte logran abaratar operaciones facilitando la coordinación económica global[cite: 126, 127].",
+            "hint": "Piensa en el beneficio económico de tener mejores comunicaciones."
         },
         {
-            "cat": "tecnologia",
-            "q": "¿Cómo transforma la cadena de bloques el panorama actual de las transacciones financieras globales?",
+            "cat": "globalizacion",
+            "q": "¿Cuál es la función principal de instituciones como la Organización Mundial del Comercio en la economía?",
             "opts": [
-                "Ofrece extrema seguridad mediante estructuras descentralizadas.",
-                "Impide realizar pagos transfronterizos entre los continentes.",
-                "Centraliza el poder absoluto en los grandes bancos europeos.",
-                "Sustituye la inteligencia artificial en la gestión de riesgos."
+                "Establecer marcos regulatorios para facilitar relaciones económicas.",
+                "Prohibir el uso del dólar estadounidense como moneda de reserva.",
+                "Generar criptomonedas centralizadas para todos los países.",
+                "Controlar directamente las juntas directivas corporativas."
             ],
             "ans": 0,
-            "just": "Esta innovación tecnológica promete revolucionar los pagos transfronterizos garantizando transparencia inmutabilidad incrementando la eficiencia de las cadenas de valor.",
-            "hint": "Observa el beneficio principal de un libro contable distribuido e inalterable."
+            "just": "Organizaciones internacionales proporcionan las reglas y la cooperación necesarias para mantener el orden en el comercio mundial[cite: 129, 130].",
+            "hint": "Considera el rol de un árbitro normativo global."
         },
         {
-            "cat": "gobierno_corporativo",
-            "q": "¿Por qué resulta crucial la adopción de prácticas de Responsabilidad Social Corporativa internacionalmente?",
+            "cat": "globalizacion",
+            "q": "¿Qué monedas cumplen un papel fundamental facilitando el comercio y las inversiones mundiales?",
             "opts": [
-                "Influyen directamente sobre la reputación y el valor de marca.",
-                "Eximen a las empresas de abonar impuestos gubernamentales.",
-                "Reducen la transparencia requerida por inversores foráneos.",
-                "Garantizan subsidios permanentes de organizaciones mundiales."
+                "El dólar estadounidense junto con el euro.",
+                "Exclusivamente las criptomonedas descentralizadas.",
+                "El baht tailandés sumado al peso regional.",
+                "Las monedas virtuales emitidas por startups."
             ],
             "ans": 0,
-            "just": "La presión global exige comportamientos éticos sostenibles forzando a las corporaciones a adoptar modelos que consoliden la confianza de los consumidores internacionales.",
-            "hint": "Evalúa cómo la percepción pública afecta el posicionamiento en mercados globales."
+            "just": "Ambas divisas funcionan como monedas de reserva proporcionando estabilidad y un ancla para el sistema financiero internacional[cite: 132, 133, 134].",
+            "hint": "Identifica las divisas más fuertes del mercado occidental."
         },
         {
             "cat": "finanzas",
-            "q": "¿Qué desafío regulatorio surge con la veloz innovación de plataformas enfocadas en las finanzas descentralizadas?",
+            "q": "¿Qué característica principal define el reto que plantean las criptomonedas al paradigma tradicional del dinero?",
             "opts": [
-                "Dificulta proteger al consumidor manteniendo la estabilidad.",
-                "Facilita la aplicación estricta de leyes fiscales nacionales.",
-                "Elimina todos los riesgos operativos de inversión extranjera.",
-                "Garantiza el respaldo inmediato de los bancos tradicionales."
+                "Ofrecen transacciones rápidas pero suscitan preocupaciones sobre volatilidad.",
+                "Garantizan una estabilidad superior a las monedas de reserva.",
+                "Dependen totalmente de los bancos centrales europeos.",
+                "Requieren aprobación presencial para cada transferencia."
             ],
             "ans": 0,
-            "just": "El desarrollo acelerado de servicios sin intermediarios exige actualizar normativas velozmente equilibrando el fomento de la innovación frente a la protección de los usuarios.",
-            "hint": "Reflexiona sobre el dilema entre fomentar la tecnología nueva o asegurar el sistema."
+            "just": "A pesar de permitir operaciones sin fronteras su naturaleza descentralizada genera dudas sobre la seguridad financiera y su regulación[cite: 136, 137].",
+            "hint": "Evalúa los beneficios frente a los riesgos de activos como Bitcoin."
+        },
+        {
+            "cat": "tecnologia",
+            "q": "¿Qué beneficio aportan los sistemas de pago digitales como PayPal al comercio electrónico?",
+            "opts": [
+                "Reducen los costos operativos facilitando la inclusión financiera.",
+                "Aumentan significativamente los tiempos de transacción global.",
+                "Eliminan por completo las preocupaciones sobre privacidad.",
+                "Reemplazan a las organizaciones internacionales de comercio."
+            ],
+            "ans": 0,
+            "just": "Estas plataformas revolucionan las transferencias al disminuir tiempos y costos aunque todavía plantean retos respecto a la seguridad de datos[cite: 139, 140].",
+            "hint": "Observa el impacto positivo en la agilidad del movimiento de fondos."
+        },
+        {
+            "cat": "gobierno_corporativo",
+            "q": "¿Por qué la transparencia financiera es un requisito indispensable para las empresas globales?",
+            "opts": [
+                "Permite mantener la confianza de los inversores internacionales.",
+                "Evita la necesidad de implementar gestión de riesgos.",
+                "Reduce la diversidad dentro de las juntas directivas.",
+                "Anula la responsabilidad social corporativa de la firma."
+            ],
+            "ans": 0,
+            "just": "Cumplir con altos estándares de divulgación asegura la confianza del mercado y facilita el cumplimiento normativo en múltiples jurisdicciones[cite: 142, 143].",
+            "hint": "Piensa en lo que buscan los accionistas antes de invertir su dinero."
+        },
+        {
+            "cat": "gobierno_corporativo",
+            "q": "¿Qué resultado produce la presión internacional por adoptar prácticas empresariales éticas?",
+            "opts": [
+                "Impulsa la adopción de políticas de responsabilidad social corporativa.",
+                "Fomenta el aumento del arbitraje regulatorio bancario.",
+                "Destruye el valor comercial de las firmas en mercados extranjeros.",
+                "Inhabilita la innovación de nuevos productos financieros."
+            ],
+            "ans": 0,
+            "just": "La exigencia por sostenibilidad mejora las prácticas corporativas influyendo positivamente en la reputación global de las empresas[cite: 144, 145].",
+            "hint": "Considera el término asociado a las buenas acciones empresariales."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Cómo beneficia la expansión del comercio internacional al crecimiento económico global?",
+            "opts": [
+                "Permite a los países especializarse beneficiándose de economías de escala.",
+                "Disminuye la interdependencia financiera entre los mercados.",
+                "Anula el uso de instrumentos financieros de cobertura.",
+                "Aísla las economías previniendo la propagación de crisis."
+            ],
+            "ans": 0,
+            "just": "El aumento del intercambio comercial impulsa el desarrollo al fomentar la especialización productiva maximizando los recursos[cite: 151, 152].",
+            "hint": "Relaciona el incremento productivo con las ventajas del volumen."
+        },
+        {
+            "cat": "finanzas",
+            "q": "¿Qué consecuencia directa tiene la integración comercial sobre los sistemas financieros mundiales?",
+            "opts": [
+                "Genera una mayor interconexión que requiere cooperación en supervisión.",
+                "Separa definitivamente las regulaciones bancarias de cada nación.",
+                "Elimina completamente la exposición a riesgos de tipo de cambio.",
+                "Detiene el avance de la computación en la nube para bancos."
+            ],
+            "ans": 0,
+            "just": "La interdependencia financiera aumenta obligando a los países a coordinar esfuerzos para regular y supervisar las instituciones[cite: 153, 154].",
+            "hint": "Piensa en el efecto cadena provocado por mercados unidos."
+        },
+        {
+            "cat": "finanzas",
+            "q": "¿Qué tipo de riesgo enfrentan las empresas debido a su participación en el comercio internacional?",
+            "opts": [
+                "Exposición a riesgos de tipo de cambio impulsando la cobertura.",
+                "Aislamiento frente a las innovaciones de las criptomonedas.",
+                "Carencia absoluta de regulaciones en protección al consumidor.",
+                "Falta de acceso a las soluciones tecnológicas en la nube."
+            ],
+            "ans": 0,
+            "just": "Operar con distintas divisas genera riesgos cambiarios motivando la creación de instrumentos financieros sofisticados para mitigarlos[cite: 155, 156].",
+            "hint": "Considera el peligro inherente a la fluctuación del valor de las monedas."
+        },
+        {
+            "cat": "regulacion",
+            "q": "¿Cuál es el objetivo principal de los esfuerzos de armonización regulatoria como los Acuerdos de Basilea?",
+            "opts": [
+                "Crear un campo de juego nivelado reduciendo el arbitraje regulatorio.",
+                "Fomentar la desigualdad en la supervisión de instituciones globales.",
+                "Incrementar unilateralmente los aranceles sobre bienes importados.",
+                "Prohibir el uso de inteligencia artificial en transacciones diarias."
+            ],
+            "ans": 0,
+            "just": "Armonizar las leyes entre países busca evitar que las empresas aprovechen vacíos legales garantizando una supervisión efectiva[cite: 161, 162, 163].",
+            "hint": "Identifica la opción que busca estandarizar las reglas del mercado."
+        },
+        {
+            "cat": "regulacion",
+            "q": "¿Qué desafío constante enfrentan los reguladores ante la aparición de empresas fintech?",
+            "opts": [
+                "Mantenerse al día con la innovación protegiendo la estabilidad del sistema.",
+                "Evitar cualquier tipo de cooperación con autoridades de otros países.",
+                "Destruir la inclusión financiera impulsada por la banca móvil.",
+                "Promover prácticas predatorias en contra de los consumidores locales."
+            ],
+            "ans": 0,
+            "just": "La rápida evolución de productos financieros obliga a los reguladores a equilibrar el fomento tecnológico con la protección del mercado[cite: 165, 166].",
+            "hint": "Piensa en el balance entre tecnología nueva y seguridad pública."
+        },
+        {
+            "cat": "tecnologia",
+            "q": "¿Qué beneficio específico proporciona la computación en la nube a las instituciones financieras?",
+            "opts": [
+                "Facilita escalar operaciones internacionalmente con mayor agilidad.",
+                "Limita la oferta de servicios consistentes en múltiples jurisdicciones.",
+                "Incrementa la dependencia económica hacia un único proveedor local.",
+                "Sustituye la necesidad de poseer juntas directivas diversas."
+            ],
+            "ans": 0,
+            "just": "Las soluciones cloud permiten a los bancos expandirse globalmente ofreciendo servicios de manera eficiente y unificada[cite: 179, 180].",
+            "hint": "Considera la ventaja tecnológica de la infraestructura remota."
         },
         {
             "cat": "inversion",
-            "q": "¿Qué externalidad positiva suele acompañar el ingreso de la Inversión Extranjera Directa a una región?",
+            "q": "¿Qué beneficio económico directo aporta la Inversión Extranjera Directa al país receptor?",
             "opts": [
-                "Fomenta la transferencia de tecnología hacia el país receptor.",
-                "Incentiva el monopolio absoluto de las corporaciones locales.",
-                "Reduce inmediatamente el Producto Nacional Bruto del estado.",
-                "Elimina las exportaciones netas de bienes manufacturados hoy."
+                "Creación de empleo junto con aumento de la productividad.",
+                "Incremento en la volatilidad excesiva de los flujos de capital.",
+                "Optimización de costos exclusiva para el país inversor.",
+                "Impacto ambiental negativo garantizado por ley nacional."
             ],
             "ans": 0,
-            "just": "El flujo de capitales foráneos acarrea beneficios colaterales valiosos incluyendo innovaciones productivas conocimientos gerenciales mejoras en infraestructuras operativas.",
-            "hint": "Considera el conocimiento técnico que importan las multinacionales."
+            "just": "Los flujos de inversión foránea impulsan el mercado laboral local y mejoran la eficiencia productiva mediante nuevas técnicas[cite: 184, 190, 193].",
+            "hint": "Busca la consecuencia positiva vinculada al mercado de trabajo."
+        },
+        {
+            "cat": "inversion",
+            "q": "¿Qué riesgo potencial asume un país al recibir grandes cantidades de Inversión Extranjera Directa?",
+            "opts": [
+                "Posible dependencia económica además de presión sobre empresas locales.",
+                "Acceso inmediato y sin restricciones a todos los mercados foráneos.",
+                "Transferencia absoluta de toda su tecnología hacia el extranjero.",
+                "Diversificación automática de todos los riesgos corporativos mundiales."
+            ],
+            "ans": 0,
+            "just": "El capital externo puede generar subordinación financiera y desplazar a las industrias nacionales menos competitivas[cite: 185, 188, 191].",
+            "hint": "Reflexiona sobre el lado negativo de depender del dinero foráneo."
         },
         {
             "cat": "crisis",
-            "q": "¿Qué lección fundamental evidenció la pandemia del año dos mil veinte respecto a la economía mundial?",
+            "q": "¿Qué crisis histórica reveló las debilidades estructurales de coordinar políticas fiscales en naciones con monedas unificadas?",
             "opts": [
-                "Demostró una profunda fragilidad en las cadenas de suministro.",
-                "Confirmó la superioridad infalible del sistema descentralizado.",
-                "Erradicó por completo la inflación en las naciones emergentes.",
-                "Invalidó la necesidad de aplicar políticas monetarias locales."
+                "La crisis de la deuda europea iniciada en el año dos mil diez.",
+                "La crisis financiera global originada en el mercado hipotecario.",
+                "El impacto económico derivado de la pandemia del coronavirus.",
+                "La devaluación del baht tailandés durante los años noventa."
             ],
             "ans": 0,
-            "just": "La interrupción abrupta de operaciones globales expuso los peligros inherentes a una hiperespecialización desequilibrada promoviendo debates sobre resiliencia económica.",
-            "hint": "Rememora el colapso del transporte de mercancías ocurrido a escala global."
+            "just": "Este evento evidenció los graves problemas de mantener una unión monetaria entre países europeos con realidades económicas divergentes[cite: 207, 208].",
+            "hint": "Ubica el conflicto económico ocurrido específicamente en el viejo continente."
+        },
+        {
+            "cat": "finanzas",
+            "q": "¿Qué tendencia actual redirige los flujos de capital hacia proyectos que benefician el entorno ecológico?",
+            "opts": [
+                "La adopción de finanzas sostenibles aplicando criterios ambientales y sociales.",
+                "El uso exclusivo de plataformas descentralizadas sin ningún intermediario.",
+                "La especulación masiva mediante criptomonedas de altísima volatilidad.",
+                "El establecimiento de aranceles punitivos a los bienes tecnológicos."
+            ],
+            "ans": 0,
+            "just": "La incorporación de métricas de gobernanza y sostenibilidad orienta las inversiones hacia la construcción de una economía más verde[cite: 215, 216].",
+            "hint": "Considera la inversión que valora el impacto ecológico."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué requisito fundamental debe cumplir un bien para ser contabilizado correctamente dentro del Producto Interno Bruto?",
+            "opts": [
+                "Debe ser un producto terminado evitando así el doble conteo.",
+                "Debe ser un recurso intermedio procesado por otra industria.",
+                "Debe producirse exclusivamente por ciudadanos nacidos localmente.",
+                "Debe provenir directamente de las importaciones comerciales."
+            ],
+            "ans": 0,
+            "just": "El cálculo macroeconómico suma únicamente el valor monetario de los bienes y servicios finales generados para evitar inflar la cifra[cite: 220].",
+            "hint": "Piensa en el estado final del producto antes de llegar al consumidor."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Bajo qué criterio geográfico se delimita la medición oficial del Producto Interno Bruto?",
+            "opts": [
+                "Registra todo lo producido dentro de las fronteras territoriales del país.",
+                "Calcula la producción global de todas las empresas de origen nacional.",
+                "Mide únicamente los bienes manufacturados en la zona capitalina.",
+                "Excluye totalmente a las firmas extranjeras operando localmente."
+            ],
+            "ans": 0,
+            "just": "Esta métrica posee un enfoque territorial sumando la actividad económica sin importar la nacionalidad de la empresa productora[cite: 220, 221].",
+            "hint": "Presta atención a los límites físicos de la nación."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué componente del gasto representa la inversión gubernamental en hospitales y carreteras públicas?",
+            "opts": [
+                "El gasto público correspondiente a las autoridades gubernamentales.",
+                "El nivel de consumo habitual ejecutado por todos los hogares.",
+                "La inversión en bienes de capital realizada por empresas privadas.",
+                "Las exportaciones netas resultantes de la balanza comercial final."
+            ],
+            "ans": 0,
+            "just": "Dentro de la arquitectura del indicador macroeconómico estas obras se clasifican directamente como el gasto oficial del gobierno[cite: 220].",
+            "hint": "Asocia la construcción de infraestructura con la administración del estado."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué ocurre con el Producto Interno Bruto Nominal cuando únicamente aumentan los precios de mercado sin variar la cantidad fabricada?",
+            "opts": [
+                "Muestra una ilusión de crecimiento al ser sensible a toda inflación.",
+                "Refleja con total exactitud el aumento del poder adquisitivo real.",
+                "Disminuye proporcionalmente indicando una crisis económica severa.",
+                "Se ajusta automáticamente eliminando el efecto de la fricción de precios."
+            ],
+            "ans": 0,
+            "just": "Este indicador se calcula usando precios actuales por lo cual puede subir simplemente debido a la inflación sin que exista más producción real[cite: 220, 221].",
+            "hint": "Considera el engaño matemático que provocan los costos más altos."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Por qué motivo matemático las importaciones deben deducirse en la ecuación macroeconómica principal?",
+            "opts": [
+                "Porque son bienes producidos en el extranjero y restarían valor a la economía si se suman.",
+                "Porque representan las ganancias exclusivas obtenidas por los ciudadanos migrantes.",
+                "Debido a que incrementan artificialmente el nivel de bienestar ciudadano local.",
+                "Debido a que los impuestos aplicados superan el costo de oportunidad nacional."
+            ],
+            "ans": 0,
+            "just": "Restar este componente es vital dado que dicho consumo corresponde a una producción externa que no genera empleo interno[cite: 220, 221].",
+            "hint": "Piensa en el origen geográfico de estas mercancías."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué actividades productivas permanecen invisibles y excluidas del radar del sistema de medición nacional?",
+            "opts": [
+                "El trabajo doméstico no remunerado junto con toda la economía informal.",
+                "La producción registrada formalmente a través de servicios facturados.",
+                "El gasto ejecutado mensualmente por el sector gubernamental central.",
+                "La fabricación masiva de bienes finales destinados para la exportación."
+            ],
+            "ans": 0,
+            "just": "Los límites del indicador descartan todas aquellas operaciones carentes de registros formales o monetarios afectando su precisión[cite: 220].",
+            "hint": "Identifica las labores cotidianas que no generan recibos oficiales."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué conclusión se obtiene al diferenciar claramente el concepto de producción económica frente al bienestar social?",
+            "opts": [
+                "Una alta producción no garantiza necesariamente calidad de vida ciudadana.",
+                "El aumento del consumo implica directamente la anulación de la pobreza.",
+                "Un crecimiento de exportaciones elimina por completo cualquier desigualdad.",
+                "Un país rico productivamente posee inmunidad absoluta ante la inflación."
+            ],
+            "ans": 0,
+            "just": "Es un error común confundir ambas métricas puesto que el volumen productivo ignora factores como salud distribución o impacto ambiental[cite: 220, 221].",
+            "hint": "Recuerda que generar mucho dinero no asegura la felicidad general."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué señal económica advierte el tablero cuando el indicador macroeconómico general muestra una caída sostenida?",
+            "opts": [
+                "Desaceleración de la actividad acompañada por posible aumento del desempleo.",
+                "Estimulación inmediata para la creación masiva de nuevos puestos laborales.",
+                "Incremento automático del ingreso general para toda la población civil.",
+                "Mejora significativa del poder adquisitivo respecto a las canastas básicas."
+            ],
+            "ans": 0,
+            "just": "Una reducción del nivel productivo impacta negativamente la cadena económica contrayendo las contrataciones y afectando las finanzas públicas[cite: 220].",
+            "hint": "Analiza las consecuencias de fabricar menos productos a nivel país."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Cómo funciona el modelo de flujo circular que impulsa el motor de la economía nacional?",
+            "opts": [
+                "Demuestra que el dinero circula continuamente entre hogares empresas y gobierno.",
+                "Establece que el capital permanece completamente estático dentro de los bancos.",
+                "Indica que el gasto gubernamental jamás retorna al consumo ciudadano habitual.",
+                "Prueba que las importaciones alimentan infinitamente a la industria manufacturera."
+            ],
+            "ans": 0,
+            "just": "La producción total se genera mediante un ciclo ininterrumpido donde el consumo de unos representa el ingreso de otros agentes[cite: 220].",
+            "hint": "Observa el circuito continuo de intercambio monetario y laboral."
+        },
+        {
+            "cat": "pib",
+            "q": "¿Qué sucede con el cálculo macroeconómico si una familia cocina sus propios alimentos en lugar de asistir a un restaurante?",
+            "opts": [
+                "El valor de esa preparación queda fuera de la medición económica formal.",
+                "Se contabiliza íntegramente sumando el trabajo doméstico a los servicios.",
+                "Incrementa notablemente la partida correspondiente al consumo de hogares.",
+                "Disminuye proporcionalmente el porcentaje de exportaciones netas totales."
+            ],
+            "ans": 0,
+            "just": "Al no existir una transacción comercial facturada esa labor cotidiana pasa inadvertida para las estadísticas oficiales del país[cite: 220].",
+            "hint": "Piensa en la diferencia entre pagar por un servicio y hacerlo gratis."
+        },
+        {
+            "cat": "bienestar",
+            "q": "¿Cuál es el propósito analítico de comparar el ingreso familiar frente al valor monetario de la Canasta Básica?",
+            "opts": [
+                "Permite medir el verdadero bienestar comprobando si alcanzan un nivel de vida digno.",
+                "Sirve para calcular matemáticamente la tasa exacta de la inflación interanual.",
+                "Establece el volumen de productos intermedios necesarios para las empresas.",
+                "Determina la cantidad de exportaciones requeridas para equilibrar la economía."
+            ],
+            "ans": 0,
+            "just": "Este diagnóstico revela la realidad económica de los hogares indicando si poseen los recursos para cubrir necesidades indispensables[cite: 221].",
+            "hint": "Considera la relación entre el sueldo cobrado y los gastos necesarios."
+        },
+        {
+            "cat": "bienestar",
+            "q": "¿Qué estado socioeconómico se diagnostica si los recursos mensuales de un grupo familiar apenas cubren la Canasta Vital?",
+            "opts": [
+                "Sobreviven en estado de vulnerabilidad sin alcanzar el bienestar pleno deseado.",
+                "Disfrutan de un enorme excedente destinado directamente hacia inversiones.",
+                "Enfrentan una crisis de pobreza extrema con incapacidad de subsistencia.",
+                "Experimentan un crecimiento nominal desvinculado del costo real de vida."
+            ],
+            "ans": 0,
+            "just": "Lograr costear los requerimientos esenciales evita la pobreza pero mantiene a las personas vulnerables al carecer de ingresos para imprevistos[cite: 221].",
+            "hint": "Evalúa la situación de quien vive estrictamente con lo justo."
+        },
+        {
+            "cat": "indicadores",
+            "q": "¿Qué dimensión económica evalúa el Producto Nacional Bruto diferenciándose de los demás indicadores?",
+            "opts": [
+                "Mide la actividad productiva basándose exclusivamente en el enfoque de nacionalidad.",
+                "Contabiliza los bienes producidos dentro del territorio ignorando el origen corporativo.",
+                "Rastrea únicamente el valor de los bienes indispensables para consumo cotidiano.",
+                "Calcula la diferencia existente entre los ingresos nominales frente a los reales."
+            ],
+            "ans": 0,
+            "just": "Esta herramienta diagnóstica se enfoca en el ingreso real percibido por los ciudadanos excluyendo la producción de firmas extranjeras locales[cite: 221].",
+            "hint": "Concéntrate en la métrica que sigue el pasaporte de los productores."
+        },
+        {
+            "cat": "indicadores",
+            "q": "¿Por qué un analista descartaría los bienes importados al momento de utilizar el Deflactor para sus estudios?",
+            "opts": [
+                "Porque este índice mide la fricción inflacionaria de la producción totalmente interna.",
+                "Debido a que las importaciones siempre abaratan los precios al consumidor final.",
+                "Porque los recursos foráneos no influyen nunca en las fluctuaciones cambiarias.",
+                "Debido a que el trabajo doméstico altera negativamente los valores registrados."
+            ],
+            "ans": 0,
+            "just": "A diferencia de otras métricas de consumo esta herramienta evalúa los cambios de precios sobre los bienes fabricados nacionalmente[cite: 221].",
+            "hint": "Considera el objetivo de medir exclusivamente el valor local."
+        },
+        {
+            "cat": "indicadores",
+            "q": "¿Qué instrumento se utiliza para medir el encarecimiento progresivo del costo de vida ciudadano usando una base fija?",
+            "opts": [
+                "El Índice de Precios al Consumidor el cual incluye bienes de importación cotidiana.",
+                "El Producto Nacional Bruto sumando las rentas obtenidas en el extranjero hoy.",
+                "El cálculo directo del Producto Interno Real ajustado a variaciones tributarias.",
+                "El enfoque del gasto público deducido mediante la fórmula macroeconómica base."
+            ],
+            "ans": 0,
+            "just": "Este índice rastrea la evolución monetaria de una canasta específica de bienes comprados por los hogares evidenciando la inflación[cite: 221].",
+            "hint": "Busca la métrica enfocada directamente en las compras diarias de la gente."
+        },
+        {
+            "cat": "bienestar",
+            "q": "¿Qué regla fundamental destruye el espejismo del crecimiento cuando la inflación resulta demasiado elevada?",
+            "opts": [
+                "Si la inflación supera el aumento porcentual de ingresos el poder adquisitivo real desciende.",
+                "Si los precios aumentan rápidamente el nivel de desempleo disminuye automáticamente.",
+                "Un mayor costo productivo impulsa inevitablemente un crecimiento del bienestar colectivo.",
+                "La desigualdad social desaparece cuando el país alcanza una alta tasa inflacionaria anual."
+            ],
+            "ans": 0,
+            "just": "El incremento nominal de los sueldos pierde toda utilidad si el costo de los productos necesarios crece a una velocidad matemáticamente superior[cite: 221].",
+            "hint": "Analiza qué ocurre si las cosas suben de precio más rápido que tu sueldo."
+        },
+        {
+            "cat": "bienestar",
+            "q": "¿Qué riesgo económico enfrenta un país que ostenta altos niveles de producción combinados con inflación descontrolada?",
+            "opts": [
+                "El crecimiento aparente es devorado por el encarecimiento extremo del costo de vida.",
+                "Consolida una estabilidad estructural envidiable frente a las naciones competidoras.",
+                "Asegura un desarrollo pleno fortaleciendo notablemente el consumo de los hogares.",
+                "Provoca una caída automática en las importaciones beneficiando la industria nacional."
+            ],
+            "ans": 0,
+            "just": "La combinación de ambas variables indica un riesgo severo donde la población no percibe los beneficios productivos por la pérdida monetaria[cite: 221].",
+            "hint": "Piensa en el efecto destructivo del impuesto invisible sobre el éxito."
+        },
+        {
+            "cat": "bienestar",
+            "q": "¿Por qué es un error técnico asumir que percibir mayor ingreso nominal equivale directamente a mejorar el estado financiero?",
+            "opts": [
+                "Porque lo verdaderamente importante es el poder de compra real frente a la canasta básica.",
+                "Debido a que el salario siempre se ajusta perfectamente a la inflación sin requerir cálculos.",
+                "Porque las divisas de reserva global compensan automáticamente las devaluaciones locales.",
+                "Debido a que los bienes intermedios subsidian el aumento desmedido de los precios diarios."
+            ],
+            "ans": 0,
+            "just": "El dinero físico carece de valor intrínseco la verdadera riqueza radica en la cantidad de bienes que efectivamente permite adquirir[cite: 221].",
+            "hint": "Diferencia la cantidad de billetes de su capacidad para comprar cosas."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Qué pilar fundamental describe la habilidad de generar una mayor cantidad de productos invirtiendo menos recursos?",
+            "opts": [
+                "La Productividad entendida como el nivel de eficiencia operativa y temporal.",
+                "La Ventaja Comparativa basada en el cálculo del menor costo de oportunidad.",
+                "El Consumo Privado definido como el motor principal de toda demanda local.",
+                "La Interdependencia generada por las diversas cadenas de suministro mundiales."
+            ],
+            "ans": 0,
+            "just": "Optimizar el tiempo y los insumos para fabricar bienes constituye la base de la productividad impulsando el crecimiento económico inicial[cite: 222].",
+            "hint": "Busca el término asociado al rendimiento óptimo del trabajo."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Cuál es la premisa central que valida la existencia de la red de interdependencia económica humana?",
+            "opts": [
+                "Consumimos el esfuerzo del mundo debido a que nuestros recursos y habilidades son limitados.",
+                "Preferimos comercializar internacionalmente para reducir las tasas tributarias locales.",
+                "Buscamos aislar nuestras fronteras para asegurar la completa autonomía financiera.",
+                "Imponemos precios elevados garantizando ventajas absolutas sobre los vecinos."
+            ],
+            "ans": 0,
+            "just": "La realidad demuestra que casi nadie produce todo lo que necesita forzando un ecosistema cooperativo para elevar el bienestar conjunto[cite: 222].",
+            "hint": "Piensa en por qué necesitamos adquirir bienes fabricados por otros."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Qué trampa cognitiva suele engañar a las personas respecto a la viabilidad del comercio internacional?",
+            "opts": [
+                "Creer erróneamente que quien posee ventaja absoluta no necesita a los demás agentes.",
+                "Asumir que especializarse destruye el costo de oportunidad de toda la economía.",
+                "Pensar que adquirir bienes externos fortalece infinitamente la moneda de reserva.",
+                "Considerar matemáticamente imposible el intercambio si existen líneas paralelas."
+            ],
+            "ans": 0,
+            "just": "La intuición dicta equivocadamente que ser el productor más rápido exime de colaborar ignorando los beneficios de la ventaja comparativa[cite: 222].",
+            "hint": "Identifica el concepto ilusorio de autosuficiencia total."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Cómo se define el costo de oportunidad dentro de los cuadrantes del comercio internacional?",
+            "opts": [
+                "Representa aquello a lo que renuncias irremediablemente al tomar cierta decisión.",
+                "Indica el esfuerzo monetario exacto empleado para adquirir insumos productivos.",
+                "Simboliza el valor agregado generado mediante las regulaciones gubernamentales.",
+                "Constituye la cantidad de horas empleadas en transportar productos terminados."
+            ],
+            "ans": 0,
+            "just": "El costo invisible de producir un bien radica en lo que dejas de fabricar con ese mismo recurso determinando la estrategia comercial[cite: 222].",
+            "hint": "Considera el valor del sacrificio asociado a una elección."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Qué revela matemáticamente el cálculo de la ventaja comparativa entre dos productores competidores?",
+            "opts": [
+                "Quien sacrifica menos para fabricar el bien ostenta la verdadera ventaja comparativa.",
+                "Quien finaliza el producto rápidamente posee todo el poder sobre los mercados.",
+                "Quien ostenta el monopolio geográfico logra eludir todas las aduanas existentes.",
+                "Quien utiliza inteligencia artificial reemplaza por completo a los agricultores."
+            ],
+            "ans": 0,
+            "just": "Analizar los costos de oportunidad demuestra que la especialización beneficia a quien enfrenta la menor renuncia productiva relativa[cite: 222].",
+            "hint": "Relaciona el triunfo comercial con el menor sacrificio posible."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Qué efecto mágico produce el intercambio especializado sobre el nivel de vida de los participantes?",
+            "opts": [
+                "Ambos mejoran su consumo superando su propia capacidad productiva máxima original.",
+                "Solamente el productor ineficiente experimenta un crecimiento de bienestar sostenido.",
+                "Provoca una caída drástica en las reservas de bienes incrementando toda la pobreza.",
+                "Anula las ventajas absolutas devolviendo el comercio a una etapa de simple trueque."
+            ],
+            "ans": 0,
+            "just": "Al concentrarse en lo que hacen mejor e intercambiar los agentes económicos logran crear riqueza adicional expandiendo sus fronteras de posibilidad[cite: 222].",
+            "hint": "Visualiza el resultado donde las dos partes obtienen ganancias."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Cuál es la condición matemática obligatoria para encontrar el precio justo en un acuerdo comercial mutuo?",
+            "opts": [
+                "El precio debe ubicarse estrictamente entre los dos costos de oportunidad participantes.",
+                "El monto acordado debe superar la inflación registrada durante el año anterior.",
+                "La tarifa debe reflejar exclusivamente la ganancia del productor más eficiente.",
+                "La cantidad exigida debe ser validada por un banco central internacional."
+            ],
+            "ans": 0,
+            "just": "Para que el comercio beneficie a ambos participantes el trato debe permitirles adquirir el bien más barato de lo que les costaría producirlo[cite: 222].",
+            "hint": "Ubica el punto intermedio donde ambas alternativas son rentables."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Por qué las cadenas globales de producción aplican un principio fractal aplicable desde las aulas hasta las naciones?",
+            "opts": [
+                "Demuestran que dividir tareas basados en el menor costo rinde beneficios a cualquier escala.",
+                "Prueban que el estudio de economía requiere estrictamente habilidades de matemática pura.",
+                "Indican que los emprendimientos pequeños fracasan sin ayuda de Inversión Extranjera Directa.",
+                "Señalan que importar tecnología avanzada arruina inevitablemente los negocios locales."
+            ],
+            "ans": 0,
+            "just": "La lógica de optimización operando mediante la ventaja comparativa funciona independientemente del tamaño de los agentes involucrados[cite: 222].",
+            "hint": "Piensa en el patrón que se repite en situaciones micro y macroeconómicas."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Cómo se desmitifica la creencia popular de que comerciar significa perder autonomía o independencia nacional?",
+            "opts": [
+                "En realidad constituye una interdependencia estratégica que maximiza el consumo colectivo.",
+                "En realidad permite a los países más fuertes dominar a las regiones empobrecidas totalmente.",
+                "En realidad obliga a someterse a regulaciones ambientales sumamente perjudiciales.",
+                "En realidad promueve el uso exclusivo de criptomonedas socavando el dólar oficial."
+            ],
+            "ans": 0,
+            "just": "Intercambiar bienes no implica debilidad sino una táctica racional para alcanzar niveles de prosperidad imposibles mediante el aislamiento productivo[cite: 222].",
+            "hint": "Refuta la idea del miedo relacionándola con el trabajo en equipo."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Por qué resulta una decisión económica completamente racional decidir importar un bien extranjero?",
+            "opts": [
+                "Resulta racional si otro país logra producir ese bien asumiendo un menor sacrificio relativo.",
+                "Constituye la mejor opción para evitar el pago de beneficios de responsabilidad social.",
+                "Representa un castigo directo impuesto contra la ineficiente industria manufacturera local.",
+                "Es el único mecanismo capaz de disminuir aceleradamente el Producto Nacional Bruto."
+            ],
+            "ans": 0,
+            "just": "Comprar afuera es lógico cuando importar requiere ceder menos recursos que intentar desarrollar internamente una industria ineficiente[cite: 222].",
+            "hint": "Asocia la compra extranjera con el ahorro de los recursos patrios."
+        },
+        {
+            "cat": "comercio",
+            "q": "¿Qué conclusión fundamental resalta la fortaleza del modelo comercial globalizado?",
+            "opts": [
+                "El comercio transforma eficazmente nuestras diferencias individuales en riqueza colectiva.",
+                "La especialización condena irremediablemente a las pequeñas naciones al estancamiento.",
+                "Las fronteras cerradas garantizan invariablemente la mejor defensa frente a la inflación.",
+                "La productividad constante reemplaza por completo la necesidad de importar bienes."
+            ],
+            "ans": 0,
+            "just": "Las personas empresas y países prosperan no aislándose sino aprovechando sus distinciones relativas mediante el intercambio ordenado[cite: 222].",
+            "hint": "Visualiza el poder integrador de las habilidades diferentes."
+        },
+        {
+            "cat": "inflacion",
+            "q": "¿Qué error analítico advierte la matriz sobre el uso de métricas macroeconómicas sin contexto humano?",
+            "opts": [
+                "Un buen análisis económico nunca olvida a la persona sufriente detrás de cada dato oficial.",
+                "La abundancia de dinero nominal resuelve los problemas sociales mediante el consumo rápido.",
+                "Las instituciones financieras globales priorizan la felicidad antes que los dividendos.",
+                "El control inflacionario depende exclusivamente de emitir mayor circulante monetario."
+            ],
+            "ans": 0,
+            "just": "El mapa estadístico no refleja todo el territorio vital producir abundante riqueza no garantiza bienestar si existe profunda desigualdad y costo de vida alto[cite: 221].",
+            "hint": "Considera la desconexión existente entre las planillas de cálculo y la vida diaria."
         }
     ]
 }

@@ -13,27 +13,27 @@ const previewCareersData = [
 const features = [
   {
     icon: "target",
-    title: "Práctica dirigida",
+    title: "Simulador de Examen Real",
     description:
-      "Entrena por carrera, materia y tema para invertir tu energía justo donde el examen te va a exigir más.",
+      "Entrena con presión de tiempo y modo enfoque para simular la experiencia real del examen universitario.",
   },
   {
     icon: "explain",
-    title: "Explicaciones que enseñan",
+    title: "Flashcards Interactivos",
     description:
-      "Cada respuesta viene con una justificación clara para que entiendas el razonamiento, no solo memorices la opción correcta.",
+      "Usa el modo de tarjetas para estudiar conceptos clave con active recall y explicaciones instantáneas.",
   },
   {
     icon: "progress",
-    title: "Progreso visible",
+    title: "Gamificación y Rachas",
     description:
-      "Detecta fortalezas, vacíos y temas repetidos con métricas pensadas para estudiar mejor antes del parcial.",
+      "Gana puntos, desbloquea medallas y mantén tu racha diaria para convertir el estudio en un hábito divertido.",
   },
   {
     icon: "mobile",
-    title: "Listo para estudiar donde sea",
+    title: "PWA: Instálalo en tu Celular",
     description:
-      "Diseñado para sesiones rápidas desde el celular, la biblioteca o el computador antes de clase.",
+      "Accede instantáneamente desde tu pantalla de inicio como una app nativa, incluso sin conexión en algunas áreas.",
   },
 ];
 
@@ -159,32 +159,32 @@ function ProductPreview({ totalFormatted, topCareer }) {
 
       <div className="preview-grid">
         <aside className="preview-sidebar">
-          <span className="preview-label">Ruta de estudio</span>
-          <strong>{topCareer?.name || "Medicina"}</strong>
+          <span className="preview-label">Estudiante en Racha</span>
+          <strong>🔥 5 Días</strong>
           <div className="preview-progress">
-            <span style={{ width: "74%" }} />
+            <span style={{ width: "85%", background: "var(--warning-400)" }} />
           </div>
-          <small>74% de dominio en el bloque actual</small>
+          <small>Nivel 12 — Maestro</small>
         </aside>
 
         <div className="preview-question">
           <div className="preview-question-topline">
-            <span>Pregunta guiada</span>
-            <span>{totalFormatted} disponibles</span>
+            <span>Modo Simulacro</span>
+            <span>00:24 ⏱️</span>
           </div>
-          <h3>¿Cuál es el razonamiento correcto para resolver este caso?</h3>
-          <div className="preview-answer selected">
+          <h3>¿Cuál es la derivada de $f(x) = \sin(x)$?</h3>
+          <div className="preview-answer selected" style={{ borderColor: "var(--primary-400)", background: "rgba(99,102,241,0.1)" }}>
             <span>A</span>
-            <p>Identificar el concepto clave antes de escoger la alternativa.</p>
+            <p>$\cos(x)$</p>
           </div>
           <div className="preview-answer">
             <span>B</span>
-            <p>Responder por descarte sin revisar la explicación.</p>
+            <p>$-\cos(x)$</p>
           </div>
-          <div className="preview-explanation">
+          <div className="preview-explanation" style={{ borderLeft: "3px solid var(--accent-400)", background: "rgba(34,211,238,0.05)" }}>
             <strong>Justificación</strong>
             <p>
-              StudyHub te muestra por qué la respuesta funciona y qué tema debes reforzar después.
+              La derivada de la función seno es el coseno positivo. StudyHub te muestra el paso a paso.
             </p>
           </div>
         </div>

@@ -16,12 +16,25 @@ export default async function DashboardPage() {
 
   const subActive = isSubscriptionActive(user.subscriptionExpiry);
   const days = daysRemaining(user.subscriptionExpiry);
+  const allowedCareers = user.allowedCareers?.split(",").filter(Boolean) ?? [];
+  const isAdmin = user.role === "ADMIN";
+  const careerWhere = isAdmin
+    ? {}
+    : allowedCareers.length > 0
+      ? { slug: { in: allowedCareers } }
+      : { id: "__no_access__" };
+  const categoryWhere = isAdmin
+    ? {}
+    : allowedCareers.length > 0
+      ? { career: { slug: { in: allowedCareers } } }
+      : { id: "__no_access__" };
   const stats = await Promise.all([
-    prisma.career.count(),
-    prisma.question.count(),
+    prisma.career.count({ where: careerWhere }),
+    prisma.question.count({ where: { category: categoryWhere } }),
   ]);
 
   const categories = await prisma.category.findMany({
+    where: categoryWhere,
     select: { id: true, name: true, career: { select: { name: true } } }
   });
 
@@ -118,6 +131,11 @@ export default async function DashboardPage() {
           <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>💳</div>
           <h3 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "0.25rem" }}>Gestionar Suscripción</h3>
           <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Envía tu comprobante de pago</p>
+        </Link>
+        <Link href="/leaderboard" className="solid-card" style={{ padding: "1.5rem", textDecoration: "none" }}>
+          <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>🏆</div>
+          <h3 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "0.25rem" }}>Ver Leaderboard</h3>
+          <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Clasificación global de estudiantes</p>
         </Link>
         <Link href="/suggest" className="solid-card" style={{ padding: "1.5rem", textDecoration: "none" }}>
           <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>💡</div>

@@ -1,28 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const THEME_EVENT = "studyhub-theme-change";
+
+function getThemeSnapshot() {
+  if (typeof window === "undefined") return "dark";
+  return localStorage.getItem("studyhub_theme") || "dark";
+}
+
+function subscribeToTheme(callback) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(THEME_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(THEME_EVENT, callback);
+  };
+}
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState("dark");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const storedTheme = localStorage.getItem("studyhub_theme") || "dark";
-    setTheme(storedTheme);
-    document.documentElement.setAttribute("data-theme", storedTheme);
-  }, []);
+  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => "dark");
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
     localStorage.setItem("studyhub_theme", newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
+    window.dispatchEvent(new Event(THEME_EVENT));
   };
-
-  if (!mounted) {
-    return <div style={{ width: 44, height: 44 }} />; // placeholder to prevent layout shift
-  }
 
   return (
     <button

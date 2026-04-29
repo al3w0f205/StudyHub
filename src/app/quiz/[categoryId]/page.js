@@ -5,6 +5,35 @@ import QuizClient from "@/components/quiz/QuizClient";
 
 export const dynamic = "force-dynamic";
 
+function hashSeed(value) {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function seededRandom(seed) {
+  let state = seed || 1;
+  return () => {
+    state = Math.imul(1664525, state) + 1013904223;
+    return (state >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle(items, seedValue) {
+  const random = seededRandom(hashSeed(seedValue));
+  const result = [...items];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
 export async function generateMetadata({ params }) {
   const { categoryId } = await params;
   const category = await prisma.category.findUnique({
@@ -74,15 +103,18 @@ export default async function QuizPage({ params }) {
     }
   }
 
-  // Shuffle questions and options
-  const shuffled = [...category.questions].sort(() => Math.random() - 0.5).map(q => {
-    const optsWithOriginals = q.options.map((text, i) => ({ text, isCorrect: i === q.correctIndex }));
-    const shuffledOpts = optsWithOriginals.sort(() => Math.random() - 0.5);
-    const newCorrectIndex = shuffledOpts.findIndex(o => o.isCorrect);
+  const quizSeed = `${categoryId}:${session.user.id}:${new Date().toISOString().slice(0, 10)}`;
+  const shuffled = seededShuffle(category.questions, quizSeed).map((question) => {
+    const options = question.options.map((text, index) => ({
+      text,
+      isCorrect: index === question.correctIndex,
+    }));
+    const shuffledOptions = seededShuffle(options, `${quizSeed}:${question.id}`);
+
     return {
-      ...q,
-      options: shuffledOpts.map(o => o.text),
-      correctIndex: newCorrectIndex
+      ...question,
+      options: shuffledOptions.map((option) => option.text),
+      correctIndex: shuffledOptions.findIndex((option) => option.isCorrect),
     };
   });
 

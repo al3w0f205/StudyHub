@@ -2,12 +2,14 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { slugify } from "@/lib/utils";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const metadata = { title: "Gestión de Categorías" };
 export const dynamic = "force-dynamic";
 
 async function createCategory(formData) {
   "use server";
+  await requireAdmin();
   const name = formData.get("name");
   const careerId = formData.get("careerId");
   const description = formData.get("description");
@@ -27,6 +29,7 @@ async function createCategory(formData) {
 
 async function updateCategory(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   const theory = formData.get("theory");
   const careerId = formData.get("careerId");
@@ -40,6 +43,7 @@ async function updateCategory(formData) {
 
 async function deleteCategory(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   const careerId = formData.get("careerId");
   await prisma.category.delete({ where: { id } });

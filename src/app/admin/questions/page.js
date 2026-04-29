@@ -1,12 +1,14 @@
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { truncate } from "@/lib/utils";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const metadata = { title: "Gestión de Preguntas" };
 export const dynamic = "force-dynamic";
 
 async function createQuestion(formData) {
   "use server";
+  await requireAdmin();
   const text = formData.get("text");
   const categoryId = formData.get("categoryId");
   const correctIndex = parseInt(formData.get("correctIndex"), 10);
@@ -17,7 +19,7 @@ async function createQuestion(formData) {
     const opt = formData.get(`option-${i}`);
     if (opt && opt.trim()) options.push(opt.trim());
   }
-  if (options.length < 2) return;
+  if (options.length < 2 || correctIndex < 0 || correctIndex >= options.length) return;
   await prisma.question.create({
     data: { text, options, correctIndex, categoryId, hint: hint || null, explanation: explanation || null },
   });
@@ -26,6 +28,7 @@ async function createQuestion(formData) {
 
 async function deleteQuestion(formData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id");
   await prisma.question.delete({ where: { id } });
   redirect("/admin/questions");

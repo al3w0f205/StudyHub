@@ -40,7 +40,7 @@ Un panel completo que te da control absoluto sobre la plataforma:
 *   **Base de Datos:** PostgreSQL
 *   **ORM:** Prisma
 *   **Autenticación:** Auth.js v5 (NextAuth)
-*   **Almacenamiento (Archivos):** S3 / MinIO (para comprobantes de pago)
+*   **Almacenamiento (Archivos):** UploadThing (para comprobantes de pago)
 *   **Estilos:** Vanilla CSS moderno con variables CSS (`globals.css`)
 *   **Despliegue:** Preparado nativamente para Coolify y entornos Docker (Nixpacks).
 
@@ -70,12 +70,8 @@ Un panel completo que te da control absoluto sobre la plataforma:
    AUTH_GOOGLE_ID="tu_google_oauth_client_id"
    AUTH_GOOGLE_SECRET="tu_google_oauth_client_secret"
 
-   # Almacenamiento S3 (Para comprobantes de pago)
-   S3_ENDPOINT="https://tu-endpoint-s3.com"
-   S3_REGION="us-east-1"
-   S3_BUCKET="studyhub-bucket"
-   S3_ACCESS_KEY="tu_access_key"
-   S3_SECRET_KEY="tu_secret_key"
+   # UploadThing (Para comprobantes de pago)
+   UPLOADTHING_TOKEN="tu_uploadthing_token"
    ```
 
 4. **Preparar la base de datos:**

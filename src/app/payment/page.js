@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { isSubscriptionActive, daysRemaining, formatDate } from "@/lib/utils";
 import { uploadToUploadThing } from "@/lib/uploadthing";
+import { Building, Copy } from "lucide-react";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
@@ -15,8 +16,9 @@ function parseTransferAccounts(rawValue) {
 }
 
 function parseTransferAccountDetail(account) {
+  // Split by dash, but handle cases with and without spaces
   const parts = String(account)
-    .split(" - ")
+    .split(/\s*-\s*/)
     .map((part) => part.trim())
     .filter(Boolean);
 

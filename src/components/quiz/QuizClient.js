@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import MathText from "@/components/ui/MathText";
 
-export default function QuizClient({ questions, theory, categoryName, careerName, careers, currentCareerId, categoryId }) {
+export default function QuizClient({ questions, theory, categoryName, careerName, careers, currentCareerId, categoryId, isOfflineMode = false }) {
   // State
   const [view, setView] = useState(questions.length === 0 ? "theory" : "quiz"); // "quiz", "theory", "flashcards"
   const [current, setCurrent] = useState(0);
@@ -14,6 +14,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [history, setHistory] = useState([]); // [{ questionId, isCorrect }]
   
   // Tools
   const [isZenMode, setIsZenMode] = useState(false);

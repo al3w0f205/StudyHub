@@ -211,79 +211,120 @@ export default async function PaymentPage({ searchParams }) {
           </h3>
 
           {transferAccounts.length > 0 ? (
-            <div style={{ display: "grid", gap: "1rem" }}>
-              {transferAccounts.map((account) => {
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
+              {transferAccounts.map((account, idx) => {
                 const detail = parseTransferAccountDetail(account);
+                // Simple color logic based on index or name
+                const isPichincha = detail.bank?.toLowerCase().includes("pichincha");
+                const cardAccent = isPichincha ? "var(--warning-400)" : "var(--primary-400)";
+                const cardBg = isPichincha ? "rgba(245,158,11,0.03)" : "rgba(34,211,238,0.03)";
+                const cardBorder = isPichincha ? "rgba(245,158,11,0.15)" : "rgba(34,211,238,0.15)";
+
                 return (
                   <div
                     key={account}
+                    className="animate-fade-in"
                     style={{
-                      background: "linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)",
-                      border: "1px solid var(--border-default)",
-                      borderRadius: "var(--radius-lg)",
-                      padding: "1.25rem",
+                      background: "var(--bg-tertiary)",
+                      border: `1px solid ${cardBorder}`,
+                      borderRadius: "var(--radius-xl)",
+                      padding: "1.5rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
                       position: "relative",
-                      transition: "transform 0.2s ease"
+                      overflow: "hidden",
+                      boxShadow: "0 10px 30px -15px rgba(0,0,0,0.3)"
                     }}
                   >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                        <div style={{ width: "40px", height: "40px", background: "var(--primary-500)20", borderRadius: "10px", display: "grid", placeItems: "center", color: "var(--primary-400)" }}>
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg>
+                    {/* Decorative bank indicator */}
+                    <div style={{ 
+                      position: "absolute", top: 0, left: 0, width: "100%", height: "4px", 
+                      background: cardAccent 
+                    }} />
+
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <div style={{ 
+                        width: "44px", height: "44px", borderRadius: "12px", 
+                        background: `${cardAccent}15`, display: "grid", placeItems: "center",
+                        color: cardAccent, border: `1px solid ${cardAccent}30`
+                      }}>
+                        <Building size={24} />
+                      </div>
+                      <div>
+                        <div style={{ fontSize: "1.125rem", fontWeight: 900, color: "white", letterSpacing: "-0.01em" }}>
+                          {detail.bank || "Banco"}
                         </div>
-                        <div>
-                          <div style={{ fontSize: "1rem", fontWeight: 800, color: "white" }}>{detail.bank || "Transferencia Bancaria"}</div>
-                          <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700 }}>{detail.accountType || "Cuenta de Ahorros"}</div>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 800, letterSpacing: "0.05em" }}>
+                          {detail.accountType || "Cuenta"}
                         </div>
                       </div>
                     </div>
 
-                    <div style={{ display: "grid", gap: "0.875rem" }}>
-                      {detail.accountNumber && (
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem", background: "rgba(0,0,0,0.2)", borderRadius: "var(--radius-md)", border: "1px solid rgba(255,255,255,0.03)" }}>
-                          <div>
-                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>Número de Cuenta</div>
-                            <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--primary-300)", fontFamily: "monospace" }}>{detail.accountNumber}</div>
-                          </div>
+                    <div style={{ display: "grid", gap: "0.75rem", marginTop: "0.5rem" }}>
+                      {/* Account Number Card */}
+                      <div style={{ 
+                        background: "rgba(0,0,0,0.25)", borderRadius: "var(--radius-lg)", 
+                        padding: "1rem", border: "1px solid rgba(255,255,255,0.05)",
+                        position: "relative"
+                      }}>
+                        <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.25rem" }}>Número de Cuenta</div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "1.125rem", fontWeight: 800, color: cardAccent, fontFamily: "monospace" }}>{detail.accountNumber || "---"}</span>
                           <button 
                             onClick={() => {
                               navigator.clipboard.writeText(detail.accountNumber);
-                              const toast = document.createElement('div');
-                              toast.className = 'badge badge-success';
-                              toast.style.position = 'fixed'; toast.style.bottom = '20px'; toast.style.right = '20px';
-                              toast.innerText = '¡Copiado!';
-                              document.body.appendChild(toast);
-                              setTimeout(() => toast.remove(), 2000);
+                              const t = document.createElement('div');
+                              t.className = 'badge badge-success';
+                              t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
+                              t.innerText = '¡Copiado!';
+                              document.body.appendChild(t);
+                              setTimeout(() => t.remove(), 2000);
                             }}
-                            className="btn btn-sm btn-ghost" 
-                            style={{ padding: "0.5rem" }}
+                            className="btn btn-sm"
+                            style={{ padding: "0.4rem", minWidth: "32px", height: "32px", background: "rgba(255,255,255,0.05)" }}
+                            title="Copiar Número"
                           >
-                            📋
+                            <Copy size={14} />
                           </button>
                         </div>
-                      )}
-
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                        {detail.owner && (
-                          <div>
-                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>Titular</div>
-                            <div style={{ fontSize: "0.8125rem", fontWeight: 600 }}>{detail.owner}</div>
-                          </div>
-                        )}
-                        {detail.idNumber && (
-                          <div>
-                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>CI / Identificación</div>
-                            <div style={{ fontSize: "0.8125rem", fontWeight: 600 }}>{detail.idNumber}</div>
-                          </div>
-                        )}
                       </div>
+
+                      {/* Info Row */}
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                          <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>Titular</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{detail.owner || "---"}</div>
+                        </div>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                          <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>CI / RIF</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700 }}>{detail.idNumber || "---"}</div>
+                        </div>
+                      </div>
+
+                      <button 
+                         onClick={() => {
+                          const text = `${detail.bank} - ${detail.accountNumber} - ${detail.owner} - ${detail.idNumber}`;
+                          navigator.clipboard.writeText(text);
+                          const t = document.createElement('div');
+                          t.className = 'badge badge-success';
+                          t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
+                          t.innerText = '¡Toda la info copiada!';
+                          document.body.appendChild(t);
+                          setTimeout(() => t.remove(), 2000);
+                        }}
+                        className="btn btn-sm" 
+                        style={{ width: "100%", background: "transparent", border: "1px dashed var(--border-default)", fontSize: "0.75rem", marginTop: "0.25rem", color: "var(--text-tertiary)" }}
+                      >
+                        Copiar todos los datos
+                      </button>
                     </div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            <div style={{ textAlign: "center", padding: "2rem", background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", border: "1px dashed var(--border-default)" }}>
+            <div style={{ textAlign: "center", padding: "3rem 1rem", background: "rgba(255,255,255,0.01)", borderRadius: "var(--radius-lg)", border: "1px dashed var(--border-default)" }}>
               <p style={{ fontSize: "0.875rem", color: "var(--text-tertiary)" }}>No hay cuentas configuradas actualmente.</p>
             </div>
           )}

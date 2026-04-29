@@ -34,6 +34,8 @@ export const viewport = {
   userScalable: false,
 };
 
+import { ToastProvider } from "@/components/ui/Toast";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
@@ -58,11 +60,41 @@ export default function RootLayout({ children }) {
                   document.documentElement.setAttribute('data-theme', 'dark');
                 }
               } catch (e) {}
+
+              // Anti-Piracy Protection
+              document.addEventListener('contextmenu', e => e.preventDefault());
+              document.addEventListener('keydown', e => {
+                if (
+                  e.keyCode === 123 || // F12
+                  (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+                  (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+                  (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
+                  (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
+                  (e.ctrlKey && e.keyCode === 67)    // Ctrl+C (as fallback)
+                ) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+              // Service Worker Registration
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('SW registered');
+                  }, function(err) {
+                    console.log('SW failed: ', err);
+                  });
+                });
+              }
             `,
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ToastProvider>
+          {children}
+        </ToastProvider>
+      </body>
     </html>
   );
 }

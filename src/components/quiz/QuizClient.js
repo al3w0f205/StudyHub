@@ -105,6 +105,14 @@ export default function QuizClient({
       });
 
       if (!res.ok) throw new Error("Failed to save");
+      
+      const data = await res.json();
+      if (data.unlockedBadges && data.unlockedBadges.length > 0) {
+        data.unlockedBadges.forEach(badge => {
+          addToast(`${badge.icon} ¡Logro Desbloqueado: ${badge.name}!`, "success", 5000);
+        });
+      }
+
       return true;
     } catch (e) {
       console.error("Failed to save progress, queuing for sync:", e);
@@ -852,7 +860,7 @@ export default function QuizClient({
               style={{ minHeight: 86, marginBottom: "0.625rem" }}
             />
             <div style={{ display: "flex", justifyContent: "space-between", gap: "0.5rem", flexWrap: "wrap" }}>
-              <span style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }>Mínimo 8 caracteres.</span>
+              <span style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>Mínimo 8 caracteres.</span>
               <div style={{ display: "flex", gap: "0.5rem" }}>
                 <button type="button" className="btn btn-secondary btn-sm" onClick={() => setReportOpen(false)} disabled={isReporting}>
                   Cancelar

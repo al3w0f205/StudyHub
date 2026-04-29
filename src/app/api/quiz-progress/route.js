@@ -246,6 +246,23 @@ export async function POST(request) {
       if (quizCount >= 10 && !earnedSlugs.includes("quizzes_10")) badgesToAward.push("quizzes_10");
       if (quizCount >= 50 && !earnedSlugs.includes("quizzes_50")) badgesToAward.push("quizzes_50");
 
+      // Career specific badges
+      const careersToCheck = ["medicina", "ingenieria", "negocios"];
+      for (const cSlug of careersToCheck) {
+        if (!earnedSlugs.includes(`career_${cSlug}`)) {
+          const countForCareer = await prisma.quizProgress.count({
+            where: {
+              userId: session.user.id,
+              category: { career: { slug: cSlug } }
+            }
+          });
+          if (countForCareer >= 5) {
+            badgesToAward.push(`career_${cSlug}`);
+          }
+        }
+      }
+
+      const unlockedBadges = [];
       if (badgesToAward.length > 0) {
         for (const slug of badgesToAward) {
           const badge = allBadges.find(b => b.slug === slug);
@@ -253,9 +270,12 @@ export async function POST(request) {
             await prisma.userBadge.create({
               data: { userId: session.user.id, badgeId: badge.id }
             }).catch(() => {}); 
+            unlockedBadges.push(badge);
           }
         }
       }
+
+      return NextResponse.json({ success: true, unlockedBadges });
     } catch (e) {
       console.error("Error awarding badges:", e);
     }

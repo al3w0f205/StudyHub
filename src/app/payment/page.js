@@ -182,70 +182,110 @@ export default async function PaymentPage({ searchParams }) {
       </div>
 
       {/* Payment Info */}
-      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem" }}>
-        <h2 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "0.75rem" }}>💰 Información de Pago</h2>
-        <div style={{ background: "var(--glass-bg)", borderRadius: "var(--radius-md)", padding: "1rem", marginBottom: "1rem", border: "1px solid var(--border-default)" }}>
-          <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
-            <strong style={{ color: "var(--text-primary)" }}>Precio:</strong> $10 USD / mes<br/>
-            <strong style={{ color: "var(--text-primary)" }}>Método:</strong> Transferencia bancaria<br/>
-            <strong style={{ color: "var(--text-primary)" }}>Proceso:</strong> Envía tu comprobante y un admin aprobará tu acceso en menos de 24h.
-          </p>
+      <div className="solid-card" style={{ padding: "1.25rem 1.5rem", marginBottom: "1.5rem", border: "1px solid var(--border-default)" }}>
+        <h2 style={{ fontSize: "1.125rem", fontWeight: 800, marginBottom: "1.25rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <span>💰</span> Información de Pago
+        </h2>
+        
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+          gap: "1rem", 
+          marginBottom: "1.5rem" 
+        }}>
+          <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "var(--radius-lg)", padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Precio del Plan</div>
+            <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "var(--primary-400)" }}>$10 USD <span style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", fontWeight: 500 }}>/ mes</span></div>
+          </div>
+          <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "var(--radius-lg)", padding: "1.25rem", border: "1px solid var(--border-default)" }}>
+            <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Tiempo de Espera</div>
+            <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "var(--accent-400)" }}>&lt; 24h <span style={{ fontSize: "0.875rem", color: "var(--text-tertiary)", fontWeight: 500 }}>aprobación</span></div>
+          </div>
         </div>
-        <div style={{ background: "rgba(34,211,238,0.04)", borderRadius: "var(--radius-md)", padding: "1rem", border: "1px solid rgba(34,211,238,0.2)" }}>
-          <h3 style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.5rem" }}>Cuentas para transferir</h3>
+
+        <div style={{ marginBottom: "1.5rem" }}>
+          <h3 style={{ fontSize: "0.875rem", fontWeight: 800, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ width: "20px", height: "1px", background: "var(--border-default)" }}></span>
+            Cuentas para Transferir
+            <span style={{ flex: 1, height: "1px", background: "var(--border-default)" }}></span>
+          </h3>
+
           {transferAccounts.length > 0 ? (
-            <div style={{ display: "grid", gap: "0.75rem" }}>
+            <div style={{ display: "grid", gap: "1rem" }}>
               {transferAccounts.map((account) => {
                 const detail = parseTransferAccountDetail(account);
-
                 return (
                   <div
                     key={account}
                     style={{
-                      background: "rgba(15,23,42,0.45)",
-                      border: "1px solid rgba(34,211,238,0.16)",
-                      borderRadius: "var(--radius-md)",
-                      padding: "0.875rem",
+                      background: "linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)",
+                      border: "1px solid var(--border-default)",
+                      borderRadius: "var(--radius-lg)",
+                      padding: "1.25rem",
+                      position: "relative",
+                      transition: "transform 0.2s ease"
                     }}
                   >
-                    <div style={{ display: "grid", gap: "0.35rem" }}>
-                      {detail.bank && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-                          <strong style={{ color: "var(--text-primary)" }}>Banco:</strong> {detail.bank}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                        <div style={{ width: "40px", height: "40px", background: "var(--primary-500)20", borderRadius: "10px", display: "grid", placeItems: "center", color: "var(--primary-400)" }}>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></svg>
                         </div>
-                      )}
-                      {detail.accountType && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-                          <strong style={{ color: "var(--text-primary)" }}>Tipo:</strong> {detail.accountType}
+                        <div>
+                          <div style={{ fontSize: "1rem", fontWeight: 800, color: "white" }}>{detail.bank || "Transferencia Bancaria"}</div>
+                          <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", textTransform: "uppercase", fontWeight: 700 }}>{detail.accountType || "Cuenta de Ahorros"}</div>
                         </div>
-                      )}
+                      </div>
+                    </div>
+
+                    <div style={{ display: "grid", gap: "0.875rem" }}>
                       {detail.accountNumber && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-                          <strong style={{ color: "var(--text-primary)" }}>N° de cuenta:</strong> {detail.accountNumber}
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem", background: "rgba(0,0,0,0.2)", borderRadius: "var(--radius-md)", border: "1px solid rgba(255,255,255,0.03)" }}>
+                          <div>
+                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>Número de Cuenta</div>
+                            <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--primary-300)", fontFamily: "monospace" }}>{detail.accountNumber}</div>
+                          </div>
+                          <button 
+                            onClick={() => {
+                              navigator.clipboard.writeText(detail.accountNumber);
+                              const toast = document.createElement('div');
+                              toast.className = 'badge badge-success';
+                              toast.style.position = 'fixed'; toast.style.bottom = '20px'; toast.style.right = '20px';
+                              toast.innerText = '¡Copiado!';
+                              document.body.appendChild(toast);
+                              setTimeout(() => toast.remove(), 2000);
+                            }}
+                            className="btn btn-sm btn-ghost" 
+                            style={{ padding: "0.5rem" }}
+                          >
+                            📋
+                          </button>
                         </div>
                       )}
-                      {detail.owner && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-                          <strong style={{ color: "var(--text-primary)" }}>Titular:</strong> {detail.owner}
-                        </div>
-                      )}
-                      {detail.idNumber && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
-                          <strong style={{ color: "var(--text-primary)" }}>CI/RIF:</strong> {detail.idNumber}
-                        </div>
-                      )}
-                      {!detail.bank && !detail.accountType && !detail.accountNumber && !detail.owner && !detail.idNumber && (
-                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>{detail.raw}</div>
-                      )}
+
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                        {detail.owner && (
+                          <div>
+                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>Titular</div>
+                            <div style={{ fontSize: "0.8125rem", fontWeight: 600 }}>{detail.owner}</div>
+                          </div>
+                        )}
+                        {detail.idNumber && (
+                          <div>
+                            <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase" }}>CI / Identificación</div>
+                            <div style={{ fontSize: "0.8125rem", fontWeight: 600 }}>{detail.idNumber}</div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", margin: 0 }}>
-              Configura `NEXT_PUBLIC_TRANSFER_ACCOUNTS` (separadas por `;`) para mostrar las cuentas.
-            </p>
+            <div style={{ textAlign: "center", padding: "2rem", background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", border: "1px dashed var(--border-default)" }}>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-tertiary)" }}>No hay cuentas configuradas actualmente.</p>
+            </div>
           )}
         </div>
       </div>

@@ -28,17 +28,17 @@ export default async function HomePage() {
     const qCount = c.categories.reduce((acc, cat) => acc + cat._count.questions, 0);
     return { name: c.name, questionCount: qCount };
   }).filter(c => c.questionCount > 0);
-  
+
   // Format total with commas
   const totalFormatted = new Intl.NumberFormat("en-US").format(totalQuestions);
 
   return (
-    <div className="landing-page" style={{ 
-      background: "#09090b", 
-      color: "#fafafa", 
-      minHeight: "100vh", 
+    <div className="landing-page" style={{
+      background: "#09090b",
+      color: "#fafafa",
+      minHeight: "100vh",
       fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      overflowX: "hidden" 
+      overflowX: "hidden"
     }}>
       {/* ── Subtle Background Glow & Grid ── */}
       <div style={{
@@ -125,7 +125,7 @@ export default async function HomePage() {
 
       {/* ── Hero Section ── */}
       <main style={{ position: "relative", zIndex: 10, maxWidth: "1200px", margin: "0 auto", padding: "4rem 2rem 6rem", textAlign: "center" }}>
-        
+
         <div style={{
           display: "inline-block", padding: "0.25rem 0.75rem", borderRadius: "9999px",
           background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
@@ -139,7 +139,7 @@ export default async function HomePage() {
           fontSize: "clamp(3rem, 7vw, 5.5rem)", fontWeight: "800", lineHeight: "1.05",
           letterSpacing: "-0.04em", margin: "0 auto 1.5rem", maxWidth: "900px", color: "#fff"
         }}>
-          Estudia menos. <br/>
+          Estudia menos. <br />
           <span style={{ color: "#2dd4bf" }}>Aprende más rápido.</span>
         </h1>
 
@@ -170,22 +170,22 @@ export default async function HomePage() {
         }}>
           {/* Mock UI Header */}
           <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem", padding: "0.5rem" }}>
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444" }}/>
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#eab308" }}/>
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#22c55e" }}/>
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444" }} />
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#eab308" }} />
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#22c55e" }} />
           </div>
           {/* Mock Content */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "1rem", textAlign: "left" }}>
             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "8px", padding: "1.5rem" }}>
-              <div style={{ width: "40%", height: "12px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", marginBottom: "1.5rem" }}/>
-              <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }}/>
-              <div style={{ width: "80%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }}/>
-              <div style={{ width: "90%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "2rem" }}/>
-              <div style={{ width: "100%", height: "8px", background: "rgba(45, 212, 191, 0.2)", borderRadius: "4px" }}/>
+              <div style={{ width: "40%", height: "12px", background: "rgba(255,255,255,0.1)", borderRadius: "4px", marginBottom: "1.5rem" }} />
+              <div style={{ width: "100%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }} />
+              <div style={{ width: "80%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "0.75rem" }} />
+              <div style={{ width: "90%", height: "8px", background: "rgba(255,255,255,0.05)", borderRadius: "4px", marginBottom: "2rem" }} />
+              <div style={{ width: "100%", height: "8px", background: "rgba(45, 212, 191, 0.2)", borderRadius: "4px" }} />
             </div>
             <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "8px", padding: "2rem" }}>
               <div style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1.5rem" }}>Pregunta de Anatomía #42</div>
-              
+
               <div style={{ padding: "0.875rem 1rem", border: "1px solid rgba(45, 212, 191, 0.5)", borderRadius: "6px", marginBottom: "0.75rem", background: "rgba(45, 212, 191, 0.05)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(45, 212, 191, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#2dd4bf", fontSize: "0.75rem", fontWeight: "bold" }}>A</div>
                 <div style={{ color: "#2dd4bf", fontSize: "0.875rem", fontWeight: "500" }}>El nervio mediano inerva los músculos flexores del antebrazo.</div>
@@ -214,9 +214,7 @@ export default async function HomePage() {
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "4rem", flexWrap: "wrap", opacity: 0.6, filter: "grayscale(100%)" }}>
             <span style={{ fontSize: "1.75rem", fontWeight: "900", fontFamily: "system-ui" }}>UIDE</span>
-            <span style={{ fontSize: "2rem", fontWeight: "600", fontFamily: "serif", fontStyle: "italic" }}>udla</span>
-            <span style={{ fontSize: "1.75rem", fontWeight: "800", fontFamily: "sans-serif" }}>PUCE</span>
-            <span style={{ fontSize: "1.75rem", fontWeight: "700", fontFamily: "system-ui", letterSpacing: "-1px" }}>USFQ</span>
+            <span style={{ fontSize: "2rem", fontWeight: "600", fontFamily: "serif", fontStyle: "italic" }}>UDLA</span>
           </div>
         </div>
       </section>
@@ -232,7 +230,7 @@ export default async function HomePage() {
           }}>
             Actualizado en Tiempo Real
           </div>
-          
+
           <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "1rem" }}>
             Un banco de <span style={{ color: "#2dd4bf" }}>{totalFormatted}</span> preguntas
           </h2>
@@ -243,14 +241,14 @@ export default async function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem" }}>
             {statsByCareer.map((career, i) => (
               <div key={i} className="solid-card" style={{
-                padding: "1.5rem", borderRadius: "16px", background: "rgba(255,255,255,0.02)", 
+                padding: "1.5rem", borderRadius: "16px", background: "rgba(255,255,255,0.02)",
                 border: "1px solid rgba(255,255,255,0.05)", textAlign: "left",
                 display: "flex", justifyContent: "space-between", alignItems: "center"
               }}>
                 <span style={{ fontSize: "1.125rem", fontWeight: "600", color: "#fff" }}>{career.name}</span>
-                <span style={{ 
-                  background: "rgba(255,255,255,0.1)", color: "#fff", padding: "0.25rem 0.75rem", 
-                  borderRadius: "9999px", fontSize: "0.875rem", fontWeight: "600" 
+                <span style={{
+                  background: "rgba(255,255,255,0.1)", color: "#fff", padding: "0.25rem 0.75rem",
+                  borderRadius: "9999px", fontSize: "0.875rem", fontWeight: "600"
                 }}>
                   {new Intl.NumberFormat("en-US").format(career.questionCount)}
                 </span>
@@ -264,7 +262,7 @@ export default async function HomePage() {
       <section style={{ padding: "8rem 2rem", maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
           <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "800", letterSpacing: "-0.03em", marginBottom: "1rem" }}>
-            Todo lo que necesitas. <br/> Nada de lo que no.
+            Todo lo que necesitas. <br /> Nada de lo que no.
           </h2>
           <p style={{ color: "#a1a1aa", fontSize: "1.125rem", maxWidth: "500px", margin: "0 auto" }}>
             Diseñado meticulosamente para eliminar distracciones y enfocarse en la retención.
@@ -275,7 +273,7 @@ export default async function HomePage() {
           {/* Feature 1 */}
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(45, 212, 191, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
             </div>
             <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Cuestionarios Específicos</h3>
             <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
@@ -286,7 +284,7 @@ export default async function HomePage() {
           {/* Feature 2 */}
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(250, 204, 21, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#facc15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
             </div>
             <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Justificaciones Claras</h3>
             <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
@@ -297,7 +295,7 @@ export default async function HomePage() {
           {/* Feature 3 */}
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "16px", padding: "2.5rem" }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(96, 165, 250, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></svg>
             </div>
             <h3 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.75rem", color: "#fff" }}>Analíticas en Tiempo Real</h3>
             <p style={{ color: "#a1a1aa", lineHeight: "1.6", fontSize: "0.9375rem" }}>
@@ -385,7 +383,7 @@ export default async function HomePage() {
             Preguntas Frecuentes
           </h2>
         </div>
-        
+
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {[
             { q: "¿Cómo se actualizan las preguntas?", a: "Nuestro banco de preguntas es revisado y actualizado continuamente por estudiantes destacados y colaboradores. Si encuentras un error, puedes reportarlo fácilmente." },

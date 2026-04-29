@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { uploadFile, generateReceiptKey } from "@/lib/s3";
 import { isSubscriptionActive, daysRemaining, formatDate } from "@/lib/utils";
+import { uploadToUploadThing } from "@/lib/uploadthing";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
@@ -18,17 +18,14 @@ async function submitReceipt(formData) {
   const userComment = formData.get("userComment") || null;
   const requestedCareers = formData.getAll("requestedCareers").filter(Boolean).join(",") || null;
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const key = generateReceiptKey(session.user.id, file.name);
-
+  let receiptUrl = "";
   try {
-    await uploadFile(buffer, key, file.type);
+    receiptUrl = await uploadToUploadThing(file);
   } catch (e) {
-    // If S3 is not configured, store a placeholder URL
-    console.error("S3 upload failed:", e.message);
+    console.error("UploadThing upload failed:", e.message);
+    // Fallback or handle error
+    redirect("/payment?error=upload_failed");
   }
-
-  const receiptUrl = `${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET}/${key}`;
 
   await prisma.paymentRequest.create({
     data: {
@@ -41,6 +38,7 @@ async function submitReceipt(formData) {
 
   redirect("/payment?success=true");
 }
+
 
 export default async function PaymentPage({ searchParams }) {
   const session = await auth();

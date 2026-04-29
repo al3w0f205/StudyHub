@@ -41,8 +41,8 @@ export default function QuizClient({ questions, theory, categoryName, careerName
       .catch(() => {});
   }, []);
 
-  const saveProgress = useCallback(async (newScore, newTotal) => {
-    const pct = Math.round((newScore / newTotal) * 100);
+  const saveProgress = useCallback(async (newScore) => {
+    const pct = Math.round((newScore / total) * 100);
     setCategoryProgress(prev => ({ ...prev, [categoryId]: pct }));
     
     try {
@@ -54,7 +54,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
     } catch (e) {
       console.error("Failed to save progress:", e);
     }
-  }, [categoryId]);
+  }, [categoryId, total]);
 
   const q = questions[current];
   const total = questions.length;
@@ -93,7 +93,7 @@ export default function QuizClient({ questions, theory, categoryName, careerName
   function nextQuestion() {
     if (current + 1 >= total) {
       setFinished(true);
-      saveProgress(score, answered);
+      saveProgress(score + (selected === q.correctIndex ? 1 : 0));
       return;
     }
     setCurrent((c) => c + 1);
@@ -164,6 +164,13 @@ export default function QuizClient({ questions, theory, categoryName, careerName
       {!isZenMode && (
         <div className={`solid-card quiz-sidebar ${sidebarOpen ? 'quiz-sidebar-open' : ''}`}>
           
+          {/* Main Menu Button */}
+          <div style={{ marginBottom: "1.5rem" }}>
+            <Link href="/quiz" className="btn btn-secondary" style={{ width: "100%", justifyContent: "flex-start", gap: "0.75rem", fontSize: "0.8125rem" }}>
+              🏠 Volver al Menú
+            </Link>
+          </div>
+
           {/* Career Selector */}
           <div style={{ marginBottom: "1.5rem" }}>
             <h3 className="quiz-sidebar-title">Carrera</h3>
@@ -276,13 +283,20 @@ export default function QuizClient({ questions, theory, categoryName, careerName
           <div className="animate-fade-in">
              <div className="quiz-header" style={{ marginBottom: "1.5rem" }}>
               <div style={{ minWidth: 0 }}>
-                <div className="quiz-breadcrumb">
-                  {careerName} <span style={{ margin: "0 0.375rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
-                </div>
+                <Link href="/quiz" className="quiz-breadcrumb" style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", cursor: "pointer" }}>
+                  🏠 {careerName} <span style={{ margin: "0 0.375rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
+                </Link>
+
                 <h1 className="quiz-question-number">Material de Estudio</h1>
               </div>
-              <button onClick={() => setView("quiz")} className="btn btn-primary btn-sm">Empezar Quiz →</button>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <button onClick={() => setView("quiz")} className="btn btn-primary btn-sm">Empezar Quiz →</button>
+                <Link href="/quiz" className="btn btn-sm btn-secondary" style={{ border: "1px solid var(--border-default)", fontWeight: 700 }}>
+                  SALIR ✕
+                </Link>
+              </div>
             </div>
+
             
             <div className="solid-card" style={{ padding: "2rem", lineHeight: 1.8 }}>
               <MathText className="theory-content">{theory}</MathText>
@@ -293,9 +307,10 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             {/* Header */}
         <div className="quiz-header">
           <div style={{ minWidth: 0 }}>
-            <div className="quiz-breadcrumb">
-              {careerName} <span style={{ margin: "0 0.375rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
-            </div>
+                <Link href="/quiz" className="quiz-breadcrumb" style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem", cursor: "pointer" }}>
+                  🏠 {careerName} <span style={{ margin: "0 0.375rem" }}>/</span> <strong style={{ color: "var(--accent-400)" }}>{categoryName}</strong>
+                </Link>
+
             <h1 className="quiz-question-number">Pregunta {current + 1} <span style={{ color: "var(--text-tertiary)", fontSize: "1rem", fontWeight: 500 }}>/ {total}</span></h1>
           </div>
           
@@ -315,8 +330,8 @@ export default function QuizClient({ questions, theory, categoryName, careerName
             {isZenMode && (
               <button onClick={() => setIsZenMode(false)} className="btn btn-sm btn-secondary">Salir Zen</button>
             )}
-            <Link href="/quiz" className="btn btn-sm" style={{ background: "transparent", color: "var(--text-tertiary)", border: "1px solid var(--border-default)" }}>
-              Salir ✕
+            <Link href="/quiz" className="btn btn-sm btn-secondary" style={{ border: "1px solid var(--border-default)", fontWeight: 700 }}>
+              SALIR ✕
             </Link>
           </div>
         </div>

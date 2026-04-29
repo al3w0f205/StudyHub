@@ -38,10 +38,12 @@ export async function POST(request) {
   }
 
   const { categoryId, score } = body;
+  console.log(`[QuizProgress] Saving progress for user ${session.user.id}, category ${categoryId}, score ${score}`);
 
   if (!categoryId || typeof score !== "number" || score < 0 || score > 100) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
+
 
   // Verify category exists
   const category = await prisma.category.findUnique({

@@ -109,6 +109,15 @@ export default async function AdminDashboard() {
           </div>
           <span style={{ marginLeft: "auto", opacity: 0.5 }}>→</span>
         </Link>
+        
+        <Link href="/admin/updates" className="solid-card hover-scale" style={{ padding: "1.25rem", textDecoration: "none", borderLeft: "4px solid var(--accent-400)", display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ fontSize: "1.5rem" }}>🚀</div>
+          <div>
+            <h3 style={{ fontWeight: 700, fontSize: "0.9375rem", marginBottom: "0.125rem" }}>Anunciar Novedades</h3>
+            <p style={{ fontSize: "0.75rem", color: "var(--text-tertiary)" }}>Publicar actualizaciones</p>
+          </div>
+          <span style={{ marginLeft: "auto", opacity: 0.5 }}>→</span>
+        </Link>
       </div>
 
       {/* Recent Users */}

@@ -96,15 +96,6 @@ export default async function UpdatesPage() {
         )}
       </div>
 
-      <style jsx>{`
-        .update-content :global(ul) {
-          margin-top: 1rem;
-          padding-left: 1.5rem;
-        }
-        .update-content :global(li) {
-          margin-bottom: 0.5rem;
-        }
-      `}</style>
     </div>
   );
 }

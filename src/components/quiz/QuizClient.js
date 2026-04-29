@@ -41,6 +41,10 @@ export default function QuizClient({ questions, theory, categoryName, careerName
       .catch(() => {});
   }, []);
 
+  const total = questions.length;
+  const q = questions[current];
+  const progress = ((current + 1) / total) * 100;
+
   const saveProgress = useCallback(async (newScore) => {
     const pct = Math.round((newScore / total) * 100);
     setCategoryProgress(prev => ({ ...prev, [categoryId]: pct }));
@@ -56,9 +60,6 @@ export default function QuizClient({ questions, theory, categoryName, careerName
     }
   }, [categoryId, total]);
 
-  const q = questions[current];
-  const total = questions.length;
-  const progress = ((current + 1) / total) * 100;
 
   // Timer logic
   useEffect(() => {

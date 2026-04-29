@@ -14,6 +14,22 @@ function parseTransferAccounts(rawValue) {
     .filter(Boolean);
 }
 
+function parseTransferAccountDetail(account) {
+  const parts = String(account)
+    .split(" - ")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return {
+    bank: parts[0] || null,
+    accountType: parts[1] || null,
+    accountNumber: parts[2] || null,
+    owner: parts[3] || null,
+    idNumber: parts[4] || null,
+    raw: account,
+  };
+}
+
 async function submitReceipt(formData) {
   "use server";
   const session = await auth();
@@ -178,11 +194,54 @@ export default async function PaymentPage({ searchParams }) {
         <div style={{ background: "rgba(34,211,238,0.04)", borderRadius: "var(--radius-md)", padding: "1rem", border: "1px solid rgba(34,211,238,0.2)" }}>
           <h3 style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.5rem" }}>Cuentas para transferir</h3>
           {transferAccounts.length > 0 ? (
-            <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.8 }}>
-              {transferAccounts.map((account) => (
-                <li key={account}>{account}</li>
-              ))}
-            </ul>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
+              {transferAccounts.map((account) => {
+                const detail = parseTransferAccountDetail(account);
+
+                return (
+                  <div
+                    key={account}
+                    style={{
+                      background: "rgba(15,23,42,0.45)",
+                      border: "1px solid rgba(34,211,238,0.16)",
+                      borderRadius: "var(--radius-md)",
+                      padding: "0.875rem",
+                    }}
+                  >
+                    <div style={{ display: "grid", gap: "0.35rem" }}>
+                      {detail.bank && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                          <strong style={{ color: "var(--text-primary)" }}>Banco:</strong> {detail.bank}
+                        </div>
+                      )}
+                      {detail.accountType && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                          <strong style={{ color: "var(--text-primary)" }}>Tipo:</strong> {detail.accountType}
+                        </div>
+                      )}
+                      {detail.accountNumber && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                          <strong style={{ color: "var(--text-primary)" }}>N° de cuenta:</strong> {detail.accountNumber}
+                        </div>
+                      )}
+                      {detail.owner && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                          <strong style={{ color: "var(--text-primary)" }}>Titular:</strong> {detail.owner}
+                        </div>
+                      )}
+                      {detail.idNumber && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                          <strong style={{ color: "var(--text-primary)" }}>CI/RIF:</strong> {detail.idNumber}
+                        </div>
+                      )}
+                      {!detail.bank && !detail.accountType && !detail.accountNumber && !detail.owner && !detail.idNumber && (
+                        <div style={{ fontSize: "0.875rem", color: "var(--text-secondary)" }}>{detail.raw}</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           ) : (
             <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)", margin: 0 }}>
               Configura `NEXT_PUBLIC_TRANSFER_ACCOUNTS` (separadas por `;`) para mostrar las cuentas.

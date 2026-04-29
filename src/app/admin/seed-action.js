@@ -18,6 +18,96 @@ function slugify(text) {
     .replace(/--+/g, "-");
 }
 
+function parseCorrectIndex(rawAnswer, options) {
+  if (!Array.isArray(options) || options.length < 2) return null;
+  const parsed = Number.parseInt(rawAnswer, 10);
+  if (!Number.isInteger(parsed)) return null;
+  const zeroBased = parsed > 0 ? parsed - 1 : parsed;
+  if (zeroBased < 0 || zeroBased >= options.length) return null;
+  return zeroBased;
+}
+
+async function seedBadges() {
+  const defaultBadges = [
+    {
+      name: "Novato",
+      slug: "first_quiz",
+      description: "¡Has completado tu primer cuestionario!",
+      icon: "🥉",
+      criteria: { type: "count", target: "quiz_completed", value: 1 }
+    },
+    {
+      name: "Perfeccionista",
+      slug: "score_100",
+      description: "Has obtenido un 100% en un cuestionario.",
+      icon: "✨",
+      criteria: { type: "event", target: "perfect_score" }
+    },
+    {
+      name: "Constancia",
+      slug: "streak_3",
+      description: "Has mantenido una racha de 3 días.",
+      icon: "🔥",
+      criteria: { type: "streak", value: 3 }
+    },
+    {
+      name: "Disciplina",
+      slug: "streak_7",
+      description: "Has mantenido una racha de 7 días.",
+      icon: "⚡",
+      criteria: { type: "streak", value: 7 }
+    },
+    {
+      name: "Estudiante Activo",
+      slug: "quizzes_10",
+      description: "Has completado 10 categorías diferentes.",
+      icon: "🥈",
+      criteria: { type: "count", target: "quiz_completed", value: 10 }
+    },
+    {
+      name: "Devorador de Libros",
+      slug: "quizzes_50",
+      description: "Has completado 50 categorías diferentes.",
+      icon: "🥇",
+      criteria: { type: "count", target: "quiz_completed", value: 50 }
+    },
+    {
+      name: "Millonario",
+      slug: "points_1000",
+      description: "Has alcanzado los 1,000 puntos totales.",
+      icon: "💰",
+      criteria: { type: "points", value: 1000 }
+    },
+    {
+      name: "Leyenda",
+      slug: "points_5000",
+      description: "Has alcanzado los 5,000 puntos totales.",
+      icon: "💎",
+      criteria: { type: "points", value: 5000 }
+    },
+    {
+      name: "Colaborador",
+      slug: "suggest_question",
+      description: "Has sugerido una pregunta para la comunidad.",
+      icon: "💡",
+      criteria: { type: "event", target: "suggestion" }
+    }
+  ];
+
+  for (const b of defaultBadges) {
+    await prisma.badge.upsert({
+      where: { slug: b.slug },
+      update: {
+        name: b.name,
+        description: b.description,
+        icon: b.icon,
+        criteria: b.criteria
+      },
+      create: b
+    });
+  }
+}
+
 export async function runSeed() {
   await requireAdmin();
 
@@ -54,7 +144,8 @@ export async function runSeed() {
           
           const existing = await prisma.question.findFirst({ where: { text: p.q, categoryId: category.id } });
           if (!existing) {
-            const correctIndex = p.ans - 1;
+            const correctIndex = parseCorrectIndex(p.ans, p.opts);
+            if (correctIndex === null) continue;
             await prisma.question.create({
               data: {
                 text: p.q,
@@ -110,7 +201,8 @@ export async function runSeed() {
             
             const existing = await prisma.question.findFirst({ where: { text: p.q, categoryId: category.id } });
             if (!existing) {
-              const correctIndex = p.ans !== undefined ? parseInt(p.ans, 10) : 0;
+              const correctIndex = parseCorrectIndex(p.ans, p.opts);
+              if (correctIndex === null) continue;
               await prisma.question.create({
                 data: {
                   text: p.q,
@@ -128,8 +220,11 @@ export async function runSeed() {
       }
     }
 
+    await seedBadges();
+
     revalidatePath("/admin");
-    return { success: true, message: `Sincronización completa. Se añadieron ${added} preguntas nuevas.` };
+    revalidatePath("/badges");
+    return { success: true, message: `Sincronización completa. Se añadieron ${added} preguntas nuevas y se actualizaron los trofeos.` };
   } catch (error) {
     console.error("Seed error:", error);
     return { success: false, error: error.message };

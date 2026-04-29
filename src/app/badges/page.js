@@ -24,7 +24,7 @@ export default async function BadgesPage() {
   });
 
   const totalEarned = userBadges.length;
-  const progressPercent = Math.round((totalEarned / allBadges.length) * 100);
+  const progressPercent = allBadges.length > 0 ? Math.round((totalEarned / allBadges.length) * 100) : 0;
 
   return (
     <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "3rem 1.25rem" }}>
@@ -97,6 +97,11 @@ export default async function BadgesPage() {
 
       {/* Trophy List */}
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        {allBadges.length === 0 && (
+          <div className="solid-card" style={{ padding: "3rem", textAlign: "center", color: "var(--text-tertiary)" }}>
+            Aún no se han definido trofeos en el sistema.
+          </div>
+        )}
         {allBadges.map((badge, index) => {
           const isEarned = !!earnedMap[badge.id];
           // Simple logic to determine "tier" color if not in DB

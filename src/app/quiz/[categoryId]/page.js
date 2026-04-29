@@ -103,8 +103,31 @@ export default async function QuizPage({ params }) {
     }
   }
 
+  // Fetch user responses for these questions to filter completed ones
+  const userResponses = await prisma.questionResponse.findMany({
+    where: { 
+      userId: session.user.id,
+      questionId: { in: category.questions.map(q => q.id) }
+    },
+    orderBy: { createdAt: "desc" }
+  });
+
+  // Determine completed questions (where the latest response is correct)
+  const latestStatus = {};
+  userResponses.forEach(r => {
+    if (!(r.questionId in latestStatus)) {
+      latestStatus[r.questionId] = r.isCorrect;
+    }
+  });
+
+  const completedQuestionIds = Object.keys(latestStatus).filter(id => latestStatus[id] === true);
+  const totalQuestionsInCategory = category.questions.length;
+  
+  // Filter questions to show only pending/incorrect ones
+  const pendingQuestions = category.questions.filter(q => !completedQuestionIds.includes(q.id));
+
   const quizSeed = `${categoryId}:${session.user.id}:${new Date().toISOString().slice(0, 10)}`;
-  const shuffled = seededShuffle(category.questions, quizSeed).map((question) => {
+  const shuffled = seededShuffle(pendingQuestions, quizSeed).map((question) => {
     const options = question.options.map((text, index) => ({
       text,
       isCorrect: index === question.correctIndex,
@@ -128,6 +151,8 @@ export default async function QuizPage({ params }) {
         careers={filteredCareers}
         currentCareerId={category.career.id}
         categoryId={categoryId}
+        totalQuestionsInCategory={totalQuestionsInCategory}
+        initialCompletedCount={completedQuestionIds.length}
       />
     </div>
   );

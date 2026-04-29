@@ -10,20 +10,32 @@ async function submitSuggestion(formData) {
   const session = await auth();
   if (!session) redirect("/auth/login");
 
-  const text = formData.get("text");
-  const categoryId = formData.get("categoryId");
-  const hint = formData.get("hint");
-  const explanation = formData.get("explanation");
+  const text = String(formData.get("text") || "").trim();
+  const categoryId = String(formData.get("categoryId") || "").trim();
+  const hint = String(formData.get("hint") || "").trim();
+  const explanation = String(formData.get("explanation") || "").trim();
 
   const options = [];
-  let correctIndex = parseInt(formData.get("correctIndex"), 10);
+  const correctIndex = Number.parseInt(String(formData.get("correctIndex") || ""), 10);
 
   for (let i = 0; i < 4; i++) {
     const opt = formData.get(`option-${i}`);
     if (opt && opt.trim()) options.push(opt.trim());
   }
 
-  if (!text || options.length < 2 || isNaN(correctIndex)) return;
+  if (!text || text.length > 2000 || options.length < 2 || Number.isNaN(correctIndex)) return;
+  if (correctIndex < 0 || correctIndex >= options.length) return;
+  if (hint.length > 1000 || explanation.length > 5000) return;
+
+  let validCategoryId = null;
+  if (categoryId) {
+    const category = await prisma.category.findUnique({
+      where: { id: categoryId },
+      select: { id: true },
+    });
+    if (!category) return;
+    validCategoryId = category.id;
+  }
 
   await prisma.questionSuggestion.create({
     data: {
@@ -31,11 +43,23 @@ async function submitSuggestion(formData) {
       text,
       options,
       correctIndex,
-      categoryId: categoryId || null,
+      categoryId: validCategoryId,
       hint: hint || null,
       explanation: explanation || null,
     },
   });
+
+  // Award badge
+  try {
+    const badge = await prisma.badge.findUnique({ where: { slug: "suggest_question" } });
+    if (badge) {
+      await prisma.userBadge.create({
+        data: { userId: session.user.id, badgeId: badge.id }
+      }).catch(() => {}); // Ignore if already earned
+    }
+  } catch (e) {
+    console.error("Error awarding suggestion badge:", e);
+  }
 
   redirect("/suggest?success=true");
 }

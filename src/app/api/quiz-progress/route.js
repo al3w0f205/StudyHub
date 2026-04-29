@@ -37,9 +37,17 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { categoryId, score } = body;
-  if (!categoryId || typeof score !== "number" || score < 0 || score > 100) {
+  const { categoryId, score, questionId, selectedIndex } = body;
+  const isGranularSave = questionId !== undefined;
+
+  if (!categoryId || (!isGranularSave && typeof score !== "number")) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+  }
+  if (!isGranularSave && (!Number.isFinite(score) || score < 0 || score > 100)) {
+    return NextResponse.json({ error: "Invalid score" }, { status: 400 });
+  }
+  if (isGranularSave && !Number.isInteger(selectedIndex)) {
+    return NextResponse.json({ error: "Invalid selectedIndex" }, { status: 400 });
   }
 
 
@@ -62,6 +70,37 @@ export async function POST(request) {
     if (!isSubActive || !allowedCareers.includes(category.career.slug)) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+  }
+
+  let normalizedScore = typeof score === "number" ? Math.round(score) : null;
+  let granularIsCorrect = false;
+  let pointsAwarded = 0;
+
+  // Granular validation: question must belong to the category.
+  if (isGranularSave) {
+    const question = await prisma.question.findFirst({
+      where: { id: questionId, categoryId },
+      select: { id: true, correctIndex: true },
+    });
+    if (!question) {
+      return NextResponse.json({ error: "Invalid question for category" }, { status: 400 });
+    }
+    granularIsCorrect = selectedIndex === question.correctIndex;
+    if (granularIsCorrect) {
+      const alreadyCorrect = await prisma.questionResponse.findFirst({
+        where: {
+          userId: session.user.id,
+          questionId: question.id,
+          isCorrect: true,
+        },
+        select: { id: true },
+      });
+      if (!alreadyCorrect) {
+        pointsAwarded = 1;
+      }
+    }
+  } else if (normalizedScore !== null) {
+    pointsAwarded = Math.floor(normalizedScore / 10);
   }
 
   // --- Gamification Logic ---
@@ -89,30 +128,23 @@ export async function POST(request) {
       // if diffDays === 0, streak stays same
     }
 
-    // Award points (example: score percentage * 10)
-    const pointsAwarded = Math.floor(score / 10);
-    
     await prisma.user.update({
       where: { id: session.user.id },
       data: {
         streak: newStreak,
         lastActive: new Date(),
-        totalPoints: user.totalPoints + pointsAwarded
+        totalPoints: { increment: pointsAwarded }
       }
     });
-    // --- Save Individual Question Responses ---
-    if (body.results && Array.isArray(body.results)) {
-      try {
-        await prisma.questionResponse.createMany({
-          data: body.results.map(r => ({
-            userId: session.user.id,
-            questionId: r.questionId,
-            isCorrect: r.isCorrect
-          }))
-        });
-      } catch (e) {
-        console.error("Error saving individual responses:", e);
-      }
+    // Save only validated single-question attempts (prevents forged batch writes).
+    if (isGranularSave) {
+      await prisma.questionResponse.create({
+        data: {
+          userId: session.user.id,
+          questionId,
+          isCorrect: granularIsCorrect,
+        },
+      });
     }
     // ------------------------------------------
 
@@ -126,20 +158,48 @@ export async function POST(request) {
       const earnedSlugs = existingUserBadges.map(ub => ub.badge.slug);
 
       const badgesToAward = [];
+      // --- Badge logic checks ---
       
       // 1. First Quiz
       if (!earnedSlugs.includes("first_quiz")) {
         badgesToAward.push("first_quiz");
       }
 
-      // 2. Streak 3
+      // 2. Streaks
       if (newStreak >= 3 && !earnedSlugs.includes("streak_3")) {
         badgesToAward.push("streak_3");
       }
+      if (newStreak >= 7 && !earnedSlugs.includes("streak_7")) {
+        badgesToAward.push("streak_7");
+      }
 
       // 3. Perfect Score
-      if (score === 100 && !earnedSlugs.includes("score_100")) {
+      if (normalizedScore === 100 && !earnedSlugs.includes("score_100")) {
         badgesToAward.push("score_100");
+      }
+
+      // 4. Points
+      const totalPoints = user.totalPoints + pointsAwarded;
+      if (totalPoints >= 1000 && !earnedSlugs.includes("points_1000")) {
+        badgesToAward.push("points_1000");
+      }
+      if (totalPoints >= 5000 && !earnedSlugs.includes("points_5000")) {
+        badgesToAward.push("points_5000");
+      }
+
+      // 5. Quiz counts (different categories completed)
+      const existingRecord = await prisma.quizProgress.findUnique({
+        where: { userId_categoryId: { userId: session.user.id, categoryId } },
+      });
+      const quizCount = await prisma.quizProgress.count({ where: { userId: session.user.id } });
+      const isNewCategory = !existingRecord;
+      const effectiveCount = quizCount + (isNewCategory ? 1 : 0);
+
+      if (effectiveCount >= 10 && !earnedSlugs.includes("quizzes_10")) {
+        badgesToAward.push("quizzes_10");
+      }
+      if (effectiveCount >= 50 && !earnedSlugs.includes("quizzes_50")) {
+        badgesToAward.push("quizzes_50");
       }
 
       if (badgesToAward.length > 0) {
@@ -151,7 +211,7 @@ export async function POST(request) {
                 userId: session.user.id,
                 badgeId: badge.id
               }
-            }).catch(() => {}); // Ignore duplicates if race condition
+            }).catch(() => {}); // Ignore duplicates
           }
         }
       }
@@ -163,33 +223,77 @@ export async function POST(request) {
   // ---------------------------
 
   // Upsert: update if exists, create if not. Keep best score.
-  const existing = await prisma.quizProgress.findUnique({
-    where: {
-      userId_categoryId: {
-        userId: session.user.id,
-        categoryId,
+  if (!isGranularSave && normalizedScore !== null) {
+    const existing = await prisma.quizProgress.findUnique({
+      where: {
+        userId_categoryId: {
+          userId: session.user.id,
+          categoryId,
+        },
       },
-    },
-  });
+    });
 
-  if (existing) {
-    await prisma.quizProgress.update({
-      where: { id: existing.id },
-      data: {
-        score: Math.max(existing.score, score),
-        attempts: existing.attempts + 1,
-      },
-    });
-  } else {
-    await prisma.quizProgress.create({
-      data: {
-        userId: session.user.id,
-        categoryId,
-        score,
-        attempts: 1,
-      },
-    });
+    if (existing) {
+      await prisma.quizProgress.update({
+        where: { id: existing.id },
+        data: {
+          score: Math.max(existing.score, normalizedScore),
+          attempts: existing.attempts + 1,
+        },
+      });
+    } else {
+      await prisma.quizProgress.create({
+        data: {
+          userId: session.user.id,
+          categoryId,
+          score: normalizedScore,
+          attempts: 1,
+        },
+      });
+    }
   }
 
   return NextResponse.json({ success: true });
+}
+
+// DELETE /api/quiz-progress — Reset progress for a category
+export async function DELETE(request) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { searchParams } = new URL(request.url);
+  const categoryId = searchParams.get("categoryId");
+
+  if (!categoryId) {
+    return NextResponse.json({ error: "Missing categoryId" }, { status: 400 });
+  }
+
+  try {
+    // 1. Delete overall progress record
+    await prisma.quizProgress.deleteMany({
+      where: { userId: session.user.id, categoryId }
+    });
+
+    // 2. Delete all question responses for this category
+    // First find questions in this category
+    const categoryQuestions = await prisma.question.findMany({
+      where: { categoryId },
+      select: { id: true }
+    });
+    const questionIds = categoryQuestions.map(q => q.id);
+
+    await prisma.questionResponse.deleteMany({
+      where: {
+        userId: session.user.id,
+        questionId: { in: questionIds }
+      }
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error resetting progress:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }

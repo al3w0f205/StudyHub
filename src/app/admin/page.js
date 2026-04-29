@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import SeedButton from "./SeedButton";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const metadata = {
   title: "Dashboard Admin",
@@ -9,6 +10,8 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
+  await requireAdmin();
+
   const [userCount, questionCount, categoryCount, careerCount, pendingPayments] =
     await Promise.all([
       prisma.user.count(),

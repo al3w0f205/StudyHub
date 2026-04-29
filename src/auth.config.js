@@ -21,7 +21,7 @@ const authConfig = {
       const isLoggedIn = !!auth?.user;
       const pathname = nextUrl.pathname;
 
-      const protectedRoutes = ["/dashboard", "/quiz", "/payment", "/suggest"];
+      const protectedRoutes = ["/dashboard", "/quiz", "/payment", "/suggest", "/offline", "/badges", "/updates"];
       const adminRoutes = ["/admin"];
       const authRoutes = ["/auth/login"];
 

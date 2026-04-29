@@ -142,6 +142,19 @@ export default async function DashboardPage() {
           <h3 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "0.25rem" }}>Sugerir Pregunta</h3>
           <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Propón preguntas para la comunidad</p>
         </Link>
+        <Link href="/updates" className="solid-card" style={{ 
+          padding: "1.5rem", 
+          textDecoration: "none", 
+          border: "1px solid var(--accent-400)",
+          background: "linear-gradient(135deg, rgba(34,211,238,0.05) 0%, transparent 100%)"
+        }}>
+          <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>🚀</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <h3 style={{ fontSize: "1rem", fontWeight: "700", marginBottom: "0.25rem" }}>¿Qué hay de nuevo?</h3>
+            <span className="badge badge-primary" style={{ fontSize: "0.625rem" }}>NUEVO</span>
+          </div>
+          <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Mira las últimas actualizaciones</p>
+        </Link>
       </div>
     </div>
   );

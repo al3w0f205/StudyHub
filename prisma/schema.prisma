@@ -208,6 +208,15 @@ model QuestionResponse {
   createdAt  DateTime @default(now())
 }
 
+model Changelog {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.Text
+  type        String   @default("FEATURE") // FEATURE, UPDATE, FIX
+  version     String?
+  createdAt   DateTime @default(now())
+}
+
 model ErrorReport {
   id         String   @id @default(cuid())
   questionId String

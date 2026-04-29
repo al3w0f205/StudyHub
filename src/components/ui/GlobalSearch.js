@@ -40,6 +40,7 @@ export default function GlobalSearch({ categories }) {
           type="text"
           className="input"
           placeholder="Buscar carrera o materia..."
+          autoComplete="off"
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -59,16 +60,21 @@ export default function GlobalSearch({ categories }) {
       </div>
 
       {isOpen && query.trim() && (
-        <div className="glass-card" style={{ 
+        <div style={{ 
           position: "absolute", 
           top: "calc(100% + 0.5rem)", 
           left: 0, 
           right: 0, 
-          zIndex: 100, 
+          zIndex: 1000, 
           padding: "0.5rem",
           maxHeight: "350px",
           overflowY: "auto",
-          boxShadow: "var(--shadow-lg)"
+          background: "var(--bg-secondary)",
+          border: "1px solid var(--border-default)",
+          borderRadius: "var(--radius-lg)",
+          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)"
         }}>
           {results.length > 0 ? (
             results.map((res) => (

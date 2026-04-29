@@ -6,10 +6,13 @@ import { uploadToUploadThing } from "@/lib/uploadthing";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
-const TRANSFER_ACCOUNTS = (process.env.NEXT_PUBLIC_TRANSFER_ACCOUNTS || "")
-  .split(";")
-  .map((item) => item.trim())
-  .filter(Boolean);
+
+function parseTransferAccounts(rawValue) {
+  return String(rawValue || "")
+    .split(";")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
 
 async function submitReceipt(formData) {
   "use server";
@@ -57,6 +60,9 @@ export default async function PaymentPage({ searchParams }) {
   const success = params?.success === "true";
   const hasPendingError = params?.error === "pending_exists";
   const reason = params?.reason;
+  const transferAccounts = parseTransferAccounts(
+    process.env.NEXT_PUBLIC_TRANSFER_ACCOUNTS || process.env.TRANSFER_ACCOUNTS
+  );
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
@@ -171,9 +177,9 @@ export default async function PaymentPage({ searchParams }) {
         </div>
         <div style={{ background: "rgba(34,211,238,0.04)", borderRadius: "var(--radius-md)", padding: "1rem", border: "1px solid rgba(34,211,238,0.2)" }}>
           <h3 style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.5rem" }}>Cuentas para transferir</h3>
-          {TRANSFER_ACCOUNTS.length > 0 ? (
+          {transferAccounts.length > 0 ? (
             <ul style={{ margin: 0, paddingLeft: "1.25rem", color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.8 }}>
-              {TRANSFER_ACCOUNTS.map((account) => (
+              {transferAccounts.map((account) => (
                 <li key={account}>{account}</li>
               ))}
             </ul>

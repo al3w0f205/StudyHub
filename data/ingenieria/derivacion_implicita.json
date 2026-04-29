@@ -1,7 +1,7 @@
 [
     {
         "cat": "derivacion_implicita",
-        "q": "¿Qué método se utiliza cuando no es posible expresar una ecuación de la forma F(x, y) = 0 como una función explícita y = f(x)?",
+        "q": "¿Qué método se utiliza cuando no es posible expresar una ecuación de la forma $F(x, y) = 0$ como una función explícita $y = f(x)$?",
         "opts": [
             "Derivación implícita",
             "Regla de la cadena",
@@ -9,38 +9,38 @@
             "Integración por partes"
         ],
         "ans": 0,
-        "just": "La derivación implícita permite encontrar la derivada dy/dx sin necesidad de despejar la variable dependiente de manera explícita[cite: 149].",
+        "just": "La derivación implícita permite encontrar la derivada $dy/dx$ sin necesidad de despejar la variable dependiente de manera explícita.",
         "hint": "El nombre del método refleja la relación oculta entre las variables."
     },
     {
         "cat": "derivacion_implicita",
         "q": "El primer paso para aplicar la derivación implícita en una ecuación es:",
         "opts": [
-            "Derivar ambos lados con respecto a x tratando a y como función derivable de x",
-            "Despejar y en términos de x",
+            "Derivar ambos lados con respecto a $x$ tratando a $y$ como función derivable de $x$",
+            "Despejar $y$ en términos de $x$",
             "Agrupar todos los términos en un solo lado de la ecuación",
             "Integrar ambos lados de la ecuación"
         ],
         "ans": 0,
-        "just": "El procedimiento inicia derivando ambos miembros de la igualdad con respecto a la variable independiente asumiendo la dependencia de la otra variable[cite: 152].",
+        "just": "El procedimiento inicia derivando ambos miembros de la igualdad con respecto a la variable independiente asumiendo la dependencia de la otra variable.",
         "hint": "Debes aplicar el operador derivada simultáneamente en la igualdad."
     },
     {
         "cat": "derivacion_implicita",
         "q": "¿Cuál es el paso final estándar al resolver una derivada implícita?",
         "opts": [
-            "Agrupar los términos con dy/dx en un lado y despejar dy/dx",
-            "Sustituir x por cero en la ecuación resultante",
+            "Agrupar los términos con $dy/dx$ en un lado y despejar $dy/dx$",
+            "Sustituir $x$ por cero en la ecuación resultante",
             "Volver a derivar para obtener la segunda derivada",
-            "Eliminar la variable y de la respuesta"
+            "Eliminar la variable $y$ de la respuesta"
         ],
         "ans": 0,
-        "just": "Una vez aplicadas las derivadas se debe factorizar y despejar la incógnita dy/dx para obtener el resultado final[cite: 153].",
+        "just": "Una vez aplicadas las derivadas se debe factorizar y despejar la incógnita $dy/dx$ para obtener el resultado final.",
         "hint": "El objetivo es dejar la tasa de cambio completamente aislada."
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Determine la derivada implícita dy/dx de la ecuación y^2 = x.",
+        "q": "Determine la derivada implícita $dy/dx$ de la ecuación $y^2 = x$.",
         "opts": [
             "$\\frac{1}{2y}$",
             "$2y$",
@@ -48,12 +48,12 @@
             "$1$"
         ],
         "ans": 0,
-        "just": "Al derivar ambos lados se obtiene 2y(dy/dx) = 1, de donde se despeja el resultado final dividiendo ambos lados[cite: 163, 164].",
+        "just": "Al derivar ambos lados se obtiene $2y(dy/dx) = 1$, de donde se despeja el resultado final dividiendo ambos lados.",
         "hint": "Aplica la regla de la potencia en el lado izquierdo y luego despeja."
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Al derivar implícitamente un término como y^3 con respecto a x se obtiene:",
+        "q": "Al derivar implícitamente un término como $y^3$ con respecto a $x$ se obtiene:",
         "opts": [
             "$3y^2 \\frac{dy}{dx}$",
             "$3y^2$",
@@ -105,7 +105,7 @@
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Para la ecuación 2x^3 - 3y^2 = 8 el valor de su primera derivada dy/dx es:",
+        "q": "Para la ecuación $2x^3 - 3y^2 = 8$ el valor de su primera derivada $dy/dx$ es:",
         "opts": [
             "$\\frac{x^2}{y}$",
             "$-\\frac{x^2}{y}$",
@@ -113,7 +113,7 @@
             "$6x^2 - 6y$"
         ],
         "ans": 0,
-        "just": "Se deriva generando 6x^2 - 6y(dy/dx) = 0, dividiendo todo para 6y se obtiene el cociente indicado[cite: 188, 189].",
+        "just": "Se deriva generando $6x^2 - 6y(dy/dx) = 0$, dividiendo todo para $6y$ se obtiene el cociente indicado.",
         "hint": "Despeja cuidadosamente respetando los signos algebraicos."
     },
     {
@@ -131,7 +131,7 @@
     },
     {
         "cat": "derivacion_implicita",
-        "q": "¿Cuál es la expresión final de la segunda derivada y'' para la ecuación 2x^3 - 3y^2 = 8?",
+        "q": "¿Cuál es la expresión final de la segunda derivada $y''$ para la ecuación $2x^3 - 3y^2 = 8$?",
         "opts": [
             "$\\frac{2x}{y} - \\frac{x^4}{y^3}$",
             "$\\frac{2x}{y} + \\frac{x^4}{y^3}$",
@@ -139,12 +139,12 @@
             "$\\frac{4x^2}{y^3}$"
         ],
         "ans": 0,
-        "just": "Al aplicar la regla del cociente y sustituir la primera derivada se llega a esta expresión simplificada en función de las variables originales[cite: 201].",
+        "just": "Al aplicar la regla del cociente y sustituir la primera derivada se llega a esta expresión simplificada en función de las variables originales.",
         "hint": "El resultado involucra una diferencia de fracciones tras reemplazar la primera derivada."
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Durante la derivación implícita de y^2 = x^2 + \\sin(xy), ¿cuál es la derivada de \\sin(xy)?",
+        "q": "Durante la derivación implícita de $y^2 = x^2 + \\sin(xy)$, ¿cuál es la derivada de $\\sin(xy)$?",
         "opts": [
             "$\\cos(xy) (y + x \\frac{dy}{dx})$",
             "$\\cos(xy)$",
@@ -152,20 +152,20 @@
             "$\\sin(xy) \\frac{dy}{dx}$"
         ],
         "ans": 0,
-        "just": "Por regla de la cadena la derivada del seno es el coseno multiplicado por la derivada interna del producto xy[cite: 175].",
+        "just": "Por regla de la cadena la derivada del seno es el coseno multiplicado por la derivada interna del producto $xy$.",
         "hint": "Combina la derivada trigonométrica con la derivada de un producto multiplicando."
     },
     {
         "cat": "derivacion_implicita",
-        "q": "¿Qué se debe hacer con los términos que contienen dy/dx luego de derivar ambos lados de la ecuación implícita?",
+        "q": "¿Qué se debe hacer con los términos que contienen $dy/dx$ luego de derivar ambos lados de la ecuación implícita?",
         "opts": [
-            "Factorizarlos sacando dy/dx como factor común",
+            "Factorizarlos sacando $dy/dx$ como factor común",
             "Eliminarlos de la ecuación",
-            "Sumarlos con los términos de la variable x",
+            "Sumarlos con los términos de la variable $x$",
             "Igualarlos a uno automáticamente"
         ],
         "ans": 0,
-        "just": "Agrupar y factorizar permite aislar la derivada deseada para proceder con el despeje algebraico final dividiendo[cite: 153].",
+        "just": "Agrupar y factorizar permite aislar la derivada deseada para proceder con el despeje algebraico final dividiendo.",
         "hint": "Extrae el término repetido para facilitar el aislamiento matemático."
     },
     {
@@ -183,7 +183,7 @@
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Al derivar e^y = x implícitamente, ¿cuál es el resultado para dy/dx?",
+        "q": "Al derivar $e^y = x$ implícitamente, ¿cuál es el resultado para $dy/dx$?",
         "opts": [
             "$\\frac{1}{e^y}$",
             "$e^y$",
@@ -191,12 +191,12 @@
             "$\\ln(x)$"
         ],
         "ans": 0,
-        "just": "Se deriva quedando e^y(dy/dx) = 1, de donde se obtiene el inverso de la función exponencial original.",
+        "just": "Se deriva quedando $e^y(dy/dx) = 1$, de donde se obtiene el inverso de la función exponencial original.",
         "hint": "La derivada de la función exponencial se mantiene multiplicando por la derivada del exponente."
     },
     {
         "cat": "derivacion_implicita",
-        "q": "Determine dy/dx para la ecuación \\cos(y) = x.",
+        "q": "Determine $dy/dx$ para la ecuación $\\cos(y) = x$.",
         "opts": [
             "$-\\frac{1}{\\sin(y)}$",
             "$\\frac{1}{\\sin(y)}$",
@@ -204,7 +204,7 @@
             "$\\cos(y)$"
         ],
         "ans": 0,
-        "just": "Derivando se tiene -\\sin(y)(dy/dx) = 1, despejando se transfiere el signo negativo y la función al denominador.",
+        "just": "Derivando se tiene $-\\sin(y)(dy/dx) = 1$, despejando se transfiere el signo negativo y la función al denominador.",
         "hint": "La derivada del coseno cambia de signo y luego debes aislar la tasa de cambio."
     },
     {
@@ -217,7 +217,7 @@
             "$y = e^{2x}$"
         ],
         "ans": 0,
-        "just": "El texto ejemplifica las relaciones implícitas con esta expresión polinomial de dos variables igualada a cero[cite: 146].",
+        "just": "El texto ejemplifica las relaciones implícitas con esta expresión polinomial de dos variables igualada a cero.",
         "hint": "Selecciona la opción donde ninguna variable dependiente está aislada a un lado del igual."
     },
     {

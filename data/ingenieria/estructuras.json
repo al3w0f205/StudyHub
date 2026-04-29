@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "lineales",
+        "q": "¿Cuál es la principal desventaja de usar un Arreglo (Array) estático?",
+        "opts": [
+            "Su tamaño es fijo y no puede cambiarse en tiempo de ejecución",
+            "El acceso a sus elementos es lento",
+            "Consume mucha más memoria que una lista enlazada",
+            "No permite almacenar números decimales"
+        ],
+        "ans": 0,
+        "just": "Los arreglos estáticos requieren definir su tamaño al momento de la compilación o creación, lo que puede llevar a desperdicio de espacio o falta de capacidad.",
+        "hint": "Imagina una caja con separadores fijos."
+    },
+    {
+        "cat": "lineales",
+        "q": "En una Pila (Stack), ¿qué elemento es el primero en salir?",
+        "opts": [
+            "El último que entró (LIFO)",
+            "El primero que entró (FIFO)",
+            "El elemento con menor valor",
+            "El elemento central"
+        ],
+        "ans": 0,
+        "just": "LIFO significa 'Last-In, First-Out'. El último elemento colocado en la cima es el primero en ser retirado.",
+        "hint": "Piensa en una pila de platos para lavar."
+    },
+    {
+        "cat": "lineales",
+        "q": "¿Qué estructura de datos representa mejor una fila en el banco (Primero en llegar, primero en salir)?",
+        "opts": [
+            "Cola (Queue)",
+            "Pila (Stack)",
+            "Árbol (Tree)",
+            "Grafo (Graph)"
+        ],
+        "ans": 0,
+        "just": "Las colas siguen el principio FIFO ('First-In, First-Out').",
+        "hint": "Se llama igual que la fila que haces en el súper."
+    },
+    {
+        "cat": "no_lineales",
+        "q": "En un Árbol Binario de Búsqueda (BST), los nodos a la izquierda de la raíz siempre son:",
+        "opts": [
+            "Menores que la raíz",
+            "Mayores que la raíz",
+            "Iguales a la raíz",
+            "Hojas sin hijos"
+        ],
+        "ans": 0,
+        "just": "La propiedad del BST establece que para cada nodo, los valores a la izquierda son menores y a la derecha son mayores.",
+        "hint": "Es la clave para que la búsqueda sea rápida."
+    },
+    {
+        "cat": "lineales",
+        "q": "¿Cuál es la ventaja de una Lista Enlazada sobre un Arreglo?",
+        "opts": [
+            "Las inserciones y eliminaciones son más eficientes (no requieren desplazar elementos)",
+            "Ocupa menos memoria total",
+            "Permite acceso aleatorio por índice en tiempo $O(1)$",
+            "Es más fácil de implementar"
+        ],
+        "ans": 0,
+        "just": "En una lista enlazada, solo necesitas cambiar los punteros del nodo anterior y siguiente, sin mover todos los datos de la memoria.",
+        "hint": "Son como vagones de tren que puedes desenganchar y enganchar fácilmente."
+    },
+    {
+        "cat": "no_lineales",
+        "q": "¿Qué es un 'Grafo' en computación?",
+        "opts": [
+            "Un conjunto de nodos (vértices) conectados por aristas",
+            "Un tipo de arreglo de dos dimensiones",
+            "Una estructura que solo permite un camino entre dos puntos",
+            "Una lista de números ordenados"
+        ],
+        "ans": 0,
+        "just": "Los grafos modelan relaciones complejas entre objetos, como redes sociales, rutas de mapas o redes de computadoras.",
+        "hint": "Nodos y líneas que los unen."
+    },
+    {
+        "cat": "hash",
+        "q": "¿Para qué sirve una 'Función Hash'?",
+        "opts": [
+            "Para convertir una llave en un índice único dentro de un arreglo",
+            "Para ordenar una lista alfabéticamente",
+            "Para comprimir archivos de gran tamaño",
+            "Para borrar elementos duplicados automáticamente"
+        ],
+        "ans": 0,
+        "just": "Las tablas hash usan estas funciones para lograr acceso, inserción y borrado en tiempo promedio constante $O(1)$.",
+        "hint": "Asigna una 'dirección' a cada dato basándose en su contenido."
+    },
+    {
+        "cat": "no_lineales",
+        "q": "¿Qué define a un Árbol Binario Completo?",
+        "opts": [
+            "Todos los niveles están llenos, excepto posiblemente el último",
+            "Cada nodo tiene exactamente dos hijos siempre",
+            "Es un árbol que solo tiene 10 nodos",
+            "No tiene nodos hoja"
+        ],
+        "ans": 0,
+        "just": "En un árbol completo, todos los niveles se llenan de izquierda a derecha.",
+        "hint": "Está balanceado y lleno casi hasta el final."
+    },
+    {
+        "cat": "lineales",
+        "q": "La operación 'Pop' en una pila sirve para:",
+        "opts": [
+            "Eliminar y devolver el elemento de la cima",
+            "Insertar un nuevo elemento",
+            "Ver el elemento de la cima sin quitarlo",
+            "Borrar toda la estructura"
+        ],
+        "ans": 0,
+        "just": "Pop retira el elemento superior. Push es el que inserta.",
+        "hint": "Es el opuesto de Push."
+    },
+    {
+        "cat": "hash",
+        "q": "¿Qué es una 'Colisión' en una Tabla Hash?",
+        "opts": [
+            "Cuando dos llaves diferentes generan el mismo índice hash",
+            "Cuando la memoria se agota por completo",
+            "Cuando el programa se cierra inesperadamente",
+            "Cuando se intenta insertar un valor nulo"
+        ],
+        "ans": 0,
+        "just": "Como el espacio de índices es menor que el de llaves posibles, a veces dos datos terminan apuntando al mismo lugar.",
+        "hint": "Dos cosas intentando ocupar el mismo espacio."
+    },
+    {
+        "cat": "lineales",
+        "q": "¿Cuál es la complejidad temporal de buscar un elemento en una Lista Enlazada simple de $n$ elementos?",
+        "opts": [
+            "$O(n)$",
+            "$O(1)$",
+            "$O(\\log n)$",
+            "$O(n^2)$"
+        ],
+        "ans": 0,
+        "just": "Al no tener índices directos, debes recorrer nodo por nodo desde la cabeza hasta encontrar el valor (tiempo $O(n)$).",
+        "hint": "Tienes que caminar por todos los vagones."
+    },
+    {
+        "cat": "lineales",
+        "q": "¿Qué estructura usarías para implementar la función 'Deshacer' (Undo) de un editor de texto?",
+        "opts": [
+            "Pila (Stack)",
+            "Cola (Queue)",
+            "Lista Enlazada",
+            "Tabla Hash"
+        ],
+        "ans": 0,
+        "just": "El último cambio realizado es el primero que se deshace, lo cual encaja perfectamente con el modelo LIFO.",
+        "hint": "El último en entrar es el primero en salir."
+    },
+    {
+        "cat": "no_lineales",
+        "q": "¿Cómo se llama el nodo superior de un árbol?",
+        "opts": [
+            "Raíz (Root)",
+            "Cabeza (Head)",
+            "Padre (Parent)",
+            "Base"
+        ],
+        "ans": 0,
+        "just": "Todo árbol jerárquico comienza en un único nodo llamado raíz.",
+        "hint": "Es de donde sale todo lo demás."
+    },
+    {
+        "cat": "lineales",
+        "q": "En una Cola Circular, ¿qué ventaja se obtiene?",
+        "opts": [
+            "Reutilización del espacio vacío al inicio del arreglo",
+            "Búsqueda más rápida de elementos",
+            "Ordenamiento automático de los datos",
+            "No necesita punteros"
+        ],
+        "ans": 0,
+        "just": "Permite que el final de la cola se conecte con el inicio, aprovechando huecos dejados por elementos ya retirados.",
+        "hint": "Los extremos se tocan."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué estructura de datos es NO lineal?",
+        "opts": [
+            "Árbol",
+            "Arreglo",
+            "Pila",
+            "Lista Enlazada"
+        ],
+        "ans": 0,
+        "just": "Las estructuras lineales organizan datos en secuencia. Los árboles y grafos tienen una organización jerárquica o de red.",
+        "hint": "Tiene ramas, no es una línea recta."
+    }
+]

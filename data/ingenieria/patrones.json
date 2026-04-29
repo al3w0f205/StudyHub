@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "creacionales",
+        "q": "¿Qué patrón garantiza que una clase tenga una única instancia y proporcione un punto de acceso global a ella?",
+        "opts": [
+            "Singleton",
+            "Factory",
+            "Prototype",
+            "Builder"
+        ],
+        "ans": 0,
+        "just": "Singleton se asegura de que no se puedan crear múltiples objetos de la misma clase, útil para conexiones a BD o configuraciones.",
+        "hint": "Significa 'Único'."
+    },
+    {
+        "cat": "estructurales",
+        "q": "¿Qué patrón permite que interfaces incompatibles trabajen juntas?",
+        "opts": [
+            "Adapter",
+            "Proxy",
+            "Facade",
+            "Bridge"
+        ],
+        "ans": 0,
+        "just": "El patrón Adapter actúa como un traductor entre dos interfaces que de otro modo no podrían comunicarse.",
+        "hint": "Como un adaptador de enchufe para viaje."
+    },
+    {
+        "cat": "comportamiento",
+        "q": "¿Qué patrón define una dependencia de uno-a-muchos entre objetos para que cuando uno cambie su estado, todos sus dependientes sean notificados?",
+        "opts": [
+            "Observer",
+            "Strategy",
+            "Command",
+            "State"
+        ],
+        "ans": 0,
+        "just": "Observer es fundamental en sistemas de eventos y en el modelo MVC para actualizar la vista cuando cambia el modelo.",
+        "hint": "Es el patrón de las 'suscripciones'."
+    },
+    {
+        "cat": "creacionales",
+        "q": "¿Cuál es el propósito del patrón 'Factory Method'?",
+        "opts": [
+            "Delegar la creación de objetos a las subclases",
+            "Crear objetos complejos paso a paso",
+            "Copiar objetos existentes",
+            "Asegurar que solo exista un objeto de una clase"
+        ],
+        "ans": 0,
+        "just": "Permite que una clase delegue la instanciación de objetos a sus descendientes según sea necesario.",
+        "hint": "Es una 'fábrica' de objetos."
+    },
+    {
+        "cat": "estructurales",
+        "q": "¿Qué patrón proporciona una interfaz simplificada para un conjunto de interfaces en un subsistema complejo?",
+        "opts": [
+            "Facade",
+            "Decorator",
+            "Composite",
+            "Flyweight"
+        ],
+        "ans": 0,
+        "just": "Facade (Fachada) oculta la complejidad del sistema interno ofreciendo un punto de entrada sencillo.",
+        "hint": "Es como la 'cara' visible de un sistema complicado."
+    },
+    {
+        "cat": "comportamiento",
+        "q": "¿Qué patrón permite cambiar el algoritmo de un objeto en tiempo de ejecución?",
+        "opts": [
+            "Strategy",
+            "Template Method",
+            "Visitor",
+            "Iterator"
+        ],
+        "ans": 0,
+        "just": "Strategy encapsula una familia de algoritmos y los hace intercambiables para el cliente.",
+        "hint": "Permite elegir la 'estrategia' a seguir dinámicamente."
+    },
+    {
+        "cat": "estructurales",
+        "q": "El patrón que añade responsabilidades adicionales a un objeto dinámicamente sin modificar su código original es:",
+        "opts": [
+            "Decorator",
+            "Adapter",
+            "Proxy",
+            "Bridge"
+        ],
+        "ans": 0,
+        "just": "Decorator envuelve el objeto original añadiéndole funcionalidades de forma flexible.",
+        "hint": "Como 'decorar' un café básico con crema y azúcar."
+    },
+    {
+        "cat": "creacionales",
+        "q": "¿Para qué sirve el patrón 'Builder'?",
+        "opts": [
+            "Para construir objetos complejos paso a paso",
+            "Para clonar objetos rápidamente",
+            "Para ahorrar memoria",
+            "Para evitar el uso de constructores"
+        ],
+        "ans": 0,
+        "just": "Builder separa la construcción de un objeto complejo de su representación, permitiendo crear diferentes tipos y representaciones.",
+        "hint": "Se usa cuando un objeto tiene muchísimos parámetros opcionales."
+    },
+    {
+        "cat": "comportamiento",
+        "q": "¿Qué patrón permite a un objeto alterar su comportamiento cuando su estado interno cambia?",
+        "opts": [
+            "State",
+            "Memento",
+            "Mediator",
+            "Chain of Responsibility"
+        ],
+        "ans": 0,
+        "just": "El patrón State hace que el objeto parezca cambiar de clase al cambiar de estado.",
+        "hint": "Útil para máquinas de estados."
+    },
+    {
+        "cat": "estructurales",
+        "q": "¿Qué patrón actúa como un sustituto o marcador de posición para controlar el acceso a otro objeto?",
+        "opts": [
+            "Proxy",
+            "Facade",
+            "Bridge",
+            "Composite"
+        ],
+        "ans": 0,
+        "just": "Proxy controla el acceso al objeto real, pudiendo añadir validación, caché o carga perezosa.",
+        "hint": "Es un intermediario."
+    },
+    {
+        "cat": "comportamiento",
+        "q": "¿Qué patrón se usa para recorrer los elementos de una colección sin exponer su representación interna?",
+        "opts": [
+            "Iterator",
+            "Visitor",
+            "Command",
+            "Mediator"
+        ],
+        "ans": 0,
+        "just": "Iterator proporciona una forma de acceder secuencialmente a los elementos de un objeto agregado.",
+        "hint": "Es el motor detrás de los bucles 'foreach'."
+    },
+    {
+        "cat": "arquitectura",
+        "q": "¿Qué significa la 'C' en el patrón arquitectónico MVC?",
+        "opts": [
+            "Controlador",
+            "Componente",
+            "Clase",
+            "Capa"
+        ],
+        "ans": 0,
+        "just": "El Controlador actúa como intermediario entre el Modelo (datos) y la Vista (interfaz), procesando las entradas del usuario.",
+        "hint": "Gestiona la lógica de la aplicación."
+    },
+    {
+        "cat": "creacionales",
+        "q": "¿Qué patrón se basa en copiar un objeto existente en lugar de crear uno nuevo desde cero?",
+        "opts": [
+            "Prototype",
+            "Singleton",
+            "Abstract Factory",
+            "Builder"
+        ],
+        "ans": 0,
+        "just": "Prototype permite la creación de nuevos objetos mediante la clonación de una instancia prototípica.",
+        "hint": "Se basa en el método 'clone'."
+    },
+    {
+        "cat": "comportamiento",
+        "q": "¿Qué patrón encapsula una solicitud como un objeto, permitiendo parametrizar clientes con diferentes solicitudes?",
+        "opts": [
+            "Command",
+            "Observer",
+            "Strategy",
+            "State"
+        ],
+        "ans": 0,
+        "just": "Command convierte una operación en un objeto, facilitando operaciones como 'Deshacer' o colas de tareas.",
+        "hint": "Se traduce como 'Comando'."
+    },
+    {
+        "cat": "estructurales",
+        "q": "¿Qué patrón se usa para tratar objetos individuales y composiciones de objetos de manera uniforme?",
+        "opts": [
+            "Composite",
+            "Flyweight",
+            "Decorator",
+            "Facade"
+        ],
+        "ans": 0,
+        "just": "Composite permite construir estructuras de árbol donde los nodos y las hojas se manejan con la misma interfaz.",
+        "hint": "Útil para sistemas de archivos o menús."
+    }
+]

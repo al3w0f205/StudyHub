@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "sql",
+        "q": "¿Qué comando SQL se utiliza para eliminar todos los registros de una tabla sin borrar la estructura de la misma?",
+        "opts": [
+            "TRUNCATE",
+            "DROP",
+            "DELETE",
+            "REMOVE"
+        ],
+        "ans": 0,
+        "just": "TRUNCATE es un comando DDL que vacía la tabla rápidamente, mientras que DELETE es DML y suele ser más lento por el registro de transacciones por fila.",
+        "hint": "Es más rápido que DELETE."
+    },
+    {
+        "cat": "normalizacion",
+        "q": "¿Qué se busca eliminar principalmente mediante la Normalización de Bases de Datos?",
+        "opts": [
+            "Redundancia de datos e inconsistencias",
+            "El uso de llaves primarias",
+            "La necesidad de realizar JOINs",
+            "El tamaño total del motor de búsqueda"
+        ],
+        "ans": 0,
+        "just": "La normalización organiza las tablas para minimizar la duplicación de información y evitar anomalías en inserciones o actualizaciones.",
+        "hint": "Evitar repetir los mismos datos muchas veces."
+    },
+    {
+        "cat": "conceptos",
+        "q": "En el modelo Relacional, ¿qué es una 'Llave Foránea' (Foreign Key)?",
+        "opts": [
+            "Un campo que vincula una tabla con la llave primaria de otra",
+            "Una llave que no pertenece a ninguna tabla",
+            "Un índice que acelera las búsquedas de texto",
+            "El nombre alternativo de una tabla"
+        ],
+        "ans": 0,
+        "just": "La FK permite establecer relaciones de integridad referencial entre diferentes entidades de la base de datos.",
+        "hint": "Sirve para conectar dos tablas."
+    },
+    {
+        "cat": "sql",
+        "q": "¿Cuál es la diferencia entre un 'INNER JOIN' y un 'LEFT JOIN'?",
+        "opts": [
+            "INNER devuelve solo coincidencias, LEFT devuelve coincidencias y todas las filas de la tabla izquierda",
+            "INNER es para tablas internas y LEFT para tablas externas",
+            "LEFT JOIN es más rápido que INNER JOIN siempre",
+            "No hay diferencia, son sinónimos"
+        ],
+        "ans": 0,
+        "just": "INNER JOIN filtra solo las filas que tienen correspondencia en ambas tablas. LEFT JOIN mantiene todas las de la izquierda aunque no tengan pareja en la derecha (poniendo NULL).",
+        "hint": "Piensa en qué pasa si no hay coincidencia."
+    },
+    {
+        "cat": "acid",
+        "q": "En las propiedades ACID, ¿qué significa la 'A' de Atomicidad?",
+        "opts": [
+            "O se realizan todas las operaciones de la transacción o ninguna",
+            "Los datos deben ser atómicos (indivisibles)",
+            "La base de datos debe ser rápida como un átomo",
+            "La transacción solo puede afectar a un átomo de la tabla"
+        ],
+        "ans": 0,
+        "just": "La atomicidad garantiza que una transacción compleja se trate como una unidad única e indivisible: éxito total o fallo total.",
+        "hint": "Todo o nada."
+    },
+    {
+        "cat": "sql",
+        "q": "¿Qué clausula SQL se usa para filtrar resultados basados en una función agregada como COUNT o SUM?",
+        "opts": [
+            "HAVING",
+            "WHERE",
+            "GROUP BY",
+            "ORDER BY"
+        ],
+        "ans": 0,
+        "just": "WHERE filtra filas antes de agrupar, mientras que HAVING filtra los grupos resultantes después de aplicar funciones de agregado.",
+        "hint": "Se usa junto con GROUP BY."
+    },
+    {
+        "cat": "normalizacion",
+        "q": "Una tabla está en Primera Forma Normal (1NF) si:",
+        "opts": [
+            "Todos los atributos son atómicos y no hay grupos repetidos",
+            "No tiene llaves foráneas",
+            "Solo tiene una columna",
+            "Está conectada a otra tabla"
+        ],
+        "ans": 0,
+        "just": "La 1NF requiere que cada celda contenga un solo valor y que no existan arreglos o listas dentro de una fila.",
+        "hint": "Valores simples y únicos por celda."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es un 'Índice' en una base de datos?",
+        "opts": [
+            "Una estructura de datos que mejora la velocidad de las operaciones de consulta",
+            "La lista de tablas de la base de datos",
+            "El número de identificación de cada usuario",
+            "Un comando para borrar datos"
+        ],
+        "ans": 0,
+        "just": "Los índices funcionan como el índice de un libro, permitiendo al motor encontrar filas sin escanear toda la tabla.",
+        "hint": "Ayuda a encontrar cosas más rápido."
+    },
+    {
+        "cat": "sql",
+        "q": "¿Cuál comando se utiliza para cambiar la estructura de una tabla ya existente (agregar columnas, por ejemplo)?",
+        "opts": [
+            "ALTER",
+            "UPDATE",
+            "MODIFY",
+            "CHANGE"
+        ],
+        "ans": 0,
+        "just": "ALTER TABLE es el comando DDL estándar para modificar la definición de las tablas.",
+        "hint": "Significa 'Alterar'."
+    },
+    {
+        "cat": "nosql",
+        "q": "¿Cuál es una característica principal de las bases de datos NoSQL tipo Documento (como MongoDB)?",
+        "opts": [
+            "No requieren un esquema fijo (Schema-less)",
+            "Solo pueden almacenar archivos .txt",
+            "No permiten usar índices",
+            "Son obligatoriamente más lentas que SQL"
+        ],
+        "ans": 0,
+        "just": "A diferencia de SQL, las NoSQL orientadas a documentos permiten guardar datos con estructuras variadas en una misma colección.",
+        "hint": "Flexibilidad en la estructura de los datos."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué significa el término 'Cardinalidad' en un diagrama Entidad-Relación?",
+        "opts": [
+            "El número de instancias de una entidad que pueden asociarse con otra",
+            "La cantidad de columnas que tiene una tabla",
+            "El peso en bytes de la base de datos",
+            "La posición de la tabla en el servidor"
+        ],
+        "ans": 0,
+        "just": "Define si la relación es 1:1, 1:N (uno a muchos) o M:N (muchos a muchos).",
+        "hint": "Se refiere a 'cuántos con cuántos'."
+    },
+    {
+        "cat": "sql",
+        "q": "Para eliminar registros duplicados de un SELECT, se utiliza la palabra clave:",
+        "opts": [
+            "DISTINCT",
+            "UNIQUE",
+            "SINGLE",
+            "DIFFERENT"
+        ],
+        "ans": 0,
+        "just": "SELECT DISTINCT asegura que los resultados devueltos sean únicos para las columnas seleccionadas.",
+        "hint": "Significa 'Distinto'."
+    },
+    {
+        "cat": "acid",
+        "q": "La propiedad 'Durabilidad' en ACID asegura que:",
+        "opts": [
+            "Una vez confirmada la transacción, los cambios persisten incluso ante fallos del sistema",
+            "La base de datos durará muchos años",
+            "Las consultas se ejecutan en poco tiempo",
+            "El disco duro nunca se llenará"
+        ],
+        "ans": 0,
+        "just": "Garantiza que el resultado de una transacción exitosa se guarde en almacenamiento no volátil permanentemente.",
+        "hint": "Los cambios no se pierden si se va la luz después del COMMIT."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es una Vista (View) en SQL?",
+        "opts": [
+            "Una tabla virtual basada en el resultado de una consulta SELECT",
+            "Una captura de pantalla de los datos",
+            "El modo de diseño gráfico de la base de datos",
+            "Una tabla que no ocupa espacio en disco en absoluto"
+        ],
+        "ans": 0,
+        "just": "Las vistas permiten simplificar consultas complejas presentándolas como si fueran una tabla normal.",
+        "hint": "Es como una consulta guardada con nombre de tabla."
+    },
+    {
+        "cat": "sql",
+        "q": "¿Qué función de agregado se usa para obtener el promedio de una columna numérica?",
+        "opts": [
+            "AVG()",
+            "MEAN()",
+            "SUM() / TOTAL()",
+            "PROMEDIO()"
+        ],
+        "ans": 0,
+        "just": "AVG (de Average) es la función estándar en SQL para promediar valores.",
+        "hint": "Abreviatura de promedio en inglés."
+    }
+]

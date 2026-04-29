@@ -22,7 +22,7 @@
             "$\\frac{x^{n+1}}{n} + C$"
         ],
         "ans": 0,
-        "just": "La regla básica de integración para potencias indica que se suma 1 al exponente y se divide por el nuevo exponente.",
+        "just": "La regla básica de integración para potencias indica que se suma 1 al exponente y se divide por el nuevo exponente: $\\int x^n dx = \\frac{x^{n+1}}{n+1} + C$.",
         "hint": "Es la operación inversa a la regla de la potencia para derivadas."
     },
     {
@@ -49,7 +49,7 @@
         ],
         "ans": 0,
         "just": "La función cuya derivada es $\\cos(x)$ es $\\sin(x)$.",
-        "hint": "Ten cuidado con el signo; recuerda que la derivada del seno es coseno positivo."
+        "hint": "Ten cuidado con el signo; recuerda que la derivada del seno es $\\cos(x)$ positivo."
     },
     {
         "cat": "integrales",
@@ -88,7 +88,7 @@
         ],
         "ans": 0,
         "just": "Sabemos por las reglas de derivación que $\\frac{d}{dx}(\\tan x) = \\sec^2 x$.",
-        "hint": "Piensa en qué función trigonométrica tiene a la secante cuadrada como su derivada."
+        "hint": "Piensa en qué función trigonométrica tiene a la secante cuadrada ($\\sec^2 x$) como su derivada."
     },
     {
         "cat": "integrales",
@@ -113,7 +113,7 @@
             "$\\frac{x^3}{3} + \\frac{x^2}{2} + x + C$"
         ],
         "ans": 0,
-        "just": "Aplicando la regla de la potencia término a término: $\\frac{3x^3}{3} + \\frac{2x^2}{2} + x$.",
+        "just": "Aplicando la regla de la potencia término a término: $\\frac{3x^3}{3} + \\frac{2x^2}{2} + x = x^3 + x^2 + x$.",
         "hint": "Integra cada parte del polinomio por separado."
     },
     {
@@ -127,7 +127,7 @@
         ],
         "ans": 0,
         "just": "La derivada de $\\cot(x)$ es $-\\csc^2(x)$, por lo que la integral de $\\csc^2(x)$ es $-\\cot(x)$.",
-        "hint": "Es la versión 'co' de la integral de la secante cuadrada."
+        "hint": "Es la versión 'co' de la integral de la secante cuadrada ($\\sec^2 x$)."
     },
     {
         "cat": "integrales",
@@ -165,7 +165,7 @@
             "$\\cos(2x) + C$"
         ],
         "ans": 0,
-        "just": "Usando $u = 2x$, $du = 2dx$. La integral se convierte en $\\frac{1}{2} \\int \\sin(u) du$.",
+        "just": "Usando $u = 2x$, $du = 2dx$. La integral se convierte en $\\frac{1}{2} \\int \\sin(u) du = -\\frac{1}{2}\\cos(u) + C$.",
         "hint": "No olvides dividir por la derivada del argumento interno (la 'regla de la cadena inversa')."
     },
     {
@@ -204,7 +204,7 @@
             "$\\ln(x) + \\cos x + C$"
         ],
         "ans": 0,
-        "just": "Integramos cada término: $\\int e^x = e^x$ y $\\int \\sin x = -\\cos x$.",
+        "just": "Integramos cada término: $\\int e^x dx = e^x$ y $\\int \\sin x dx = -\\cos x$.",
         "hint": "Suma los resultados de las dos integrales básicas."
     },
     {
@@ -230,8 +230,8 @@
             "$\\sin(5x) + C$"
         ],
         "ans": 0,
-        "just": "Por sustitución $u=5x$, el factor $1/5$ sale de la integral.",
-        "hint": "Similar a la integral de sin(2x), ajusta el coeficiente."
+        "just": "Por sustitución $u=5x$, el factor $1/5$ sale de la integral: $\\frac{1}{5} \\int \\cos(u) du$.",
+        "hint": "Similar a la integral de $\\sin(2x)$, ajusta el coeficiente."
     },
     {
         "cat": "integrales",

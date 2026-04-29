@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "modelos",
+        "q": "¿Cuántas capas tiene el modelo OSI?",
+        "opts": [
+            "7",
+            "4",
+            "5",
+            "8"
+        ],
+        "ans": 0,
+        "just": "El modelo OSI (Open Systems Interconnection) define 7 capas: Física, Enlace de Datos, Red, Transporte, Sesión, Presentación y Aplicación.",
+        "hint": "Es el estándar jerárquico de comunicaciones."
+    },
+    {
+        "cat": "protocolos",
+        "q": "¿Cuál es la diferencia principal entre TCP y UDP?",
+        "opts": [
+            "TCP es orientado a conexión (confiable) y UDP no (rápido)",
+            "TCP es inalámbrico y UDP es por cable",
+            "UDP solo sirve para enviar correos electrónicos",
+            "TCP es más antiguo y ya no se usa"
+        ],
+        "ans": 0,
+        "just": "TCP garantiza que los datos lleguen completos y en orden. UDP prioriza la velocidad sin verificar la entrega, ideal para streaming o juegos.",
+        "hint": "Fiabilidad vs Velocidad."
+    },
+    {
+        "cat": "capas",
+        "q": "¿En qué capa del modelo OSI operan los Routers?",
+        "opts": [
+            "Capa 3 (Red)",
+            "Capa 2 (Enlace de datos)",
+            "Capa 4 (Transporte)",
+            "Capa 7 (Aplicación)"
+        ],
+        "ans": 0,
+        "just": "Los routers se encargan del direccionamiento IP y la determinación de rutas, funciones propias de la capa de Red.",
+        "hint": "Es la capa donde viven las direcciones IP."
+    },
+    {
+        "cat": "servicios",
+        "q": "¿Qué función cumple el protocolo DNS?",
+        "opts": [
+            "Traduce nombres de dominio (como google.com) en direcciones IP",
+            "Aumenta la velocidad de internet",
+            "Protege contra ataques de piratería",
+            "Permite descargar archivos de forma anónima"
+        ],
+        "ans": 0,
+        "just": "El Domain Name System funciona como una guía telefónica de internet, asociando nombres fáciles de recordar con IPs numéricas.",
+        "hint": "Sin esto, tendrías que memorizar números para entrar a cada web."
+    },
+    {
+        "cat": "capas",
+        "q": "¿En qué capa del modelo OSI operan los Switches tradicionales?",
+        "opts": [
+            "Capa 2 (Enlace de datos)",
+            "Capa 3 (Red)",
+            "Capa 1 (Física)",
+            "Capa 5 (Sesión)"
+        ],
+        "ans": 0,
+        "just": "Los switches utilizan direcciones MAC para enviar datos a dispositivos específicos dentro de una red local.",
+        "hint": "Capa de las direcciones MAC."
+    },
+    {
+        "cat": "ip",
+        "q": "¿Cuál de estas es una dirección IPv4 válida?",
+        "opts": [
+            "192.168.1.25",
+            "256.0.0.1",
+            "10.10.1.2.3",
+            "fe80::1"
+        ],
+        "ans": 0,
+        "just": "IPv4 consta de 4 octetos (0-255) separados por puntos.",
+        "hint": "Cada número debe estar entre 0 y 255."
+    },
+    {
+        "cat": "protocolos",
+        "q": "¿Cuál es el puerto estándar utilizado por el protocolo HTTP?",
+        "opts": [
+            "80",
+            "443",
+            "21",
+            "25"
+        ],
+        "ans": 0,
+        "just": "El tráfico web sin cifrar (HTTP) viaja por defecto por el puerto 80. El tráfico cifrado (HTTPS) usa el 443.",
+        "hint": "Es un número redondo de dos dígitos."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué significa el término 'Latencia' en una red?",
+        "opts": [
+            "El tiempo de retraso en la transmisión de un paquete de datos",
+            "La cantidad de datos que se pueden enviar por segundo",
+            "El número de dispositivos conectados a la red",
+            "La potencia de la señal de Wi-Fi"
+        ],
+        "ans": 0,
+        "just": "Mide el tiempo que tarda un paquete en viajar desde el origen al destino.",
+        "hint": "Comúnmente llamado 'ping'."
+    },
+    {
+        "cat": "protocolos",
+        "q": "¿Qué protocolo se utiliza para asignar direcciones IP automáticamente a los dispositivos de una red?",
+        "opts": [
+            "DHCP",
+            "FTP",
+            "SMTP",
+            "ICMP"
+        ],
+        "ans": 0,
+        "just": "Dynamic Host Configuration Protocol permite que los equipos obtengan su configuración de red sin intervención manual.",
+        "hint": "Te da la IP al conectarte al Wi-Fi."
+    },
+    {
+        "cat": "seguridad",
+        "q": "¿Cuál es la función de un Firewall (Cortafuegos)?",
+        "opts": [
+            "Controlar el tráfico entrante y saliente basado en reglas de seguridad",
+            "Acelerar el procesamiento de la tarjeta de red",
+            "Limpiar el caché del navegador",
+            "Evitar que la computadora se sobrecaliente"
+        ],
+        "ans": 0,
+        "just": "Actúa como una barrera que decide qué paquetes de datos pueden pasar y cuáles deben bloquearse.",
+        "hint": "Es un muro de seguridad."
+    },
+    {
+        "cat": "modelos",
+        "q": "¿Qué capa del modelo TCP/IP equivale a las capas de Red del modelo OSI?",
+        "opts": [
+            "Internet",
+            "Acceso a red",
+            "Transporte",
+            "Aplicación"
+        ],
+        "ans": 0,
+        "just": "El modelo TCP/IP simplifica las capas; la capa de Internet gestiona el protocolo IP.",
+        "hint": "Es el nombre de la red de redes."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es una dirección MAC?",
+        "opts": [
+            "Un identificador único físico asignado a la tarjeta de red",
+            "La dirección del servidor de Apple",
+            "Una clave de seguridad para el Wi-Fi",
+            "El nombre de usuario en una red local"
+        ],
+        "ans": 0,
+        "just": "Media Access Control es una dirección de 48 bits grabada de fábrica en el hardware de red.",
+        "hint": "Dirección física vs Dirección lógica (IP)."
+    },
+    {
+        "cat": "ip",
+        "q": "¿Cuál es la ventaja principal de IPv6 sobre IPv4?",
+        "opts": [
+            "Ofrece un espacio de direcciones muchísimo más grande",
+            "Es compatible con computadoras más viejas",
+            "Las direcciones son más cortas y fáciles de recordar",
+            "No requiere cables para funcionar"
+        ],
+        "ans": 0,
+        "just": "IPv6 usa 128 bits, permitiendo $3.4 \\times 10^{38}$ direcciones, solucionando el agotamiento de IPv4.",
+        "hint": "Muchísimas más direcciones para el Internet de las Cosas."
+    },
+    {
+        "cat": "protocolos",
+        "q": "¿Qué protocolo usa el comando 'ping'?",
+        "opts": [
+            "ICMP",
+            "TCP",
+            "UDP",
+            "SNMP"
+        ],
+        "ans": 0,
+        "just": "ICMP (Internet Control Message Protocol) se usa para enviar mensajes de error y consultas de estado.",
+        "hint": "Protocolo de control de mensajes."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es una VPN (Virtual Private Network)?",
+        "opts": [
+            "Un túnel cifrado que permite una conexión segura sobre una red pública",
+            "Una red que solo funciona en realidad virtual",
+            "Un programa para descargar archivos más rápido",
+            "Un tipo de cable de red más resistente"
+        ],
+        "ans": 0,
+        "just": "Las VPN permiten navegar de forma privada y acceder a recursos de redes locales de forma remota y segura.",
+        "hint": "Red Privada Virtual."
+    }
+]

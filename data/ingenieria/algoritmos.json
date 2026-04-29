@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "complejidad",
+        "q": "¿Qué indica la notación Big O ($O(n)$) en el análisis de algoritmos?",
+        "opts": [
+            "El límite superior del tiempo de ejecución en el peor de los casos",
+            "El tiempo exacto de ejecución en milisegundos",
+            "La cantidad de memoria RAM utilizada",
+            "El número de líneas de código del programa"
+        ],
+        "ans": 0,
+        "just": "La notación Big O describe cómo escala el tiempo de ejecución a medida que aumenta la entrada, enfocándose en el comportamiento asintótico superior.",
+        "hint": "Se refiere al 'peor escenario' posible ($O(n)$)."
+    },
+    {
+        "cat": "ordenamiento",
+        "q": "¿Cuál es la complejidad temporal promedio del algoritmo QuickSort?",
+        "opts": [
+            "$O(n \\log n)$",
+            "$O(n^2)$",
+            "$O(n)$",
+            "$O(\\log n)$"
+        ],
+        "ans": 0,
+        "just": "QuickSort utiliza una estrategia de 'divide y vencerás' para ordenar elementos con un promedio de $O(n \\log n)$ comparaciones.",
+        "hint": "Es más eficiente que Bubble Sort pero igual que Merge Sort en promedio."
+    },
+    {
+        "cat": "busqueda",
+        "q": "¿Cuál es el requisito indispensable para aplicar una búsqueda binaria en un arreglo?",
+        "opts": [
+            "Que el arreglo esté ordenado",
+            "Que el arreglo sea de tipo numérico",
+            "Que el arreglo no tenga elementos duplicados",
+            "Que el tamaño del arreglo sea potencia de 2"
+        ],
+        "ans": 0,
+        "just": "La búsqueda binaria divide el rango de búsqueda a la mitad en cada paso (tiempo $O(\\log n)$), lo cual solo funciona si los elementos mantienen un orden lógico.",
+        "hint": "Sin orden, no podrías saber hacia qué lado 'descartar' la mitad de los datos."
+    },
+    {
+        "cat": "complejidad",
+        "q": "Un algoritmo que recorre una matriz de $n \\times n$ tiene una complejidad de:",
+        "opts": [
+            "$O(n^2)$",
+            "$O(n)$",
+            "$O(2^n)$",
+            "$O(n \\log n)$"
+        ],
+        "ans": 0,
+        "just": "Al tener dos bucles anidados que dependen de $n$, la cantidad de operaciones es proporcional al cuadrado de la entrada ($n \\times n = n^2$).",
+        "hint": "Multiplica las dimensiones de la matriz."
+    },
+    {
+        "cat": "estructuras_algoritmicas",
+        "q": "¿Qué caracteriza a un algoritmo 'Divide y Vencerás'?",
+        "opts": [
+            "Divide un problema en subproblemas más pequeños del mismo tipo",
+            "Prueba todas las combinaciones posibles hasta hallar la solución",
+            "Toma la mejor decisión local en cada paso",
+            "Utiliza una tabla para almacenar resultados previos"
+        ],
+        "ans": 0,
+        "just": "Estrategias como MergeSort o QuickSort fragmentan el problema principal en sub-instancias más simples para luego combinar sus resultados.",
+        "hint": "Divide el problema, resuelve las partes y une todo."
+    },
+    {
+        "cat": "ordenamiento",
+        "q": "¿Cuál de estos algoritmos de ordenamiento es considerado 'Estable'?",
+        "opts": [
+            "Merge Sort",
+            "Quick Sort",
+            "Heap Sort",
+            "Selection Sort"
+        ],
+        "ans": 0,
+        "just": "Un algoritmo es estable si mantiene el orden relativo de elementos con llaves iguales.",
+        "hint": "QuickSort y HeapSort no garantizan mantener el orden de elementos iguales."
+    },
+    {
+        "cat": "recursion",
+        "q": "¿Qué sucede si una función recursiva no tiene un caso base?",
+        "opts": [
+            "Se produce un error de desbordamiento de pila (Stack Overflow)",
+            "El programa termina exitosamente pero sin resultados",
+            "La función se ejecuta exactamente 100 veces por defecto",
+            "El compilador detecta el error y no genera el ejecutable"
+        ],
+        "ans": 0,
+        "just": "Sin un caso base, la recursión continúa infinitamente hasta agotar la memoria asignada a la pila de llamadas.",
+        "hint": "La memoria no es infinita."
+    },
+    {
+        "cat": "busqueda",
+        "q": "En el peor de los casos, ¿cuántas comparaciones hace una búsqueda lineal en un arreglo de 1000 elementos?",
+        "opts": [
+            "1000",
+            "10",
+            "500",
+            "1"
+        ],
+        "ans": 0,
+        "just": "En el peor caso, el elemento buscado es el último o no está en la lista, obligando a revisar cada una de las $n$ posiciones ($O(n)$).",
+        "hint": "Debes revisar uno por uno."
+    },
+    {
+        "cat": "busqueda",
+        "q": "En el peor de los casos, ¿cuántas comparaciones aproximadas hace una búsqueda binaria en un arreglo de 1024 elementos?",
+        "opts": [
+            "10",
+            "1024",
+            "512",
+            "100"
+        ],
+        "ans": 0,
+        "just": "La complejidad es $\\log_2(1024)$, lo cual es igual a $10$.",
+        "hint": "$2$ elevado a qué potencia da $1024$."
+    },
+    {
+        "cat": "grafos",
+        "q": "¿Qué algoritmo se utiliza para encontrar el camino más corto en un grafo con pesos no negativos?",
+        "opts": [
+            "Dijkstra",
+            "Kruskal",
+            "Prim",
+            "DFS (Búsqueda en profundidad)"
+        ],
+        "ans": 0,
+        "just": "Dijkstra es el estándar para rutas mínimas desde un nodo origen a todos los demás en grafos con pesos positivos.",
+        "hint": "Es muy común en aplicaciones de mapas y GPS."
+    },
+    {
+        "cat": "complejidad",
+        "q": "¿Cuál es la complejidad de insertar un elemento al inicio de un arreglo (array) de tamaño $n$?",
+        "opts": [
+            "$O(n)$",
+            "$O(1)$",
+            "$O(\\log n)$",
+            "$O(n^2)$"
+        ],
+        "ans": 0,
+        "just": "Para insertar al inicio de un arreglo, se deben desplazar los $n$ elementos existentes una posición a la derecha.",
+        "hint": "Tienes que mover a todos los demás para hacer espacio ($O(n)$)."
+    },
+    {
+        "cat": "estructuras_algoritmicas",
+        "q": "¿Qué técnica utiliza 'Memorización' (Memoization) para evitar cálculos redundantes?",
+        "opts": [
+            "Programación Dinámica",
+            "Algoritmos Ávidos (Greedy)",
+            "Fuerza Bruta",
+            "Backtracking"
+        ],
+        "ans": 0,
+        "just": "La programación dinámica almacena resultados de subproblemas ya resueltos para no volver a calcularlos.",
+        "hint": "Se basa en 'recordar' el pasado."
+    },
+    {
+        "cat": "ordenamiento",
+        "q": "¿Cuál es la complejidad temporal de Bubble Sort en el peor caso?",
+        "opts": [
+            "$O(n^2)$",
+            "$O(n \\log n)$",
+            "$O(n)$",
+            "$O(1)$"
+        ],
+        "ans": 0,
+        "just": "Bubble Sort compara pares adyacentes repetidamente, resultando en una complejidad cuadrática.",
+        "hint": "Es uno de los algoritmos más ineficientes para listas grandes."
+    },
+    {
+        "cat": "grafos",
+        "q": "¿Cuál es la diferencia principal entre BFS y DFS?",
+        "opts": [
+            "BFS usa una cola (Queue) y DFS usa una pila (Stack)",
+            "BFS es más rápido que DFS siempre",
+            "DFS encuentra siempre el camino más corto",
+            "BFS solo funciona en grafos dirigidos"
+        ],
+        "ans": 0,
+        "just": "BFS (Búsqueda en anchura) explora niveles usando una cola, mientras que DFS explora ramas profundas usando una pila (o recursión).",
+        "hint": "Anchura vs Profundidad."
+    },
+    {
+        "cat": "complejidad",
+        "q": "¿Qué representa $O(1)$?",
+        "opts": [
+            "Tiempo constante",
+            "Tiempo lineal",
+            "Tiempo exponencial",
+            "Un solo ciclo de reloj"
+        ],
+        "ans": 0,
+        "just": "Indica que el tiempo de ejecución no depende del tamaño de la entrada.",
+        "hint": "No importa si le das 1 o 1 millón de datos, tarda lo mismo."
+    }
+]

@@ -9,7 +9,7 @@
             "$D_x$"
         ],
         "ans": 0,
-        "just": "El formato tradicional de Lagrange utiliza el apostrofe o prima para denotar la tasa de cambio de una función.",
+        "just": "El formato tradicional de Lagrange utiliza el apóstrofe o prima ($'$) para denotar la tasa de cambio de una función.",
         "hint": "Busca la opción que contiene una comilla simple sobre la variable."
     },
     {
@@ -27,7 +27,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "De acuerdo con el documento de resumen matemático determine la derivada de la función identidad y=x.",
+        "q": "De acuerdo con el documento de resumen matemático determine la derivada de la función identidad $y=x$.",
         "opts": [
             "$y'=1$",
             "$y'=0$",
@@ -40,7 +40,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Para una función de la forma y=kx donde k es una constante el valor de su derivada corresponde a.",
+        "q": "Para una función de la forma $y=kx$ donde $k$ es una constante el valor de su derivada corresponde a:",
         "opts": [
             "$k$",
             "$1$",
@@ -53,7 +53,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Según la regla de la potencia generalizada en la tabla indique la derivada de y=x^m siendo m una constante.",
+        "q": "Según la regla de la potencia generalizada en la tabla indique la derivada de $y=x^m$ siendo $m$ una constante.",
         "opts": [
             "$mx^{m-1}$",
             "$x^{m-1}$",
@@ -66,7 +66,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Establezca la derivada de la función exponencial de base natural y=e^x.",
+        "q": "Establezca la derivada de la función exponencial de base natural $y=e^x$.",
         "opts": [
             "$e^x$",
             "$x e^{x-1}$",
@@ -74,12 +74,12 @@
             "$\\frac{1}{e^x}$"
         ],
         "ans": 0,
-        "just": "La exponencial de base e posee la particularidad inusual de ser exactamente igual a su propia derivada.",
+        "just": "La exponencial de base $e$ posee la particularidad inusual de ser exactamente igual a su propia derivada.",
         "hint": "Selecciona el término idéntico al original."
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Para una constante a defina la derivada de la función exponencial y=a^x.",
+        "q": "Para una constante $a$ defina la derivada de la función exponencial $y=a^x$.",
         "opts": [
             "$a^x \\ln(a)$",
             "$a^x$",
@@ -92,7 +92,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Indique la derivada de la función logaritmo natural y=ln(x).",
+        "q": "Indique la derivada de la función logaritmo natural $y=\\ln(x)$.",
         "opts": [
             "$\\frac{1}{x}$",
             "$\\frac{1}{x \\ln(x)}$",
@@ -105,7 +105,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Calcule la derivada de la función logarítmica con base a y=log_a(x).",
+        "q": "Calcule la derivada de la función logarítmica con base $a$: $y=\\log_a(x)$.",
         "opts": [
             "$\\frac{1}{x \\ln(a)}$",
             "$\\frac{1}{x}$",
@@ -118,7 +118,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Determine la derivada de la función trigonométrica inversa y=arcsen(x).",
+        "q": "Determine la derivada de la función trigonométrica inversa $y=\\arcsin(x)$.",
         "opts": [
             "$\\frac{1}{\\sqrt{1-x^2}}$",
             "$-\\frac{1}{\\sqrt{1-x^2}}$",
@@ -131,7 +131,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Señale la derivada correspondiente a la función y=arccos(x).",
+        "q": "Señale la derivada correspondiente a la función $y=\\arccos(x)$.",
         "opts": [
             "$\\frac{-1}{\\sqrt{1-x^2}}$",
             "$\\frac{1}{\\sqrt{1-x^2}}$",
@@ -144,7 +144,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Identifique la derivada de la función y=arctan(x).",
+        "q": "Identifique la derivada de la función $y=\\arctan(x)$.",
         "opts": [
             "$\\frac{1}{1+x^2}$",
             "$\\frac{1}{\\sqrt{1-x^2}}$",
@@ -157,7 +157,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Para la función secante y=sec(x) su derivada se define formalmente como.",
+        "q": "Para la función secante $y=\\sec(x)$ su derivada se define formalmente como:",
         "opts": [
             "$\\sec(x) \\tan(x)$",
             "$-\\csc(x) \\cot(x)$",
@@ -170,7 +170,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "La derivada de la función cosecante y=csc(x) resulta ser.",
+        "q": "La derivada de la función cosecante $y=\\csc(x)$ resulta ser:",
         "opts": [
             "$-\\csc(x) \\cot(x)$",
             "$\\csc(x) \\cot(x)$",
@@ -196,7 +196,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "En el ejemplo de derivación implícita de orden superior si la primera derivada es el cociente y'=x^2/y se debe aplicar obligatoriamente cierta regla para obtener la segunda derivada.",
+        "q": "En el ejemplo de derivación implícita de orden superior si la primera derivada es el cociente $y'=x^2/y$ se debe aplicar obligatoriamente cierta regla para obtener la segunda derivada.",
         "opts": [
             "Regla del cociente",
             "Regla de la cadena",
@@ -209,7 +209,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Dentro del cálculo de la segunda derivada a partir del cociente x^2/y el desarrollo del numerador incorpora la primera derivada como factor de la siguiente forma.",
+        "q": "Dentro del cálculo de la segunda derivada a partir del cociente $x^2/y$ el desarrollo del numerador incorpora la primera derivada como factor de la siguiente forma:",
         "opts": [
             "$2xy - x^2 y'$",
             "$2x - x^2 y'$",
@@ -222,7 +222,7 @@
     },
     {
         "cat": "tabla_de_derivadas_y_orden_superior",
-        "q": "Indique la condición estricta bajo la cual es matemáticamente válida una derivada que contiene a la variable y en su denominador tal como y'=x^2/y.",
+        "q": "Indique la condición estricta bajo la cual es matemáticamente válida una derivada que contiene a la variable $y$ en su denominador tal como $y'=x^2/y$.",
         "opts": [
             "$y \\neq 0$",
             "$x \\neq 0$",

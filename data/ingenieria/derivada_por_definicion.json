@@ -14,7 +14,7 @@
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "¿Cuál es la expresión formal de la pendiente de la curva y=f(x) en el punto P(x_0, f(x_0))?",
+        "q": "¿Cuál es la expresión formal de la pendiente de la curva $y=f(x)$ en el punto $P(x_0, f(x_0))$?",
         "opts": [
             "$m=\\lim_{h\\rightarrow0}\\frac{f(x_0+h)-f(x_0)}{h}$",
             "$m=\\lim_{h\\rightarrow0}\\frac{f(x_0)-f(h)}{h}$",
@@ -23,7 +23,7 @@
         ],
         "ans": 0,
         "just": "La definición formal establece este límite específico evaluando el cambio de la función respecto al incremento que se aproxima a cero.",
-        "hint": "Identifica la opción que incluye el límite cuando h tiende a cero evaluado en el incremento de la función."
+        "hint": "Identifica la opción que incluye el límite cuando $h$ tiende a cero evaluado en el incremento de la función."
     },
     {
         "cat": "derivada_por_definicion",
@@ -35,12 +35,12 @@
             "Diferencial exacto"
         ],
         "ans": 0,
-        "just": "El texto especifica que la fracción evaluada con un incremento h distinto de cero es conocida académicamente como cociente de diferencias.",
+        "just": "El texto especifica que la fracción evaluada con un incremento $h$ distinto de cero es conocida académicamente como cociente de diferencias.",
         "hint": "Se trata de una división que mide variaciones previas al cálculo límite."
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "Para determinar la tangente a una curva en el punto P(x_0, f(x_0)), se utiliza un punto cercano Q. ¿Cuáles son las coordenadas de Q?",
+        "q": "Para determinar la tangente a una curva en el punto $P(x_0, f(x_0))$, se utiliza un punto cercano $Q$. ¿Cuáles son las coordenadas de $Q$?",
         "opts": [
             "$(x_0+h, f(x_0+h))$",
             "$(x_0-h, f(x_0-h))$",
@@ -48,12 +48,12 @@
             "$(x_0, f(x_0+h))$"
         ],
         "ans": 0,
-        "just": "El punto Q se define añadiendo un pequeño incremento h tanto a la abscisa original como a su correspondiente evaluación en la función.",
-        "hint": "Ambas coordenadas del punto vecino deben incorporar el incremento h."
+        "just": "El punto $Q$ se define añadiendo un pequeño incremento $h$ tanto a la abscisa original como a su correspondiente evaluación en la función.",
+        "hint": "Ambas coordenadas del punto vecino deben incorporar el incremento $h$."
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "Determine la pendiente de la curva y=1/x en cualquier punto x=a (a distinto de cero) mediante la definición por límite.",
+        "q": "Determine la pendiente de la curva $y=1/x$ en cualquier punto $x=a$ ($a$ distinto de cero) mediante la definición por límite.",
         "opts": [
             "$-\\frac{1}{a^2}$",
             "$\\frac{1}{a^2}$",
@@ -61,7 +61,7 @@
             "$\\frac{1}{a}$"
         ],
         "ans": 0,
-        "just": "El desarrollo del límite del cociente de diferencias para esta función simplifica el numerador a -h, resultando en un valor negativo cuadrático en el denominador.",
+        "just": "El desarrollo del límite del cociente de diferencias para esta función simplifica el numerador a $-h$, resultando en un valor negativo cuadrático en el denominador.",
         "hint": "El resultado final conlleva un signo negativo debido a la resta algebraica en el numerador."
     },
     {
@@ -74,17 +74,17 @@
             "La función no debe tener raíces reales"
         ],
         "ans": 0,
-        "just": "La definición matemática estipula que la existencia del límite cuando h tiende a cero es obligatoria para establecer el valor de la derivada.",
+        "just": "La definición matemática estipula que la existencia del límite cuando $h$ tiende a cero es obligatoria para establecer el valor de la derivada.",
         "hint": "La derivada es por definición el resultado de una operación de convergencia que debe ser válida."
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "El dominio de la función derivada f'(x) se define como:",
+        "q": "El dominio de la función derivada $f'(x)$ se define como:",
         "opts": [
-            "El conjunto de puntos en el dominio de f para los cuales existe el límite",
+            "El conjunto de puntos en el dominio de $f$ para los cuales existe el límite",
             "Todos los números reales positivos",
-            "El mismo dominio de la función original f sin restricciones",
-            "Los puntos donde la función f cruza el eje x"
+            "El mismo dominio de la función original $f$ sin restricciones",
+            "Los puntos donde la función $f$ cruza el eje $x$"
         ],
         "ans": 0,
         "just": "La función derivada únicamente está definida en las abscisas pertenecientes a la función original donde el cálculo límite arroja un resultado real y existente.",
@@ -92,12 +92,12 @@
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "Si la derivada f' existe en un punto x particular, entonces se afirma que la función f es:",
+        "q": "Si la derivada $f'$ existe en un punto $x$ particular, entonces se afirma que la función $f$ es:",
         "opts": [
-            "Derivable en x",
+            "Derivable en $x$",
             "Continua pero no derivable",
-            "Asintótica en x",
-            "Constante en x"
+            "Asintótica en $x$",
+            "Constante en $x$"
         ],
         "ans": 0,
         "just": "El concepto de derivabilidad en un punto está directamente ligado y condicionado a la existencia matemática de la función derivada en dicha coordenada.",
@@ -113,8 +113,8 @@
             "$f'(x)=\\lim_{h\\rightarrow x}\\frac{f(x+h)-f(z)}{h}$"
         ],
         "ans": 0,
-        "just": "Al aplicar el cambio de variable z=x+h, el incremento h tiende a 0 únicamente si z tiende a x, reestructurando el límite hacia esta forma equivalente.",
-        "hint": "Busca la expresión donde la nueva variable de aproximación z tiende directamente al punto de interés x."
+        "just": "Al aplicar el cambio de variable $z=x+h$, el incremento $h$ tiende a 0 únicamente si $z$ tiende a $x$, reestructurando el límite hacia esta forma equivalente.",
+        "hint": "Busca la expresión donde la nueva variable de aproximación $z$ tiende directamente al punto de interés $x$."
     },
     {
         "cat": "derivada_por_definicion",
@@ -126,7 +126,7 @@
             "$h=\\frac{z}{x}$"
         ],
         "ans": 0,
-        "just": "Despejando el incremento h de la sustitución planteada, se obtiene una diferencia simple que servirá como denominador en la fórmula alternativa.",
+        "just": "Despejando el incremento $h$ de la sustitución planteada, se obtiene una diferencia simple que servirá como denominador en la fórmula alternativa.",
         "hint": "Resta la variable original de la nueva variable para aislar el incremento."
     },
     {
@@ -139,7 +139,7 @@
             "$\\frac{x+h}{x+h}$"
         ],
         "ans": 0,
-        "just": "Para construir el cociente de diferencias correctamente se debe reemplazar cada instancia de x en la función original por el binomio (x+h).",
+        "just": "Para construir el cociente de diferencias correctamente se debe reemplazar cada instancia de $x$ en la función original por el binomio $(x+h)$.",
         "hint": "Sustituye la variable independiente tanto en el numerador como en el denominador simultáneamente."
     },
     {
@@ -152,8 +152,8 @@
             "$\\frac{-1}{(x+h-1)(x-1)}$"
         ],
         "ans": 0,
-        "just": "Al ejecutar las operaciones algebraicas cruzadas en el numerador, todos los términos con x se cancelan mutuamente dejando únicamente un término lineal de h negativo.",
-        "hint": "El resultado intermedio conserva la h en el numerador acompañada de un signo negativo."
+        "just": "Al ejecutar las operaciones algebraicas cruzadas en el numerador, todos los términos con $x$ se cancelan mutuamente dejando únicamente un término lineal de $h$ negativo.",
+        "hint": "El resultado intermedio conserva la $h$ en el numerador acompañada de un signo negativo."
     },
     {
         "cat": "derivada_por_definicion",
@@ -165,8 +165,8 @@
             "$\\frac{-x}{(x-1)^2}$"
         ],
         "ans": 0,
-        "just": "Tras simplificar el incremento h y evaluar el límite tendiendo a cero, el denominador adquiere dos factores idénticos multiplicados formando un cuadrado perfecto.",
-        "hint": "El límite elimina la h restante, convirtiendo el denominador en un binomio al cuadrado con numerador negativo."
+        "just": "Tras simplificar el incremento $h$ y evaluar el límite tendiendo a cero, el denominador adquiere dos factores idénticos multiplicados formando un cuadrado perfecto.",
+        "hint": "El límite elimina la $h$ restante, convirtiendo el denominador en un binomio al cuadrado con numerador negativo."
     },
     {
         "cat": "derivada_por_definicion",
@@ -179,7 +179,7 @@
         ],
         "ans": 0,
         "just": "Para evadir la indeterminación se multiplica tanto el numerador como el denominador por la expresión suma conjugada de las raíces cuadradas presentes.",
-        "hint": "Se busca eliminar las raíces del numerador mediante un producto notable que genera una diferencia de cuadrados."
+        "hint": "Se busca eliminar las raíces del numerador mediante un producto notable que genera una diferencia de cuadrados ($a^2 - b^2$)."
     },
     {
         "cat": "derivada_por_definicion",
@@ -191,7 +191,7 @@
             "$z^2-x^2$"
         ],
         "ans": 0,
-        "just": "El denominador z-x se reescribe estratégicamente como una diferencia de cuadrados de sus respectivas raíces para facilitar la simplificación posterior.",
+        "just": "El denominador $z-x$ se reescribe estratégicamente como una diferencia de cuadrados de sus respectivas raíces para facilitar la simplificación posterior.",
         "hint": "Se factoriza asumiendo que los términos lineales provienen de elevar raíces cuadradas al cuadrado."
     },
     {
@@ -204,16 +204,16 @@
             "$-\\frac{1}{2\\sqrt{x}}$"
         ],
         "ans": 0,
-        "just": "Al evaluar el límite cuando z tiende a x, las raíces en el denominador se suman resultando en el doble de la raíz cuadrada de la variable original.",
+        "just": "Al evaluar el límite cuando $z$ tiende a $x$, las raíces en el denominador se suman resultando en el doble de la raíz cuadrada de la variable original: $2\\sqrt{x}$.",
         "hint": "La simplificación final arroja un denominador donde se combinan dos términos radicales idénticos."
     },
     {
         "cat": "derivada_por_definicion",
-        "q": "Según las observaciones del texto académico, utilizar la notación f(x) en la definición central tiene como propósito:",
+        "q": "Según las observaciones del texto académico, utilizar la notación $f(x)$ en la definición central tiene como propósito:",
         "opts": [
-            "Enfatizar la variable independiente x respecto a la cual se define la función derivada",
+            "Enfatizar la variable independiente $x$ respecto a la cual se define la función derivada",
             "Simplificar visualmente el cálculo de los límites trigonométricos",
-            "Omitir el uso del incremento h en cálculos complejos",
+            "Omitir el uso del incremento $h$ en cálculos complejos",
             "Diferenciar entre derivadas implícitas y explícitas"
         ],
         "ans": 0,

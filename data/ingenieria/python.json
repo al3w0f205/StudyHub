@@ -1,0 +1,197 @@
+[
+    {
+        "cat": "sintaxis",
+        "q": "¿Qué diferencia principal hay entre una Lista y una Tupla en Python?",
+        "opts": [
+            "Las listas son mutables y las tuplas son inmutables",
+            "Las listas usan paréntesis () y las tuplas corchetes []",
+            "Las tuplas solo aceptan números",
+            "Las listas son más rápidas que las tuplas"
+        ],
+        "ans": 0,
+        "just": "Una lista puede modificarse tras su creación, mientras que una tupla tiene un contenido fijo que no puede alterarse.",
+        "hint": "Una se puede cambiar, la otra no."
+    },
+    {
+        "cat": "sintaxis",
+        "q": "¿Cómo se define una función en Python?",
+        "opts": [
+            "def mi_funcion():",
+            "function mi_funcion():",
+            "func mi_funcion():",
+            "void mi_funcion():"
+        ],
+        "ans": 0,
+        "just": "La palabra clave 'def' es el estándar para definir funciones en Python.",
+        "hint": "Abreviatura de 'define'."
+    },
+    {
+        "cat": "idiomas",
+        "q": "¿Qué es una 'List Comprehension' en Python?",
+        "opts": [
+            "Una forma concisa de crear listas basadas en listas existentes",
+            "Un método para comprimir archivos .zip",
+            "Una función para leer archivos de texto",
+            "Una herramienta de depuración de errores"
+        ],
+        "ans": 0,
+        "just": "Permite generar listas en una sola línea de código, siendo más legible y eficiente que un bucle tradicional.",
+        "hint": "Ejemplo: [x**2 for x in range(10)]"
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué significa que Python sea un lenguaje de 'Tipado Dinámico'?",
+        "opts": [
+            "No es necesario declarar el tipo de una variable al crearla",
+            "Los programas cambian de código mientras se ejecutan",
+            "Solo se puede usar en sistemas operativos dinámicos",
+            "Las variables solo pueden guardar números decimales"
+        ],
+        "ans": 0,
+        "just": "En Python, el tipo de una variable se determina en tiempo de ejecución según el valor que se le asigne.",
+        "hint": "Puedes pasar de variable = 5 a variable = 'Hola' sin errores."
+    },
+    {
+        "cat": "poo",
+        "q": "¿Cuál es el propósito del método '__init__' en una clase de Python?",
+        "opts": [
+            "Actuar como el constructor de la clase para inicializar atributos",
+            "Indicar el final del programa",
+            "Importar bibliotecas externas",
+            "Definir el nombre de la clase"
+        ],
+        "ans": 0,
+        "just": "Se ejecuta automáticamente cuando se crea una nueva instancia (objeto) de la clase.",
+        "hint": "Se usa para asignar los valores iniciales al objeto."
+    },
+    {
+        "cat": "estructuras",
+        "q": "¿Qué estructura de datos de Python usarías para almacenar pares clave-valor únicos?",
+        "opts": [
+            "Diccionario (dict)",
+            "Conjunto (set)",
+            "Lista (list)",
+            "Pila (stack)"
+        ],
+        "ans": 0,
+        "just": "Los diccionarios permiten asociar una clave única con un valor, facilitando búsquedas rápidas.",
+        "hint": "Se definen con llaves {}."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es el 'GIL' (Global Interpreter Lock) en Python?",
+        "opts": [
+            "Un mecanismo que asegura que solo un hilo ejecute código Python a la vez",
+            "Un sistema de seguridad contra virus",
+            "La licencia de código abierto de Python",
+            "Un error que ocurre al instalar bibliotecas"
+        ],
+        "ans": 0,
+        "just": "El GIL es un candado que impide que múltiples hilos nativos ejecuten bytecodes de Python simultáneamente en CPython.",
+        "hint": "Afecta el rendimiento en aplicaciones multi-hilo de CPU."
+    },
+    {
+        "cat": "sintaxis",
+        "q": "¿Qué operador se usa para la división entera en Python (que devuelve solo la parte entera)?",
+        "opts": [
+            "//",
+            "/",
+            "%",
+            "div"
+        ],
+        "ans": 0,
+        "just": "El operador // trunca el resultado al entero inferior más cercano.",
+        "hint": "5 // 2 da como resultado 2."
+    },
+    {
+        "cat": "avanzado",
+        "q": "¿Para qué sirve el decorador '@property'?",
+        "opts": [
+            "Para definir métodos que se comportan como atributos (getters)",
+            "Para proteger una función de ser borrada",
+            "Para hacer que una clase sea privada",
+            "Para acelerar la ejecución de un método"
+        ],
+        "ans": 0,
+        "just": "Permite acceder a un método como si fuera una variable, ocultando la lógica detrás de una propiedad.",
+        "hint": "Permite usar objeto.valor en lugar de objeto.get_valor()."
+    },
+    {
+        "cat": "idiomas",
+        "q": "¿Qué hace la declaración 'with' en Python?",
+        "opts": [
+            "Gestiona automáticamente recursos como archivos (Context Managers)",
+            "Permite importar múltiples módulos en una línea",
+            "Crea un bucle que se ejecuta mientras una condición se cumpla",
+            "Define una variable global"
+        ],
+        "ans": 0,
+        "just": "Asegura que los recursos se cierren o liberen correctamente, incluso si ocurre una excepción.",
+        "hint": "Se usa comúnmente al abrir archivos: with open(...) as f:"
+    },
+    {
+        "cat": "sintaxis",
+        "q": "¿Cómo se inserta un elemento al final de una lista en Python?",
+        "opts": [
+            "lista.append(elemento)",
+            "lista.add(elemento)",
+            "lista.insert(elemento)",
+            "lista.push(elemento)"
+        ],
+        "ans": 0,
+        "just": "El método append() añade el objeto al final de la lista existente.",
+        "hint": "Significa 'Anexar'."
+    },
+    {
+        "cat": "poo",
+        "q": "En Python, ¿qué representa el parámetro 'self' en los métodos de una clase?",
+        "opts": [
+            "La instancia actual de la clase",
+            "La clase padre",
+            "Una palabra clave opcional",
+            "El nombre del archivo de script"
+        ],
+        "ans": 0,
+        "just": "Self permite acceder a los atributos y otros métodos del objeto dentro de su propia definición.",
+        "hint": "Se refiere a 'sí mismo'."
+    },
+    {
+        "cat": "conceptos",
+        "q": "¿Qué es un Generador en Python?",
+        "opts": [
+            "Una función que devuelve un iterador que produce valores uno a uno con 'yield'",
+            "Un programa que crea otros programas automáticamente",
+            "Un tipo de dato para números aleatorios",
+            "Una herramienta para compilar Python a C"
+        ],
+        "ans": 0,
+        "just": "A diferencia de las listas, los generadores no guardan todos los valores en memoria, sino que los crean bajo demanda (Lazy Evaluation).",
+        "hint": "Utiliza la palabra clave 'yield' en lugar de 'return'."
+    },
+    {
+        "cat": "sintaxis",
+        "q": "¿Cuál es la forma correcta de manejar excepciones en Python?",
+        "opts": [
+            "try ... except",
+            "try ... catch",
+            "attempt ... rescue",
+            "do ... error"
+        ],
+        "ans": 0,
+        "just": "Python usa el bloque 'try' para el código que puede fallar y 'except' para capturar el error.",
+        "hint": "Intenta algo, y si falla, 'exceptúa' el error."
+    },
+    {
+        "cat": "estilo",
+        "q": "¿Qué es PEP 8?",
+        "opts": [
+            "La guía de estilo oficial para escribir código Python",
+            "La última versión del lenguaje Python",
+            "Un paquete de software para análisis de datos",
+            "Un protocolo de red de alta velocidad"
+        ],
+        "ans": 0,
+        "just": "Proporciona recomendaciones sobre cómo formatear el código para que sea legible y consistente para todos los programadores.",
+        "hint": "Trata sobre sangrías, nombres de variables y espacios."
+    }
+]

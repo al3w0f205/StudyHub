@@ -1,3 +1,7 @@
+// GlobalSearch — Barra de búsqueda para carreras y materias.
+// Filtrado client-side sobre el array de categorías precargado.
+// Busca por nombre de categoría o nombre de carrera. Max 8 resultados.
+// Click outside para cerrar el dropdown. Link directo al quiz de la categoría.
 "use client";
 
 import { useState, useEffect, useRef } from "react";

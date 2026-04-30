@@ -1,7 +1,28 @@
+// =============================================================================
+// StudyHub — API Admin: Estadísticas del Dashboard (/api/admin/stats)
+// =============================================================================
+// Genera datos agregados para el panel de administración. Solo accesible por ADMIN.
+//
+// DATOS RETORNADOS:
+//   summary        → Usuarios totales, ingresos, pagos pendientes, reportes de error
+//   revenueHistory → Ingresos por día (últimos 30 días), $10 por pago aprobado
+//   userGrowth     → Nuevos usuarios por día (últimos 30 días)
+//   activityHistory → Respuestas de quiz por día (últimos 7 días)
+//   failedRanking   → Top 5 categorías con más respuestas incorrectas
+//
+// NOTA SOBRE INGRESOS:
+//   Actualmente se asume $10 por cada PaymentRequest aprobada.
+//   Si los precios varían, agregar un campo `amount` al modelo PaymentRequest.
+// =============================================================================
+
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+/**
+ * GET /api/admin/stats
+ * Retorna estadísticas completas para el dashboard de administración.
+ */
 export async function GET() {
   const session = await auth();
   if (session?.user?.role !== "ADMIN") {
@@ -13,7 +34,7 @@ export async function GET() {
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   try {
-    // 1. General Stats
+    // ── 1. Contadores generales (consultas en paralelo para velocidad) ──
     const [totalUsers, totalQuestions, approvedPayments, pendingPayments, errorReports] = await Promise.all([
       prisma.user.count(),
       prisma.question.count(),
@@ -22,7 +43,7 @@ export async function GET() {
       prisma.errorReport.count({ where: { status: "PENDING" } }),
     ]);
 
-    // 2. Revenue History (Approved payments per day, last 30 days)
+    // ── 2. Historial de ingresos (pagos aprobados por día, últimos 30 días) ──
     const payments = await prisma.paymentRequest.findMany({
       where: {
         status: "APPROVED",
@@ -31,17 +52,18 @@ export async function GET() {
       select: { reviewedAt: true },
     });
 
+    // Agrupar pagos por fecha y sumar $10 por cada uno
     const revenueMap = {};
     payments.forEach(p => {
       const date = p.reviewedAt.toISOString().slice(0, 10);
-      revenueMap[date] = (revenueMap[date] || 0) + 10; // $10 per payment
+      revenueMap[date] = (revenueMap[date] || 0) + 10;
     });
 
     const revenueHistory = Object.entries(revenueMap)
       .map(([date, amount]) => ({ date, amount }))
       .sort((a, b) => a.date.localeCompare(b.date));
 
-    // 3. User Growth (New users per day, last 30 days)
+    // ── 3. Crecimiento de usuarios (nuevos por día, últimos 30 días) ──
     const newUsers = await prisma.user.findMany({
       where: { createdAt: { gte: thirtyDaysAgo } },
       select: { createdAt: true },
@@ -57,7 +79,7 @@ export async function GET() {
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date));
 
-    // 4. Activity (Question responses per day, last 7 days)
+    // ── 4. Actividad reciente (respuestas por día, últimos 7 días) ──
     const responses = await prisma.questionResponse.findMany({
       where: { createdAt: { gte: sevenDaysAgo } },
       select: { createdAt: true },
@@ -73,12 +95,12 @@ export async function GET() {
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date));
 
-    // 5. Most failed categories (Top 5)
-    // This is more complex, let's just get the count of isCorrect: false per category
+    // ── 5. Ranking de categorías más falladas (Top 5) ──
+    // Consultar las últimas 1000 respuestas incorrectas y agrupar por categoría
     const failedResponses = await prisma.questionResponse.findMany({
       where: { isCorrect: false },
       include: { question: { select: { categoryId: true } } },
-      take: 1000, // Limit to recent
+      take: 1000,
     });
 
     const failedMap = {};
@@ -87,6 +109,7 @@ export async function GET() {
       failedMap[catId] = (failedMap[catId] || 0) + 1;
     });
 
+    // Obtener nombres de las categorías
     const categoryIds = Object.keys(failedMap);
     const categories = await prisma.category.findMany({
       where: { id: { in: categoryIds } },
@@ -98,11 +121,12 @@ export async function GET() {
       failures: failedMap[c.id]
     })).sort((a, b) => b.failures - a.failures).slice(0, 5);
 
+    // ── Respuesta final ──
     return NextResponse.json({
       summary: {
         totalUsers,
         totalQuestions,
-        revenue: approvedPayments * 10,
+        revenue: approvedPayments * 10, // $10 por pago aprobado
         pendingPayments,
         errorReports,
       },

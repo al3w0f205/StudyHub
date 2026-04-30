@@ -1,3 +1,7 @@
+// SmoothScroll — Scroll suave global usando la librería Lenis.
+// Se monta una sola vez en el layout raíz. Proporciona scroll con easing
+// exponencial y maneja clicks en anchor links (#hash) con offset de 100px
+// para compensar la navegación sticky.
 "use client";
 
 import { useEffect } from 'react';

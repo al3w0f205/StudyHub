@@ -1,3 +1,7 @@
+// CompetencyRadar — Gráfico radar SVG de competencias por materia.
+// Renderizado custom con SVG (sin librería de gráficos). Muestra dominio
+// por categoría (0-100%). Requiere mínimo 3 categorías para renderizar.
+// Datos obtenidos de GET /api/user/analytics.
 "use client";
 import React, { useEffect, useState } from "react";
 

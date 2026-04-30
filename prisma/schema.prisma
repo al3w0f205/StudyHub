@@ -29,6 +29,7 @@ model Account {
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -37,6 +38,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model VerificationToken {
@@ -140,6 +143,7 @@ model Category {
   updatedAt    DateTime       @updatedAt
 
   @@unique([careerId, slug])
+  @@index([careerId])
 }
 
 model Question {
@@ -155,6 +159,8 @@ model Question {
   responses    QuestionResponse[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@index([categoryId])
 }
 
 model PaymentRequest {
@@ -169,6 +175,9 @@ model PaymentRequest {
   reviewedAt       DateTime?
   createdAt        DateTime             @default(now())
   updatedAt        DateTime             @updatedAt
+
+  @@index([userId])
+  @@index([status])
 }
 
 model QuestionSuggestion {
@@ -196,6 +205,8 @@ model QuizProgress {
   updatedAt  DateTime @updatedAt
 
   @@unique([userId, categoryId])
+  @@index([userId])
+  @@index([categoryId])
 }
 
 model QuestionResponse {
@@ -206,6 +217,10 @@ model QuestionResponse {
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
+
+  @@unique([userId, questionId])
+  @@index([userId, questionId])
+  @@index([userId])
 }
 
 model Changelog {
@@ -226,4 +241,7 @@ model ErrorReport {
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
+
+  @@index([questionId])
+  @@index([status])
 }

@@ -1,3 +1,7 @@
+// CareerSelector — Grid de tarjetas para seleccionar carrera en /quiz.
+// Usa router.replace() con scroll: false para evitar scroll-jump al cambiar.
+// La carrera activa se resalta con gradient-primary y barra inferior blanca.
+// Usa useTransition para manejar la navegación sin bloquear la UI.
 "use client";
 
 import { useRouter } from "next/navigation";

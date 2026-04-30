@@ -1,7 +1,16 @@
+// =============================================================================
+// StudyHub — API Admin: Gestión de Actualizaciones (/api/admin/updates)
+// =============================================================================
+// CRUD para el changelog. Las actualizaciones se muestran en /updates.
+// MÉTODOS: POST (crear) | DELETE (eliminar por ID)
+// NOTA: GET público en /api/updates (sin auth requerido).
+// =============================================================================
+
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+/** POST /api/admin/updates — Crear entrada de changelog. */
 export async function POST(req) {
   const session = await auth();
   if (session?.user?.role !== "ADMIN") {
@@ -19,6 +28,7 @@ export async function POST(req) {
   }
 }
 
+/** DELETE /api/admin/updates?id=<id> — Eliminar entrada por ID. */
 export async function DELETE(req) {
   const session = await auth();
   if (session?.user?.role !== "ADMIN") {

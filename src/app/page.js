@@ -177,9 +177,9 @@ function ProductPreview({ totalFormatted, topCareer }) {
             <span>Modo Simulacro</span>
             <span>00:24 ⏱️</span>
           </div>
-          <MathText className="preview-question-text">
-            ### ¿Cuál es la derivada de $f(x) = \sin(x)$?
-          </MathText>
+          <div className="preview-question-text">
+            <h3 style={{ margin: 0 }}>¿Cuál es la derivada de <MathText>$f(x) = \sin(x)$</MathText>?</h3>
+          </div>
           <div className="preview-answer selected" style={{ borderColor: "var(--primary-400)", background: "rgba(99,102,241,0.1)" }}>
             <span>A</span>
             <MathText>$\cos(x)$</MathText>

@@ -1,3 +1,6 @@
+// CopyButton — Botón para copiar texto al portapapeles.
+// Dos modos: con label (botón ancho con texto) o sin label (icono compacto).
+// Muestra "¡Copiado!" / "✓" durante 2 segundos después de copiar.
 "use client";
 
 import { Copy } from "lucide-react";

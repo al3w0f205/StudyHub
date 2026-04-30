@@ -1,3 +1,7 @@
+// ThemeToggle — Botón de alternancia dark/light mode.
+// Persiste preferencia en localStorage("studyhub_theme").
+// Usa useSyncExternalStore para reactividad inmediata entre tabs.
+// Aplica data-theme="dark|light" al <html> para activar CSS variables.
 "use client";
 
 import { useSyncExternalStore } from "react";

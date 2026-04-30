@@ -1,3 +1,7 @@
+// Toast — Sistema de notificaciones tipo "toast" con animaciones.
+// Usa React Context (ToastProvider/useToast) para acceso global.
+// Tipos: success (verde), error (rojo), warning (amarillo), info (azul).
+// Auto-dismiss configurable. Animado con framer-motion.
 "use client";
 
 import { useState, useEffect, createContext, useContext } from "react";

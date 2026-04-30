@@ -1,15 +1,18 @@
+// AdminDashboard — Panel principal del administrador.
+// Muestra: stat cards (usuarios, ingresos, pagos, reportes), gráficos de
+// ingresos (AreaChart), crecimiento de usuarios (BarChart), actividad reciente
+// (AreaChart), y radar de categorías más falladas (RadarChart).
+// Datos obtenidos de GET /api/admin/stats. Usa Recharts para visualización.
 "use client";
 
 import { useState, useEffect } from "react";
-import { 
+import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, Cell, PieChart, Pie, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
+  BarChart, Bar, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from "recharts";
-import { 
-  Users, CreditCard, HelpCircle, AlertTriangle, TrendingUp, 
-  Activity, BookOpen, ChevronRight, RefreshCw 
-} from "lucide-react";
+import { Users, CreditCard, HelpCircle, AlertTriangle, TrendingUp, Activity, BookOpen, ChevronRight, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import StatCard from "@/components/ui/StatCard";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
@@ -44,41 +47,45 @@ export default function AdminDashboard() {
 
   if (!stats) return <div>Error al cargar estadísticas.</div>;
 
-  const { summary, revenueHistory, userGrowth, activityHistory, failedRanking } = stats;
+  const { summary, revenueHistory, activityHistory, failedRanking } = stats;
 
   return (
     <div className="animate-fade-in" style={{ display: "grid", gap: "1.5rem" }}>
       
-      {/* Summary Cards */}
+      {/* Summary Cards — using shared StatCard */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.25rem" }}>
-        <StatCard 
-          title="Usuarios Totales" 
-          value={summary.totalUsers} 
-          icon={<Users size={20} />} 
-          color="var(--primary-400)"
-          link="/admin/users"
-        />
-        <StatCard 
-          title="Ingresos Totales" 
-          value={`$${summary.revenue}`} 
-          icon={<CreditCard size={20} />} 
-          color="var(--success-400)"
-          link="/admin/payments"
-        />
-        <StatCard 
-          title="Pagos Pendientes" 
-          value={summary.pendingPayments} 
-          icon={<AlertTriangle size={20} />} 
-          color={summary.pendingPayments > 0 ? "var(--warning-400)" : "var(--text-tertiary)"}
-          link="/admin/payments"
-        />
-        <StatCard 
-          title="Reportes de Error" 
-          value={summary.errorReports} 
-          icon={<HelpCircle size={20} />} 
-          color={summary.errorReports > 0 ? "var(--danger-400)" : "var(--text-tertiary)"}
-          link="/admin/error-reports"
-        />
+        <Link href="/admin/users" style={{ textDecoration: "none", color: "inherit" }}>
+          <StatCard 
+            label="Usuarios Totales" 
+            value={summary.totalUsers} 
+            icon={<Users size={20} />} 
+            color="var(--primary-400)"
+          />
+        </Link>
+        <Link href="/admin/payments" style={{ textDecoration: "none", color: "inherit" }}>
+          <StatCard 
+            label="Ingresos Totales" 
+            value={`$${summary.revenue}`} 
+            icon={<CreditCard size={20} />} 
+            color="var(--success-400)"
+          />
+        </Link>
+        <Link href="/admin/payments" style={{ textDecoration: "none", color: "inherit" }}>
+          <StatCard 
+            label="Pagos Pendientes" 
+            value={summary.pendingPayments} 
+            icon={<AlertTriangle size={20} />} 
+            color={summary.pendingPayments > 0 ? "var(--warning-400)" : "var(--text-tertiary)"}
+          />
+        </Link>
+        <Link href="/admin/error-reports" style={{ textDecoration: "none", color: "inherit" }}>
+          <StatCard 
+            label="Reportes de Error" 
+            value={summary.errorReports} 
+            icon={<HelpCircle size={20} />} 
+            color={summary.errorReports > 0 ? "var(--danger-400)" : "var(--text-tertiary)"}
+          />
+        </Link>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "1.5rem" }}>
@@ -188,24 +195,6 @@ export default function AdminDashboard() {
       </div>
 
     </div>
-  );
-}
-
-function StatCard({ title, value, icon, color, link }) {
-  return (
-    <Link href={link} className="solid-card" style={{ padding: "1.25rem", display: "flex", alignItems: "center", gap: "1rem", transition: "transform 0.2s", cursor: "pointer" }}>
-      <div style={{ 
-        width: "40px", height: "40px", borderRadius: "10px", 
-        background: `${color}15`, color: color,
-        display: "flex", alignItems: "center", justifyContent: "center"
-      }}>
-        {icon}
-      </div>
-      <div>
-        <div style={{ fontSize: "0.75rem", color: "var(--text-tertiary)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>{title}</div>
-        <div style={{ fontSize: "1.25rem", fontWeight: 800 }}>{value}</div>
-      </div>
-    </Link>
   );
 }
 

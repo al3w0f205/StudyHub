@@ -1,3 +1,16 @@
+// =============================================================================
+// StudyHub — Root Layout (Server Component)
+// =============================================================================
+// Layout raíz de la aplicación. Configura:
+//   - Metadata SEO (título, descripción, keywords)
+//   - Viewport y PWA settings
+//   - Tema persistente (dark/light vía localStorage, aplicado antes del paint)
+//   - Anti-piratería: bloquea DevTools, right-click, Ctrl+C/S/P/U
+//   - Service Worker para PWA offline capability
+//   - Providers globales: ToastProvider, SmoothScroll
+//   - KaTeX CSS para renderizado de fórmulas matemáticas
+// =============================================================================
+
 import "./globals.css";
 import "katex/dist/katex.min.css";
 
@@ -54,16 +67,13 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
+              // ── Tema: aplicar antes del primer paint para evitar flash ──
               try {
                 var storedTheme = localStorage.getItem('studyhub_theme');
-                if (storedTheme) {
-                  document.documentElement.setAttribute('data-theme', storedTheme);
-                } else {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
+                document.documentElement.setAttribute('data-theme', storedTheme || 'dark');
               } catch (e) {}
 
-              // Anti-Piracy Protection
+              // ── Anti-Piratería: bloquear atajos de copia y DevTools ──
               document.addEventListener('contextmenu', e => e.preventDefault());
               document.addEventListener('keydown', e => {
                 if (
@@ -72,25 +82,23 @@ export default function RootLayout({ children }) {
                   (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
                   (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
                   (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
-                  (e.ctrlKey && e.keyCode === 67)    // Ctrl+C (as fallback)
+                  (e.ctrlKey && e.keyCode === 67)    // Ctrl+C
                 ) {
                   e.preventDefault();
                   return false;
                 }
               });
-              // Service Worker Registration
+
+              // ── Service Worker: registrar para PWA offline ──
               if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('SW registered');
-                  }, function(err) {
-                    console.log('SW failed: ', err);
-                  });
+                  navigator.serviceWorker.register('/sw.js').catch(function() {});
                 });
               }
             `,
           }}
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
       </head>
       <body>
         <SmoothScroll />
@@ -101,3 +109,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

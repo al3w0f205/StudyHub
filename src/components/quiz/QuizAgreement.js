@@ -1,3 +1,7 @@
+// QuizAgreement — Modal de aceptación de normas anti-piratería.
+// Se muestra una sola vez antes de acceder al contenido de quiz.
+// Persiste en localStorage("studyhub_agreement") — no se vuelve a mostrar.
+// Usa useSyncExternalStore para reactividad inmediata al aceptar.
 "use client";
 
 import { useState, useSyncExternalStore } from "react";

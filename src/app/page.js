@@ -149,6 +149,8 @@ function PrimaryLink({ href, children, variant = "primary" }) {
   );
 }
 
+import MathText from "@/components/ui/MathText";
+
 function ProductPreview({ totalFormatted, topCareer }) {
   return (
     <div className="product-preview" aria-label="Vista previa de StudyHub">
@@ -175,14 +177,16 @@ function ProductPreview({ totalFormatted, topCareer }) {
             <span>Modo Simulacro</span>
             <span>00:24 ⏱️</span>
           </div>
-          <h3>¿Cuál es la derivada de $f(x) = \sin(x)$?</h3>
+          <MathText className="preview-question-text">
+            ### ¿Cuál es la derivada de $f(x) = \sin(x)$?
+          </MathText>
           <div className="preview-answer selected" style={{ borderColor: "var(--primary-400)", background: "rgba(99,102,241,0.1)" }}>
             <span>A</span>
-            <p>$\cos(x)$</p>
+            <MathText>$\cos(x)$</MathText>
           </div>
           <div className="preview-answer">
             <span>B</span>
-            <p>$-\cos(x)$</p>
+            <MathText>$-\cos(x)$</MathText>
           </div>
           <div className="preview-explanation" style={{ borderLeft: "3px solid var(--accent-400)", background: "rgba(34,211,238,0.05)" }}>
             <strong>Justificación</strong>

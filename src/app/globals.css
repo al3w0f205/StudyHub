@@ -1687,11 +1687,15 @@ a {
   line-height: 1.45;
 }
 
-.preview-question h3 {
+.preview-question .math-text-wrapper h3 {
   margin: 1.1rem 0;
   font-size: 1.35rem;
   letter-spacing: 0;
   line-height: 1.25;
+}
+
+.preview-question .math-text-wrapper p {
+  margin: 0;
 }
 
 .preview-answer {

@@ -23,7 +23,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(clients.claim()); // Take control immediately
+  event.waitUntil(self.clients.claim()); // Take control immediately
 });
 
 self.addEventListener('fetch', (event) => {

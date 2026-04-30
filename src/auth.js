@@ -94,6 +94,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.subscriptionExpiry = user.subscriptionExpiry ? new Date(user.subscriptionExpiry).toISOString() : null;
+        token.isSuspended = user.isSuspended;
+        token.allowedCareers = user.allowedCareers;
         token.lastRefreshed = Date.now();
       }
 

@@ -89,15 +89,9 @@ const authConfig = {
         return Response.redirect(new URL("/admin", nextUrl));
       }
 
-      // 6. Verificar suscripción activa para acceder a cuestionarios
-      if (pathname.startsWith("/quiz") && auth?.user?.role !== "ADMIN") {
-        const expiry = auth?.user?.subscriptionExpiry;
-        const isActive = expiry && new Date(expiry) > new Date();
-        if (!isActive) {
-          return Response.redirect(new URL("/payment?reason=expired", nextUrl));
-        }
-      }
-
+      // 6. El acceso a cuestionarios (/quiz) se valida en tiempo real dentro de layout.js
+      // para evitar bloqueos por tokens JWT obsoletos tras una aprobación de pago.
+      
       return true;
     },
 

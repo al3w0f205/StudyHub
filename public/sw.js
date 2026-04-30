@@ -29,13 +29,20 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Return cached asset or fetch from network
-      return response || fetch(event.request).catch(() => {
-        // If both fail and it's a page navigation, we could return an offline page
-        // For now, just let it fail or return cached root
+      // Return cached asset if found
+      if (response) return response;
+
+      // Otherwise try to fetch from network
+      return fetch(event.request).catch((err) => {
+        // If it's a page navigation, try to return the cached root as fallback
         if (event.request.mode === 'navigate') {
-          return caches.match('/');
+          return caches.match('/').then(rootResponse => {
+            return rootResponse || Promise.reject(err);
+          });
         }
+        
+        // For other assets, re-throw to trigger a standard network error in the browser
+        throw err;
       });
     })
   );

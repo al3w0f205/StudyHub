@@ -198,8 +198,12 @@ export default async function HomePage() {
   let session = null;
 
   if (!IS_PREVIEW_MODE) {
-    const { auth } = await import("@/auth");
-    session = await auth();
+    try {
+      const { auth } = await import("@/auth");
+      session = await auth();
+    } catch (error) {
+      console.error("Auth error on home page:", error);
+    }
   }
 
   const isLoggedIn = !!session?.user;

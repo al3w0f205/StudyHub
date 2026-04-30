@@ -35,6 +35,7 @@ export const viewport = {
 };
 
 import { ToastProvider } from "@/components/ui/Toast";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function RootLayout({ children }) {
   return (
@@ -91,6 +92,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <SmoothScroll />
         <ToastProvider>
           {children}
         </ToastProvider>

@@ -35,6 +35,7 @@ async function deleteQuestion(formData) {
 }
 
 export default async function QuestionsPage({ searchParams }) {
+  await requireAdmin();
   const params = await searchParams;
   const categoryId = params?.categoryId || "";
   const page = parseInt(params?.page || "1", 10);

@@ -19,12 +19,13 @@ export default function CopyButton({ text, label, fullWidth = false }) {
         className="btn btn-sm"
         style={{
           width: fullWidth ? "100%" : "auto",
-          background: "transparent",
-          border: "1px dashed var(--border-default)",
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid var(--border-default)",
           fontSize: "0.75rem",
-          marginTop: "0.25rem",
-          color: copied ? "var(--success-400)" : "var(--text-tertiary)",
-          transition: "all 0.2s ease"
+          marginTop: "0.5rem",
+          color: copied ? "var(--success-400)" : "var(--text-secondary)",
+          transition: "all 0.2s ease",
+          height: "36px"
         }}
       >
         {copied ? "¡Copiado!" : label}

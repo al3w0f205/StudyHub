@@ -34,6 +34,7 @@ async function deleteCareer(formData) {
 }
 
 export default async function CareersPage() {
+  await requireAdmin();
   try {
     const careers = await prisma.career.findMany({
       orderBy: { name: "asc" },

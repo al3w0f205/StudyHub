@@ -1,10 +1,12 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth-guards";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Reportes de Error — Admin" };
 
 export default async function AdminErrorReportsPage() {
+  await requireAdmin();
   try {
     const reports = await prisma.errorReport.findMany({
       include: {

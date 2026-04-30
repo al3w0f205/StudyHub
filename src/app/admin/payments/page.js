@@ -68,6 +68,7 @@ async function rejectPayment(formData) {
 }
 
 export default async function PaymentsPage() {
+  await requireAdmin();
   try {
     const payments = await prisma.paymentRequest.findMany({
       orderBy: { createdAt: "desc" },

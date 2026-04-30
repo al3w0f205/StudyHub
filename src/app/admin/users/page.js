@@ -72,6 +72,7 @@ async function updateAllowedCareers(formData) {
 }
 
 export default async function UsersPage() {
+  await requireAdmin();
   try {
     const [users, careers] = await Promise.all([
       prisma.user.findMany({

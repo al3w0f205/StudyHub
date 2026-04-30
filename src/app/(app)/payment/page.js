@@ -224,11 +224,16 @@ export default async function PaymentPage({ searchParams }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
               {transferAccounts.map((account, idx) => {
                 const detail = parseTransferAccountDetail(account);
-                // Simple color logic based on index or name
+                
+                // Color Logic
                 const isPichincha = detail.bank?.toLowerCase().includes("pichincha");
-                const cardAccent = isPichincha ? "var(--warning-400)" : "var(--primary-400)";
-                const cardBg = isPichincha ? "rgba(245,158,11,0.03)" : "rgba(34,211,238,0.03)";
-                const cardBorder = isPichincha ? "rgba(245,158,11,0.15)" : "rgba(34,211,238,0.15)";
+                const isProdubanco = detail.bank?.toLowerCase().includes("produbanco");
+                
+                let cardAccent = "var(--primary-400)";
+                if (isPichincha) cardAccent = "var(--warning-400)";
+                if (isProdubanco) cardAccent = "var(--success-400)";
+
+                const cardBorder = `${cardAccent}25`;
 
                 return (
                   <div
@@ -241,10 +246,10 @@ export default async function PaymentPage({ searchParams }) {
                       padding: "1.5rem",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "1rem",
+                      gap: "1.25rem",
                       position: "relative",
                       overflow: "hidden",
-                      boxShadow: "0 10px 30px -15px rgba(0,0,0,0.3)"
+                      boxShadow: "0 10px 30px -15px rgba(0,0,0,0.4)"
                     }}
                   >
                     {/* Decorative bank indicator */}
@@ -285,14 +290,14 @@ export default async function PaymentPage({ searchParams }) {
                         </div>
                       </div>
 
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "0.75rem" }}>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)", minWidth: 0 }}>
                           <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>Titular</div>
-                          <div style={{ fontSize: "0.8125rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{detail.owner || "---"}</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={detail.owner}>{detail.owner || "---"}</div>
                         </div>
-                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
+                        <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)", minWidth: 0 }}>
                           <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>CI / RIF</div>
-                          <div style={{ fontSize: "0.8125rem", fontWeight: 700 }}>{detail.idNumber || "---"}</div>
+                          <div style={{ fontSize: "0.8125rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={detail.idNumber}>{detail.idNumber || "---"}</div>
                         </div>
                       </div>
 

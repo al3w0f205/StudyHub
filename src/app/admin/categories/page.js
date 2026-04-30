@@ -51,6 +51,7 @@ async function deleteCategory(formData) {
 }
 
 export default async function CategoriesPage({ searchParams }) {
+  await requireAdmin();
   const params = await searchParams;
   const careerId = params?.careerId || "";
 

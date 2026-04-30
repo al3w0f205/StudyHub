@@ -32,7 +32,7 @@ const navSections = [
   },
 ];
 
-export default function DashboardLayout({ children }) {
+export default function AppLayout({ children }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isActivePath = (href) => (href === "/dashboard" ? pathname === href : pathname.startsWith(href));

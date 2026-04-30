@@ -68,10 +68,11 @@ async function rejectPayment(formData) {
 }
 
 export default async function PaymentsPage() {
-  const payments = await prisma.paymentRequest.findMany({
-    orderBy: { createdAt: "desc" },
-    include: { user: { select: { name: true, email: true } } },
-  });
+  try {
+    const payments = await prisma.paymentRequest.findMany({
+      orderBy: { createdAt: "desc" },
+      include: { user: { select: { name: true, email: true } } },
+    });
 
   const pending = payments.filter((p) => p.status === "PENDING");
   const reviewed = payments.filter((p) => p.status !== "PENDING");
@@ -157,6 +158,17 @@ export default async function PaymentsPage() {
           </div>
         </>
       )}
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("AdminPayments Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar los pagos.
+        </p>
+        <Link href="/admin/payments" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

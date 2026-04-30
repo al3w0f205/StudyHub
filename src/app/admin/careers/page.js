@@ -34,10 +34,11 @@ async function deleteCareer(formData) {
 }
 
 export default async function CareersPage() {
-  const careers = await prisma.career.findMany({
-    orderBy: { name: "asc" },
-    include: { _count: { select: { categories: true } } },
-  });
+  try {
+    const careers = await prisma.career.findMany({
+      orderBy: { name: "asc" },
+      include: { _count: { select: { categories: true } } },
+    });
 
   return (
     <div>
@@ -124,6 +125,17 @@ export default async function CareersPage() {
           </table>
         </div>
       )}
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("AdminCareers Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar las carreras.
+        </p>
+        <Link href="/admin/careers" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

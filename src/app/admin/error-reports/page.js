@@ -5,17 +5,18 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Reportes de Error — Admin" };
 
 export default async function AdminErrorReportsPage() {
-  const reports = await prisma.errorReport.findMany({
-    include: {
-      user: { select: { name: true, email: true } },
-      question: { 
-        include: { 
-          category: { select: { name: true, career: { select: { name: true } } } } 
-        } 
-      }
-    },
-    orderBy: { createdAt: "desc" }
-  });
+  try {
+    const reports = await prisma.errorReport.findMany({
+      include: {
+        user: { select: { name: true, email: true } },
+        question: { 
+          include: { 
+            category: { select: { name: true, career: { select: { name: true } } } } 
+          } 
+        }
+      },
+      orderBy: { createdAt: "desc" }
+    });
 
   return (
     <div className="admin-container">
@@ -81,6 +82,17 @@ export default async function AdminErrorReportsPage() {
           </tbody>
         </table>
       </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("AdminErrorReports Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar los reportes.
+        </p>
+        <Link href="/admin/error-reports" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

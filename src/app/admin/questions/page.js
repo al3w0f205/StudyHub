@@ -39,20 +39,22 @@ export default async function QuestionsPage({ searchParams }) {
   const categoryId = params?.categoryId || "";
   const page = parseInt(params?.page || "1", 10);
   const perPage = 20;
-  const categories = await prisma.category.findMany({
-    orderBy: { name: "asc" },
-    include: { career: { select: { name: true } } },
-  });
-  const where = categoryId ? { categoryId } : {};
-  const [questions, total] = await Promise.all([
-    prisma.question.findMany({
-      where, orderBy: { createdAt: "desc" },
-      include: { category: { select: { name: true, career: { select: { name: true } } } } },
-      skip: (page - 1) * perPage, take: perPage,
-    }),
-    prisma.question.count({ where }),
-  ]);
-  const totalPages = Math.ceil(total / perPage);
+
+  try {
+    const categories = await prisma.category.findMany({
+      orderBy: { name: "asc" },
+      include: { career: { select: { name: true } } },
+    });
+    const where = categoryId ? { categoryId } : {};
+    const [questions, total] = await Promise.all([
+      prisma.question.findMany({
+        where, orderBy: { createdAt: "desc" },
+        include: { category: { select: { name: true, career: { select: { name: true } } } } },
+        skip: (page - 1) * perPage, take: perPage,
+      }),
+      prisma.question.count({ where }),
+    ]);
+    const totalPages = Math.ceil(total / perPage);
 
   return (
     <div>
@@ -126,6 +128,17 @@ export default async function QuestionsPage({ searchParams }) {
           {page < totalPages && <a href={`/admin/questions?${categoryId ? `categoryId=${categoryId}&` : ""}page=${page+1}`} className="btn btn-secondary btn-sm">Sig. →</a>}
         </div>
       )}
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("AdminQuestions Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar las preguntas.
+        </p>
+        <Link href="/admin/questions" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

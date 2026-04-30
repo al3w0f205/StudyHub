@@ -72,17 +72,18 @@ async function updateAllowedCareers(formData) {
 }
 
 export default async function UsersPage() {
-  const [users, careers] = await Promise.all([
-    prisma.user.findMany({
-      orderBy: { createdAt: "desc" },
-      select: {
-        id: true, name: true, email: true, role: true, image: true,
-        subscriptionExpiry: true, isSuspended: true, createdAt: true, allowedCareers: true,
-        _count: { select: { paymentRequests: true } },
-      },
-    }),
-    prisma.career.findMany({ orderBy: { name: "asc" } })
-  ]);
+  try {
+    const [users, careers] = await Promise.all([
+      prisma.user.findMany({
+        orderBy: { createdAt: "desc" },
+        select: {
+          id: true, name: true, email: true, role: true, image: true,
+          subscriptionExpiry: true, isSuspended: true, createdAt: true, allowedCareers: true,
+          _count: { select: { paymentRequests: true } },
+        },
+      }),
+      prisma.career.findMany({ orderBy: { name: "asc" } })
+    ]);
 
   return (
     <div>
@@ -191,6 +192,17 @@ export default async function UsersPage() {
           </table>
         </div>
       )}
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("AdminUsers Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar los usuarios.
+        </p>
+        <Link href="/admin/users" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

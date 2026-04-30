@@ -54,26 +54,27 @@ export default async function CategoriesPage({ searchParams }) {
   const params = await searchParams;
   const careerId = params?.careerId || "";
 
-  const careers = await prisma.career.findMany({ orderBy: { name: "asc" } });
+  try {
+    const careers = await prisma.career.findMany({ orderBy: { name: "asc" } });
 
-  const categories = careerId
-    ? await prisma.category.findMany({
-        where: { careerId },
-        orderBy: { name: "asc" },
-        include: {
-          career: { select: { name: true } },
-          _count: { select: { questions: true } },
-        },
-      })
-    : await prisma.category.findMany({
-        orderBy: { name: "asc" },
-        include: {
-          career: { select: { name: true } },
-          _count: { select: { questions: true } },
-        },
-      });
+    const categories = careerId
+      ? await prisma.category.findMany({
+          where: { careerId },
+          orderBy: { name: "asc" },
+          include: {
+            career: { select: { name: true } },
+            _count: { select: { questions: true } },
+          },
+        })
+      : await prisma.category.findMany({
+          orderBy: { name: "asc" },
+          include: {
+            career: { select: { name: true } },
+            _count: { select: { questions: true } },
+          },
+        });
 
-  const selectedCareer = careers.find((c) => c.id === careerId);
+    const selectedCareer = careers.find((c) => c.id === careerId);
 
   return (
     <div>
@@ -217,6 +218,18 @@ export default async function CategoriesPage({ searchParams }) {
           </table>
         </div>
       )}
-    </div>
-  );
+      </div>
+    );
+  } catch (error) {
+    console.error("AdminCategories Error:", error);
+    return (
+      <div className="solid-card" style={{ padding: "2rem", textAlign: "center" }}>
+        <h2 style={{ marginBottom: "1rem" }}>⚠️ Error de Base de Datos</h2>
+        <p style={{ color: "var(--text-tertiary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con la base de datos para cargar las categorías.
+        </p>
+        <Link href="/admin/categories" className="btn btn-primary">Reintentar</Link>
+      </div>
+    );
+  }
 }

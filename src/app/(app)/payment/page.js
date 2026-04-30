@@ -230,10 +230,15 @@ export default async function PaymentPage({ searchParams }) {
                 const isProdubanco = detail.bank?.toLowerCase().includes("produbanco");
                 
                 let cardAccent = "var(--primary-400)";
-                if (isPichincha) cardAccent = "var(--warning-400)";
-                if (isProdubanco) cardAccent = "var(--success-400)";
-
-                const cardBorder = `${cardAccent}25`;
+                let cardBorder = "rgba(14, 165, 233, 0.15)";
+                
+                if (isPichincha) {
+                  cardAccent = "var(--warning-400)";
+                  cardBorder = "rgba(245, 158, 11, 0.15)";
+                } else if (isProdubanco) {
+                  cardAccent = "var(--success-400)";
+                  cardBorder = "rgba(16, 185, 129, 0.15)";
+                }
 
                 return (
                   <div

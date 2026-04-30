@@ -16,6 +16,8 @@ export default async function QuizSelectorPage({ searchParams }) {
   const selectedCareerSlug = params.career;
   
   const session = await auth();
+  if (!session?.user) redirect("/auth/login?callbackUrl=/quiz");
+
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
     select: { 

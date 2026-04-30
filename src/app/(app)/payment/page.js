@@ -3,7 +3,8 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { isSubscriptionActive, daysRemaining, formatDate } from "@/lib/utils";
 import { uploadToUploadThing } from "@/lib/uploadthing";
-import { Building, Copy } from "lucide-react";
+import { Building } from "lucide-react";
+import CopyButton from "@/components/ui/CopyButton";
 
 export const metadata = { title: "Suscripción y Pago" };
 export const dynamic = "force-dynamic";
@@ -280,26 +281,10 @@ export default async function PaymentPage({ searchParams }) {
                         <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.25rem" }}>Número de Cuenta</div>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <span style={{ fontSize: "1.125rem", fontWeight: 800, color: cardAccent, fontFamily: "monospace" }}>{detail.accountNumber || "---"}</span>
-                          <button 
-                            onClick={() => {
-                              navigator.clipboard.writeText(detail.accountNumber);
-                              const t = document.createElement('div');
-                              t.className = 'badge badge-success';
-                              t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
-                              t.innerText = '¡Copiado!';
-                              document.body.appendChild(t);
-                              setTimeout(() => t.remove(), 2000);
-                            }}
-                            className="btn btn-sm"
-                            style={{ padding: "0.4rem", minWidth: "32px", height: "32px", background: "rgba(255,255,255,0.05)" }}
-                            title="Copiar Número"
-                          >
-                            <Copy size={14} />
-                          </button>
+                          <CopyButton text={detail.accountNumber} />
                         </div>
                       </div>
 
-                      {/* Info Row */}
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                         <div style={{ background: "rgba(255,255,255,0.02)", borderRadius: "var(--radius-md)", padding: "0.75rem", border: "1px solid rgba(255,255,255,0.03)" }}>
                           <div style={{ fontSize: "0.625rem", color: "var(--text-tertiary)", fontWeight: 800, textTransform: "uppercase", marginBottom: "0.125rem" }}>Titular</div>
@@ -311,22 +296,11 @@ export default async function PaymentPage({ searchParams }) {
                         </div>
                       </div>
 
-                      <button 
-                         onClick={() => {
-                          const text = `${detail.bank} - ${detail.accountNumber} - ${detail.owner} - ${detail.idNumber}`;
-                          navigator.clipboard.writeText(text);
-                          const t = document.createElement('div');
-                          t.className = 'badge badge-success';
-                          t.style.position = 'fixed'; t.style.bottom = '30px'; t.style.right = '30px'; t.style.zIndex = '9999';
-                          t.innerText = '¡Toda la info copiada!';
-                          document.body.appendChild(t);
-                          setTimeout(() => t.remove(), 2000);
-                        }}
-                        className="btn btn-sm" 
-                        style={{ width: "100%", background: "transparent", border: "1px dashed var(--border-default)", fontSize: "0.75rem", marginTop: "0.25rem", color: "var(--text-tertiary)" }}
-                      >
-                        Copiar todos los datos
-                      </button>
+                      <CopyButton 
+                        text={`${detail.bank} - ${detail.accountNumber} - ${detail.owner} - ${detail.idNumber}`}
+                        label="Copiar todos los datos"
+                        fullWidth={true}
+                      />
                     </div>
                   </div>
                 );

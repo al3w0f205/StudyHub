@@ -1,6 +1,8 @@
 import Link from "next/link";
 import LandingSectionNav from "./landing-section-nav";
 
+export const dynamic = "force-dynamic";
+
 const formatNumber = new Intl.NumberFormat("es-EC");
 const LANDING_STATS_TIMEOUT_MS = 2500;
 const IS_PREVIEW_MODE = process.env.STUDYHUB_PREVIEW_MODE === "true";

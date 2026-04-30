@@ -1,8 +1,7 @@
-const CACHE_NAME = 'studyhub-v1';
+const CACHE_NAME = 'studyhub-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/quiz',
-  '/globals.css',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
@@ -11,7 +10,15 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      // Try to add assets one by one so one failure doesn't block the whole installation
+      return Promise.allSettled(
+        ASSETS_TO_CACHE.map(url => 
+          fetch(url).then(response => {
+            if (response.ok) return cache.put(url, response);
+            console.warn(`SW: Failed to cache ${url}: ${response.status}`);
+          })
+        )
+      );
     })
   );
 });

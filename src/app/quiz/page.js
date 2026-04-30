@@ -318,6 +318,7 @@ export default async function QuizSelectorPage({ searchParams }) {
           <span>Ajustes</span>
         </Link>
       </nav>
+    </div>
     );
   } catch (error) {
     console.error("QuizSelectorPage Error:", error);

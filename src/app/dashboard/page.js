@@ -176,6 +176,7 @@ export default async function DashboardPage() {
           <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Mira las últimas actualizaciones</p>
         </Link>
       </div>
+    </div>
     );
   } catch (error) {
     console.error("DashboardPage Error:", error);

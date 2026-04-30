@@ -444,6 +444,7 @@ export default async function PaymentPage({ searchParams }) {
           </div>
         </div>
       )}
+    </div>
     );
   } catch (error) {
     console.error("PaymentPage Error:", error);

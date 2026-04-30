@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import QuizClient from "@/components/quiz/QuizClient";
+import { encodeForensic } from "@/lib/forensic";
 
 export const dynamic = "force-dynamic";
 
@@ -126,7 +127,8 @@ export default async function QuizPage({ params }) {
   // Filter questions to show only pending/incorrect ones
   const pendingQuestions = category.questions.filter(q => !completedQuestionIds.includes(q.id));
 
-  const { encodeForensic } = await import("@/lib/forensic");
+  // Use user ID as seed for consistent shuffling during the session
+  const quizSeed = hashSeed(session.user.id);
 
   const shuffled = seededShuffle(pendingQuestions, quizSeed).map((question) => {
     const options = question.options.map((text, index) => ({

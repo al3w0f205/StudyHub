@@ -68,6 +68,9 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export default async function SuggestPage({ searchParams }) {
+  const session = await auth();
+  if (!session?.user) redirect("/auth/login?callbackUrl=/suggest");
+
   const params = await searchParams;
   const success = params?.success === "true";
 

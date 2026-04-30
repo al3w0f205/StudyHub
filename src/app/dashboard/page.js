@@ -9,6 +9,8 @@ export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const session = await auth();
+  if (!session?.user) redirect("/auth/login?callbackUrl=/dashboard");
+
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
     include: { _count: { select: { paymentRequests: true, questionSuggestions: true } } },

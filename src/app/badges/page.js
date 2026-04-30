@@ -8,7 +8,7 @@ export const metadata = { title: "Trofeos y Logros — StudyHub" };
 
 export default async function BadgesPage() {
   const session = await auth();
-  if (!session?.user?.id) return null;
+  if (!session?.user) redirect("/auth/login?callbackUrl=/badges");
 
   const allBadges = await prisma.badge.findMany({
     orderBy: { createdAt: "asc" }

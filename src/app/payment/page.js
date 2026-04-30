@@ -74,6 +74,8 @@ async function submitReceipt(formData) {
 
 export default async function PaymentPage({ searchParams }) {
   const session = await auth();
+  if (!session?.user) redirect("/auth/login?callbackUrl=/payment");
+
   const params = await searchParams;
   const success = params?.success === "true";
   const hasPendingError = params?.error === "pending_exists";

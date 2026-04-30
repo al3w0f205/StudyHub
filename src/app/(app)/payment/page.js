@@ -123,8 +123,10 @@ export default async function PaymentPage({ searchParams }) {
         </a>
       </div>
 
-      {/* Expired warning */}
-      {reason === "expired" && (
+      {/* Expired warning — solo mostrar si la suscripción REALMENTE está expirada en la DB.
+           El middleware puede redirigir con ?reason=expired basándose en el JWT cacheado (hasta 5min de retraso),
+           pero si la DB dice que la suscripción está activa, no mostrar el aviso. */}
+      {reason === "expired" && !subActive && (
         <div className="solid-card animate-fade-in" style={{ padding: "1rem 1.25rem", marginBottom: "1.5rem", borderColor: "rgba(245,158,11,0.3)", background: "rgba(245,158,11,0.05)" }}>
           <p style={{ fontSize: "0.875rem", color: "var(--warning-400)" }}>⚠️ Tu suscripción ha expirado. Envía un comprobante para reactivarla.</p>
         </div>

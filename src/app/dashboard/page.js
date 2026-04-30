@@ -11,10 +11,15 @@ export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user) redirect("/auth/login?callbackUrl=/dashboard");
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    include: { _count: { select: { paymentRequests: true, questionSuggestions: true } } },
-  });
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      include: { _count: { select: { paymentRequests: true, questionSuggestions: true } } },
+    });
+
+    if (!user) {
+      redirect("/auth/login?error=user_not_found");
+    }
 
   const subActive = isSubscriptionActive(user.subscriptionExpiry);
   const days = daysRemaining(user.subscriptionExpiry);
@@ -171,6 +176,18 @@ export default async function DashboardPage() {
           <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>Mira las últimas actualizaciones</p>
         </Link>
       </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("DashboardPage Error:", error);
+    return (
+      <div style={{ maxWidth: 700, margin: "2rem auto", padding: "2rem", textAlign: "center" }} className="solid-card">
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.75rem" }}>Error de Conexión</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con el servidor para cargar tus estadísticas.
+        </p>
+        <a href="/dashboard" className="btn btn-primary">Recargar</a>
+      </div>
+    );
+  }
 }

@@ -84,28 +84,33 @@ export default async function PaymentPage({ searchParams }) {
     process.env.NEXT_PUBLIC_TRANSFER_ACCOUNTS || process.env.TRANSFER_ACCOUNTS
   );
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { subscriptionExpiry: true, allowedCareers: true },
-  });
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { subscriptionExpiry: true, allowedCareers: true },
+    });
 
-  const payments = await prisma.paymentRequest.findMany({
-    where: { userId: session.user.id },
-    orderBy: { createdAt: "desc" },
-    take: 10,
-  });
+    if (!user) {
+      redirect("/auth/login?error=user_not_found");
+    }
 
-  const careers = await prisma.career.findMany({
-    orderBy: { name: "asc" },
-    select: { id: true, name: true, slug: true, icon: true },
-  });
+    const payments = await prisma.paymentRequest.findMany({
+      where: { userId: session.user.id },
+      orderBy: { createdAt: "desc" },
+      take: 10,
+    });
 
-  const subActive = isSubscriptionActive(user.subscriptionExpiry);
-  const days = daysRemaining(user.subscriptionExpiry);
-  const pendingPayment = payments.find((p) => p.status === "PENDING");
-  const allowedList = user.allowedCareers ? user.allowedCareers.split(",").filter(Boolean) : [];
+    const careers = await prisma.career.findMany({
+      orderBy: { name: "asc" },
+      select: { id: true, name: true, slug: true, icon: true },
+    });
 
-  return (
+    const subActive = isSubscriptionActive(user.subscriptionExpiry);
+    const days = daysRemaining(user.subscriptionExpiry);
+    const pendingPayment = payments.find((p) => p.status === "PENDING");
+    const allowedList = user.allowedCareers ? user.allowedCareers.split(",").filter(Boolean) : [];
+
+    return (
     <div style={{ maxWidth: 700, margin: "0 auto" }}>
       <div className="page-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem" }}>
         <div>
@@ -439,6 +444,18 @@ export default async function PaymentPage({ searchParams }) {
           </div>
         </div>
       )}
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("PaymentPage Error:", error);
+    return (
+      <div style={{ maxWidth: 700, margin: "2rem auto", padding: "2rem", textAlign: "center" }} className="solid-card">
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.75rem" }}>Error de Conexión</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
+          No pudimos conectar con el servidor de pagos. Por favor, intenta recargar la página.
+        </p>
+        <a href="/payment" className="btn btn-primary">Recargar Página</a>
+      </div>
+    );
+  }
 }

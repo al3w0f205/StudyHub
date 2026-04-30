@@ -18,18 +18,23 @@ export default async function QuizSelectorPage({ searchParams }) {
   const session = await auth();
   if (!session?.user) redirect("/auth/login?callbackUrl=/quiz");
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { 
-      id: true, 
-      name: true, 
-      allowedCareers: true, 
-      role: true, 
-      subscriptionExpiry: true,
-      streak: true,
-      totalPoints: true
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { 
+        id: true, 
+        name: true, 
+        allowedCareers: true, 
+        role: true, 
+        subscriptionExpiry: true,
+        streak: true,
+        totalPoints: true
+      }
+    });
+
+    if (!user) {
+      redirect("/auth/login?error=user_not_found");
     }
-  });
 
   const isSubActive = user.subscriptionExpiry && new Date(user.subscriptionExpiry) > new Date();
   const isAdmin = user.role === "ADMIN";
@@ -313,6 +318,18 @@ export default async function QuizSelectorPage({ searchParams }) {
           <span>Ajustes</span>
         </Link>
       </nav>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("QuizSelectorPage Error:", error);
+    return (
+      <div style={{ maxWidth: 700, margin: "2rem auto", padding: "2rem", textAlign: "center" }} className="solid-card">
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.75rem" }}>Error de Conexión</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
+          No pudimos cargar los cuestionarios. Por favor, verifica tu conexión a internet o intenta más tarde.
+        </p>
+        <a href="/quiz" className="btn btn-primary">Reintentar</a>
+      </div>
+    );
+  }
 }

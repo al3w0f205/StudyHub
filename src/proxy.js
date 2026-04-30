@@ -3,7 +3,7 @@ import authConfig from "@/auth.config";
 
 const { auth } = NextAuth(authConfig);
 
-export default async function middleware(request) {
+export default async function proxy(request) {
   const response = await auth(request);
 
   // If auth returned a Response (redirect), forward it

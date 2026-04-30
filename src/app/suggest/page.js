@@ -67,6 +67,7 @@ async function submitSuggestion(formData) {
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+export default async function SuggestPage({ searchParams }) {
   const session = await auth();
   if (!session?.user) redirect("/auth/login?callbackUrl=/suggest");
 
@@ -147,5 +148,18 @@ import { ArrowLeft } from "lucide-react";
         </form>
       </div>
     </div>
-  );
+    );
+  } catch (error) {
+    console.error("SuggestPage Error:", error);
+    return (
+      <div style={{ maxWidth: 700, margin: "2rem auto", padding: "2rem", textAlign: "center" }} className="solid-card">
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⚠️</div>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.75rem" }}>Error de Conexión</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
+          No pudimos cargar el formulario de sugerencias. Por favor, intenta de nuevo.
+        </p>
+        <a href="/suggest" className="btn btn-primary">Recargar</a>
+      </div>
+    );
+  }
 }

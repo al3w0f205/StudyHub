@@ -10,7 +10,6 @@
 
 /* ── CSS Custom Properties ── */
 html {
-  scroll-behavior: smooth;
 }
 
 :root {
@@ -136,7 +135,6 @@ html {
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

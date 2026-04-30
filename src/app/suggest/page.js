@@ -67,17 +67,17 @@ async function submitSuggestion(formData) {
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default async function SuggestPage({ searchParams }) {
   const session = await auth();
   if (!session?.user) redirect("/auth/login?callbackUrl=/suggest");
 
   const params = await searchParams;
   const success = params?.success === "true";
 
-  const categories = await prisma.category.findMany({
-    orderBy: { name: "asc" },
-    include: { career: { select: { name: true } } },
-  });
+  try {
+    const categories = await prisma.category.findMany({
+      orderBy: { name: "asc" },
+      include: { career: { select: { name: true } } },
+    });
 
   return (
     <div style={{ maxWidth: 700, margin: "0 auto" }}>

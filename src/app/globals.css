@@ -1698,6 +1698,11 @@ a {
   margin: 0;
 }
 
+.preview-question .math-text-wrapper {
+  flex: 1;
+  width: 100%;
+}
+
 .preview-answer {
   display: flex;
   gap: 0.8rem;

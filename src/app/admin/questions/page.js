@@ -128,6 +128,7 @@ export default async function QuestionsPage({ searchParams }) {
           {page < totalPages && <a href={`/admin/questions?${categoryId ? `categoryId=${categoryId}&` : ""}page=${page+1}`} className="btn btn-secondary btn-sm">Sig. →</a>}
         </div>
       )}
+    </div>
     );
   } catch (error) {
     console.error("AdminQuestions Error:", error);

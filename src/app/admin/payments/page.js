@@ -158,6 +158,7 @@ export default async function PaymentsPage() {
           </div>
         </>
       )}
+    </div>
     );
   } catch (error) {
     console.error("AdminPayments Error:", error);

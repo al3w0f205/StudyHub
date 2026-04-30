@@ -82,6 +82,7 @@ export default async function AdminErrorReportsPage() {
           </tbody>
         </table>
       </div>
+    </div>
     );
   } catch (error) {
     console.error("AdminErrorReports Error:", error);

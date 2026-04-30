@@ -125,6 +125,7 @@ export default async function CareersPage() {
           </table>
         </div>
       )}
+    </div>
     );
   } catch (error) {
     console.error("AdminCareers Error:", error);

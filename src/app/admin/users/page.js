@@ -192,6 +192,7 @@ export default async function UsersPage() {
           </table>
         </div>
       )}
+    </div>
     );
   } catch (error) {
     console.error("AdminUsers Error:", error);

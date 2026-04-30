@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const metadata = { title: "Cuestionarios" };
 export const dynamic = "force-dynamic";
@@ -7,7 +8,7 @@ export const dynamic = "force-dynamic";
 import { auth } from "@/auth";
 
 import QuizAgreement from "@/components/quiz/QuizAgreement";
-import ClientStats from "@/app/dashboard/ClientStats";
+import ClientStats from "@/app/(app)/dashboard/ClientStats";
 import GlobalSearch from "@/components/ui/GlobalSearch";
 import CareerSelector from "@/components/quiz/CareerSelector";
 

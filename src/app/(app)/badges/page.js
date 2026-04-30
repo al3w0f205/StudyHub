@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Trophy, Shield, Zap, Star, Lock, CheckCircle, GraduationCap, ArrowLeft, Activity } from "lucide-react";
 
 export const dynamic = "force-dynamic";

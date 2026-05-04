@@ -74,7 +74,6 @@ export default function RootLayout({ children }) {
               } catch (e) {}
 
               // ── Anti-Piratería: bloquear atajos de copia y DevTools ──
-              document.addEventListener('contextmenu', e => e.preventDefault());
               document.addEventListener('keydown', e => {
                 if (
                   e.keyCode === 123 || // F12

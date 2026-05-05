@@ -6,6 +6,8 @@ nixPkgs = [
     "nodejs_22",
     "openssl"
 ]
+# Force empty apt packages to avoid slow apt-get update
+aptPkgs = [] 
 
 [phases.install]
 cmds = ["npm ci"]

@@ -4,25 +4,18 @@
 [phases.setup]
 nixPkgs = [
     "nodejs_22",
-    "curl",
-    "wget",
     "openssl"
 ]
 
 [phases.install]
-# Use 'npm ci' for faster, more reliable installs in CI/CD
 cmds = ["npm ci"]
 
 [phases.build]
-# Ensure prisma client is generated before building
 cmds = ["npx prisma generate", "npm run build"]
 
-[phases.deploy]
-# Standard start command for Next.js
-startCmd = "npm start"
+[start]
+cmd = "npm start"
 
 [variables]
-# Disable Next.js telemetry during build
 NEXT_TELEMETRY_DISABLED = "1"
-# Ensure the node environment is production
 NODE_ENV = "production"

@@ -3,7 +3,8 @@
 // En modo examen, las respuestas se marcan en azul sin revelar la correcta.
 // Soporta LaTeX/Markdown en preguntas y opciones vía MathText.
 "use client";
-import MathText from "@/components/ui/MathText";
+import dynamic from "next/dynamic";
+const MathText = dynamic(() => import("@/components/ui/MathText"));
 
 export default function QuizQuestion({
   q,

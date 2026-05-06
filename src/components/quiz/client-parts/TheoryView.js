@@ -3,7 +3,8 @@
 // empezar quiz desde la teoría. Incluye estilos @media print para generar PDFs limpios.
 "use client";
 import Link from "next/link";
-import MathText from "@/components/ui/MathText";
+import dynamic from "next/dynamic";
+const MathText = dynamic(() => import("@/components/ui/MathText"));
 
 export default function TheoryView({
   careerName,

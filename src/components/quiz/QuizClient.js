@@ -31,7 +31,8 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import MathText from "@/components/ui/MathText";
+import dynamic from "next/dynamic";
+const MathText = dynamic(() => import("@/components/ui/MathText"));
 import { useToast } from "@/components/ui/Toast";
 
 // Sub-componentes del motor de quiz (client-parts/)

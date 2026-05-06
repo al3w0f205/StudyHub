@@ -3,7 +3,8 @@
 // Usa CSS transform: rotateY(180deg) con preserve-3d para el efecto 3D.
 // Navegación: anterior/siguiente, click para voltear.
 "use client";
-import MathText from "@/components/ui/MathText";
+import dynamic from "next/dynamic";
+const MathText = dynamic(() => import("@/components/ui/MathText"));
 
 export default function FlashcardsView({
   current,

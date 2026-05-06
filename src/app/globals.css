@@ -1714,7 +1714,7 @@ a {
   margin-bottom: 0.75rem;
 }
 
-.preview-answer span {
+.preview-answer > span:first-child {
   display: grid;
   place-items: center;
   width: 1.75rem;
@@ -1734,7 +1734,7 @@ a {
   color: #ccfbf1;
 }
 
-.preview-answer.selected span {
+.preview-answer.selected > span:first-child {
   background: rgba(45,212,191,0.2);
   color: var(--landing-cyan);
 }

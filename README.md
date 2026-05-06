@@ -1,115 +1,103 @@
-# StudyHub 🎓
+# StudyHub 🎓 — Educational Platform Architecture
 
-StudyHub es una plataforma educativa de alto rendimiento diseñada para estudiantes pre-universitarios y universitarios. Ofrece un sistema avanzado de cuestionarios gamificados, gestión de suscripciones mediante comprobantes y una interfaz "OLED Dark" de última generación orientada a maximizar la retención y el enfoque.
+StudyHub is an advanced, high-performance educational platform designed for pre-university and university students. It features a gamified quiz system, a secure subscription management panel, and a state-of-the-art "OLED Dark" interface aimed at maximizing student retention and focus.
 
-## 🚀 Características Principales
+> **Note:** The proprietary question banks and actual quiz content are kept strictly private and are not included in this public repository. This repository serves to showcase the system architecture, technical implementations, and UI/UX design.
 
-### 1. Sistema Avanzado de Cuestionarios
-*   **Aleatorización Dinámica:** Las preguntas y sus opciones de respuesta se mezclan aleatoriamente desde el servidor. Olvídate de memorizar "la opción B"; los estudiantes deben aprender el concepto real.
-*   **Dominio por Área:** Seguimiento estadístico persistente del rendimiento del estudiante en cada materia (Fisiología, Anatomía, Matemáticas, etc.) calculado de forma automática al finalizar cada test.
-*   **Herramientas de Estudio Integradas:**
-    *   ⏱️ **Presión de Tiempo:** Un cronómetro estricto de 30 segundos por pregunta para simular la presión de un examen real.
-    *   👁️ **Modo Enfoque (Zen):** Oculta todos los paneles laterales y distracciones para una inmersión total.
-    *   🔀 **Mezclar Todo:** Genera un cuestionario rápido con preguntas variadas.
-    *   💡 **Pistas y Justificaciones:** Explicaciones detalladas post-respuesta para reforzar el aprendizaje.
+## 🚀 Key System Features
 
-### 2. Panel de Control Administrativo (Admin)
-Un panel completo que te da control absoluto sobre la plataforma:
-*   **Gestión de Accesos (Careers):** Asigna y revoca a qué carreras específicas (ej. Medicina, Ingeniería) puede acceder cada usuario de forma individual.
-*   **Gestión de Usuarios:** Suspende cuentas, otorga bonos rápidos de "+30 días" de suscripción, o promueve usuarios a administradores con un solo clic.
-*   **Validación de Pagos:** Revisa los comprobantes de depósito subidos por los estudiantes y aprueba o rechaza sus suscripciones.
-*   **Sincronización Automática de Contenido (Seed):** Carga masiva de preguntas desde archivos JSON locales directamente a la base de datos de PostgreSQL con un solo botón.
+### 1. Dynamic Assessment Engine
+*   **Algorithmic Randomization:** Questions and multiple-choice options are dynamically shuffled on the server to prevent pattern memorization and encourage true conceptual learning.
+*   **Statistical Tracking:** Persistent performance analytics track student mastery across specific subjects (e.g., Physiology, Anatomy, Calculus) via automated post-quiz calculations.
+*   **Study Tools Integration:**
+    *   ⏱️ **Time Pressure Mode:** Strict 30-second per-question timers to simulate real exam conditions.
+    *   👁️ **Zen Mode:** Distraction-free UI that hides side panels for maximum immersion.
+    *   💡 **Active Recall Support:** Detailed post-response justifications, including $\LaTeX$ rendered mathematical equations via KaTeX.
 
-### 3. Seguridad y Suscripciones
-*   **Validación en Tiempo Real:** El acceso a los cuestionarios está protegido por verificaciones de base de datos en tiempo real, superando las limitaciones de seguridad de los JWT cacheados.
-*   **Sistema Anti-Piratería:** Modal obligatorio donde el usuario firma su acuerdo de no compartir ni difundir material bajo pena de baneo permanente.
-*   **Autenticación con Google:** Inicio de sesión rápido y seguro para estudiantes (OAuth), y login seguro con credenciales para administradores.
+### 2. Comprehensive Admin Dashboard
+*   **Access Control (RBAC):** Granular control over which specific academic programs a user can access.
+*   **Subscription & Payment Validation:** Admins can manually verify user-uploaded payment receipts and grant subscription extensions.
+*   **Automated Content Synchronization:** A robust database seeding mechanism that allows bulk insertion of questions from structured local JSON files directly into PostgreSQL.
 
-### 4. Comunidad y Feedback
-*   **Sugerencia de Preguntas:** Los estudiantes pueden aportar al banco de preguntas sugiriendo nuevas interrogantes, indicando la respuesta correcta, pistas y justificaciones, quedando a la espera de la revisión de un Admin.
+### 3. Security Infrastructure
+*   **Real-time Validation:** Quiz access is secured by real-time database checks, bypassing the security limitations of cached JWTs.
+*   **Anti-Piracy Measures:** Strict terms-of-service modal enforcement and secure layout structures to prevent content scraping.
+*   **OAuth Integration:** Seamless Google Sign-In for students, coupled with secure credential-based login for administrators.
 
-### 5. Interfaz de Usuario "2026 OLED"
-*   Diseño Premium Dark Mode con acentos Cyan y gradientes suaves.
-*   Micro-animaciones, efectos `glassmorphism`, navegación fluida (`smooth scroll`) y adaptación total a dispositivos móviles.
+### 4. "2026 OLED" UI/UX Design
+*   Premium Dark Mode aesthetic featuring cyan accents, smooth gradients, and glassmorphism.
+*   Micro-animations and scroll-driven parallax effects powered by Framer Motion.
+*   Fully responsive layout and PWA (Progressive Web App) support for native-like mobile experiences.
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Technology Stack
 
-*   **Framework:** Next.js 15 (App Router)
-*   **Base de Datos:** PostgreSQL
+*   **Framework:** Next.js 15 (App Router, Server Actions)
+*   **Database:** PostgreSQL
 *   **ORM:** Prisma
-*   **Autenticación:** Auth.js v5 (NextAuth)
-*   **Almacenamiento (Archivos):** UploadThing (para comprobantes de pago)
-*   **Estilos:** Vanilla CSS moderno con variables CSS (`globals.css`)
-*   **Despliegue:** Preparado nativamente para Coolify y entornos Docker (Nixpacks).
+*   **Authentication:** Auth.js v5 (NextAuth)
+*   **File Storage:** UploadThing (receipt handling)
+*   **Animations:** Framer Motion
+*   **Styling:** Modern Vanilla CSS + Tailwind CSS integration
+*   **Testing:** Playwright (E2E testing for Desktop & Mobile) & Jest (Unit testing)
+*   **Deployment:** Cloud-native architecture optimized for Docker/Nixpacks (Coolify)
 
 ---
 
-## ⚙️ Instalación y Despliegue Local
+## ⚙️ Local Development
 
-1. **Clonar el repositorio y entrar al directorio:**
+1. **Clone the repository:**
    ```bash
-   git clone <tu-repositorio>
+   git clone <repository-url>
    cd StudyHub
    ```
 
-2. **Instalar dependencias:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Configurar las variables de entorno (`.env`):**
-   Crea un archivo `.env` en la raíz con lo siguiente:
+3. **Configure Environment Variables (`.env`):**
+   Create a `.env` file in the root directory:
    ```env
-   # Base de Datos
-   DATABASE_URL="postgresql://usuario:password@localhost:5432/studyhub"
+   # Database
+   DATABASE_URL="postgresql://user:password@localhost:5432/studyhub"
 
    # Auth.js (NextAuth)
-   AUTH_SECRET="un_secreto_muy_seguro_generado_con_openssl"
-   AUTH_GOOGLE_ID="tu_google_oauth_client_id"
-   AUTH_GOOGLE_SECRET="tu_google_oauth_client_secret"
+   AUTH_SECRET="your_openssl_generated_secret"
+   AUTH_GOOGLE_ID="your_google_oauth_client_id"
+   AUTH_GOOGLE_SECRET="your_google_oauth_client_secret"
 
-   # UploadThing (Para comprobantes de pago)
-   UPLOADTHING_TOKEN="tu_uploadthing_token"
+   # UploadThing
+   UPLOADTHING_TOKEN="your_uploadthing_token"
    ```
 
-4. **Preparar la base de datos:**
-   Sincroniza el esquema de Prisma con PostgreSQL.
+4. **Prepare the database:**
+   Sync the Prisma schema with PostgreSQL:
    ```bash
    npx prisma db push
    ```
 
-5. **Crear el primer administrador:**
-   Ejecuta el script para crear la cuenta de administrador inicial (Credenciales).
-   ```bash
-   npm run db:admin
-   ```
-
-6. **Iniciar el servidor de desarrollo:**
+5. **Start the development server:**
    ```bash
    npm run dev
    ```
 
 ---
 
-## 📦 Despliegue en Producción (Coolify)
+## 🧪 Testing
 
-El proyecto está diseñado para funcionar fluidamente en **Coolify** sin configuración excesiva.
-1. Al crear el recurso en Coolify, selecciona **Nixpacks** como builder.
-2. Asegúrate de configurar todas las **variables de entorno** en la pestaña de Environment de Coolify antes del primer despliegue.
-3. El comando de compilación por defecto en el `package.json` ya incluye `npx prisma db push --accept-data-loss && next build`, lo que significa que **cada vez que hagas push, la base de datos se actualizará automáticamente** junto con el código.
+The platform maintains a robust automated testing pipeline:
+
+*   **Unit Tests:** Run core logic tests via Jest.
+    ```bash
+    npm run test
+    ```
+*   **End-to-End Tests:** Verify critical user flows and anti-piracy features across Desktop and Mobile devices using Playwright.
+    ```bash
+    npx playwright test
+    ```
 
 ---
-
-## 📂 Estructura de Contenido para Sincronización Automática
-Para cargar preguntas de forma masiva, colócalas en la carpeta `/data` siguiendo esta estructura:
-```text
-/data
-  /Ingeniería
-    matematicas.json
-    fisica.json
-  /Medicina
-    anatomia.json
-```
-Luego, desde el Panel de Admin, presiona el botón **Sincronizar Preguntas** y la plataforma mapeará las carpetas como "Carreras" y los archivos como "Categorías", insertando todas las preguntas automáticamente.
+*© StudyHub. Built for practice, explanation, and progress.*

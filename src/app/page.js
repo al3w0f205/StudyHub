@@ -132,7 +132,7 @@ const Icon = ({ name }) => {
   );
 };
 
-function BrandMark() {
+export function BrandMark() {
   return (
     <div className="brand-mark" aria-hidden="true">
       S
@@ -140,7 +140,7 @@ function BrandMark() {
   );
 }
 
-function PrimaryLink({ href, children, variant = "primary" }) {
+export function PrimaryLink({ href, children, variant = "primary" }) {
   return (
     <Link href={href} className={`landing-btn landing-btn-${variant}`}>
       {children}
@@ -149,56 +149,7 @@ function PrimaryLink({ href, children, variant = "primary" }) {
   );
 }
 
-import MathText from "@/components/ui/MathText";
-
-function ProductPreview({ totalFormatted, topCareer }) {
-  return (
-    <div className="product-preview" aria-label="Vista previa de StudyHub">
-      <div className="preview-toolbar">
-        <div className="preview-brand">
-          <BrandMark />
-          <span>StudyHub</span>
-        </div>
-        <span className="preview-pill">Simulacro activo</span>
-      </div>
-
-      <div className="preview-grid">
-        <aside className="preview-sidebar">
-          <span className="preview-label">Estudiante en Racha</span>
-          <strong>🔥 5 Días</strong>
-          <div className="preview-progress">
-            <span style={{ width: "85%", background: "var(--warning-400)" }} />
-          </div>
-          <small>Nivel 12 — Maestro</small>
-        </aside>
-
-        <div className="preview-question">
-          <div className="preview-question-topline">
-            <span>Modo Simulacro</span>
-            <span>00:24 ⏱️</span>
-          </div>
-          <div className="preview-question-text">
-            <h3 style={{ margin: 0 }}>¿Cuál es la derivada de <MathText>$f(x) = \sin(x)$</MathText>?</h3>
-          </div>
-          <div className="preview-answer selected" style={{ borderColor: "var(--primary-400)", background: "rgba(99,102,241,0.1)" }}>
-            <span>A</span>
-            <MathText>$\cos(x)$</MathText>
-          </div>
-          <div className="preview-answer">
-            <span>B</span>
-            <MathText>$-\cos(x)$</MathText>
-          </div>
-          <div className="preview-explanation" style={{ borderLeft: "3px solid var(--accent-400)", background: "rgba(34,211,238,0.05)" }}>
-            <strong>Justificación</strong>
-            <p>
-              La derivada de la función seno es el coseno positivo. StudyHub te muestra el paso a paso.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import AnimatedProductPreview from "@/components/landing/AnimatedProductPreview";
 
 export default async function HomePage() {
   let session = null;
@@ -346,7 +297,7 @@ export default async function HomePage() {
           </div>
 
           <div className="scroll-reveal reveal-delay-1">
-            <ProductPreview totalFormatted={totalFormatted} topCareer={topCareer} />
+            <AnimatedProductPreview totalFormatted={totalFormatted} topCareer={topCareer} />
           </div>
         </section>
 

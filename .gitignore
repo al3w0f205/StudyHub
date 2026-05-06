@@ -41,3 +41,23 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Proprietary Data (Do not expose quiz content)
+/data/
+
+# Credentials and Keys
+keys/
+certs/
+
+# Uploads
+/uploads/
+/public/uploads/
+
+# Test Outputs
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# IDE
+.idea/
+.vscode/

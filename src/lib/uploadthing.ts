@@ -8,15 +8,22 @@ export const utapi = new UTApi();
  * @returns {Promise<string>} The public URL of the uploaded file
  */
 export async function uploadToUploadThing(file: File | Blob): Promise<string> {
-  const response = await utapi.uploadFiles(file);
-  if (Array.isArray(response)) {
-    if (response[0].error) {
-      throw new Error(`Upload failed: ${response[0].error.message}`);
-    }
-    return response[0].data!.url;
+  // utapi.uploadFiles expects an array of files
+  const response = await utapi.uploadFiles([file as any]);
+  
+  if (!response || response.length === 0) {
+    throw new Error("Upload failed: No response from UTApi");
   }
-  if (response.error) {
-    throw new Error(`Upload failed: ${response.error.message}`);
+
+  const result = response[0];
+
+  if (result.error) {
+    throw new Error(`Upload failed: ${result.error.message}`);
   }
-  return response.data!.url;
+
+  if (!result.data) {
+    throw new Error("Upload failed: No data returned from UTApi");
+  }
+
+  return result.data.url;
 }

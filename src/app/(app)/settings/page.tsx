@@ -259,7 +259,6 @@ export default async function SettingsPage() {
               <thead>
                 <tr>
                   <th>Fecha</th>
-                  <th>Monto</th>
                   <th>Estado</th>
                   <th>Notas del Admin</th>
                 </tr>
@@ -268,7 +267,6 @@ export default async function SettingsPage() {
                 {payments.map((p) => (
                   <tr key={p.id}>
                     <td>{formatDate(p.createdAt)}</td>
-                    <td style={{ fontWeight: "600" }}>${p.amount}</td>
                     <td>
                       {p.status === "APPROVED" && (
                         <span className="badge badge-success">Aprobado</span>

@@ -117,7 +117,7 @@ async function main() {
     for (const catName of categoryNames) {
       const slug = slugify(catName);
       let category = await prisma.category.upsert({
-        where: { slug_careerId: { slug, careerId: career.id } },
+        where: { careerId_slug: { slug, careerId: career.id } },
         update: { 
           name: catName.charAt(0).toUpperCase() + catName.slice(1),
           theory: theoryText // Update theory if provided

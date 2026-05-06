@@ -344,7 +344,7 @@ export default function QuizClient({
             total,
             startExamMode,
             restart,
-            theory,
+            theory: theory ?? null,
             isTimePressure,
             setIsTimePressure,
             setIsZenMode,
@@ -373,7 +373,7 @@ export default function QuizClient({
               categoryName,
               total,
               setView: setView as any,
-              theory,
+              theory: theory ?? null,
             }}
           />
         ) : view === "flashcards" ? (

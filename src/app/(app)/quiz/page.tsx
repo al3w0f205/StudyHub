@@ -25,7 +25,11 @@ export default async function QuizSelectorPage({
   const session = await auth();
   if (!session?.user?.id) redirect("/auth/login?callbackUrl=/quiz");
 
-  let user, careers, noAccess, allCategories, progressMap;
+  let user: any = null;
+  let careers: any[] = [];
+  let noAccess: boolean = false;
+  let allCategories: any[] = [];
+  let progressMap: Record<string, number> = {};
   let hasError = false;
   try {
     user = await userService.getUserProfile(session.user.id);

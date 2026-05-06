@@ -90,7 +90,7 @@ function ToastItem({ message, type, onClose, duration }: ToastItemProps) {
     return () => clearTimeout(timer);
   }, [onClose, duration]);
 
-  const icons: Record<ToastType, JSX.Element> = {
+  const icons: Record<ToastType, React.ReactElement> = {
     success: <CheckCircle size={18} color="var(--success-400)" />,
     error: <AlertCircle size={18} color="var(--danger-400)" />,
     warning: <AlertTriangle size={18} color="var(--warning-400)" />,

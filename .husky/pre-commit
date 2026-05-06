@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔎 Running exhaustive tests and linting before commit..."
+npx lint-staged
+npm run test

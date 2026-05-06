@@ -64,6 +64,44 @@ export default auth((req) => {
     "camera=(), microphone=(), geolocation=(), interest-cohort=()"
   );
 
+  // ─── PASO 1.5: Rate Limiting (Protección contra saturación) ─────────────────
+  const ip = req.ip || req.headers.get("x-forwarded-for") || "127.0.0.1";
+  const path = nextUrl.pathname;
+  
+  const isApiRoute = path.startsWith('/api/');
+  const isAuthRouteToken = path.startsWith('/api/auth/') || path.startsWith('/auth/');
+  
+  // Usamos global para persistir el Map entre re-ejecuciones en desarrollo, en el Edge aisla por instancia
+  if (!global.rateLimitMap) {
+    global.rateLimitMap = new Map();
+  }
+  const RATE_LIMIT_WINDOW = 60 * 1000;
+  const MAX_REQUESTS = isAuthRouteToken ? 10 : 100;
+  
+  if (isApiRoute || isAuthRouteToken) {
+    const now = Date.now();
+    
+    // Limpieza simple
+    if (global.rateLimitMap.size > 10000) global.rateLimitMap.clear();
+    
+    const windowData = global.rateLimitMap.get(ip) || { count: 0, startTime: now };
+    
+    if (now - windowData.startTime > RATE_LIMIT_WINDOW) {
+      windowData.count = 0;
+      windowData.startTime = now;
+    }
+    
+    windowData.count++;
+    global.rateLimitMap.set(ip, windowData);
+    
+    if (windowData.count > MAX_REQUESTS) {
+      return new NextResponse(
+        JSON.stringify({ error: "Too Many Requests" }),
+        { status: 429, headers: { "Content-Type": "application/json", "Retry-After": "60" } }
+      );
+    }
+  }
+
   // ─── PASO 2: Guards de autenticación ──────────────────────────────────────
 
   // Las rutas de API de NextAuth (/api/auth/*) se dejan pasar siempre

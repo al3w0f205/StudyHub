@@ -1,51 +1,45 @@
-# StudyHub 🎓 — Educational Platform Architecture
+# StudyHub - Advanced Educational Platform
 
-StudyHub is an advanced, high-performance educational platform designed for pre-university and university students. It features a gamified quiz system, a secure subscription management panel, and a state-of-the-art "OLED Dark" interface aimed at maximizing student retention and focus.
+StudyHub is a high-performance educational platform designed to streamline pre-university and university-level preparation. Built on a modern tech stack, the platform provides an algorithmic assessment engine, secure administration workflows, and a strictly optimized dark-mode interface designed to minimize cognitive load.
 
-> **Note:** The proprietary question banks and actual quiz content are kept strictly private and are not included in this public repository. This repository serves to showcase the system architecture, technical implementations, and UI/UX design.
+> **Notice regarding proprietary data:** The core question banks, categorizations, and specific quiz data are proprietary. They have been explicitly excluded from this public repository via `.gitignore`. This source code is shared strictly as an architectural portfolio piece.
 
-## 🚀 Key System Features
+## System Architecture
 
-### 1. Dynamic Assessment Engine
-*   **Algorithmic Randomization:** Questions and multiple-choice options are dynamically shuffled on the server to prevent pattern memorization and encourage true conceptual learning.
-*   **Statistical Tracking:** Persistent performance analytics track student mastery across specific subjects (e.g., Physiology, Anatomy, Calculus) via automated post-quiz calculations.
-*   **Study Tools Integration:**
-    *   ⏱️ **Time Pressure Mode:** Strict 30-second per-question timers to simulate real exam conditions.
-    *   👁️ **Zen Mode:** Distraction-free UI that hides side panels for maximum immersion.
-    *   💡 **Active Recall Support:** Detailed post-response justifications, including $\LaTeX$ rendered mathematical equations via KaTeX.
+### Assessment Engine
+*   **Algorithmic Randomization:** Dynamic server-side shuffling of questions and multiple-choice options prevents pattern memorization and enforces conceptual understanding.
+*   **Performance Tracking:** Automated post-quiz calculations generate persistent analytics, tracking student mastery across designated subjects (e.g., Calculus, Anatomy, Physics).
+*   **Mathematical Rendering:** Real-time parsing of LaTeX syntax via KaTeX for complex equations and justifications.
 
-### 2. Comprehensive Admin Dashboard
-*   **Access Control (RBAC):** Granular control over which specific academic programs a user can access.
-*   **Subscription & Payment Validation:** Admins can manually verify user-uploaded payment receipts and grant subscription extensions.
-*   **Automated Content Synchronization:** A robust database seeding mechanism that allows bulk insertion of questions from structured local JSON files directly into PostgreSQL.
+### Administration & RBAC
+*   **Role-Based Access Control:** Strict permission segregation allowing administrators to grant, revoke, and monitor user access to specific academic domains.
+*   **Subscription Management:** An integrated workflow for manual verification of payment receipts and subscription extensions.
+*   **Automated Content Seeding:** A bulk synchronization mechanism that parses local JSON structures and maps them into the PostgreSQL database.
 
-### 3. Security Infrastructure
-*   **Real-time Validation:** Quiz access is secured by real-time database checks, bypassing the security limitations of cached JWTs.
-*   **Anti-Piracy Measures:** Strict terms-of-service modal enforcement and secure layout structures to prevent content scraping.
-*   **OAuth Integration:** Seamless Google Sign-In for students, coupled with secure credential-based login for administrators.
+### Security Infrastructure
+*   **Edge Middleware & Rate Limiting:** In-memory request throttling implemented at the Edge level to mitigate brute-force attacks on authentication and API endpoints.
+*   **Real-Time Authorization:** Database-level permission validation per request, bypassing the traditional limitations of stale JWT claims.
+*   **Anti-Scraping Measures:** Protected payload structures and terms-of-service enforcements to mitigate content piracy.
 
-### 4. "2026 OLED" UI/UX Design
-*   Premium Dark Mode aesthetic featuring cyan accents, smooth gradients, and glassmorphism.
-*   Micro-animations and scroll-driven parallax effects powered by Framer Motion.
-*   Fully responsive layout and PWA (Progressive Web App) support for native-like mobile experiences.
-
----
-
-## 🛠️ Technology Stack
+## Technology Stack
 
 *   **Framework:** Next.js 15 (App Router, Server Actions)
-*   **Database:** PostgreSQL
+*   **Database Engine:** PostgreSQL
 *   **ORM:** Prisma
-*   **Authentication:** Auth.js v5 (NextAuth)
-*   **File Storage:** UploadThing (receipt handling)
+*   **Authentication:** Auth.js v5 (OAuth 2.0 & Credentials)
+*   **File Storage:** UploadThing
 *   **Animations:** Framer Motion
 *   **Styling:** Modern Vanilla CSS + Tailwind CSS integration
-*   **Testing:** Playwright (E2E testing for Desktop & Mobile) & Jest (Unit testing)
-*   **Deployment:** Cloud-native architecture optimized for Docker/Nixpacks (Coolify)
+*   **Testing Infrastructure:** Playwright (Cross-device E2E), Jest (Unit Testing), React Testing Library (Component Audits)
+*   **CI/CD:** Husky Pre-commit hooks, Lint-staged
 
----
+## Local Development
 
-## ⚙️ Local Development
+### Prerequisites
+*   Node.js 20+
+*   PostgreSQL instance
+
+### Initialization
 
 1. **Clone the repository:**
    ```bash
@@ -58,46 +52,38 @@ StudyHub is an advanced, high-performance educational platform designed for pre-
    npm install
    ```
 
-3. **Configure Environment Variables (`.env`):**
-   Create a `.env` file in the root directory:
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory.
    ```env
-   # Database
    DATABASE_URL="postgresql://user:password@localhost:5432/studyhub"
-
-   # Auth.js (NextAuth)
    AUTH_SECRET="your_openssl_generated_secret"
    AUTH_GOOGLE_ID="your_google_oauth_client_id"
    AUTH_GOOGLE_SECRET="your_google_oauth_client_secret"
-
-   # UploadThing
    UPLOADTHING_TOKEN="your_uploadthing_token"
    ```
 
-4. **Prepare the database:**
-   Sync the Prisma schema with PostgreSQL:
+4. **Database Synchronization:**
    ```bash
    npx prisma db push
    ```
 
-5. **Start the development server:**
+5. **Start Development Server:**
    ```bash
    npm run dev
    ```
 
----
+## Testing & Quality Assurance
 
-## 🧪 Testing
+The repository is protected by Husky pre-commit hooks that enforce code quality standards before any code is pushed.
 
-The platform maintains a robust automated testing pipeline:
-
-*   **Unit Tests:** Run core logic tests via Jest.
+*   **Unit & Component Testing:**
     ```bash
     npm run test
     ```
-*   **End-to-End Tests:** Verify critical user flows and anti-piracy features across Desktop and Mobile devices using Playwright.
+*   **End-to-End Testing (Chromium, Mobile Safari, Mobile Chrome):**
     ```bash
     npx playwright test
     ```
 
 ---
-*© StudyHub. Built for practice, explanation, and progress.*
+*StudyHub Source Code Portfolio.*

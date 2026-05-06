@@ -18,7 +18,8 @@
     "prisma:generate": "npx prisma generate",
     "db:migrate:deploy": "npx prisma migrate deploy",
     "dev:preview": "node scripts/dev-preview.mjs",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
@@ -50,8 +51,11 @@
     "@testing-library/react": "^16.3.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "husky": "^9.1.7",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-mock-extended": "^4.0.1",
+    "lint-staged": "^17.0.2",
     "prisma": "^7.8.0",
     "tailwindcss": "^4"
   },
@@ -59,5 +63,13 @@
     "effect": ">=3.20.0",
     "postcss": ">=8.5.10",
     "@hono/node-server": ">=1.11.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{js,jsx,css,md}": [
+      "npm run test -- --bail --findRelatedTests --passWithNoTests"
+    ]
   }
 }

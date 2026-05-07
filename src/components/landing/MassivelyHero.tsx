@@ -22,6 +22,9 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
   const headerOpacity = useTransform(scrollY, [0, 200], [1, 0]);
   const navBgOpacity = useTransform(scrollY, [200, 300], [0, 1]);
   const navContentOpacity = useTransform(scrollY, [250, 320], [0, 1]);
+  const navBg = useTransform(navBgOpacity, (v) => `rgba(5, 5, 5, ${v})`);
+  const navBlur = useTransform(scrollY, [200, 300], ["blur(0px)", "blur(20px)"]);
+  const navBorder = useTransform(scrollY, [200, 300], ["1px solid rgba(255,255,255,0)", "1px solid rgba(255,255,255,0.08)"]);
 
   return (
     <section className="massively-intro" style={{ perspective: "1000px" }}>
@@ -39,9 +42,9 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 5vw',
-          background: `rgba(5, 5, 5, ${navBgOpacity.get()})`,
-          backdropFilter: scrollY.get() > 250 ? 'blur(20px)' : 'none',
-          borderBottom: scrollY.get() > 250 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+          background: navBg,
+          backdropFilter: navBlur,
+          borderBottom: navBorder,
           opacity: navBgOpacity
         }}
       >

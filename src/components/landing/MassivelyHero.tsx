@@ -18,10 +18,10 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
   // At scroll 0: Centered in viewport
   // At scroll 300: Positioned at the top-left logo zone
   const logoScale = useTransform(scrollY, [0, 300], [1, 0.22]);
-  
-  // Responsive X calculation for precise centering (accounting for 5vw header padding)
-  const logoX = useTransform(scrollY, [0, 300], ["calc(45vw - 50%)", "0px"]);
-  const logoY = useTransform(scrollY, [0, 300], ["calc(45vh - 40px)", "0px"]);
+  const logoX = useTransform(scrollY, [0, 300], ["-50%", "0%"]);
+  const logoLeft = useTransform(scrollY, [0, 300], ["50%", "0%"]);
+  const logoY = useTransform(scrollY, [0, 300], ["calc(45vh - 80px)", "0px"]);
+  const logoOrigin = useTransform(scrollY, [0, 300], ["center center", "left center"]);
   
   // Opacity Controls for smoother transitions
   const heroContentOpacity = useTransform(scrollY, [0, 150], [1, 0]);
@@ -45,23 +45,24 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
         }}
         className="fixed top-0 left-0 right-0 h-20 z-[150] px-[5vw] flex items-center justify-between pointer-events-none"
       >
-        <div className="flex items-center gap-12 pointer-events-auto w-full max-w-screen-2xl mx-auto">
-          {/* Logo Landing Zone */}
-          <div className="relative w-[220px] h-10 flex items-center">
-            <motion.div
-              style={{
-                scale: logoScale,
-                x: logoX,
-                y: logoY,
-                position: "absolute",
-                left: 0,
-                transformOrigin: "left center"
-              }}
-              className="whitespace-nowrap z-[160]"
-            >
-              <h1 className="shimmer-text select-none text-left text-7xl md:text-8xl tracking-tighter">STUDYHUB</h1>
-            </motion.div>
-          </div>
+        <div className="flex items-center gap-12 pointer-events-auto w-full max-w-screen-2xl mx-auto relative">
+          {/* Logo Landing Zone Placeholder (keeps layout stable) */}
+          <div className="relative w-[220px] h-10 flex items-center shrink-0" />
+
+          {/* Animated Logo: Center of viewport at scroll 0, header at scroll 300 */}
+          <motion.div
+            style={{
+              scale: logoScale,
+              x: logoX,
+              left: logoLeft,
+              y: logoY,
+              position: "absolute",
+              transformOrigin: logoOrigin
+            }}
+            className="whitespace-nowrap z-[160] pointer-events-none"
+          >
+            <h1 className="shimmer-text select-none text-center text-7xl md:text-8xl tracking-tighter pointer-events-auto">STUDYHUB</h1>
+          </motion.div>
 
           {/* Navigation Pill */}
           <div className="hidden lg:block">

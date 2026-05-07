@@ -135,7 +135,7 @@ export default async function LandingPage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="planes" className="massively-section relative overflow-hidden">
+        <section id="planes" className="massively-section relative">
           <div className="max-w-6xl mx-auto px-8 relative z-10">
             <div className="text-center mb-24">
               <h2 className="text-4xl md:text-6xl font-black mb-8 text-white">Planes a tu medida</h2>
@@ -168,8 +168,8 @@ export default async function LandingPage() {
               </div>
 
               {/* Plan Semestral */}
-              <div className="magnetic-card border-cyan-500/20 bg-cyan-500/[0.03] p-12 md:p-20 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-cyan-500 text-black text-[11px] font-black px-6 py-2 rounded-bl-2xl tracking-widest uppercase">
+              <div className="magnetic-card border-cyan-500/20 bg-cyan-500/[0.03] p-12 md:p-20 relative">
+                <div className="absolute -top-4 -right-4 bg-cyan-500 text-black text-[10px] font-black px-6 py-2 rounded-full tracking-widest uppercase shadow-xl shadow-cyan-500/40 z-20">
                   RECOMENDADO
                 </div>
                 <div className="mb-12">

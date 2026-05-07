@@ -7,13 +7,35 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  quality-assurance:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: studyhub_test
+        ports:
+          - 5432:5432
+        # Wait for postgres to be ready
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: "postgresql://postgres:password@localhost:5432/studyhub_test?schema=public"
+      AUTH_SECRET: "ci-secret-not-for-production"
+      NEXTAUTH_URL: "http://localhost:3000"
+
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+    
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '22.x'
         cache: 'npm'
@@ -21,11 +43,32 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Prisma Schema Validation
+      run: npx prisma validate
+
+    - name: Linting Check
+      run: npm run lint
+
+    - name: TypeScript Type-Check
+      run: npx tsc --noEmit
+
+    - name: Setup Database for Tests
+      run: npx prisma db push --skip-generate
+
     - name: Run Unit Tests (Jest)
       run: npm run test
+
+    - name: Build Verification (Smoke Test)
+      run: npm run build
+      env:
+        # Mocking external services if needed during build
+        AUTH_GOOGLE_ID: "mock"
+        AUTH_GOOGLE_SECRET: "mock"
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
     - name: Run E2E Tests (Playwright)
       run: npx playwright test
+      env:
+        CI: true

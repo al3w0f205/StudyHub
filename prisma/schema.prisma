@@ -94,6 +94,9 @@ model User {
 
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+
+  @@index([role])
+  @@index([isSuspended])
 }
 
 model Badge {
@@ -178,6 +181,7 @@ model PaymentRequest {
 
   @@index([userId])
   @@index([status])
+  @@index([reviewedAt])
 }
 
 model QuestionSuggestion {
@@ -192,6 +196,9 @@ model QuestionSuggestion {
   categoryId  String?
   isReviewed  Boolean  @default(false)
   createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([isReviewed])
 }
 
 model QuizProgress {
@@ -220,7 +227,8 @@ model QuestionResponse {
 
   @@unique([userId, questionId])
   @@index([userId, questionId])
-  @@index([userId])
+  @@index([userId, isCorrect])
+  @@index([createdAt])
 }
 
 model Changelog {
@@ -230,6 +238,8 @@ model Changelog {
   type        String   @default("FEATURE") // FEATURE, UPDATE, FIX
   version     String?
   createdAt   DateTime @default(now())
+
+  @@index([createdAt])
 }
 
 model ErrorReport {

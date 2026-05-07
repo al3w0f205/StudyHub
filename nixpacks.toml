@@ -17,7 +17,7 @@ cmds = [
 ]
 
 [start]
-cmd = "node .next/standalone/server.js"
+cmd = "npx prisma migrate deploy && node .next/standalone/server.js"
 
 [variables]
 NODE_ENV = "production"

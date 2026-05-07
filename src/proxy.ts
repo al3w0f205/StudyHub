@@ -16,21 +16,30 @@ export default auth((req: NextRequest & { auth: any }) => {
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("X-XSS-Protection", "1; mode=block");
+  
+  // HSTS (Strict-Transport-Security) - Only in production
+  if (process.env.NODE_ENV === 'production') {
+    response.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  }
+
   response.headers.set(
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://*.uploadthing.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' blob: data: https://*.googleusercontent.com https://utfs.io https://lh3.googleusercontent.com",
+      "img-src 'self' blob: data: https://*.googleusercontent.com https://utfs.io https://lh3.googleusercontent.com https://avatars.githubusercontent.com",
       "connect-src 'self' https://utfs.io https://api.uploadthing.com",
       "frame-ancestors 'none'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
     ].join("; ")
   );
   response.headers.set(
     "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()"
   );
 
   // 2. Auth Guards

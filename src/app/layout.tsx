@@ -29,8 +29,6 @@ export const viewport: Viewport = {
   themeColor: "#6366f1",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({
@@ -39,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -59,20 +57,22 @@ export default function RootLayout({
                 document.documentElement.setAttribute('data-theme', storedTheme || 'dark');
               } catch (e) {}
 
-              // ── Anti-Piratería: bloquear atajos de copia y DevTools ──
-              document.addEventListener('keydown', e => {
-                if (
-                  e.keyCode === 123 || // F12
-                  (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-                  (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-                  (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
-                  (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
-                  (e.ctrlKey && e.keyCode === 67)    // Ctrl+C
-                ) {
-                  e.preventDefault();
-                  return false;
-                }
-              });
+              // ── Anti-Piratería: bloquear atajos de copia y DevTools solo en PROD ──
+              if (window.location.hostname !== 'localhost' && !window.location.hostname.includes('192.168.')) {
+                document.addEventListener('keydown', e => {
+                  if (
+                    e.keyCode === 123 || // F12
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+                    (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+                    (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
+                    (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
+                    (e.ctrlKey && e.keyCode === 67)    // Ctrl+C
+                  ) {
+                    e.preventDefault();
+                    return false;
+                  }
+                });
+              }
             `,
           }}
         />

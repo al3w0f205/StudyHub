@@ -147,7 +147,13 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip; /* Better than hidden for preventing horizontal scroll while allowing sticky */
+}
+
+/* ── Responsive Media Reset ── */
+img, video, canvas, svg, iframe {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ── Scrollbar ── */

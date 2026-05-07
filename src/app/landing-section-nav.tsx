@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 const SECTIONS = [
   { id: "stats", label: "Contenido" },
   { id: "features", label: "Ventajas" },
-  { id: "steps", label: "Pasos" },
   { id: "pricing", label: "Precio" },
   { id: "preguntas", label: "FAQs" },
 ];
@@ -41,18 +40,20 @@ export default function LandingSectionNav() {
   }, []);
 
   return (
-    <nav className="landing-section-nav" aria-label="Secciones de la portada">
+    <div className="flex items-center gap-6 ml-8 max-md:hidden">
       {SECTIONS.map((section) => (
         <a
           key={section.id}
           href={`#${section.id}`}
-          className={`landing-section-link ${
-            activeId === section.id ? "active" : ""
+          className={`text-sm font-medium transition-colors hover:text-white ${
+            activeId === section.id 
+              ? "text-white" 
+              : "text-white/40"
           }`}
         >
           {section.label}
         </a>
       ))}
-    </nav>
+    </div>
   );
 }

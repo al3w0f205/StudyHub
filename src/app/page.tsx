@@ -139,7 +139,6 @@ export default async function HomePage() {
       {/* ── Main Content Container ── */}
       <main className="massively-main">
         <div className="glow-border-top" />
-        <LandingSectionNav />
 
         {/* ── About Section ── */}
         <section className="massively-section">

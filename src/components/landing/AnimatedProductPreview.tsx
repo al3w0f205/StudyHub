@@ -2,10 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import dynamic from "next/dynamic";
-import React from "react";
-
-const MathText = dynamic(() => import("@/components/ui/MathText"));
+import MathText from "@/components/ui/MathText";
 
 function BrandMark() {
   return (

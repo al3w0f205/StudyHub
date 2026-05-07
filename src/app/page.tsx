@@ -188,6 +188,14 @@ export default async function HomePage() {
           </Reveal>
         </section>
 
+        {/* ── Product Preview ── */}
+        <section className="massively-section" style={{ background: 'var(--bg-secondary)' }}>
+          <AnimatedProductPreview
+            totalFormatted={totalFormatted}
+            topCareer={topCareer}
+          />
+        </section>
+
         {/* ── Features ── */}
         <section id="features" className="massively-section">
           <Reveal>

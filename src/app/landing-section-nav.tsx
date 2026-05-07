@@ -49,7 +49,7 @@ export default function LandingSectionNav() {
   };
 
   return (
-    <nav className="relative flex items-center bg-white/5 border border-white/5 p-1 rounded-full backdrop-blur-xl shadow-2xl">
+    <nav className="premium-pill">
       <div className="flex items-center gap-1 relative z-10">
         {SECTIONS.map((section) => {
           const isActive = activeId === section.id;
@@ -57,17 +57,15 @@ export default function LandingSectionNav() {
             <button
               key={section.id}
               onClick={() => scrollTo(section.id)}
-              className={`relative px-6 py-2 text-[11px] font-black uppercase tracking-[0.15em] transition-colors duration-300 min-w-[100px] ${
-                isActive ? "text-cyan-400" : "text-white/30 hover:text-white/60"
-              }`}
+              className={`nav-link-premium ${isActive ? "active" : ""}`}
             >
               <span className="relative z-10">{section.label}</span>
               
               {isActive && (
                 <motion.div
                   layoutId="nav-pill-highlight"
-                  className="absolute inset-0 bg-cyan-500/10 border border-cyan-500/20 rounded-full"
-                  transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                  className="absolute inset-0 bg-white/5 border border-white/10 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
             </button>

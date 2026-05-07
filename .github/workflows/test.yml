@@ -53,7 +53,7 @@ jobs:
       run: npx tsc --noEmit
 
     - name: Setup Database for Tests
-      run: npx prisma db push --skip-generate
+      run: npx prisma db push --accept-data-loss
 
     - name: Run Unit Tests (Jest)
       run: npm run test

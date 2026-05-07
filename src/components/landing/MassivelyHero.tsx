@@ -14,82 +14,56 @@ interface MassivelyHeroProps {
 export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: MassivelyHeroProps) => {
   const { scrollY } = useScroll();
 
-  // Logo migration: Center -> Top Left
-  const logoScale = useTransform(scrollY, [0, 300], [1, 0.28]);
-  const logoX = useTransform(scrollY, [0, 300], ["0%", "-43%"]);
-  const logoY = useTransform(scrollY, [0, 300], ["0%", "-44.5%"]);
+  // Logo Animation: From Hero Center to Header Left
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.25]);
+  const logoX = useTransform(scrollY, [0, 300], ["0%", "-42vw"]);
+  const logoY = useTransform(scrollY, [0, 300], ["0%", "-44.5vh"]);
   
-  const headerOpacity = useTransform(scrollY, [0, 200], [1, 0]);
-  const navBgOpacity = useTransform(scrollY, [200, 300], [0, 1]);
-  const navContentOpacity = useTransform(scrollY, [250, 320], [0, 1]);
-  const navBg = useTransform(navBgOpacity, (v) => `rgba(5, 5, 5, ${v})`);
-  const navBlur = useTransform(scrollY, [200, 300], ["blur(0px)", "blur(20px)"]);
-  const navBorder = useTransform(scrollY, [200, 300], ["1px solid rgba(255,255,255,0)", "1px solid rgba(255,255,255,0.08)"]);
+  // Opacity Controls
+  const heroContentOpacity = useTransform(scrollY, [0, 150], [1, 0]);
+  const navBarOpacity = useTransform(scrollY, [200, 300], [0, 1]);
+  const navContentOpacity = useTransform(scrollY, [250, 350], [0, 1]);
+
+  // Derived Nav Styles
+  const navBg = useTransform(navBarOpacity, (v) => `rgba(5, 5, 5, ${v * 0.8})`);
+  const navBlur = useTransform(navBarOpacity, (v) => `blur(${v * 20}px)`);
 
   return (
-    <section className="massively-intro" style={{ perspective: "1000px" }}>
-      {/* ── Fixed Premium Navigation Bar ── */}
+    <section className="massively-intro overflow-visible">
+      {/* ── Fixed Header (Visible on Scroll) ── */}
       <motion.header 
-        className="landing-shell landing-nav" 
         style={{ 
-          position: 'fixed', 
-          top: 0, 
-          left: 0, 
-          right: 0, 
-          zIndex: 100, 
-          height: '80px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 5vw',
-          background: navBg,
+          background: navBg, 
           backdropFilter: navBlur,
-          borderBottom: navBorder,
-          opacity: navBgOpacity
+          opacity: navBarOpacity
         }}
+        className="fixed top-0 left-0 right-0 h-20 z-[100] px-[5vw] flex items-center justify-between border-b border-white/5"
       >
-        <div className="flex items-center gap-8">
-          {/* brandMark placeholder for spacing */}
-          <div className="landing-brand" style={{ opacity: 0, pointerEvents: 'none', width: '180px' }}>
-            <span className="landing-brand-text">StudyHub</span>
-          </div>
+        <div className="flex items-center gap-6">
+          {/* Invisible spacer for the logo that will land here */}
+          <div className="w-[180px] h-1" /> 
           
           <motion.div style={{ opacity: navContentOpacity }}>
             <LandingSectionNav />
           </motion.div>
         </div>
 
-        <motion.div 
-          className="flex items-center gap-3" 
-          style={{ opacity: navContentOpacity }}
-        >
+        <motion.div style={{ opacity: navContentOpacity }} className="flex items-center gap-3">
           {isLoggedIn ? (
             <>
-              <Link 
-                href={dashboardUrl} 
-                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white max-lg:hidden"
-              >
+              <Link href={dashboardUrl} className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white max-lg:hidden">
                 Panel de Estudio
               </Link>
-              <Link 
-                href="/quiz" 
-                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-              >
+              <Link href="/quiz" className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                 Practicar Ahora
               </Link>
             </>
           ) : (
             <>
-              <Link 
-                href="/auth/login" 
-                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white"
-              >
+              <Link href="/auth/login" className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white">
                 Ingresar
               </Link>
-              <Link 
-                href="/auth/register" 
-                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-              >
+              <Link href="/auth/register" className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                 Prueba Gratis
               </Link>
             </>
@@ -97,14 +71,11 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
         </motion.div>
       </motion.header>
 
-      {/* ── Central Hero Content ── */}
-      <div 
-        className="animate-fade-in flex flex-col items-center justify-center" 
-        style={{ zIndex: 5, width: '100%', pointerEvents: 'none', minHeight: '100vh' }}
-      >
-        <motion.div style={{ opacity: headerOpacity }}>
-          <p style={{ letterSpacing: '0.4em', marginBottom: '1.5rem', textTransform: 'uppercase', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textAlign: 'center' }}>
-            Preparación Universitaria
+      {/* ── Hero Center Content ── */}
+      <div className="flex flex-col items-center justify-center relative z-10 w-full pointer-events-none">
+        <motion.div style={{ opacity: heroContentOpacity }} className="mb-8">
+          <p className="text-white/40 uppercase tracking-[0.4em] text-[11px] font-bold">
+            Preparación Académica Superior
           </p>
         </motion.div>
 
@@ -113,28 +84,26 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
             scale: logoScale,
             x: logoX,
             y: logoY,
-            position: 'relative',
-            zIndex: 150,
-            pointerEvents: 'auto'
+            zIndex: 150
           }}
+          className="pointer-events-auto"
         >
-          <h1 className="shimmer-text" style={{ cursor: 'default', textAlign: 'center' }}>
-            STUDYHUB
-          </h1>
+          <h1 className="shimmer-text select-none">STUDYHUB</h1>
         </motion.div>
 
-        <motion.div style={{ opacity: headerOpacity, marginTop: '1.5rem' }}>
-          <div style={{ width: '80px', height: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 auto 1.5rem' }} />
-          <p style={{ letterSpacing: '0.25em', opacity: 0.5, textTransform: 'uppercase', fontSize: '0.85rem', textAlign: 'center' }}>
-            Llega seguro al examen
+        <motion.div style={{ opacity: heroContentOpacity }} className="mt-8 flex flex-col items-center">
+          <div className="w-12 h-[1px] bg-emerald-500/50 mb-6" />
+          <p className="text-white/60 uppercase tracking-[0.2em] text-[12px]">
+            Domina el examen con confianza
           </p>
         </motion.div>
       </div>
-      
+
       <motion.div 
-        style={{ position: 'absolute', bottom: '4rem', zIndex: 5, opacity: headerOpacity }}
+        style={{ opacity: heroContentOpacity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <div className="scroll-indicator-v2" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-emerald-500 to-transparent" />
       </motion.div>
     </section>
   );

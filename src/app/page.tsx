@@ -1,263 +1,143 @@
-import Link from "next/link";
-import LandingSectionNav from "./landing-section-nav";
-import React from "react";
-import AnimatedProductPreview from "@/components/landing/AnimatedProductPreview";
-import { Reveal, ParallaxBg } from "@/components/landing/LandingAnimations";
 import { MassivelyHero } from "@/components/landing/MassivelyHero";
-import {
-  LANDING_STATS_TIMEOUT_MS,
-  IS_PREVIEW_MODE,
-  previewCareersData,
-  features,
-  steps,
-  faqs,
-  Icon,
-} from "@/components/landing/LandingConstants";
+import { BrandMark } from "@/components/landing/LandingAnimations";
+import AnimatedProductPreview from "@/components/landing/AnimatedProductPreview";
+import { 
+  CheckCircle2, 
+  BrainCircuit, 
+  Target, 
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Zap
+} from "lucide-react";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
 
-export const dynamic = "force-dynamic";
-
-const formatNumber = new Intl.NumberFormat("es-EC");
-
-export function BrandMark() {
+function ParallaxBg({ imageUrl }: { imageUrl: string }) {
   return (
-    <div className="brand-mark" aria-hidden="true" style={{ width: '32px', height: '32px', fontSize: '14px', lineHeight: '32px' }}>
-      S
-    </div>
+    <div 
+      className="fixed inset-0 z-[-1] opacity-30 grayscale pointer-events-none"
+      style={{
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    />
   );
 }
 
-interface PrimaryLinkProps {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  className?: string;
-  style?: React.CSSProperties;
-}
+export default async function LandingPage() {
+  const session = await auth();
+  const isLoggedIn = !!session;
+  const dashboardUrl = "/dashboard";
 
-export function PrimaryLink({
-  href,
-  children,
-  variant = "primary",
-  className = "",
-  style,
-}: PrimaryLinkProps) {
-  return (
-    <Link 
-      href={href} 
-      className={`landing-btn landing-btn-${variant} ${className}`}
-      style={style}
-    >
-      {children}
-      <span aria-hidden="true">→</span>
-    </Link>
-  );
-}
+  const totalQuestions = await prisma.question.count();
+  const careers = await prisma.career.findMany({
+    include: { _count: { select: { questions: true } } }
+  });
 
-export default async function HomePage() {
-  let session: any = null;
-
-  if (!IS_PREVIEW_MODE) {
-    try {
-      const { auth } = await import("@/auth");
-      session = await auth();
-    } catch (error) {
-      console.error("Auth error on home page:", error);
-    }
-  }
-
-  const isLoggedIn = !!session?.user;
-  const isAdmin = session?.user?.role === "ADMIN";
-  const dashboardUrl = isAdmin ? "/admin" : "/dashboard";
-
-  let totalQuestions = IS_PREVIEW_MODE ? 1290 : 0;
-  let careersData: any[] = IS_PREVIEW_MODE ? (previewCareersData as any) : [];
-
-  if (!IS_PREVIEW_MODE) {
-    try {
-      const { default: prisma } = await import("@/lib/prisma");
-      const statsPromise = Promise.all([
-        prisma.question.count(),
-        prisma.career.findMany({
-          select: {
-            name: true,
-            categories: {
-              select: {
-                _count: {
-                  select: { questions: true },
-                },
-              },
-            },
-          },
-          orderBy: { name: "asc" },
-        }),
-      ]);
-
-      const [count, careers] = await (Promise.race([
-        statsPromise,
-        new Promise((_, reject) =>
-          setTimeout(
-            () => reject(new Error("Landing stats request timed out")),
-            LANDING_STATS_TIMEOUT_MS
-          )
-        ),
-      ]) as Promise<[number, any[]]>);
-
-      totalQuestions = count;
-      careersData = careers;
-    } catch (error) {
-      console.error("Unable to load landing stats", error);
-    }
-  }
-
-  const statsByCareer = careersData
-    .map((career) => {
-      const questionCount = career.categories.reduce(
-        (acc: number, category: any) => acc + category._count.questions,
-        0
-      );
-      return { name: career.name, questionCount };
-    })
-    .filter((career) => career.questionCount > 0)
+  const statsByCareer = careers
+    .map(c => ({ name: c.name, questionCount: c._count.questions }))
+    .filter(c => c.questionCount > 0)
     .sort((a, b) => b.questionCount - a.questionCount);
-
-  const totalFormatted = formatNumber.format(totalQuestions);
-  const topCareer = statsByCareer[0];
-  const ctaHref = isLoggedIn ? dashboardUrl : "/auth/login";
 
   return (
     <div className="massively-layout">
-      {/* ── Aurora Background Accents ── */}
+      {/* ── Fixed Background Elements ── */}
       <div className="aurora-container">
         <div className="aurora-blob aurora-1" />
         <div className="aurora-blob aurora-2" />
-        <div className="aurora-blob aurora-3" />
       </div>
-
-      {/* ── Fixed Parallax Background ── */}
       <ParallaxBg imageUrl="/images/hero-bg.png" />
 
-      {/* ── Interactive Hero with Scroll Transition ── */}
+      {/* ── Cinematic Hero ── */}
       <MassivelyHero 
         isLoggedIn={isLoggedIn} 
         dashboardUrl={dashboardUrl} 
         brandMark={<BrandMark />} 
       />
 
-      {/* ── Main Content Container ── */}
+      {/* ── Main Content Body ── */}
       <main className="massively-main">
-        <div className="glow-border-top" />
-
-        {/* ── About Section ── */}
-        <section className="massively-section">
-          <Reveal>
-            <span className="section-kicker">Misión Académica</span>
-            <h2 style={{ textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '2.5rem' }}>
-              Estudia con propósito. <br />
-              <span className="shimmer-text" style={{ color: 'var(--primary-400)' }}>Domina el examen.</span>
+        {/* Stats Section */}
+        <section id="stats" className="massively-section">
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <span className="text-emerald-500 font-bold uppercase tracking-widest text-[11px] mb-4 block">
+              Resultados Reales
+            </span>
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
+              Domina <span className="text-emerald-400">{totalQuestions.toLocaleString()}</span> Preguntas Clave
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', marginTop: '3.5rem' }}>
-              <p style={{ fontSize: '1.25rem', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-                StudyHub reúne cuestionarios por carrera, explicaciones claras y seguimiento de progreso para que cada sesión de estudio tenga una dirección real.
+            <p className="text-white/50 text-lg max-w-2xl mx-auto">
+              Todo el contenido que necesitas para tu examen, organizado por carrera y nivel de dificultad.
+            </p>
+          </div>
+
+          <AnimatedProductPreview />
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="massively-section bg-white/[0.01]">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="magnetic-card">
+              <Zap className="text-emerald-400 mb-6" size={40} />
+              <h3 className="text-2xl font-bold mb-4 text-white">Aprendizaje Ágil</h3>
+              <p className="text-white/40 leading-relaxed">
+                Algoritmos inteligentes que se adaptan a tu ritmo de estudio para maximizar la retención.
               </p>
-              <div className="hero-actions" style={{ justifyContent: 'flex-start', alignSelf: 'center' }}>
-                <PrimaryLink href={ctaHref} className="animate-pulse-glow">Comenzar ahora</PrimaryLink>
-              </div>
             </div>
-          </Reveal>
+            <div className="magnetic-card">
+              <ShieldCheck className="text-cyan-400 mb-6" size={40} />
+              <h3 className="text-2xl font-bold mb-4 text-white">Cero Distracciones</h3>
+              <p className="text-white/40 leading-relaxed">
+                Interfaz minimalista diseñada para que el 100% de tu atención esté en aprender.
+              </p>
+            </div>
+            <div className="magnetic-card">
+              <Sparkles className="text-violet-400 mb-6" size={40} />
+              <h3 className="text-2xl font-bold mb-4 text-white">IA Integrada</h3>
+              <p className="text-white/40 leading-relaxed">
+                Explicaciones generadas por IA para cada pregunta que no logres entender a la primera.
+              </p>
+            </div>
+          </div>
         </section>
 
-        {/* ── Stats Section ── */}
-        <section id="stats" className="massively-section" style={{ background: 'rgba(255,255,255,0.01)' }}>
-          <Reveal delay={0.3}>
-            <span className="section-kicker">Contenido en Tiempo Real</span>
-            <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '4rem' }}>
-              <div className="stat-card-landing" style={{ background: 'transparent', border: 'none', textAlign: 'center' }}>
-                <strong style={{ fontSize: '4.5rem', fontWeight: 900 }} className="shimmer-text">{totalFormatted}</strong>
-                <span style={{ display: 'block', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.75rem', marginTop: '0.5rem' }}>Preguntas Activas</span>
-              </div>
-              <div className="stat-card-landing" style={{ background: 'transparent', border: 'none', textAlign: 'center' }}>
-                <strong style={{ fontSize: '4.5rem', fontWeight: 900 }}>{formatNumber.format(statsByCareer.length)}</strong>
-                <span style={{ display: 'block', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.75rem', marginTop: '0.5rem' }}>Áreas de Contenido</span>
-              </div>
-            </div>
-            
-            <div className="careers-grid" style={{ marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem' }}>
-              {statsByCareer.slice(0, 8).map((career, i) => (
-                <Reveal key={career.name} delay={0.1 * i}>
-                  <div className="career-card magnetic-card" style={{ background: 'rgba(255,255,255,0.03)', padding: '2rem', borderRadius: '12px', height: '100%' }}>
-                    <strong style={{ fontSize: '1.1rem', color: 'white', display: 'block', marginBottom: '0.5rem' }}>{career.name}</strong>
-                    <span style={{ opacity: 0.5, fontSize: '0.9rem' }}>{formatNumber.format(career.questionCount)} reactivos</span>
-                  </div>
-                </Reveal>
+        {/* Pricing Section Placeholder */}
+        <section id="pricing" className="massively-section text-center">
+          <div className="py-20 bg-emerald-500/5 rounded-[40px] border border-emerald-500/10">
+            <h2 className="text-4xl font-black mb-4">Elige tu Plan de Éxito</h2>
+            <p className="text-white/50 mb-10">Acceso total por menos de lo que imaginas.</p>
+            <Link 
+              href="/pricing"
+              className="px-10 py-4 rounded-full bg-emerald-500 text-black font-black hover:scale-105 transition-transform"
+            >
+              Ver Planes de Estudio
+            </Link>
+          </div>
+        </section>
+
+        {/* FAQ Section Placeholder */}
+        <section id="preguntas" className="massively-section">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
+            <div className="space-y-6">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                  <p className="font-bold mb-2">¿Cómo funciona el modo práctica?</p>
+                  <p className="text-white/40 text-sm italic">Seleccionas tu carrera y empiezas a responder preguntas reales de exámenes pasados.</p>
+                </div>
               ))}
             </div>
-          </Reveal>
+          </div>
         </section>
-
-        {/* ── Product Preview ── */}
-        <section className="massively-section" style={{ background: 'var(--bg-secondary)' }}>
-          <AnimatedProductPreview
-            totalFormatted={totalFormatted}
-            topCareer={topCareer}
-          />
-        </section>
-
-        {/* ── Features ── */}
-        <section id="features" className="massively-section">
-          <Reveal>
-            <span className="section-kicker">Ventajas Tecnológicas</span>
-            <h2 style={{ marginBottom: '5rem' }}>Ingeniería aplicada al aprendizaje</h2>
-            <div className="features-grid" style={{ gap: '4rem' }}>
-              {features.map((feature, i) => (
-                <Reveal key={feature.title} delay={0.1 * i}>
-                  <article className="feature-card magnetic-card" style={{ border: 'none', background: 'rgba(255,255,255,0.02)', padding: '2.5rem', borderRadius: '16px' }}>
-                    <div className="feature-icon" style={{ width: '48px', height: '48px', marginBottom: '2rem', color: 'var(--primary-400)' }}>
-                      <Icon name={feature.icon} />
-                    </div>
-                    <h3 style={{ fontSize: '1.4rem', marginBottom: '1.25rem', color: 'white' }}>{feature.title}</h3>
-                    <p style={{ opacity: 0.6, fontSize: '1rem', lineHeight: '1.6' }}>{feature.description}</p>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── Pricing ── */}
-        <section id="pricing" className="massively-section" style={{ background: 'linear-gradient(180deg, var(--primary-900) 0%, #000 100%)' }}>
-          <Reveal>
-            <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-              <span className="section-kicker" style={{ color: 'var(--primary-300)' }}>Membresía Elite</span>
-              <h2 style={{ color: 'white', fontSize: '3.5rem', marginBottom: '2rem' }}>Libera todo tu potencial</h2>
-              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '4rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
-                <div style={{ fontSize: '5rem', fontWeight: 900, marginBottom: '1rem', color: 'white' }}>$10 <span style={{ fontSize: '1.5rem', fontWeight: 400, opacity: 0.5 }}>/ mes</span></div>
-                <p style={{ marginBottom: '3rem', fontSize: '1.2rem', color: 'var(--text-secondary)' }}>
-                  Acceso ilimitado a simuladores, explicaciones Premium y analíticas avanzadas.
-                </p>
-                <PrimaryLink href={ctaHref} style={{ background: 'white', color: 'var(--primary-900)', border: 'none', padding: '1.25rem 3rem', fontSize: '1.1rem' }}>
-                  Activar Acceso Total
-                </PrimaryLink>
-              </div>
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── Footer ── */}
-        <footer className="massively-footer" style={{ borderTop: 'none', background: 'black' }}>
-          <Reveal>
-            <div style={{ marginBottom: '4rem' }}>
-              <BrandMark />
-              <h3 style={{ marginTop: '1.5rem', letterSpacing: '0.3em', fontWeight: 900, color: 'white' }}>STUDYHUB</h3>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
-              <Link href="/auth/login" style={{ opacity: 0.6 }} className="landing-link">Ingresar</Link>
-              <Link href="#stats" style={{ opacity: 0.6 }} className="landing-link">Contenido</Link>
-              <Link href="#pricing" style={{ opacity: 0.6 }} className="landing-link">Planes</Link>
-            </div>
-            <p style={{ opacity: 0.3, fontSize: '0.8rem' }}>© {new Date().getFullYear()} StudyHub Engineering. Calidad académica superior.</p>
-          </Reveal>
-        </footer>
       </main>
+
+      <footer className="py-10 text-center text-white/20 text-[11px] uppercase tracking-widest">
+        &copy; {new Date().getFullYear()} StudyHub — Elevando el Estándar Académico
+      </footer>
     </div>
   );
 }

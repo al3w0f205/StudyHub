@@ -2585,3 +2585,107 @@ a {
   font-size: 0.85rem;
   font-weight: 800;
 }
+
+/* -- Massively Landing Page Accents (Surgical Update) -- */
+.massively-layout {
+  background-color: #050505;
+  color: #fff;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.aurora-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  animation: aurora-float 20s infinite alternate;
+}
+
+.aurora-1 { background: #10b981; top: -10%; left: -10%; }
+.aurora-2 { background: #6366f1; bottom: -10%; right: -10%; animation-delay: -5s; }
+
+@keyframes aurora-float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(10%, 5%) scale(1.1); }
+}
+
+.shimmer-text {
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 45%,
+    #10b981 50%,
+    #6366f1 55%,
+    #fff 60%,
+    #fff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 5s linear infinite;
+  display: block;
+}
+
+@keyframes shimmer { to { background-position: 200% center; } }
+
+.massively-intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding: 0 5vw;
+}
+
+.massively-main {
+  position: relative;
+  z-index: 10;
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: -10vh;
+  border-radius: 40px 40px 0 0;
+  padding-bottom: 5rem;
+}
+
+.massively-section {
+  padding: 100px 10vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.magnetic-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magnetic-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}

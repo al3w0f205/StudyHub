@@ -194,6 +194,54 @@ body {
 .aurora-2 { background: var(--accent-500); bottom: -10%; right: -10%; animation-delay: -5s; }
 .aurora-3 { background: #a855f7; top: 40%; left: 30%; animation-duration: 25s; opacity: 0.1; }
 
+.massively-intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+.shimmer-text {
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1;
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 40%,
+    var(--primary-300) 50%,
+    var(--accent-300) 60%,
+    #fff 70%,
+    #fff 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 4s linear infinite;
+  margin: 0;
+  padding: 20px 0;
+}
+
+.massively-main {
+  position: relative;
+  z-index: 20;
+  background: rgba(10, 10, 12, 0.8);
+  backdrop-filter: blur(24px) saturate(180%);
+  margin-top: -15vh;
+  border-radius: 40px 40px 0 0;
+  box-shadow: 0 -20px 50px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
 @keyframes aurora-float {
   0% { transform: translate(0, 0) scale(1); }
   100% { transform: translate(10%, 5%) scale(1.1); }

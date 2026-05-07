@@ -98,9 +98,12 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
       </motion.header>
 
       {/* ── Central Hero Content ── */}
-      <div className="animate-fade-in" style={{ zIndex: 5, width: '100%', pointerEvents: 'none' }}>
+      <div 
+        className="animate-fade-in flex flex-col items-center justify-center" 
+        style={{ zIndex: 5, width: '100%', pointerEvents: 'none', minHeight: '100vh' }}
+      >
         <motion.div style={{ opacity: headerOpacity }}>
-          <p style={{ letterSpacing: '0.4em', marginBottom: '1.5rem', textTransform: 'uppercase', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>
+          <p style={{ letterSpacing: '0.4em', marginBottom: '1.5rem', textTransform: 'uppercase', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textAlign: 'center' }}>
             Preparación Universitaria
           </p>
         </motion.div>
@@ -115,14 +118,14 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
             pointerEvents: 'auto'
           }}
         >
-          <h1 className="shimmer-text" style={{ margin: 0, border: 'none', cursor: 'default' }}>
+          <h1 className="shimmer-text" style={{ cursor: 'default', textAlign: 'center' }}>
             STUDYHUB
           </h1>
         </motion.div>
 
         <motion.div style={{ opacity: headerOpacity, marginTop: '1.5rem' }}>
           <div style={{ width: '80px', height: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 auto 1.5rem' }} />
-          <p style={{ letterSpacing: '0.25em', opacity: 0.5, textTransform: 'uppercase', fontSize: '0.85rem' }}>
+          <p style={{ letterSpacing: '0.25em', opacity: 0.5, textTransform: 'uppercase', fontSize: '0.85rem', textAlign: 'center' }}>
             Llega seguro al examen
           </p>
         </motion.div>

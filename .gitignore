@@ -29,6 +29,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.db
+*.db-journal
+lint-results*.json
+lint_output.txt
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -57,7 +61,13 @@ certs/
 /test-results/
 /playwright-report/
 /playwright/.cache/
+blob-report/
 
 # IDE
 .idea/
 .vscode/
+CLAUDE.md
+AGENTS.md
+
+# Database Backups
+/backups/

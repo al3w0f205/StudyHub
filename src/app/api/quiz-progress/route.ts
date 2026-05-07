@@ -131,7 +131,8 @@ export async function POST(request: NextRequest) {
     }
   } else {
     // ── Modo final: puntaje total del quiz ──
-    pointsAwarded = Math.floor(Math.round(score) / 10);
+    const finalScore = typeof score === "number" ? score : 0;
+    pointsAwarded = Math.floor(Math.round(finalScore) / 10);
   }
 
   // Actualizar racha y puntos del usuario (gamificación)

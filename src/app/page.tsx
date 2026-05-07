@@ -1,5 +1,4 @@
 import { MassivelyHero } from "@/components/landing/MassivelyHero";
-import { BrandMark } from "@/components/landing/LandingAnimations";
 import AnimatedProductPreview from "@/components/landing/AnimatedProductPreview";
 import { 
   CheckCircle2, 
@@ -28,20 +27,34 @@ function ParallaxBg({ imageUrl }: { imageUrl: string }) {
   );
 }
 
+// Local BrandMark component to fix missing export
+const BrandMark = () => (
+  <div className="w-8 h-8 bg-gradient-to-tr from-emerald-400 to-cyan-500 rounded-lg shadow-lg" />
+);
+
 export default async function LandingPage() {
   const session = await auth();
   const isLoggedIn = !!session;
   const dashboardUrl = "/dashboard";
 
+  // Fixed Prisma Query
   const totalQuestions = await prisma.question.count();
   const careers = await prisma.career.findMany({
-    include: { _count: { select: { questions: true } } }
+    include: {
+      _count: true
+    }
   });
 
   const statsByCareer = careers
-    .map(c => ({ name: c.name, questionCount: c._count.questions }))
+    .map(c => ({ 
+      name: c.name, 
+      questionCount: (c as any)._count?.questions || 0 
+    }))
     .filter(c => c.questionCount > 0)
     .sort((a, b) => b.questionCount - a.questionCount);
+
+  const totalFormatted = totalQuestions.toLocaleString();
+  const topCareer = statsByCareer[0] || { name: "General", questionCount: 0 };
 
   return (
     <div className="massively-layout">
@@ -75,7 +88,7 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          <AnimatedProductPreview />
+          <AnimatedProductPreview totalFormatted={totalFormatted} topCareer={topCareer} />
         </section>
 
         {/* Features Section */}

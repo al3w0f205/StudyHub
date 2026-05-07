@@ -39,7 +39,7 @@ export default auth((req: NextRequest & { auth: any }) => {
   );
   response.headers.set(
     "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()"
+    "camera=(), microphone=(), geolocation=(), payment=()"
   );
 
   // 2. Auth Guards

@@ -137,7 +137,7 @@ export default async function LandingPage() {
               </p>
               
               <Link 
-                href="/pricing"
+                href="#pricing"
                 className="group relative inline-flex items-center justify-center px-12 py-5 bg-emerald-500 text-black font-black text-lg rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]"
               >
                 <span>Ver Planes de Estudio</span>

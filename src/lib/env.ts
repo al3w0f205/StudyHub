@@ -35,12 +35,17 @@ const envSchema = z.object({
 });
 
 // Parse and validate current process.env
+// In Next.js, we can detect if we are in the build phase
+const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build" || process.env.CI === "true";
+
 const parsedEnv = envSchema.safeParse(process.env);
 
-if (!parsedEnv.success) {
+if (!parsedEnv.success && !isBuildPhase) {
   console.error("❌ Invalid environment variables:");
   console.error(parsedEnv.error.flatten().fieldErrors);
   throw new Error("Invalid environment variables");
 }
 
-export const env = parsedEnv.data;
+// During build, we use the raw process.env casted to the schema type to avoid runtime crashes
+// but the actual values will be validated again at runtime.
+export const env = (parsedEnv.success ? parsedEnv.data : process.env) as z.infer<typeof envSchema>;

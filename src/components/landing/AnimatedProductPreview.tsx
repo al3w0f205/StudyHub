@@ -56,7 +56,7 @@ export default function AnimatedProductPreview({
           <BrandMark />
           <span>StudyHub</span>
         </div>
-        <span className="preview-pill">Simulacro activo</span>
+        <span className="preview-pill">Práctica en curso</span>
       </div>
 
       <div className="preview-grid" style={{ overflow: "hidden" }}>
@@ -77,7 +77,7 @@ export default function AnimatedProductPreview({
             className="preview-question-topline"
             style={{ y: questionY, opacity: questionOpacity }}
           >
-            <span>Modo Simulacro</span>
+            <span>Sesión de Práctica</span>
             <span>00:24 ⏱️</span>
           </motion.div>
 

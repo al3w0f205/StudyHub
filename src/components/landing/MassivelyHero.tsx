@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import LandingSectionNav from "@/app/landing-section-nav";
 
@@ -14,11 +14,10 @@ interface MassivelyHeroProps {
 export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: MassivelyHeroProps) => {
   const { scrollY } = useScroll();
 
-  // Transformaciones basadas en el scroll
-  // El logo se mueve arriba a la izquierda y se encoge
-  const logoScale = useTransform(scrollY, [0, 300], [1, 0.25]);
-  const logoX = useTransform(scrollY, [0, 300], ["0%", "-41.5%"]);
-  const logoY = useTransform(scrollY, [0, 300], ["0%", "-45%"]);
+  // Logo migration: Center -> Top Left
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.28]);
+  const logoX = useTransform(scrollY, [0, 300], ["0%", "-43%"]);
+  const logoY = useTransform(scrollY, [0, 300], ["0%", "-44.5%"]);
   
   const headerOpacity = useTransform(scrollY, [0, 200], [1, 0]);
   const navBgOpacity = useTransform(scrollY, [200, 300], [0, 1]);
@@ -35,44 +34,68 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
           left: 0, 
           right: 0, 
           zIndex: 100, 
-          height: '72px',
+          height: '80px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: `rgba(10, 10, 12, ${navBgOpacity.get()})`,
-          backdropFilter: scrollY.get() > 280 ? 'blur(16px)' : 'none',
-          borderBottom: scrollY.get() > 280 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+          padding: '0 5vw',
+          background: `rgba(5, 5, 5, ${navBgOpacity.get()})`,
+          backdropFilter: scrollY.get() > 250 ? 'blur(20px)' : 'none',
+          borderBottom: scrollY.get() > 250 ? '1px solid rgba(255,255,255,0.08)' : 'none',
           opacity: navBgOpacity
         }}
       >
-        <div className="flex items-center">
-          {/* brandMark stays fixed in nav position but hidden until scroll? 
-              Actually we let the animated logo handle the branding */}
-          <div className="landing-brand" style={{ opacity: 0, pointerEvents: 'none' }}>
-            {brandMark}
+        <div className="flex items-center gap-8">
+          {/* brandMark placeholder for spacing */}
+          <div className="landing-brand" style={{ opacity: 0, pointerEvents: 'none', width: '180px' }}>
             <span className="landing-brand-text">StudyHub</span>
           </div>
           
-          <motion.div style={{ opacity: navContentOpacity, marginLeft: '60px' }}>
+          <motion.div style={{ opacity: navContentOpacity }}>
             <LandingSectionNav />
           </motion.div>
         </div>
 
-        <motion.div className="landing-nav-actions" style={{ opacity: navContentOpacity }}>
+        <motion.div 
+          className="flex items-center gap-3" 
+          style={{ opacity: navContentOpacity }}
+        >
           {isLoggedIn ? (
-            <Link href={dashboardUrl} className="landing-btn landing-btn-secondary" style={{ background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)' }}>
-              Panel
-            </Link>
+            <>
+              <Link 
+                href={dashboardUrl} 
+                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white max-lg:hidden"
+              >
+                Panel de Estudio
+              </Link>
+              <Link 
+                href="/quiz" 
+                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+              >
+                Practicar Ahora
+              </Link>
+            </>
           ) : (
-            <Link href="/auth/login" className="landing-btn landing-btn-primary">
-              Ingresar
-            </Link>
+            <>
+              <Link 
+                href="/auth/login" 
+                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-white"
+              >
+                Ingresar
+              </Link>
+              <Link 
+                href="/auth/register" 
+                className="px-5 py-2 rounded-full text-[13px] font-bold transition-all bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+              >
+                Prueba Gratis
+              </Link>
+            </>
           )}
         </motion.div>
       </motion.header>
 
       {/* ── Central Hero Content ── */}
-      <div className="animate-fade-in" style={{ zIndex: 5, width: '100%' }}>
+      <div className="animate-fade-in" style={{ zIndex: 5, width: '100%', pointerEvents: 'none' }}>
         <motion.div style={{ opacity: headerOpacity }}>
           <p style={{ letterSpacing: '0.4em', marginBottom: '1.5rem', textTransform: 'uppercase', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>
             Preparación Universitaria
@@ -85,10 +108,11 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
             x: logoX,
             y: logoY,
             position: 'relative',
-            zIndex: 150
+            zIndex: 150,
+            pointerEvents: 'auto'
           }}
         >
-          <h1 className="shimmer-text" style={{ margin: 0, border: 'none', filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.1))' }}>
+          <h1 className="shimmer-text" style={{ margin: 0, border: 'none', cursor: 'default' }}>
             STUDYHUB
           </h1>
         </motion.div>

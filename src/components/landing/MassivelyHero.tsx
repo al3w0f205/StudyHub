@@ -16,8 +16,8 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
 
   // Logo Animation: From Viewport Center to Header Left Container
   const logoScale = useTransform(scrollY, [0, 300], [1, 0.22]);
-  const logoX = useTransform(scrollY, [0, 300], ["calc(45vw - 110px)", "0vw"]);
-  const logoY = useTransform(scrollY, [0, 300], ["calc(45vh - 40px)", "0vh"]);
+  const logoX = useTransform(scrollY, [0, 300], ["calc(45vw - 110px)", "40px"]);
+  const logoY = useTransform(scrollY, [0, 300], ["calc(45vh - 40px)", "0px"]);
   
   // Opacity Controls for smoother transitions
   const heroContentOpacity = useTransform(scrollY, [0, 150], [1, 0]);
@@ -32,12 +32,14 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
     <section className="massively-intro overflow-visible min-h-screen relative flex flex-col items-center justify-center">
       {/* ── Fixed Header ── */}
       <motion.header 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         style={{ 
           background: navBg, 
           backdropFilter: navBlur,
           borderBottom: navBorder
         }}
-        className="fixed top-0 left-0 right-0 h-20 z-[150] px-[5vw] flex items-center justify-between pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-20 z-[150] px-[8vw] flex items-center justify-between pointer-events-none"
       >
         <div className="flex items-center gap-8 pointer-events-auto w-full max-w-7xl mx-auto">
           {/* Logo Landing Zone */}
@@ -58,7 +60,7 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
           </div>
 
           {/* Navigation Pill */}
-          <div className="hidden lg:block ml-12">
+          <div className="hidden lg:block ml-16">
             <LandingSectionNav />
           </div>
         </div>
@@ -98,14 +100,14 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) 
         style={{ opacity: heroContentOpacity }}
         className="flex flex-col items-center justify-center relative z-10 w-full pointer-events-none pt-24"
       >
-          {/* Spacer for the animated logo which starts here */}
-          <div className="h-[12vw] md:h-[8vw] mb-4" />
+          {/* Spacer for the animated logo which starts here at ~45vh */}
+          <div className="h-[35vh] mb-4" />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="flex flex-col items-center gap-8 mt-12 pointer-events-auto"
+            className="flex flex-col items-center gap-8 mt-40 pointer-events-auto"
           >
             <div className="flex flex-col items-center gap-3">
               <span className="text-cyan-400/80 uppercase tracking-[0.4em] text-[10px] md:text-xs font-black">

@@ -1,13 +1,13 @@
-const LRU = require("lru-cache");
+import { LRUCache } from "lru-cache";
 
 /**
  * Simple in-memory rate limiter for serverless environments.
  * Note: In a multi-instance production environment, use Upstash Redis.
  */
 export const rateLimit = (options: { interval: number; uniqueTokenPerInterval: number }) => {
-  const tokenCache = new LRU({
+  const tokenCache = new LRUCache({
     max: options.uniqueTokenPerInterval || 500,
-    maxAge: options.interval || 60000,
+    ttl: options.interval || 60000, // En v11 se usa 'ttl' en lugar de 'maxAge'
   });
 
   return {

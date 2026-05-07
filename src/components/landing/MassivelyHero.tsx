@@ -21,8 +21,8 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
   const logoY = useTransform(scrollY, [0, 300], ["0%", "-45%"]);
   
   const headerOpacity = useTransform(scrollY, [0, 200], [1, 0]);
-  const navBgOpacity = useTransform(scrollY, [280, 400], [0, 1]);
-  const navContentOpacity = useTransform(scrollY, [300, 400], [0, 1]);
+  const navBgOpacity = useTransform(scrollY, [200, 300], [0, 1]);
+  const navContentOpacity = useTransform(scrollY, [250, 320], [0, 1]);
 
   return (
     <section className="massively-intro" style={{ perspective: "1000px" }}>
@@ -53,8 +53,7 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
             <span className="landing-brand-text">StudyHub</span>
           </div>
           
-          {/* This is the part that sits NEXT to the logo once it moves */}
-          <motion.div style={{ opacity: navContentOpacity, marginLeft: '100px' }}>
+          <motion.div style={{ opacity: navContentOpacity, marginLeft: '60px' }}>
             <LandingSectionNav />
           </motion.div>
         </div>

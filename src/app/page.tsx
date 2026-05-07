@@ -126,6 +126,13 @@ export default async function HomePage() {
 
   return (
     <div className="massively-layout">
+      {/* ── Aurora Background Accents ── */}
+      <div className="aurora-container">
+        <div className="aurora-blob aurora-1" />
+        <div className="aurora-blob aurora-2" />
+        <div className="aurora-blob aurora-3" />
+      </div>
+
       {/* ── Fixed Parallax Background ── */}
       <ParallaxBg imageUrl="/images/hero-bg.png" />
 

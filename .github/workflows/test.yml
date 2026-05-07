@@ -30,6 +30,11 @@ jobs:
       DATABASE_URL: "postgresql://postgres:password@localhost:5432/studyhub_test?schema=public"
       AUTH_SECRET: "ci-secret-not-for-production"
       NEXTAUTH_URL: "http://localhost:3000"
+      S3_ENDPOINT: "http://localhost:9000"
+      S3_BUCKET: "mock-bucket"
+      AUTH_GOOGLE_ID: "mock-id"
+      AUTH_GOOGLE_SECRET: "mock-secret"
+      NEXT_PUBLIC_TRANSFER_ACCOUNTS: "Mock Bank - 000000"
 
     steps:
     - uses: actions/checkout@v4

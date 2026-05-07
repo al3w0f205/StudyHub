@@ -118,29 +118,63 @@ export default async function LandingPage() {
           </div>
         </section>
 
-        {/* Pricing Section Placeholder */}
-        <section id="pricing" className="massively-section text-center">
-          <div className="py-20 bg-emerald-500/5 rounded-[40px] border border-emerald-500/10">
-            <h2 className="text-4xl font-black mb-4">Elige tu Plan de Éxito</h2>
-            <p className="text-white/50 mb-10">Acceso total por menos de lo que imaginas.</p>
-            <Link 
-              href="/pricing"
-              className="px-10 py-4 rounded-full bg-emerald-500 text-black font-black hover:scale-105 transition-transform"
-            >
-              Ver Planes de Estudio
-            </Link>
+        {/* Pricing Section - Premium Redesign */}
+        <section id="pricing" className="massively-section relative overflow-hidden">
+          {/* Subtle Glow behind pricing */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+              Suscripción Pro
+            </div>
+            
+            <div className="magnetic-card p-12 md:p-20 border-white/10 bg-white/[0.02]">
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                Elige tu Plan de Éxito
+              </h2>
+              <p className="text-white/40 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+                Acceso ilimitado a todas las carreras, simulacros reales y explicaciones con IA. Todo lo que necesitas para tu ingreso.
+              </p>
+              
+              <Link 
+                href="/pricing"
+                className="group relative inline-flex items-center justify-center px-12 py-5 bg-emerald-500 text-black font-black text-lg rounded-full transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]"
+              >
+                <span>Ver Planes de Estudio</span>
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* FAQ Section Placeholder */}
+        {/* FAQ Section - Clean & Modern */}
         <section id="preguntas" className="massively-section">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Preguntas Frecuentes</h2>
-            <div className="space-y-6">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
-                  <p className="font-bold mb-2">¿Cómo funciona el modo práctica?</p>
-                  <p className="text-white/40 text-sm italic">Seleccionas tu carrera y empiezas a responder preguntas reales de exámenes pasados.</p>
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-black mb-4">Preguntas Frecuentes</h2>
+              <div className="w-12 h-1 bg-emerald-500 mx-auto opacity-30" />
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                { q: "¿Cómo funciona el modo de práctica?", a: "Eliges tu carrera y empiezas a responder preguntas reales de exámenes pasados. El sistema registra tus fallos para que los refuerces luego." },
+                { q: "¿Las explicaciones con IA son ilimitadas?", a: "Sí, todos los planes premium incluyen acceso a nuestro tutor de IA que te explica el 'por qué' de cada respuesta paso a paso." },
+                { q: "¿Puedo cancelar mi plan cuando quiera?", a: "Por supuesto. No tenemos contratos de permanencia. Puedes estudiar un mes y cancelar sin compromisos." }
+              ].map((faq, i) => (
+                <div key={i} className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/20 transition-all">
+                  <div className="flex items-start gap-6">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold shrink-0">
+                      ?
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">
+                        {faq.q}
+                      </h4>
+                      <p className="text-white/40 leading-relaxed italic">
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -148,8 +182,13 @@ export default async function LandingPage() {
         </section>
       </main>
 
-      <footer className="py-10 text-center text-white/20 text-[11px] uppercase tracking-widest">
-        &copy; {new Date().getFullYear()} StudyHub — Elevando el Estándar Académico
+      <footer className="py-20 border-t border-white/5 text-center">
+        <div className="mb-8 opacity-20">
+          <BrandMark />
+        </div>
+        <p className="text-white/20 text-[10px] font-black uppercase tracking-[0.5em]">
+          &copy; {new Date().getFullYear()} StudyHub — Tu futuro empieza aquí
+        </p>
       </footer>
     </div>
   );

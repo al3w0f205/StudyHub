@@ -152,10 +152,8 @@ export default async function QuizSelectorPage({
           style={{
             display: "flex",
             gap: "0.625rem",
-            overflowX: "auto",
+            flexWrap: "wrap",
             padding: "0.25rem 0 0.75rem 0",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
           }}
         >
           <style
@@ -393,8 +391,7 @@ export default async function QuizSelectorPage({
                     className="quiz-modules-grid"
                     style={{
                       display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fill, minmax(280px, 1fr))",
+                      gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
                       gap: "1rem",
                     }}
                   >

@@ -15,8 +15,8 @@ export const MassivelyHero = ({ isLoggedIn, dashboardUrl, brandMark }: Massively
   const { scrollY } = useScroll();
 
   // Logo Animation: From Hero Center to Header Left
-  const logoScale = useTransform(scrollY, [0, 300], [1, 0.25]);
-  const logoX = useTransform(scrollY, [0, 300], ["0%", "-42vw"]);
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.22]);
+  const logoX = useTransform(scrollY, [0, 300], ["0%", "-38vw"]);
   const logoY = useTransform(scrollY, [0, 300], ["0%", "-44.5vh"]);
   
   // Opacity Controls

@@ -49,16 +49,16 @@ export default function LandingSectionNav() {
   };
 
   return (
-    <nav className="relative flex items-center bg-white/5 border border-white/5 p-1 rounded-full backdrop-blur-xl shadow-2xl">
+    <nav className="relative flex items-center bg-white/5 border border-white/5 p-1 rounded-full backdrop-blur-xl shadow-2xl overflow-hidden">
       {/* Moving Pill Background */}
       <div className="absolute inset-1 flex pointer-events-none">
         {SECTIONS.map((section) => (
-          <div key={section.id} className="flex-1 relative">
+          <div key={section.id} className="flex-1 relative mx-1">
             <AnimatePresence>
               {activeId === section.id && (
                 <motion.div
                   layoutId="nav-active-pill"
-                  className="absolute inset-0 bg-emerald-500/10 border border-emerald-500/20 rounded-full"
+                  className="absolute inset-0 bg-emerald-500/20 border border-emerald-500/30 rounded-full"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
@@ -68,12 +68,12 @@ export default function LandingSectionNav() {
       </div>
 
       {/* Nav Labels */}
-      <div className="flex items-center relative z-10">
+      <div className="flex items-center gap-2 relative z-10 px-1">
         {SECTIONS.map((section) => (
           <button
             key={section.id}
             onClick={() => scrollTo(section.id)}
-            className={`px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider transition-all duration-300 ${
+            className={`px-5 py-2 text-[12px] font-bold uppercase tracking-widest transition-all duration-300 min-w-[90px] ${
               activeId === section.id 
                 ? "text-emerald-400" 
                 : "text-white/40 hover:text-white/70"

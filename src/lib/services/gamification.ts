@@ -121,28 +121,36 @@ export async function awardBadges(userId: string, calculatedScore: number) {
 
   // Badges específicos por carrera (5+ quizzes en medicina, ingeniería, negocios)
   const careersToCheck = ["medicina", "ingenieria", "negocios"];
-  for (const cSlug of careersToCheck) {
-    if (!earnedSlugs.includes(`career_${cSlug}`)) {
-      const countForCareer = await prisma.quizProgress.count({
+  const careersToAward: string[] = [];
+
+  // Paralelizar los counts para evitar N+1
+  const careerCounts = await Promise.all(
+    careersToCheck.map(async (cSlug) => {
+      if (earnedSlugs.includes(`career_${cSlug}`)) return { slug: cSlug, count: 0 };
+      const count = await prisma.quizProgress.count({
         where: { userId, category: { career: { slug: cSlug } } },
       });
-      if (countForCareer >= 5) badgesToAward.push(`career_${cSlug}`);
-    }
-  }
+      return { slug: cSlug, count };
+    })
+  );
+
+  careerCounts.forEach(({ slug, count }) => {
+    if (count >= 5) badgesToAward.push(`career_${slug}`);
+  });
 
   // ── Crear los registros de UserBadge ──────────────────────────────────────
   const unlockedBadges: any[] = [];
-  for (const slug of badgesToAward) {
-    const badge = allBadges.find((b) => b.slug === slug);
-    if (badge) {
-      // .catch(() => {}) para manejar race conditions (doble award simultáneo)
-      await prisma.userBadge
-        .create({
-          data: { userId, badgeId: badge.id },
-        })
-        .catch(() => {});
-      unlockedBadges.push(badge);
-    }
+  const badgesData = badgesToAward
+    .map((slug) => allBadges.find((b) => b.slug === slug))
+    .filter(Boolean);
+
+  if (badgesData.length > 0) {
+    // Usar createMany para insertar todos de golpe (más eficiente)
+    await prisma.userBadge.createMany({
+      data: badgesData.map((b) => ({ userId, badgeId: b!.id })),
+      skipDuplicates: true,
+    });
+    unlockedBadges.push(...badgesData);
   }
 
   return unlockedBadges;

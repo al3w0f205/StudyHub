@@ -48,34 +48,6 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // ── Tema: aplicar antes del primer paint para evitar flash ──
-              try {
-                var storedTheme = localStorage.getItem('studyhub_theme');
-                document.documentElement.setAttribute('data-theme', storedTheme || 'dark');
-              } catch (e) {}
-
-              // ── Anti-Piratería: bloquear atajos de copia y DevTools solo en PROD ──
-              if (window.location.hostname !== 'localhost' && !window.location.hostname.includes('192.168.')) {
-                document.addEventListener('keydown', e => {
-                  if (
-                    e.keyCode === 123 || // F12
-                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-                    (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-                    (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
-                    (e.ctrlKey && e.keyCode === 80) || // Ctrl+P
-                    (e.ctrlKey && e.keyCode === 67)    // Ctrl+C
-                  ) {
-                    e.preventDefault();
-                    return false;
-                  }
-                });
-              }
-            `,
-          }}
-        />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
       </head>
       <body>

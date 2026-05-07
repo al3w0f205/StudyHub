@@ -2,6 +2,12 @@ import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { 
+  publicRoutes, 
+  authRoutes, 
+  apiAuthPrefix,
+  protectedRoutes 
+} from "@/routes";
 
 const { auth } = NextAuth(authConfig);
 
@@ -12,12 +18,12 @@ export default auth((req: NextRequest & { auth: any }) => {
 
   // 1. Security Headers
   const response = NextResponse.next();
+  // ... (keeping security headers)
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("X-XSS-Protection", "1; mode=block");
   
-  // HSTS (Strict-Transport-Security) - Only in production
   if (process.env.NODE_ENV === 'production') {
     response.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   }
@@ -43,11 +49,9 @@ export default auth((req: NextRequest & { auth: any }) => {
   );
 
   // 2. Auth Guards
-  const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth");
-  const isPublicRoute = ["/", "/auth/login", "/auth/register"].includes(
-    nextUrl.pathname
-  );
-  const isAuthRoute = nextUrl.pathname.startsWith("/auth");
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) return response;
 

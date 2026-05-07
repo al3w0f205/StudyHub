@@ -8,9 +8,11 @@ export class QuizService extends BaseService {
    */
   async getFailedQuestions(userId: string): Promise<Question[]> {
     try {
+      // Optimizando para no cargar miles de registros (Fix Perf Leak)
       const responses = await this.db.questionResponse.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
+        take: 500, // Límite de seguridad
       });
 
       const latestStatus: Record<string, boolean> = {};
@@ -32,7 +34,12 @@ export class QuizService extends BaseService {
         },
       });
 
-      return questions.sort(() => 0.5 - Math.random()) as unknown as Question[];
+      // Aplicar Marca de Agua Forense (Fix Security/Anti-Piracy)
+      return questions.map((q) => ({
+        ...q,
+        text: encodeForensic(q.text, userId),
+        explanation: q.explanation ? encodeForensic(q.explanation, userId) : null,
+      })).sort(() => 0.5 - Math.random()) as unknown as Question[];
     } catch (error) {
       this.handleError(error, "QuizService.getFailedQuestions");
     }

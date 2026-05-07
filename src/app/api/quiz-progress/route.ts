@@ -29,6 +29,8 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { updateUserStats, awardBadges } from "@/lib/services/gamification";
 import { hasCareerAccess } from "@/lib/services/subscription";
+import { limiter } from "@/lib/rate-limit";
+import { quizProgressSchema } from "@/lib/validation";
 
 // ─── GET: Obtener mapa de progreso del usuario ──────────────────────────────
 // Retorna: { [categoryId]: { score, attempts } }
@@ -64,12 +66,27 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { categoryId, score, questionId, selectedIndex } = body;
+  // ─── Rate Limiting ───
+  try {
+    const ip = request.headers.get("x-forwarded-for") || "anonymous";
+    await limiter.check(NextResponse, 30, ip); // 30 req per min
+  } catch {
+    return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
+  }
+
+  // ─── VALIDACIÓN: Usar Zod ───
+  const result = quizProgressSchema.safeParse(body);
+  if (!result.success) {
+    return NextResponse.json({ error: "Invalid data", details: result.error.format() }, { status: 400 });
+  }
+
+  const { categoryId, score, questionId, selectedIndex } = result.data;
   const isGranularSave = questionId !== undefined;
 
-  // Validación de campos requeridos
-  if (!categoryId || (!isGranularSave && typeof score !== "number"))
-    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+  // Validación lógica adicional (si no es granular, el score debe existir)
+  if (!isGranularSave && typeof score !== "number") {
+    return NextResponse.json({ error: "Score is required for final saves" }, { status: 400 });
+  }
 
   // Verificar que la categoría existe y obtener el slug de la carrera para control de acceso
   const category = await prisma.category.findUnique({

@@ -2,7 +2,9 @@ import { z } from "zod";
 
 export const quizProgressSchema = z.object({
   categoryId: z.string().cuid(),
-  score: z.number().min(0).max(100),
+  score: z.number().min(0).max(100).optional(),
+  questionId: z.string().cuid().optional(),
+  selectedIndex: z.number().min(0).max(5).optional(),
 });
 
 export const errorReportSchema = z.object({

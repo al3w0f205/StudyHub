@@ -1,5 +1,11 @@
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
+import { 
+  publicRoutes, 
+  authRoutes, 
+  protectedRoutes, 
+  adminRoutes 
+} from "@/routes";
 
 const authConfig: NextAuthConfig = {
   providers: [
@@ -17,43 +23,30 @@ const authConfig: NextAuthConfig = {
       const isLoggedIn = !!auth?.user;
       const pathname = nextUrl.pathname;
 
-      const protectedRoutes = [
-        "/dashboard",
-        "/quiz",
-        "/payment",
-        "/suggest",
-        "/badges",
-        "/updates",
-      ];
-      const adminRoutes = ["/admin"];
-      const authRoutes = ["/auth/login"];
-
-      const isProtectedRoute = protectedRoutes.some((r) =>
-        pathname.startsWith(r)
-      );
-      const isAdminRoute = adminRoutes.some((r) => pathname.startsWith(r));
+      const isPublicRoute = publicRoutes.includes(pathname);
       const isAuthRoute = authRoutes.some((r) => pathname.startsWith(r));
+      const isProtectedRoute = protectedRoutes.some((r) => pathname.startsWith(r));
+      const isAdminRoute = adminRoutes.some((r) => pathname.startsWith(r));
 
-      if (isAuthRoute && isLoggedIn && auth?.user) {
-        return Response.redirect(
-          new URL(auth.user.role === "ADMIN" ? "/admin" : "/dashboard", nextUrl)
-        );
+      if (isAuthRoute) {
+        if (isLoggedIn) {
+          return Response.redirect(
+            new URL(auth?.user?.role === "ADMIN" ? "/admin" : "/dashboard", nextUrl)
+          );
+        }
+        return true;
       }
 
-      if ((isProtectedRoute || isAdminRoute) && !isLoggedIn) {
+      if (isAdminRoute && (!isLoggedIn || auth?.user?.role !== "ADMIN")) {
+        return Response.redirect(new URL(isLoggedIn ? "/dashboard" : "/auth/login", nextUrl));
+      }
+
+      if (isProtectedRoute && !isLoggedIn) {
         return false;
       }
 
       if (isLoggedIn && auth?.user?.isSuspended && pathname !== "/suspended") {
         return Response.redirect(new URL("/suspended", nextUrl));
-      }
-
-      if (isAdminRoute && auth?.user?.role !== "ADMIN") {
-        return Response.redirect(new URL("/dashboard", nextUrl));
-      }
-
-      if (pathname.startsWith("/dashboard") && auth?.user?.role === "ADMIN") {
-        return Response.redirect(new URL("/admin", nextUrl));
       }
 
       return true;

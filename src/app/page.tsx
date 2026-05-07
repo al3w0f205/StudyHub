@@ -28,15 +28,23 @@ interface PrimaryLinkProps {
   href: string;
   children: React.ReactNode;
   variant?: "primary" | "secondary";
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export function PrimaryLink({
   href,
   children,
   variant = "primary",
+  className = "",
+  style,
 }: PrimaryLinkProps) {
   return (
-    <Link href={href} className={`landing-btn landing-btn-${variant}`}>
+    <Link 
+      href={href} 
+      className={`landing-btn landing-btn-${variant} ${className}`}
+      style={style}
+    >
       {children}
       <span aria-hidden="true">→</span>
     </Link>
@@ -115,294 +123,151 @@ export default async function HomePage() {
   const ctaHref = isLoggedIn ? dashboardUrl : "/auth/login";
 
   return (
-    <div className="landing-page">
-      {IS_PREVIEW_MODE && (
-        <div className="preview-mode-banner">
-          Preview local: datos de ejemplo, sin base de datos ni login.
-        </div>
-      )}
+    <div className="massively-layout">
+      {/* ── Fixed Background ── */}
+      <div 
+        className="massively-bg" 
+        style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+      />
 
-      <header className="landing-shell landing-nav scroll-reveal">
-        <Link href="/" className="landing-brand" aria-label="StudyHub inicio">
-          <BrandMark />
-          <span className="landing-brand-text">StudyHub</span>
-        </Link>
-
-        <div className="landing-nav-actions">
-          {isLoggedIn ? (
-            <>
-              <Link href={dashboardUrl} className="landing-link">
+      {/* ── Intro Section (Full Height) ── */}
+      <section className="massively-intro">
+        <header className="landing-shell landing-nav" style={{ position: 'absolute', top: 0, background: 'transparent', border: 'none' }}>
+          <Link href="/" className="landing-brand" aria-label="StudyHub inicio">
+            <BrandMark />
+            <span className="landing-brand-text" style={{ color: 'white' }}>StudyHub</span>
+          </Link>
+          <div className="landing-nav-actions">
+            {isLoggedIn ? (
+              <Link href={dashboardUrl} className="landing-btn landing-btn-secondary" style={{ background: 'rgba(255,255,255,0.1)', color: 'white', borderColor: 'rgba(255,255,255,0.2)' }}>
                 Ir al panel
               </Link>
-              <form
-                action={async () => {
-                  "use server";
-                  const { signOut } = await import("@/auth");
-                  await signOut({ redirectTo: "/" });
-                }}
-              >
-                <button type="submit" className="landing-signout">
-                  Salir
-                </button>
-              </form>
-            </>
-          ) : (
-            <>
-              <Link href="/auth/login" className="landing-link">
+            ) : (
+              <Link href="/auth/login" className="landing-btn landing-btn-primary">
                 Ingresar
               </Link>
-              <PrimaryLink href="/auth/login">Comenzar</PrimaryLink>
-            </>
-          )}
-        </div>
-      </header>
-
-      <main>
-        <LandingSectionNav />
-
-        <section className="landing-shell hero">
-          <div className="scroll-reveal">
-            <div className="eyebrow">
-              Preparación universitaria más inteligente
-            </div>
-            <h1>
-              Estudia con foco. <span>Llega seguro al examen.</span>
-            </h1>
-            <p className="hero-copy">
-              StudyHub reúne cuestionarios por carrera, explicaciones claras y
-              seguimiento de progreso para que cada sesión de estudio tenga una
-              dirección real.
-            </p>
-            <div className="hero-actions">
-              <PrimaryLink href={ctaHref}>Empezar a estudiar</PrimaryLink>
-              <PrimaryLink href="#preguntas" variant="secondary">
-                Ver preguntas frecuentes
-              </PrimaryLink>
-            </div>
-            <div className="hero-trust" aria-label="Indicadores de StudyHub">
-              <span>
-                <strong>{totalFormatted}</strong>
-                preguntas activas
-              </span>
-              <span>
-                <strong>{Math.max(statsByCareer.length, 1)}</strong>
-                áreas con contenido
-              </span>
-              <span>
-                <strong>24/7</strong>
-                acceso desde cualquier dispositivo
-              </span>
-            </div>
-          </div>
-
-          <div className="scroll-reveal reveal-delay-1">
-            <AnimatedProductPreview
-              totalFormatted={totalFormatted}
-              topCareer={topCareer}
-            />
-          </div>
-        </section>
-
-        <section className="logo-strip scroll-reveal">
-          <div className="landing-shell logo-strip-inner">
-            <p>
-              Creado para estudiantes que necesitan practicar, corregir y
-              avanzar.
-            </p>
-            <div className="school-logos" aria-label="Universidades mencionadas">
-              <span>UIDE</span>
-              <span>UDLA</span>
-              <span>StudyHub</span>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="stats"
-          className="landing-shell section scroll-reveal"
-          aria-labelledby="stats-title"
-        >
-          <div className="section-header">
-            <div>
-              <span className="section-kicker">Contenido en vivo</span>
-              <h2 id="stats-title">
-                Un banco de preguntas que crece con tu carrera.
-              </h2>
-            </div>
-            <p>
-              Las cifras salen directamente de la base de datos, así que la
-              portada refleja el contenido disponible ahora mismo.
-            </p>
-          </div>
-
-          <div className="stats-grid">
-            <div className="stat-card-landing stagger-item">
-              <strong>{totalFormatted}</strong>
-              <span>preguntas disponibles para practicar.</span>
-            </div>
-            <div className="stat-card-landing stagger-item">
-              <strong>{formatNumber.format(statsByCareer.length)}</strong>
-              <span>carreras o áreas con preguntas activas.</span>
-            </div>
-            <div className="stat-card-landing stagger-item">
-              <strong>{topCareer ? topCareer.name : "En expansión"}</strong>
-              <span>
-                {topCareer
-                  ? "área con más contenido hoy."
-                  : "nuevas áreas listas para cargar contenido."}
-              </span>
-            </div>
-            <div className="stat-card-landing stagger-item">
-              <strong>3 pasos</strong>
-              <span>elige, practica y refuerza con explicaciones.</span>
-            </div>
-          </div>
-
-          <div className="careers-grid" style={{ marginTop: "1rem" }}>
-            {statsByCareer.length > 0 ? (
-              statsByCareer.slice(0, 6).map((career) => (
-                <div key={career.name} className="career-card stagger-item">
-                  <strong>{career.name}</strong>
-                  <span>{formatNumber.format(career.questionCount)}</span>
-                </div>
-              ))
-            ) : (
-              <div className="career-card">
-                <strong>Banco en construcción</strong>
-                <span>Pronto</span>
-              </div>
             )}
           </div>
+        </header>
+
+        <div className="animate-fade-in">
+          <p>Preparación Universitaria</p>
+          <h1>StudyHub</h1>
+          <p>Llega seguro al examen</p>
+        </div>
+        
+        <div style={{ position: 'absolute', bottom: '2rem', animation: 'float 2s infinite' }}>
+          <span style={{ fontSize: '2rem', color: 'white' }}>↓</span>
+        </div>
+      </section>
+
+      {/* ── Main Content Container (Elevated) ── */}
+      <main className="massively-main">
+        <LandingSectionNav />
+
+        {/* ── Hero Copy / About ── */}
+        <section className="massively-section">
+          <span className="section-kicker">Nuestra Misión</span>
+          <h2 style={{ textAlign: 'left', borderBottom: '1px solid var(--border-default)', paddingBottom: '2rem' }}>
+            Estudia con foco. <br />
+            <span style={{ color: 'var(--primary-400)' }}>Domina cada pregunta.</span>
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem', marginTop: '3rem' }}>
+            <p style={{ fontSize: '1.25rem', lineHeight: '1.8' }}>
+              StudyHub reúne cuestionarios por carrera, explicaciones claras y seguimiento de progreso para que cada sesión de estudio tenga una dirección real. No es solo practicar; es entender por qué cada respuesta es la correcta.
+            </p>
+            <div className="hero-actions" style={{ justifyContent: 'flex-start' }}>
+              <PrimaryLink href={ctaHref}>Comenzar ahora</PrimaryLink>
+            </div>
+          </div>
         </section>
 
-        <section
-          id="features"
-          className="landing-shell section scroll-reveal"
-          aria-labelledby="features-title"
-        >
-          <div className="section-header">
-            <div>
-              <span className="section-kicker">Ventajas</span>
-              <h2 id="features-title">Menos ruido, más práctica útil.</h2>
+        {/* ── Stats ── */}
+        <section id="stats" className="massively-section">
+          <span className="section-kicker">Contenido en vivo</span>
+          <h2>Un banco de datos en tiempo real</h2>
+          <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+            <div className="stat-card-landing" style={{ background: 'transparent', border: 'none', textAlign: 'center' }}>
+              <strong style={{ fontSize: '3.5rem' }}>{totalFormatted}</strong>
+              <span style={{ display: 'block', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.8rem' }}>Preguntas Activas</span>
             </div>
-            <p>
-              La portada debe prometer lo que el producto realmente hace:
-              ayudarte a estudiar mejor con preguntas, contexto y seguimiento.
-            </p>
+            <div className="stat-card-landing" style={{ background: 'transparent', border: 'none', textAlign: 'center' }}>
+              <strong style={{ fontSize: '3.5rem' }}>{formatNumber.format(statsByCareer.length)}</strong>
+              <span style={{ display: 'block', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.8rem' }}>Carreras Disponibles</span>
+            </div>
           </div>
+          
+          <div className="careers-grid" style={{ marginTop: '4rem' }}>
+            {statsByCareer.slice(0, 8).map((career) => (
+              <div key={career.name} className="career-card" style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '0' }}>
+                <strong style={{ fontSize: '1.1rem' }}>{career.name}</strong>
+                <span style={{ opacity: 0.7 }}>{formatNumber.format(career.questionCount)} preguntas</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
+        {/* ── Product Preview ── */}
+        <section className="massively-section" style={{ background: 'var(--bg-secondary)' }}>
+          <AnimatedProductPreview
+            totalFormatted={totalFormatted}
+            topCareer={topCareer}
+          />
+        </section>
+
+        {/* ── Features ── */}
+        <section id="features" className="massively-section">
+          <span className="section-kicker">Características</span>
+          <h2>Diseñado para el aprendizaje profundo</h2>
           <div className="features-grid">
             {features.map((feature) => (
-              <article
-                key={feature.title}
-                className="feature-card stagger-item"
-              >
-                <div className="feature-icon">
+              <article key={feature.title} className="feature-card" style={{ border: 'none', background: 'transparent', padding: '0' }}>
+                <div className="feature-icon" style={{ width: '40px', height: '40px', marginBottom: '1.5rem' }}>
                   <Icon name={feature.icon} />
                 </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{feature.title}</h3>
+                <p style={{ opacity: 0.8, fontSize: '0.95rem' }}>{feature.description}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section
-          id="steps"
-          className="landing-shell section scroll-reveal"
-          aria-labelledby="steps-title"
-        >
-          <div className="section-header">
-            <div>
-              <span className="section-kicker">Flujo de estudio</span>
-              <h2 id="steps-title"> Una rutina simple para llegar preparado.</h2>
-            </div>
-          </div>
-
-          <div className="steps-grid">
-            {steps.map((item) => (
-              <article key={item.step} className="step-card stagger-item">
-                <span className="step-number">{item.step}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="pricing"
-          className="landing-shell section pricing-layout scroll-reveal"
-          aria-labelledby="pricing-title"
-        >
-          <div className="pricing-copy">
-            <span className="section-kicker">Acceso</span>
-            <h2 id="pricing-title">Precio claro para estudiar sin fricción.</h2>
-            <p>
-              StudyHub está pensado como una inversión pequeña frente al costo
-              de estudiar sin dirección. Entra, practica y vuelve a las
-              preguntas cada vez que lo necesites.
+        {/* ── Pricing ── */}
+        <section id="pricing" className="massively-section" style={{ background: 'var(--primary-900)', color: 'white' }}>
+          <span className="section-kicker" style={{ color: 'var(--primary-100)' }}>Acceso Premium</span>
+          <h2 style={{ color: 'white' }}>Inversión en tu futuro</h2>
+          <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+            <div style={{ fontSize: '4rem', fontWeight: 900, marginBottom: '1rem' }}>$10 <span style={{ fontSize: '1.5rem', fontWeight: 400, opacity: 0.7 }}>/ mes</span></div>
+            <p style={{ marginBottom: '2rem', fontSize: '1.1rem', opacity: 0.9 }}>
+              Acceso total a todas las preguntas, explicaciones detalladas y seguimiento de progreso en todas las carreras.
             </p>
+            <PrimaryLink href={ctaHref} variant="primary" style={{ background: 'white', color: 'var(--primary-900)', border: 'none' }}>Suscribirme ahora</PrimaryLink>
           </div>
-
-          <aside className="pricing-card" aria-label="Plan de acceso ilimitado">
-            <h3>Acceso ilimitado</h3>
-            <div className="price">
-              <strong>$10</strong>
-              <span>/ mes</span>
-            </div>
-            <p>Incluye práctica, explicaciones y actualizaciones de contenido.</p>
-            <ul>
-              <li>Todas las preguntas disponibles</li>
-              <li>Justificación de respuestas</li>
-              <li>Activación manual con comprobante</li>
-            </ul>
-            <PrimaryLink href={ctaHref}>Suscribirme</PrimaryLink>
-          </aside>
         </section>
 
-        <section
-          id="preguntas"
-          className="landing-shell section scroll-reveal"
-          aria-labelledby="faq-title"
-        >
-          <div className="section-header">
-            <div>
-              <span className="section-kicker">Dudas comunes</span>
-              <h2 id="faq-title">Preguntas frecuentes.</h2>
-            </div>
-          </div>
-
-          <div className="faq-grid">
-            {faqs.map((faq) => (
-              <article key={faq.q} className="faq-card stagger-item">
-                <h3>{faq.q}</h3>
-                <p>{faq.a}</p>
+        {/* ── FAQs ── */}
+        <section id="preguntas" className="massively-section">
+          <span className="section-kicker">Soporte</span>
+          <h2>Dudas comunes</h2>
+          <div className="faq-grid" style={{ gridTemplateColumns: '1fr', gap: '3rem' }}>
+            {faqs.slice(0, 4).map((faq) => (
+              <article key={faq.q}>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', borderLeft: '4px solid var(--primary-400)', paddingLeft: '1rem' }}>{faq.q}</h3>
+                <p style={{ opacity: 0.8, paddingLeft: '1.25rem' }}>{faq.a}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="final-cta scroll-reveal">
-          <div className="landing-shell">
-            <h2>Tu siguiente sesión de estudio puede tener más intención.</h2>
-            <p>
-              Entra a StudyHub, elige tu carrera y convierte cada pregunta en
-              una pista clara para mejorar antes del examen.
-            </p>
-            <PrimaryLink href={ctaHref}>Entrar a StudyHub</PrimaryLink>
+        <footer className="massively-footer">
+          <div style={{ marginBottom: '2rem' }}>
+            <BrandMark />
+            <h3 style={{ marginTop: '1rem', letterSpacing: '0.2em' }}>STUDYHUB</h3>
           </div>
-        </section>
+          <p>© {new Date().getFullYear()} StudyHub. Todos los derechos reservados.</p>
+          <p style={{ marginTop: '0.5rem', opacity: 0.5 }}>Preparación de élite para estudiantes decididos.</p>
+        </footer>
       </main>
-
-      <footer className="landing-footer">
-        <div className="landing-shell">
-          <span>
-            © {new Date().getFullYear()} StudyHub. Construido para estudiantes.
-          </span>
-          <span>Práctica, explicación y progreso en un solo lugar.</span>
-        </div>
-      </footer>
     </div>
   );
 }

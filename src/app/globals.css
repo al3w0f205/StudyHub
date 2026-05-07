@@ -147,7 +147,116 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100dvh;
-  overflow-x: clip; /* Better than hidden for preventing horizontal scroll while allowing sticky */
+  overflow-x: clip;
+}
+
+/* ── Massively Design System ── */
+.massively-layout {
+  position: relative;
+  min-height: 100vh;
+}
+
+.massively-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.massively-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.massively-intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  position: relative;
+}
+
+.massively-intro h1 {
+  font-size: clamp(3rem, 10vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  border-bottom: 2px solid white;
+  padding-bottom: 1rem;
+}
+
+.massively-intro p {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.massively-main {
+  background: var(--bg-card);
+  max-width: 900px;
+  margin: -10vh auto 0;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 100px rgba(0,0,0,0.5);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.massively-section {
+  padding: 6rem 4rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.massively-section:last-child {
+  border-bottom: none;
+}
+
+.massively-section .section-kicker {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: var(--primary-400);
+  margin-bottom: 2rem;
+}
+
+.massively-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 800;
+}
+
+.massively-footer {
+  padding: 4rem;
+  text-align: center;
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border-default);
+}
+
+@media (max-width: 768px) {
+  .massively-section {
+    padding: 3rem 1.5rem;
+  }
+  .massively-intro h1 {
+    font-size: 2.5rem;
+  }
 }
 
 /* ── Responsive Media Reset ── */

@@ -281,7 +281,10 @@ export async function runMigration() {
     console.log("Iniciando sincronización de base de datos (prisma db push)...");
     // Intentar ejecutar prisma db push directamente en el servidor
     // Usamos el path completo de npx si es posible o confiamos en el PATH
-    const output = execSync("npx prisma db push --accept-data-loss", { encoding: "utf-8" });
+    const output = execSync("npx prisma db push --schema=./prisma/schema.prisma --accept-data-loss", { 
+      encoding: "utf-8",
+      cwd: process.cwd()
+    });
     console.log("Resultado de la migración:", output);
     return { success: true, message: "Base de datos sincronizada correctamente: " + output.split('\n').pop() };
   } catch (error: any) {

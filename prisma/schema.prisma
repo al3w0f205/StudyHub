@@ -139,8 +139,8 @@ model Career {
   slug         String     @unique
   description  String?
   icon         String?    // emoji or icon identifier
-  universityId String
-  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  universityId String?
+  university   University? @relation(fields: [universityId], references: [id], onDelete: Cascade)
   subjects     Subject[]
   categories   Category[]
   createdAt    DateTime   @default(now())

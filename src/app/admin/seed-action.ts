@@ -296,12 +296,10 @@ export async function runMigration() {
   await requireAdmin();
   try {
     console.log("Iniciando sincronización de base de datos (prisma db push)...");
-    // Intentar ejecutar prisma db push directamente en el servidor
-    // Usamos el path completo de npx si es posible o confiamos en el PATH
     const possibleSchemaPaths = [
       join(process.cwd(), "prisma", "schema.prisma"),
       join(process.cwd(), "schema.prisma"),
-      "/app/prisma/schema.prisma", // Ruta común en Docker/Coolify
+      "/app/prisma/schema.prisma",
       "/app/schema.prisma"
     ];
 
@@ -314,21 +312,38 @@ export async function runMigration() {
     }
 
     if (!schemaPath) {
-      return { success: false, error: "No se encontró el archivo schema.prisma en el servidor. Verifica que esté en el repositorio." };
+      return { success: false, error: "No se encontró el archivo schema.prisma." };
     }
 
     console.log(`Usando esquema en: ${schemaPath}`);
-    const output = execSync(`npx prisma db push --schema="${schemaPath}" --accept-data-loss`, { 
-      encoding: "utf-8"
+    
+    // 1. Sincronizar esquema con la base de datos
+    const outputPush = execSync(`npx prisma db push --schema="${schemaPath}" --accept-data-loss`, { 
+      encoding: "utf-8",
+      stdio: "pipe"
     });
-    console.log("Resultado de la migración:", output);
-    return { success: true, message: "Base de datos sincronizada correctamente: " + output.split('\n').pop() };
+    console.log("Resultado de db push:", outputPush);
+
+    // 2. Regenerar Prisma Client
+    const outputGenerate = execSync(`npx prisma generate --schema="${schemaPath}"`, {
+      encoding: "utf-8",
+      stdio: "pipe"
+    });
+    console.log("Resultado de prisma generate:", outputGenerate);
+
+    return { 
+      success: true, 
+      message: "Sincronización exitosa: Base de datos actualizada y cliente generado." 
+    };
   } catch (error: any) {
     console.error("Error detallado de migración:", error);
-    const errorMessage = error.stderr || error.message || "Error desconocido";
+    const stderr = error.stderr?.toString() || "";
+    const stdout = error.stdout?.toString() || "";
+    const message = error.message || "Error desconocido";
+    
     return { 
       success: false, 
-      error: `Error al sincronizar: ${errorMessage.substring(0, 200)}` 
+      error: `Error al sincronizar: ${message}. DETALLE: ${stderr.substring(0, 300) || stdout.substring(0, 300)}` 
     };
   }
 }

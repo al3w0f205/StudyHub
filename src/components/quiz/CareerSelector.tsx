@@ -9,6 +9,10 @@ interface Career {
   name: string;
   slug: string;
   icon?: string | null;
+  university?: {
+    name: string;
+    slug: string;
+  } | null;
 }
 
 interface CareerSelectorProps {
@@ -37,14 +41,16 @@ export default function CareerSelector({
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
-        gap: "0.75rem",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
+        gap: "1rem",
       }}
     >
       {careers.map((career) => {
         const isActive =
           selectedCareerSlug === career.slug ||
           (!selectedCareerSlug && careers[0]?.slug === career.slug);
+
+        const uniName = career.university?.name || "General";
 
         return (
           <button
@@ -54,13 +60,13 @@ export default function CareerSelector({
             disabled={isPending}
             className={`solid-card ${isActive ? "active-career-card" : ""}`}
             style={{
-              padding: "1rem",
+              padding: "1.25rem 1rem",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
               textAlign: "center",
-              gap: "0.5rem",
+              gap: "0.25rem",
               background: isActive
                 ? "var(--gradient-primary)"
                 : "var(--bg-card)",
@@ -71,13 +77,30 @@ export default function CareerSelector({
               textDecoration: "none",
               position: "relative",
               overflow: "hidden",
-              minHeight: "100px",
+              minHeight: "120px",
+              boxShadow: isActive ? "var(--shadow-glow)" : "none",
             }}
           >
+            {/* University Badge */}
+            <span
+              style={{
+                fontSize: "0.625rem",
+                fontWeight: "800",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                padding: "0.125rem 0.5rem",
+                borderRadius: "var(--radius-full)",
+                background: isActive ? "rgba(255,255,255,0.2)" : "var(--bg-tertiary)",
+                color: isActive ? "white" : "var(--text-tertiary)",
+                marginBottom: "0.25rem"
+              }}
+            >
+              {uniName}
+            </span>
+
             <span
               style={{
                 fontSize: "2rem",
-                marginBottom: "0.25rem",
                 filter: isActive
                   ? "drop-shadow(0 2px 4px rgba(0,0,0,0.2))"
                   : "none",

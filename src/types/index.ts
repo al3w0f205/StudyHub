@@ -11,6 +11,7 @@ export interface User {
   streak: number;
   totalPoints: number;
   allowedCareers?: string | null;
+  allowedUniversities?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -38,12 +39,23 @@ export interface Category {
   updatedAt: Date;
 }
 
+export interface University {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  logo?: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface Career {
   id: string;
   name: string;
   slug: string;
   description?: string | null;
   icon?: string | null;
+  universityId: string;
   createdAt: Date;
   updatedAt: Date;
 }

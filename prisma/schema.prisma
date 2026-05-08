@@ -77,6 +77,7 @@ model User {
   isSuspended         Boolean              @default(false)
   suspendedReason     String?
   allowedCareers      String?              // Comma-separated career slugs. null or "" = NO access. Admin must assign.
+  allowedUniversities String?              // Comma-separated university slugs.
   
   // Gamification
   streak              Int                  @default(0)
@@ -121,16 +122,31 @@ model UserBadge {
   @@unique([userId, badgeId])
 }
 
-model Career {
-  id          String     @id @default(cuid())
-  name        String     @unique
-  slug        String     @unique
+model University {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
   description String?
-  icon        String?    // emoji or icon identifier
-  subjects    Subject[]
-  categories  Category[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  logo        String?
+  careers     Career[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Career {
+  id           String     @id @default(cuid())
+  name         String     @unique
+  slug         String     @unique
+  description  String?
+  icon         String?    // emoji or icon identifier
+  universityId String
+  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  subjects     Subject[]
+  categories   Category[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([universityId])
 }
 
 model Category {

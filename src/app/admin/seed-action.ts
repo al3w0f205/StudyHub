@@ -153,8 +153,24 @@ export async function runSeed() {
       const relativePath = filePath.replace(dataDir, "").replace(/^[\\\/]/, "");
       const pathParts = relativePath.split(/[\\\/]/);
       
-      // Basic folder is the career
-      const folderName = pathParts[0] || "General";
+      // Level 1: University
+      const universityFolder = pathParts[0] || "General";
+      const universityName = universityFolder.toUpperCase();
+      const universitySlug = slugify(universityName);
+
+      const university = await prisma.university.upsert({
+        where: { slug: universitySlug },
+        update: {},
+        create: {
+          name: universityName,
+          slug: universitySlug,
+          description: `Universidad ${universityName}`,
+          logo: universityName === "UDLA" ? "/logos/udla.png" : "/logos/uide.png"
+        },
+      });
+
+      // Level 2: Career
+      const folderName = pathParts[1] || "General";
       const careerName = folderName.charAt(0).toUpperCase() + folderName.slice(1).replace(/-/g, " ");
       const careerSlug = slugify(careerName);
 
@@ -172,14 +188,15 @@ export async function runSeed() {
 
       if (preguntas.length === 0 && !theoryText) continue;
 
-      // Ensure Career exists
+      // Ensure Career exists and is linked to University
       const career = await prisma.career.upsert({
         where: { slug: careerSlug },
-        update: {},
+        update: { universityId: university.id },
         create: {
           name: careerName,
           slug: careerSlug,
-          description: `Carrera de ${careerName}`,
+          description: `Carrera de ${careerName} en ${universityName}`,
+          universityId: university.id,
           icon: careerName.toLowerCase().includes("medicina") ? "🏥" : careerName.toLowerCase().includes("ingenieria") ? "🏗️" : "📚",
         },
       });
@@ -188,9 +205,9 @@ export async function runSeed() {
       let subjectId: string | null = null;
       let finalCategoryName: string | null = null;
       
-      // Structure: career/subject/optional_category_folder/file.json
-      if (pathParts.length >= 2) {
-        const subjectName = pathParts[1].replace(/_/g, " ");
+      // Structure: university/career/subject/optional_category_folder/file.json
+      if (pathParts.length >= 3) {
+        const subjectName = pathParts[2].replace(/_/g, " ");
         const subjectSlug = slugify(subjectName);
         
         const subject = await prisma.subject.upsert({
@@ -200,8 +217,8 @@ export async function runSeed() {
         });
         subjectId = subject.id;
 
-        // If we have 3 or more parts: medicina/Fisio Anatomia/ADN/part1.json
-        if (pathParts.length >= 3) {
+        // If we have 4 or more parts: UIDE/medicina/Anatomia/ADN/part1.json
+        if (pathParts.length >= 4) {
           finalCategoryName = pathParts[pathParts.length - 2].replace(/_/g, " ");
         }
       }

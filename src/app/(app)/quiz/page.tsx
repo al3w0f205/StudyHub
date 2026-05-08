@@ -42,6 +42,7 @@ export default async function QuizSelectorPage({
     let rawCareers = await prisma.career.findMany({
       orderBy: { name: "asc" },
       include: {
+        university: true,
         subjects: {
           orderBy: { name: "asc" },
           include: {

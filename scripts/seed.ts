@@ -65,12 +65,32 @@ async function main() {
   console.log(`📂 Found ${jsonFiles.length} JSON files to process.`);
 
   for (const filePath of jsonFiles) {
-    const relativePath = filePath.replace(dataDir, "");
-    const folderName = relativePath.split(/[\\\/]/)[1] || "General";
+    const relativePath = filePath.replace(dataDir, "").replace(/^[\\\/]/, "");
+    const pathParts = relativePath.split(/[\\\/]/);
+    
+    // Level 1: University
+    const universityFolder = pathParts[0] || "General";
+    const universityName = universityFolder.toUpperCase();
+    const universitySlug = slugify(universityName);
+
+    console.log(`\n🏛️ University: ${universityName}`);
+    
+    const university = await prisma.university.upsert({
+      where: { slug: universitySlug },
+      update: {},
+      create: {
+        name: universityName,
+        slug: universitySlug,
+        description: `Universidad ${universityName}`,
+      },
+    });
+
+    // Level 2: Career
+    const folderName = pathParts[1] || "General";
     const careerName = folderName.charAt(0).toUpperCase() + folderName.slice(1);
     const careerSlug = slugify(careerName);
 
-    console.log(`\n📖 Processing: ${filePath}`);
+    console.log(`📖 Processing: ${filePath}`);
     console.log(`🎓 Target Career: ${careerName}`);
 
     const raw = readFileSync(filePath, "utf-8");
@@ -94,12 +114,13 @@ async function main() {
     // ── Step 1: Ensure Career exists ──
     let career = await prisma.career.upsert({
       where: { slug: careerSlug },
-      update: {},
+      update: { universityId: university.id },
       create: {
         name: careerName,
         slug: careerSlug,
         description: `Carrera de ${careerName}`,
-        icon: careerName === "Medicina" ? "🏥" : careerName === "Ingenieria" ? "🏗️" : "📚",
+        icon: careerName.toLowerCase().includes("medicina") ? "🏥" : careerName.toLowerCase().includes("ingenieria") ? "🏗️" : "📚",
+        universityId: university.id,
       },
     });
 
@@ -113,13 +134,12 @@ async function main() {
     }
 
     // ── Step 2.5: Handle Subject and Category (with deep merging support) ──
-    const pathParts = relativePath.split(/[\\\/]/).filter(Boolean);
     let subjectId: string | null = null;
     let finalCategoryName: string | null = null;
     
-    // Structure: career/subject/optional_category_folder/file.json
+    // Structure: university/career/subject/optional_category_folder/file.json
     if (pathParts.length >= 3) {
-      const subjectNameRaw = pathParts[1]; 
+      const subjectNameRaw = pathParts[2]; // index 2 now
       const subjectName = subjectNameRaw.replace(/_/g, " ");
       const subjectSlug = slugify(subjectName);
       
@@ -130,10 +150,9 @@ async function main() {
       });
       subjectId = subject.id;
 
-      // If we have 4 parts: medicina/Fisio Anatomia/ADN/part1.json
-      // The category name should be the folder "ADN", not "part1"
+      // If we have 4 parts: UIDE/medicina/Anatomia/ADN/part1.json
       if (pathParts.length >= 4) {
-        finalCategoryName = pathParts[2].replace(/_/g, " ");
+        finalCategoryName = pathParts[pathParts.length - 2].replace(/_/g, " ");
         console.log(`  🔗 Merging into Category: ${finalCategoryName}`);
       }
     }

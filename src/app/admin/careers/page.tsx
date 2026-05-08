@@ -14,6 +14,7 @@ async function createCareer(formData: FormData) {
   "use server";
   await requireAdmin();
   const name = formData.get("name") as string;
+  const universityId = formData.get("universityId") as string;
   const description = formData.get("description") as string | null;
   const icon = formData.get("icon") as string | null;
 
@@ -23,6 +24,7 @@ async function createCareer(formData: FormData) {
       slug: slugify(name),
       description: description || null,
       icon: icon || null,
+      universityId,
     },
   });
   
@@ -43,13 +45,19 @@ async function deleteCareer(formData: FormData) {
 export default async function CareersPage() {
   await requireAdmin();
   
-  let careers: any[] = [];
+  let careers: any[] = [], universities: any[] = [];
   let hasError = false;
   try {
-    careers = await prisma.career.findMany({
-      orderBy: { name: "asc" },
-      include: { _count: { select: { categories: true } } },
-    });
+    [careers, universities] = await Promise.all([
+      prisma.career.findMany({
+        orderBy: { name: "asc" },
+        include: { 
+          university: true,
+          _count: { select: { categories: true } } 
+        },
+      }),
+      prisma.university.findMany({ orderBy: { name: "asc" } }),
+    ]);
   } catch (error) {
     console.error("AdminCareers Error:", error);
     hasError = true;
@@ -115,15 +123,23 @@ export default async function CareersPage() {
               />
             </div>
             <div>
-              <label htmlFor="career-desc" className="label">
-                Descripción
+              <label htmlFor="career-uni" className="label">
+                Universidad
               </label>
-              <input
-                id="career-desc"
-                name="description"
+              <select
+                id="career-uni"
+                name="universityId"
+                required
                 className="input"
-                placeholder="Opcional"
-              />
+                style={{ appearance: "auto" }}
+              >
+                <option value="">Seleccionar...</option>
+                {universities.map((uni) => (
+                  <option key={uni.id} value={uni.id}>
+                    {uni.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label htmlFor="career-icon" className="label">
@@ -137,6 +153,17 @@ export default async function CareersPage() {
                 style={{ width: "80px" }}
               />
             </div>
+          </div>
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="career-desc" className="label">
+              Descripción
+            </label>
+            <input
+              id="career-desc"
+              name="description"
+              className="input"
+              placeholder="Opcional"
+            />
           </div>
           <button
             type="submit"
@@ -161,6 +188,7 @@ export default async function CareersPage() {
             <thead>
               <tr>
                 <th>Carrera</th>
+                <th>Universidad</th>
                 <th>Slug</th>
                 <th>Categorías</th>
                 <th>Acciones</th>
@@ -199,6 +227,11 @@ export default async function CareersPage() {
                         )}
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    <span className="badge badge-secondary" style={{ fontSize: "0.7rem" }}>
+                      {career.university.name}
+                    </span>
                   </td>
                   <td>
                     <code

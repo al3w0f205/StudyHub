@@ -127,6 +127,7 @@ model Career {
   slug        String     @unique
   description String?
   icon        String?    // emoji or icon identifier
+  subjects    Subject[]
   categories  Category[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
@@ -140,10 +141,28 @@ model Category {
   theory       String?        @db.Text
   careerId     String
   career       Career         @relation(fields: [careerId], references: [id], onDelete: Cascade)
+  subjectId    String?
+  subject      Subject?       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   questions    Question[]
   quizProgress QuizProgress[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+
+  @@unique([careerId, slug])
+  @@index([careerId])
+  @@index([subjectId])
+}
+
+model Subject {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String
+  description String?
+  careerId    String
+  career      Career     @relation(fields: [careerId], references: [id], onDelete: Cascade)
+  categories  Category[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@unique([careerId, slug])
   @@index([careerId])

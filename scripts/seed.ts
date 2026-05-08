@@ -112,21 +112,52 @@ async function main() {
       categoryNames.push(catFromFilename);
     }
 
+    // ── Step 2.5: Handle Subject and Category (with deep merging support) ──
+    const pathParts = relativePath.split(/[\\\/]/).filter(Boolean);
+    let subjectId: string | null = null;
+    let finalCategoryName: string | null = null;
+    
+    // Structure: career/subject/optional_category_folder/file.json
+    if (pathParts.length >= 3) {
+      const subjectNameRaw = pathParts[1]; 
+      const subjectName = subjectNameRaw.replace(/_/g, " ");
+      const subjectSlug = slugify(subjectName);
+      
+      const subject = await prisma.subject.upsert({
+        where: { careerId_slug: { slug: subjectSlug, careerId: career.id } },
+        update: {},
+        create: { name: subjectName, slug: subjectSlug, careerId: career.id },
+      });
+      subjectId = subject.id;
+
+      // If we have 4 parts: medicina/Fisio Anatomia/ADN/part1.json
+      // The category name should be the folder "ADN", not "part1"
+      if (pathParts.length >= 4) {
+        finalCategoryName = pathParts[2].replace(/_/g, " ");
+        console.log(`  🔗 Merging into Category: ${finalCategoryName}`);
+      }
+    }
+
     const categoryMap: Record<string, string> = {};
 
     for (const catName of categoryNames) {
-      const slug = slugify(catName);
+      // Use the folder name if we are in a deep structure, otherwise use the JSON property or filename
+      const effectiveCatName = finalCategoryName || catName;
+      const slug = slugify(effectiveCatName);
+      
       let category = await prisma.category.upsert({
         where: { careerId_slug: { slug, careerId: career.id } },
         update: { 
-          name: catName.charAt(0).toUpperCase() + catName.slice(1),
-          theory: theoryText // Update theory if provided
+          name: effectiveCatName.charAt(0).toUpperCase() + effectiveCatName.slice(1),
+          theory: theoryText,
+          subjectId: subjectId
         },
         create: {
-          name: catName.charAt(0).toUpperCase() + catName.slice(1),
+          name: effectiveCatName.charAt(0).toUpperCase() + effectiveCatName.slice(1),
           slug,
           careerId: career.id,
-          theory: theoryText
+          theory: theoryText,
+          subjectId: subjectId
         },
       });
       categoryMap[catName] = category.id;

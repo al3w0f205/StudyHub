@@ -42,7 +42,19 @@ export default async function QuizSelectorPage({
     let rawCareers = await prisma.career.findMany({
       orderBy: { name: "asc" },
       include: {
+        subjects: {
+          orderBy: { name: "asc" },
+          include: {
+            categories: {
+              orderBy: { name: "asc" },
+              include: {
+                _count: { select: { questions: true } },
+              },
+            },
+          },
+        },
         categories: {
+          where: { subjectId: null },
           orderBy: { name: "asc" },
           include: {
             _count: { select: { questions: true } },
@@ -336,15 +348,16 @@ export default async function QuizSelectorPage({
                         fontWeight: "500",
                       }}
                     >
-                      {career.categories.length}{" "}
-                      {career.categories.length === 1
-                        ? "módulo disponible"
-                        : "módulos disponibles"}
+                      {career.subjects.reduce(
+                        (acc: number, s: any) => acc + s.categories.length,
+                        0
+                      ) + career.categories.length}{" "}
+                      módulos en total
                     </p>
                   </div>
                 </div>
 
-                {career.categories.length === 0 ? (
+                {career.subjects.length === 0 && career.categories.length === 0 ? (
                   <div
                     className="solid-card"
                     style={{
@@ -387,137 +400,354 @@ export default async function QuizSelectorPage({
                     </p>
                   </div>
                 ) : (
-                  <div
-                    className="quiz-modules-grid"
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
-                      gap: "1rem",
-                    }}
-                  >
-                    {career.categories.map((cat: any) => (
-                      <Link
-                        key={cat.id}
-                        href={`/quiz/${cat.id}`}
-                        className="solid-card hover-scale quiz-module-card"
-                        style={{
-                          padding: "1.5rem",
-                          textDecoration: "none",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
-                          minHeight: "130px",
-                          background: "var(--bg-card)",
-                          border: "1px solid var(--border-default)",
-                          borderRadius: "var(--radius-lg)",
-                          transition: "all 0.3s var(--transition-base)",
-                        }}
-                      >
-                        <div>
-                          <div
-                            style={{
-                              fontWeight: "700",
-                              fontSize: "1.125rem",
-                              color: "var(--text-primary)",
-                              marginBottom: "0.5rem",
-                            }}
-                          >
-                            {cat.name}
-                          </div>
-
-                          {/* Mastery Progress */}
-                          {progressMap[cat.id] !== undefined && (
-                            <div style={{ marginBottom: "0.75rem" }}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  fontSize: "0.6875rem",
-                                  fontWeight: 700,
-                                  color: "var(--text-tertiary)",
-                                  marginBottom: "0.25rem",
-                                }}
-                              >
-                                <span>DOMINIO</span>
-                                <span>{progressMap[cat.id]}%</span>
-                              </div>
-                              <div
-                                style={{
-                                  height: "4px",
-                                  background: "var(--bg-secondary)",
-                                  borderRadius: "var(--radius-full)",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                <div
-                                  style={{
-                                    height: "100%",
-                                    width: `${progressMap[cat.id]}%`,
-                                    background:
-                                      progressMap[cat.id] >= 80
-                                        ? "var(--success-400)"
-                                        : progressMap[cat.id] >= 50
-                                        ? "var(--warning-400)"
-                                        : "var(--primary-400)",
-                                    transition: "width 0.6s ease-out",
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          )}
-
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "0.75rem",
-                            }}
-                          >
-                            <span
-                              style={{
-                                fontSize: "0.8125rem",
-                                color: "var(--text-tertiary)",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.25rem",
-                              }}
-                            >
-                              <span style={{ fontSize: "1rem" }}>📝</span>{" "}
-                              {cat._count.questions} preguntas
-                            </span>
-                            {cat.theory && (
-                              <span
-                                style={{
-                                  fontSize: "0.6875rem",
-                                  background: "rgba(45,212,191,0.1)",
-                                  color: "var(--accent-400)",
-                                  padding: "0.125rem 0.5rem",
-                                  borderRadius: "var(--radius-full)",
-                                  fontWeight: "700",
-                                  textTransform: "uppercase",
-                                }}
-                              >
-                                Teoría
-                              </span>
-                            )}
-                          </div>
-                        </div>
+                  <div style={{ display: "grid", gap: "2.5rem" }}>
+                    {/* Render Subjects */}
+                    {career.subjects.map((subject: any) => (
+                      <div key={subject.id}>
                         <div
                           style={{
-                            alignSelf: "flex-end",
-                            fontSize: "0.875rem",
-                            fontWeight: "700",
-                            color: "var(--primary-400)",
                             display: "flex",
                             alignItems: "center",
-                            gap: "0.375rem",
+                            gap: "0.75rem",
+                            marginBottom: "1.25rem",
                           }}
                         >
-                          Empezar{" "}
-                          <span style={{ fontSize: "1.125rem" }}>→</span>
+                          <div
+                            style={{
+                              height: "2px",
+                              flex: 1,
+                              background: "linear-gradient(to right, var(--accent-400), transparent)",
+                              opacity: 0.3,
+                            }}
+                          />
+                          <h3
+                            style={{
+                              fontSize: "0.875rem",
+                              fontWeight: "800",
+                              color: "var(--accent-400)",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.15em",
+                            }}
+                          >
+                            {subject.name}
+                          </h3>
+                          <div
+                            style={{
+                              height: "2px",
+                              flex: 3,
+                              background: "linear-gradient(to right, transparent, transparent)",
+                            }}
+                          />
                         </div>
-                      </Link>
+                        <div
+                          className="quiz-modules-grid"
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns:
+                              "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
+                            gap: "1rem",
+                          }}
+                        >
+                          {subject.categories.map((cat: any) => (
+                            <Link
+                              key={cat.id}
+                              href={`/quiz/${cat.id}`}
+                              className="solid-card hover-scale quiz-module-card"
+                              style={{
+                                padding: "1.5rem",
+                                textDecoration: "none",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                minHeight: "130px",
+                                background: "var(--bg-card)",
+                                border: "1px solid var(--border-default)",
+                                borderRadius: "var(--radius-lg)",
+                                transition: "all 0.3s var(--transition-base)",
+                              }}
+                            >
+                              <div>
+                                <div
+                                  style={{
+                                    fontWeight: "700",
+                                    fontSize: "1.125rem",
+                                    color: "var(--text-primary)",
+                                    marginBottom: "0.5rem",
+                                  }}
+                                >
+                                  {cat.name}
+                                </div>
+
+                                {/* Mastery Progress */}
+                                {progressMap[cat.id] !== undefined && (
+                                  <div style={{ marginBottom: "0.75rem" }}>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        fontSize: "0.6875rem",
+                                        fontWeight: 700,
+                                        color: "var(--text-tertiary)",
+                                        marginBottom: "0.25rem",
+                                      }}
+                                    >
+                                      <span>DOMINIO</span>
+                                      <span>{progressMap[cat.id]}%</span>
+                                    </div>
+                                    <div
+                                      style={{
+                                        height: "4px",
+                                        background: "var(--bg-secondary)",
+                                        borderRadius: "var(--radius-full)",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          height: "100%",
+                                          width: `${progressMap[cat.id]}%`,
+                                          background:
+                                            progressMap[cat.id] >= 80
+                                              ? "var(--success-400)"
+                                              : progressMap[cat.id] >= 50
+                                              ? "var(--warning-400)"
+                                              : "var(--primary-400)",
+                                          transition: "width 0.6s ease-out",
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "0.75rem",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "0.8125rem",
+                                      color: "var(--text-tertiary)",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: "0.25rem",
+                                    }}
+                                  >
+                                    <span style={{ fontSize: "1rem" }}>📝</span>{" "}
+                                    {cat._count.questions} preguntas
+                                  </span>
+                                  {cat.theory && (
+                                    <span
+                                      style={{
+                                        fontSize: "0.6875rem",
+                                        background: "rgba(45,212,191,0.1)",
+                                        color: "var(--accent-400)",
+                                        padding: "0.125rem 0.5rem",
+                                        borderRadius: "var(--radius-full)",
+                                        fontWeight: "700",
+                                        textTransform: "uppercase",
+                                      }}
+                                    >
+                                      Teoría
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div
+                                style={{
+                                  alignSelf: "flex-end",
+                                  fontSize: "0.875rem",
+                                  fontWeight: "700",
+                                  color: "var(--primary-400)",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "0.375rem",
+                                }}
+                              >
+                                Empezar{" "}
+                                <span style={{ fontSize: "1.125rem" }}>→</span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     ))}
+
+                    {/* Render Orphan Categories (if any) */}
+                    {career.categories.length > 0 && (
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            marginBottom: "1.25rem",
+                          }}
+                        >
+                          <div
+                            style={{
+                              height: "2px",
+                              flex: 1,
+                              background: "linear-gradient(to right, var(--text-tertiary), transparent)",
+                              opacity: 0.2,
+                            }}
+                          />
+                          <h3
+                            style={{
+                              fontSize: "0.875rem",
+                              fontWeight: "800",
+                              color: "var(--text-tertiary)",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.15em",
+                            }}
+                          >
+                            Temas Generales
+                          </h3>
+                          <div
+                            style={{
+                              height: "2px",
+                              flex: 3,
+                              background: "linear-gradient(to right, transparent, transparent)",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className="quiz-modules-grid"
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns:
+                              "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
+                            gap: "1rem",
+                          }}
+                        >
+                          {career.categories.map((cat: any) => (
+                            <Link
+                              key={cat.id}
+                              href={`/quiz/${cat.id}`}
+                              className="solid-card hover-scale quiz-module-card"
+                              style={{
+                                padding: "1.5rem",
+                                textDecoration: "none",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                minHeight: "130px",
+                                background: "var(--bg-card)",
+                                border: "1px solid var(--border-default)",
+                                borderRadius: "var(--radius-lg)",
+                                transition: "all 0.3s var(--transition-base)",
+                              }}
+                            >
+                              <div>
+                                <div
+                                  style={{
+                                    fontWeight: "700",
+                                    fontSize: "1.125rem",
+                                    color: "var(--text-primary)",
+                                    marginBottom: "0.5rem",
+                                  }}
+                                >
+                                  {cat.name}
+                                </div>
+
+                                {/* Mastery Progress */}
+                                {progressMap[cat.id] !== undefined && (
+                                  <div style={{ marginBottom: "0.75rem" }}>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        fontSize: "0.6875rem",
+                                        fontWeight: 700,
+                                        color: "var(--text-tertiary)",
+                                        marginBottom: "0.25rem",
+                                      }}
+                                    >
+                                      <span>DOMINIO</span>
+                                      <span>{progressMap[cat.id]}%</span>
+                                    </div>
+                                    <div
+                                      style={{
+                                        height: "4px",
+                                        background: "var(--bg-secondary)",
+                                        borderRadius: "var(--radius-full)",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          height: "100%",
+                                          width: `${progressMap[cat.id]}%`,
+                                          background:
+                                            progressMap[cat.id] >= 80
+                                              ? "var(--success-400)"
+                                              : progressMap[cat.id] >= 50
+                                              ? "var(--warning-400)"
+                                              : "var(--primary-400)",
+                                          transition: "width 0.6s ease-out",
+                                        }}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "0.75rem",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "0.8125rem",
+                                      color: "var(--text-tertiary)",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: "0.25rem",
+                                    }}
+                                  >
+                                    <span style={{ fontSize: "1rem" }}>📝</span>{" "}
+                                    {cat._count.questions} preguntas
+                                  </span>
+                                  {cat.theory && (
+                                    <span
+                                      style={{
+                                        fontSize: "0.6875rem",
+                                        background: "rgba(45,212,191,0.1)",
+                                        color: "var(--accent-400)",
+                                        padding: "0.125rem 0.5rem",
+                                        borderRadius: "var(--radius-full)",
+                                        fontWeight: "700",
+                                        textTransform: "uppercase",
+                                      }}
+                                    >
+                                      Teoría
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div
+                                style={{
+                                  alignSelf: "flex-end",
+                                  fontSize: "0.875rem",
+                                  fontWeight: "700",
+                                  color: "var(--primary-400)",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "0.375rem",
+                                }}
+                              >
+                                Empezar{" "}
+                                <span style={{ fontSize: "1.125rem" }}>→</span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

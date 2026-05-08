@@ -201,8 +201,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* @ts-ignore - ClientStats migration pending */}
-      <ClientStats categories={categories} progress={progressMap} />
+      <ClientStats categories={categories} progress={progressMap} user={user} />
 
       {/* Quick Actions */}
       <h2

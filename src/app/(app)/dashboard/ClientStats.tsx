@@ -309,9 +309,9 @@ export default function ClientStats({
                 </div>
                 <div
                   style={{
-                    height: 4,
+                    height: 6,
                     background: "var(--bg-tertiary)",
-                    borderRadius: 2,
+                    borderRadius: 3,
                     overflow: "hidden",
                   }}
                 >
@@ -320,7 +320,7 @@ export default function ClientStats({
                       height: "100%",
                       width: `${s.score}%`,
                       background: "var(--danger-400)",
-                      borderRadius: 2,
+                      borderRadius: 3,
                     }}
                   />
                 </div>
@@ -386,9 +386,9 @@ export default function ClientStats({
                 </div>
                 <div
                   style={{
-                    height: 4,
+                    height: 6,
                     background: "var(--bg-tertiary)",
-                    borderRadius: 2,
+                    borderRadius: 3,
                     overflow: "hidden",
                   }}
                 >
@@ -397,7 +397,7 @@ export default function ClientStats({
                       height: "100%",
                       width: `${s.score}%`,
                       background: "var(--success-400)",
-                      borderRadius: 2,
+                      borderRadius: 3,
                     }}
                   />
                 </div>

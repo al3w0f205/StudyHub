@@ -56,6 +56,14 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
   --border-default: rgba(255, 255, 255, 0.08);
+
+  /* Status Colors */
+  --success-400: #10b981;
+  --warning-400: #f59e0b;
+  --danger-400: #f43f5e;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-400) 0%, var(--accent-400) 100%);
 }
 
 [data-theme="light"] {
@@ -100,6 +108,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: auto !important;
+  position: relative;
+  min-height: 100%;
 }
 
 html {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const SECTIONS = [
   { id: "stats", label: "Inicio" },
@@ -35,29 +35,17 @@ export default function LandingSectionNav() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  };
-
   return (
-    <nav className="premium-pill">
+    <nav className="premium-pill" style={{ pointerEvents: "auto" }}>
       <div className="flex items-center gap-1 relative z-10">
         {SECTIONS.map((section) => {
           const isActive = activeId === section.id;
           return (
-            <button
+            <a
               key={section.id}
-              onClick={() => scrollTo(section.id)}
+              href={`#${section.id}`}
               className={`nav-link-premium ${isActive ? "active" : ""}`}
+              style={{ pointerEvents: "auto", cursor: "pointer", textDecoration: "none" }}
             >
               <span className="relative z-10">{section.label}</span>
               
@@ -68,7 +56,7 @@ export default function LandingSectionNav() {
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-            </button>
+            </a>
           );
         })}
       </div>

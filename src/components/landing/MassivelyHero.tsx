@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import LandingSectionNav from "@/app/landing-section-nav";
@@ -11,130 +11,146 @@ interface MassivelyHeroProps {
   dashboardUrl: string;
 }
 
-export const MassivelyHero = ({ isLoggedIn, dashboardUrl }: MassivelyHeroProps) => {
+export const MassivelyHero = ({
+  isLoggedIn,
+  dashboardUrl,
+}: MassivelyHeroProps) => {
   const { scrollY } = useScroll();
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-  // Logo Animation: From Viewport Center to Header Left Container
-  // At scroll 0: Centered in viewport
-  // At scroll 300: Positioned at the top-left logo zone
-  const logoScale = useTransform(scrollY, [0, 300], [1, 0.22]);
-  const logoX = useTransform(scrollY, [0, 300], ["-50%", "0%"]);
-  const logoLeft = useTransform(scrollY, [0, 300], ["50%", "0%"]);
-  const logoY = useTransform(scrollY, [0, 300], ["calc(45vh - 80px)", "0px"]);
-  const logoOrigin = useTransform(scrollY, [0, 300], ["center center", "left center"]);
-  
-  // Opacity Controls for smoother transitions
-  const heroContentOpacity = useTransform(scrollY, [0, 150], [1, 0]);
-  const navBarOpacity = useTransform(scrollY, [200, 300], [0, 1]);
+  const scrollProgress = useTransform(scrollY, [0, 400], [0, 1]);
+  const headerOpacity = useTransform(scrollY, [160, 320], [0, 1]);
+  const headerBg = useTransform(
+    headerOpacity,
+    (v) => `rgba(2, 2, 2, ${v * 0.92})`
+  );
+  const headerBlur = useTransform(headerOpacity, (v) => `blur(${v * 20}px)`);
+  const headerBorder = useTransform(
+    headerOpacity,
+    (v) => `1px solid rgba(255, 255, 255, ${v * 0.08})`
+  );
 
-  // Derived Nav Styles
-  const navBg = useTransform(navBarOpacity, (v) => `rgba(2, 2, 2, ${v * 0.85})`);
-  const navBlur = useTransform(navBarOpacity, (v) => `blur(${v * 24}px)`);
-  const navBorder = useTransform(navBarOpacity, (v) => `1px solid rgba(255, 255, 255, ${v * 0.08})`);
+  const heroOpacity = useTransform(scrollY, [0, 220], [1, 0]);
+  const heroTranslateY = useTransform(scrollY, [0, 220], [0, -44]);
+
+  const titleLeft = useTransform(
+    scrollProgress,
+    (p) => `calc(${50 * (1 - p)}% + ${48 * p}px)`
+  );
+  const titleTop = useTransform(
+    scrollProgress,
+    (p) => `calc(${31 * (1 - p)}vh + ${20 * p}px)`
+  );
+  const titleTranslateX = useTransform(
+    scrollProgress,
+    (p) => `calc(${-50 * (1 - p)}%)`
+  );
+  const titleTranslateY = useTransform(
+    scrollProgress,
+    (p) => `calc(${-50 * (1 - p)}%)`
+  );
+  const titleScale = useTransform(scrollProgress, (p) => 1 - 0.78 * p);
 
   return (
-    <section className="massively-intro overflow-visible min-h-screen relative flex flex-col items-center justify-center">
-      {/* ── Fixed Header ── */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        style={{ 
-          background: navBg, 
-          backdropFilter: navBlur,
-          borderBottom: navBorder
+    <section className="massively-hero relative min-h-[78svh]">
+      <motion.div
+        style={{
+          background: headerBg,
+          backdropFilter: headerBlur,
+          borderBottom: headerBorder,
+          opacity: headerOpacity,
         }}
-        className="fixed top-0 left-0 right-0 h-20 z-[150] px-[5vw] flex items-center justify-between pointer-events-none"
-      >
-        <div className="flex items-center gap-12 pointer-events-auto w-full max-w-screen-2xl mx-auto relative">
-          {/* Logo Landing Zone Placeholder (keeps layout stable) */}
-          <div className="relative w-[220px] h-10 flex items-center shrink-0" />
+        className="fixed top-0 left-0 right-0 h-[72px] z-[140]"
+        aria-hidden="true"
+      />
 
-          {/* Animated Logo: Center of viewport at scroll 0, header at scroll 300 */}
-          <motion.div
-            style={{
-              scale: logoScale,
-              x: logoX,
-              left: logoLeft,
-              y: logoY,
-              position: "absolute",
-              transformOrigin: logoOrigin
-            }}
-            className="whitespace-nowrap z-[160] pointer-events-none"
-          >
-            <h1 className="shimmer-text select-none text-center text-7xl md:text-8xl tracking-tighter pointer-events-auto">STUDYHUB</h1>
-          </motion.div>
+      <header className="fixed top-0 left-0 right-0 h-[72px] z-[160] flex justify-center pointer-events-none">
+        <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between relative">
+          <div className="w-[160px] sm:w-[200px] shrink-0" />
 
-          {/* Navigation Pill */}
-          <div className="hidden lg:block">
+          <div className="hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2 pointer-events-auto">
             <LandingSectionNav />
           </div>
-        </div>
 
-        {/* Action Buttons (Unified inside Header) */}
-        <div className="flex items-center gap-4 pointer-events-auto relative z-[170]">
-          {isLoggedIn ? (
-            <div className="flex items-center gap-3">
-              <Link
-                href="/dashboard"
-                className="px-6 py-2.5 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-white rounded-full transition-all text-[11px] font-bold uppercase tracking-wider"
-              >
-                Mi Panel
-              </Link>
-              <Link
-                href="/auth/login"
-                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-lg shadow-blue-500/20 transition-all text-[11px] font-bold uppercase tracking-wider"
-              >
-                Practicar
-              </Link>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              <Link href="/auth/login" className="px-6 py-2.5 bg-white/5 border border-white/10 text-white rounded-full hover:bg-white/10 transition-all text-[11px] font-bold uppercase tracking-wider">
-                Entrar
-              </Link>
-              <Link href="/auth/login" className="px-6 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black rounded-full shadow-lg shadow-cyan-500/20 transition-all text-[11px] font-bold uppercase tracking-wider hidden sm:block">
-                Acceder
-              </Link>
-            </div>
-          )}
-        </div>
-      </motion.header>
+          <div className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-[200] pointer-events-auto">
+            <LandingSectionNav />
+          </div>
 
-      {/* ── Hero Center Content ── */}
-      <motion.div 
-        style={{ opacity: heroContentOpacity }}
-        className="flex flex-col items-center justify-center relative z-10 w-full pointer-events-none"
+          <nav className="premium-pill pointer-events-auto">
+            <div className="flex items-center gap-1 relative z-10">
+              {isLoggedIn ? (
+                <>
+                  <Link href="/dashboard" className="nav-link-premium">
+                    <span className="relative z-10">Mi Panel</span>
+                  </Link>
+                  <Link href={dashboardUrl} className="nav-link-premium active">
+                    <span className="relative z-10">Practicar</span>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/auth/login" className="nav-link-premium">
+                    <span className="relative z-10">Entrar</span>
+                  </Link>
+                  <Link href="/auth/login" className="nav-link-premium active">
+                    <span className="relative z-10">Acceder</span>
+                  </Link>
+                </>
+              )}
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <motion.h1
+        ref={titleRef}
+        style={{
+          position: "fixed",
+          top: titleTop,
+          left: titleLeft,
+          x: titleTranslateX,
+          y: titleTranslateY,
+          scale: titleScale,
+          transformOrigin: "left top",
+          zIndex: 180,
+          pointerEvents: "none",
+        }}
+        className="shimmer-text hero-logo select-none whitespace-nowrap"
       >
-          {/* Spacer for the animated logo which starts here at ~45vh */}
-          <div className="h-[40vh]" />
+        STUDYHUB
+      </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-10 mt-20 pointer-events-auto"
-          >
-            <div className="flex flex-col items-center gap-4 text-center">
-              <span className="text-cyan-400 font-black uppercase tracking-[0.6em] text-[10px] md:text-xs">
-                Preparación Académica Superior
-              </span>
-              <p className="text-white/30 uppercase tracking-[0.3em] text-[12px] md:text-sm font-semibold max-w-md leading-relaxed">
-                Domina el examen con confianza y resultados reales
-              </p>
+      <div className="relative min-h-[100svh] flex flex-col items-center justify-center">
+        <motion.div
+          style={{
+            opacity: heroOpacity,
+            y: heroTranslateY,
+          }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center gap-12 pointer-events-auto mt-[46vh] px-6"
+        >
+          <div className="hero-copy-block flex flex-col items-center text-center gap-3">
+            <span className="text-cyan-400 font-black uppercase tracking-[0.48em] md:tracking-[0.6em] text-[10px] md:text-xs">
+              Preparación Académica de Sueño
+            </span>
+            <p className="text-white/35 uppercase tracking-[0.24em] md:tracking-[0.3em] text-[12px] md:text-sm font-semibold max-w-md leading-relaxed">
+              Domina el examen con confianza y resultados reales
+            </p>
+          </div>
+
+          <nav className="premium-pill">
+            <div className="flex items-center gap-1 relative z-10">
+              <Link href="/auth/login" className="nav-link-premium active">
+                <span className="relative z-10 flex items-center gap-3">
+                  Continuar Practicando <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
             </div>
-
-            <Link
-              href="/auth/login"
-              className="group relative px-14 py-6 bg-blue-600 hover:bg-blue-500 text-white rounded-full transition-all duration-500 shadow-[0_20px_50px_rgba(37,99,235,0.4)] overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="relative flex items-center gap-4 font-black text-xs uppercase tracking-[0.2em]">
-                Continuar Practicando <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
-              </span>
-            </Link>
-          </motion.div>
-      </motion.div>
-
+          </nav>
+        </motion.div>
+      </div>
     </section>
   );
 };

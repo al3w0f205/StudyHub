@@ -7,7 +7,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: {
-    default: "StudyHub — Plataforma de Estudio Interactivo",
+    default: "StudyHub - Plataforma de Estudio Interactivo",
     template: "%s | StudyHub",
   },
   description:
@@ -48,7 +48,10 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        />
       </head>
       <body>
         <SmoothScroll />

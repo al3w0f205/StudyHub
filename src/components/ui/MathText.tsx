@@ -26,20 +26,23 @@ export default function MathText({ children, className = "" }: MathTextProps) {
     .replace(/→/g, "\\to ")
     // Auto-wrap common math patterns that are missing $ delimiters
     // (e.g., lim_{h\to0}, f(x+h), y=1/x)
-    .replace(/(?<!\$)\blim_\{([^}]*)\}/g, "$\\lim_{$1}$")
-    .replace(/(?<!\$)\b([a-z]\([a-z]\+h\))(?!\$)/g, "$$ $1 $$")
-    .replace(/(?<!\$)\b([a-z]\([a-z]\))(?!\$)/g, "$$ $1 $$")
+    .replace(/(?<![\$\\])\blim_\{([^}]*)\}/g, "$\\lim_{$1}$")
+    .replace(/(?<![\$\\])\b([a-z]\([a-z]\+h\))(?!\$)/g, "$$1$")
+    .replace(/(?<![\$\\])\b([a-z]\([a-z]\))(?!\$)/g, "$$1$")
     // Fix common fractions in text like 1/x
-    .replace(/(?<!\$)\b(y\s*=\s*[0-9a-z\/]+)(?!\$)/g, "$$ $1 $$");
+    .replace(/(?<![\$\\])\b(y\s*=\s*[0-9a-z\/]+)(?!\$)/g, "$$1$");
 
   return (
-    <div className={`math-text-wrapper ${className}`}>
+    <span className={`math-text-wrapper inline-flex items-center align-middle ${className}`}>
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[rehypeKatex]}
+        components={{
+          p: ({ node, ...props }) => <span {...props} />,
+        }}
       >
         {processed}
       </ReactMarkdown>
-    </div>
+    </span>
   );
 }

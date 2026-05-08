@@ -281,9 +281,28 @@ export async function runMigration() {
     console.log("Iniciando sincronización de base de datos (prisma db push)...");
     // Intentar ejecutar prisma db push directamente en el servidor
     // Usamos el path completo de npx si es posible o confiamos en el PATH
-    const output = execSync("npx prisma db push --schema=./prisma/schema.prisma --accept-data-loss", { 
-      encoding: "utf-8",
-      cwd: process.cwd()
+    const possibleSchemaPaths = [
+      join(process.cwd(), "prisma", "schema.prisma"),
+      join(process.cwd(), "schema.prisma"),
+      "/app/prisma/schema.prisma", // Ruta común en Docker/Coolify
+      "/app/schema.prisma"
+    ];
+
+    let schemaPath = "";
+    for (const p of possibleSchemaPaths) {
+      if (existsSync(p)) {
+        schemaPath = p;
+        break;
+      }
+    }
+
+    if (!schemaPath) {
+      return { success: false, error: "No se encontró el archivo schema.prisma en el servidor. Verifica que esté en el repositorio." };
+    }
+
+    console.log(`Usando esquema en: ${schemaPath}`);
+    const output = execSync(`npx prisma db push --schema="${schemaPath}" --accept-data-loss`, { 
+      encoding: "utf-8"
     });
     console.log("Resultado de la migración:", output);
     return { success: true, message: "Base de datos sincronizada correctamente: " + output.split('\n').pop() };

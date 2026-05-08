@@ -230,7 +230,7 @@ export default async function CareersPage() {
                   </td>
                   <td>
                     <span className="badge badge-secondary" style={{ fontSize: "0.7rem" }}>
-                      {career.university.name}
+                      {career.university?.name || "Sin Universidad"}
                     </span>
                   </td>
                   <td>

@@ -317,33 +317,46 @@ export async function runMigration() {
 
     console.log(`Usando esquema en: ${schemaPath}`);
     
-    // 1. Sincronizar esquema con la base de datos
-    const outputPush = execSync(`npx prisma db push --schema="${schemaPath}" --accept-data-loss`, { 
-      encoding: "utf-8",
-      stdio: "pipe"
-    });
-    console.log("Resultado de db push:", outputPush);
+    let pushOutput = "";
+    try {
+      // 1. Sincronizar esquema con la base de datos
+      pushOutput = execSync(`npx prisma db push --schema="${schemaPath}" --accept-data-loss`, { 
+        encoding: "utf-8",
+        stdio: "pipe"
+      });
+      console.log("Resultado de db push:", pushOutput);
+    } catch (pushError: any) {
+      console.error("Error en db push:", pushError);
+      return { 
+        success: false, 
+        error: `Error al actualizar base de datos: ${pushError.stderr?.toString() || pushError.message}` 
+      };
+    }
 
-    // 2. Regenerar Prisma Client
-    const outputGenerate = execSync(`npx prisma generate --schema="${schemaPath}"`, {
-      encoding: "utf-8",
-      stdio: "pipe"
-    });
-    console.log("Resultado de prisma generate:", outputGenerate);
+    // 2. Intentar regenerar Prisma Client (puede fallar en algunos entornos de servidor sin afectar la DB)
+    try {
+      const outputGenerate = execSync(`npx prisma generate --schema="${schemaPath}"`, {
+        encoding: "utf-8",
+        stdio: "pipe"
+      });
+      console.log("Resultado de prisma generate:", outputGenerate);
+    } catch (genError: any) {
+      console.warn("Prisma generate falló (común en producción), pero la base de datos fue actualizada:", genError.message);
+      return { 
+        success: true, 
+        message: "Estructura de base de datos actualizada. (Nota: El cliente no se regeneró en el servidor, pero los cambios ya son efectivos)." 
+      };
+    }
 
     return { 
       success: true, 
-      message: "Sincronización exitosa: Base de datos actualizada y cliente generado." 
+      message: "Sincronización completa: Base de datos y cliente actualizados." 
     };
   } catch (error: any) {
-    console.error("Error detallado de migración:", error);
-    const stderr = error.stderr?.toString() || "";
-    const stdout = error.stdout?.toString() || "";
-    const message = error.message || "Error desconocido";
-    
+    console.error("Error crítico en runMigration:", error);
     return { 
       success: false, 
-      error: `Error al sincronizar: ${message}. DETALLE: ${stderr.substring(0, 300) || stdout.substring(0, 300)}` 
+      error: `Error crítico: ${error.message}` 
     };
   }
 }

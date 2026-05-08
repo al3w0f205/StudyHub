@@ -55,7 +55,7 @@ export interface Career {
   slug: string;
   description?: string | null;
   icon?: string | null;
-  universityId: string;
+  universityId?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }

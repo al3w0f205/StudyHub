@@ -87,7 +87,7 @@ async function updateAccess(formData: FormData) {
       // Check if all careers of the parent uni are now allowed, if so, add the uni to allowedUnis
       const career = allCareers.find((c: any) => c.slug === careerSlug);
       if (career?.university?.slug) {
-        const uni = allUniversities.find((u: any) => u.slug === career.university.slug);
+        const uni = allUniversities.find((u: any) => u.slug === career.university?.slug);
         if (uni && uni.careers.every((c: any) => allowedCareers.includes(c.slug))) {
           if (!allowedUnis.includes(uni.slug)) allowedUnis.push(uni.slug);
         }
@@ -97,7 +97,7 @@ async function updateAccess(formData: FormData) {
       // If a career is removed, its parent uni must also be removed from allowedUnis
       const career = allCareers.find((c: any) => c.slug === careerSlug);
       if (career?.university?.slug) {
-        allowedUnis = allowedUnis.filter((u: string) => u !== career.university.slug);
+        allowedUnis = allowedUnis.filter((u: string) => u !== career.university?.slug);
       }
     }
   }

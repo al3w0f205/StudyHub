@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/prisma";
 import { readFileSync, existsSync, readdirSync, statSync } from "fs";
+import { execSync } from "child_process";
 import { join } from "path";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth-guards";
@@ -129,105 +130,135 @@ export async function runSeed() {
     }
 
     let added = 0;
-    const items = readdirSync(dataDir);
 
-    // 1. Process old single file format (questions.json) if it exists
-    if (items.includes("questions.json")) {
-      const raw = readFileSync(join(dataDir, "questions.json"), "utf-8");
-      const data = JSON.parse(raw);
-      const preguntas = data.preguntas || data.questions || [];
-      
-      if (preguntas.length > 0) {
-        let defaultCareer = await prisma.career.findFirst({ where: { slug: "general" } });
-        if (!defaultCareer) {
-          defaultCareer = await prisma.career.create({
-            data: { name: "General", slug: "general", description: "Preguntas sin clasificar", icon: "📚" }
-          });
+    // 1. Recursive function to get all JSON files
+    const getJsonFiles = (dir: string): string[] => {
+      let results: string[] = [];
+      const list = readdirSync(dir);
+      list.forEach((file) => {
+        const path = join(dir, file);
+        const stat = statSync(path);
+        if (stat && stat.isDirectory()) {
+          results = results.concat(getJsonFiles(path));
+        } else if (file.endsWith(".json") && file !== "package.json") {
+          results.push(path);
         }
+      });
+      return results;
+    };
 
-        for (const p of preguntas) {
-          const catName = p.cat || "Varios";
-          const catSlug = slugify(catName);
-          let category = await prisma.category.findFirst({ where: { slug: catSlug, careerId: defaultCareer.id } });
-          if (!category) {
-            category = await prisma.category.create({ data: { name: catName.charAt(0).toUpperCase() + catName.slice(1), slug: catSlug, careerId: defaultCareer.id } });
-          }
-          
-          const existing = await prisma.question.findFirst({ where: { text: p.q, categoryId: category.id } });
-          if (!existing) {
-            const correctIndex = parseCorrectIndex(p.ans, p.opts);
-            if (correctIndex === null) continue;
-            await prisma.question.create({
-              data: {
-                text: p.q,
-                explanation: p.just || "",
-                hint: p.hint || null,
-                categoryId: category.id,
-                options: p.opts,
-                correctIndex: correctIndex,
-              },
-            });
-            added++;
-          }
+    const jsonFiles = getJsonFiles(dataDir);
+
+    for (const filePath of jsonFiles) {
+      const relativePath = filePath.replace(dataDir, "").replace(/^[\\\/]/, "");
+      const pathParts = relativePath.split(/[\\\/]/);
+      
+      // Basic folder is the career
+      const folderName = pathParts[0] || "General";
+      const careerName = folderName.charAt(0).toUpperCase() + folderName.slice(1).replace(/-/g, " ");
+      const careerSlug = slugify(careerName);
+
+      const raw = readFileSync(filePath, "utf-8");
+      let preguntas: any[] = [];
+      let theoryText: string | null = null;
+
+      try {
+        const data = JSON.parse(raw);
+        preguntas = data.preguntas || data.questions || (Array.isArray(data) ? data : []);
+        theoryText = data.theory || null;
+      } catch (e) {
+        continue;
+      }
+
+      if (preguntas.length === 0 && !theoryText) continue;
+
+      // Ensure Career exists
+      const career = await prisma.career.upsert({
+        where: { slug: careerSlug },
+        update: {},
+        create: {
+          name: careerName,
+          slug: careerSlug,
+          description: `Carrera de ${careerName}`,
+          icon: careerName.toLowerCase().includes("medicina") ? "🏥" : careerName.toLowerCase().includes("ingenieria") ? "🏗️" : "📚",
+        },
+      });
+
+      // Handle Subject and Category
+      let subjectId: string | null = null;
+      let finalCategoryName: string | null = null;
+      
+      // Structure: career/subject/optional_category_folder/file.json
+      if (pathParts.length >= 2) {
+        const subjectName = pathParts[1].replace(/_/g, " ");
+        const subjectSlug = slugify(subjectName);
+        
+        const subject = await prisma.subject.upsert({
+          where: { careerId_slug: { slug: subjectSlug, careerId: career.id } },
+          update: {},
+          create: { name: subjectName, slug: subjectSlug, careerId: career.id },
+        });
+        subjectId = subject.id;
+
+        // If we have 3 or more parts: medicina/Fisio Anatomia/ADN/part1.json
+        if (pathParts.length >= 3) {
+          finalCategoryName = pathParts[pathParts.length - 2].replace(/_/g, " ");
         }
       }
-    }
 
-    // 2. Process Folder Structure (e.g. data/medicina/fisiologia.json)
-    for (const item of items) {
-      if (item === "questions.json") continue;
-      
-      const careerPath = join(dataDir, item);
-      if (statSync(careerPath).isDirectory()) {
-        const careerName = item.charAt(0).toUpperCase() + item.slice(1).replace(/-/g, " ");
-        const careerSlug = slugify(careerName);
+      // Extract categories from questions or filename
+      const categoryNames = [...new Set(preguntas.map((p) => p.cat || "Varios"))];
+      if (categoryNames.length === 0 || (categoryNames.length === 1 && categoryNames[0] === "Varios" && finalCategoryName)) {
+        categoryNames[0] = finalCategoryName || pathParts[pathParts.length - 1].replace(".json", "").replace(/_/g, " ");
+      }
+
+      const categoryMap: Record<string, string> = {};
+
+      for (const catName of categoryNames) {
+        const effectiveCatName = finalCategoryName || catName;
+        const slug = slugify(effectiveCatName + "-" + careerSlug);
         
-        let career = await prisma.career.findFirst({ where: { slug: careerSlug } });
-        if (!career) {
-          career = await prisma.career.create({
-            data: { name: careerName, slug: careerSlug, icon: item === "medicina" ? "⚕️" : "🎓" }
-          });
-        }
+        const category = await prisma.category.upsert({
+          where: { careerId_slug: { slug, careerId: career.id } },
+          update: { 
+            name: effectiveCatName.charAt(0).toUpperCase() + effectiveCatName.slice(1),
+            theory: theoryText,
+            subjectId: subjectId
+          },
+          create: {
+            name: effectiveCatName.charAt(0).toUpperCase() + effectiveCatName.slice(1),
+            slug,
+            careerId: career.id,
+            theory: theoryText,
+            subjectId: subjectId
+          },
+        });
+        categoryMap[catName] = category.id;
+      }
 
-        const categoryFiles = readdirSync(careerPath).filter(f => f.endsWith('.json'));
-        
-        for (const file of categoryFiles) {
-          const catName = file.replace('.json', '').replace(/_/g, " ");
-          const catSlug = slugify(catName + "-" + careerSlug); // Ensure unique category slug
-          
-          let category = await prisma.category.findFirst({ where: { slug: catSlug, careerId: career.id } });
-          if (!category) {
-            category = await prisma.category.create({
-              data: { name: catName.charAt(0).toUpperCase() + catName.slice(1), slug: catSlug, careerId: career.id }
-            });
-          }
+      // Insert questions
+      const questionsToCreate = preguntas
+        .filter((p) => p.q && p.opts && p.opts.length >= 2)
+        .map((p) => {
+          const correctIndex = parseCorrectIndex(p.ans, p.opts);
+          if (correctIndex === null) return null;
+          return {
+            text: p.q,
+            options: p.opts,
+            correctIndex: correctIndex,
+            hint: p.hint || null,
+            explanation: p.just || null,
+            categoryId: categoryMap[p.cat || "Varios"] || Object.values(categoryMap)[0],
+          };
+        })
+        .filter(Boolean) as any[];
 
-          const raw = readFileSync(join(careerPath, file), "utf-8");
-          let data;
-          try { data = JSON.parse(raw); } catch (e) { continue; }
-          const preguntas = Array.isArray(data) ? data : (data.preguntas || data.questions || []);
-
-          for (const p of preguntas) {
-            if (!p.q || !p.opts) continue;
-            
-            const existing = await prisma.question.findFirst({ where: { text: p.q, categoryId: category.id } });
-            if (!existing) {
-              const correctIndex = parseCorrectIndex(p.ans, p.opts);
-              if (correctIndex === null) continue;
-              await prisma.question.create({
-                data: {
-                  text: p.q,
-                  explanation: p.just || "",
-                  hint: p.hint || null,
-                  categoryId: category.id,
-                  options: p.opts,
-                  correctIndex: correctIndex,
-                },
-              });
-              added++;
-            }
-          }
-        }
+      if (questionsToCreate.length > 0) {
+        const result = await prisma.question.createMany({
+          data: questionsToCreate,
+          skipDuplicates: true,
+        });
+        added += result.count;
       }
     }
 
@@ -235,9 +266,32 @@ export async function runSeed() {
 
     revalidatePath("/admin");
     revalidatePath("/badges");
+    revalidatePath("/quiz");
+    
     return { success: true, message: `Sincronización completa. Se añadieron ${added} preguntas nuevas y se actualizaron los trofeos.` };
   } catch (error: any) {
     console.error("Seed error:", error);
     return { success: false, error: error.message };
   }
 }
+
+export async function runMigration() {
+  await requireAdmin();
+  try {
+    console.log("Iniciando sincronización de base de datos (prisma db push)...");
+    // Intentar ejecutar prisma db push directamente en el servidor
+    // Usamos el path completo de npx si es posible o confiamos en el PATH
+    const output = execSync("npx prisma db push --accept-data-loss", { encoding: "utf-8" });
+    console.log("Resultado de la migración:", output);
+    return { success: true, message: "Base de datos sincronizada correctamente: " + output.split('\n').pop() };
+  } catch (error: any) {
+    console.error("Error detallado de migración:", error);
+    const errorMessage = error.stderr || error.message || "Error desconocido";
+    return { 
+      success: false, 
+      error: `Error al sincronizar: ${errorMessage.substring(0, 200)}` 
+    };
+  }
+}
+
+
